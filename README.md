@@ -38,7 +38,7 @@ The source in the `basis.js` [repo](https://github.com/basisjs/basisjs). Please 
 Install with `bower`:
 
 ```shell
-bower install `basis-library`
+bower install basis-library
 ```
 
 Add a `<script>` to your `index.html`:

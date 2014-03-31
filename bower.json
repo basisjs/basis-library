@@ -1,5 +1,5 @@
 {
-  "name": "basis-library",
-  "version": "0.0.0",
-  "main": "./basis.js"
+  "main": "./basis.js", 
+  "version": "1.2.1", 
+  "name": "basis-library"
 }

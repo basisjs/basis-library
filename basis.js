@@ -10,8 +10,8 @@
 //  [function] ../../src/basis/dom/event.js -> 8.js
 //  [function] ../../src/basis/template/htmlfgen.js -> 9.js
 //  [function] ../../src/basis/dragdrop.js -> a.js
-//  [function] ../../src/basis/layout.js -> b.js
-//  [function] ../../src/basis/dom/computedStyle.js -> c.js
+//  [function] ../../src/basis/dom/computedStyle.js -> b.js
+//  [function] ../../src/basis/layout.js -> c.js
 //  [function] ../../src/basis/ui.js -> 1.js
 //  [function] ../../src/basis/data/value.js -> e.js
 //  [function] ../../src/basis/data/index.js -> f.js
@@ -31,7 +31,7 @@
 (function(){
 "use strict";
 
-var __namespace_map__ = {"0.js":"library","1.js":"basis.ui","2.js":"basis.l10n","3.js":"basis.event","4.js":"basis.data","5.js":"basis.dom.wrapper","6.js":"basis.template","7.js":"basis.template.html","8.js":"basis.dom.event","9.js":"basis.template.htmlfgen","a.js":"basis.dragdrop","b.js":"basis.layout","c.js":"basis.dom.computedStyle","d.js":"basis.data.dataset","e.js":"basis.data.value","f.js":"basis.data.index","g.js":"basis.data.object","h.js":"basis.entity","i.js":"basis.net.jsonp","j.js":"basis.net","k.js":"basis.net.service","l.js":"basis.net.ajax","m.js":"basis.ua","n.js":"basis.net.action","o.js":"basis.router","p.js":"basis.app"};
+var __namespace_map__ = {"0.js":"library","1.js":"basis.ui","2.js":"basis.l10n","3.js":"basis.event","4.js":"basis.data","5.js":"basis.dom.wrapper","6.js":"basis.template","7.js":"basis.template.html","8.js":"basis.dom.event","9.js":"basis.template.htmlfgen","a.js":"basis.dragdrop","b.js":"basis.dom.computedStyle","c.js":"basis.layout","d.js":"basis.data.dataset","e.js":"basis.data.value","f.js":"basis.data.index","g.js":"basis.data.object","h.js":"basis.entity","i.js":"basis.net.jsonp","j.js":"basis.net","k.js":"basis.net.service","l.js":"basis.net.ajax","m.js":"basis.ua","n.js":"basis.net.action","o.js":"basis.router","p.js":"basis.app"};
 var library;
 
 var __resources__ = {
@@ -47,14 +47,16 @@ var __resources__ = {
     var $self = basis.fn.$self;
     var $true = basis.fn.$true;
     var $false = basis.fn.$false;
+    var $undef = basis.fn.$undef;
     var arrayFrom = basis.array.from;
     var createEvent = basis.event.create;
     var SUBSCRIPTION = basis.data.SUBSCRIPTION;
     var DataObject = basis.data.Object;
     var KeyObjectMap = basis.data.KeyObjectMap;
-    var AbstractDataset = basis.data.AbstractDataset;
+    var ReadOnlyDataset = basis.data.ReadOnlyDataset;
     var Dataset = basis.data.Dataset;
     var DatasetWrapper = basis.data.DatasetWrapper;
+    var setAccumulateState = Dataset.setAccumulateState;
     SUBSCRIPTION.add("SOURCE", {
       sourceChanged: function(object, oldSource) {
         if (oldSource) SUBSCRIPTION.unlink("source", object, oldSource);
@@ -79,28 +81,26 @@ var __resources__ = {
       if (result) return delta;
     }
     function createRuleEvents(fn, events) {
-      return function createRuleEvents__extend__(events) {
+      return function createRuleEventsExtend(events) {
         if (!events) return null;
         if (events.__extend__) return events;
-        if (typeof events != "string" && !Array.isArray(events)) {
-          events = typeof events == "object" ? basis.object.keys(events) : null;
-          if (events) basis.dev.warn("Using an object for ruleEvents is deprecated, use space separated event names string or array of strings instead.");
-        }
+        if (typeof events != "string" && !Array.isArray(events)) events = null;
         return extend(basis.event.createHandler(events, fn), {
-          __extend__: createRuleEvents__extend__
+          __extend__: createRuleEventsExtend
         });
       }(events);
     }
-    function createKeyMap(config, keyGetter, itemClass, SubsetClass) {
+    function createKeyMap(config, keyGetter, ItemClass, SubsetClass) {
       return new KeyObjectMap(extend({
         keyGetter: keyGetter,
-        itemClass: itemClass,
+        itemClass: ItemClass,
         create: function(key, object) {
-          var obj = KeyObjectMap.prototype.create.call(this, key, object);
-          obj.setDataset(new SubsetClass({
+          var datasetWrapper = KeyObjectMap.prototype.create.call(this, key, object);
+          datasetWrapper.ruleValue = key;
+          datasetWrapper.setDataset(new SubsetClass({
             ruleValue: key
           }));
-          return obj;
+          return datasetWrapper;
         }
       }, config));
     }
@@ -132,33 +132,43 @@ var __resources__ = {
           }
         }
         this.applyRule(updated);
-      },
-      destroy: function(source) {
-        this.removeSource(source);
       }
     };
-    var Merge = Class(AbstractDataset, {
+    var Merge = Class(ReadOnlyDataset, {
       className: namespace + ".Merge",
       subscribeTo: SUBSCRIPTION.SOURCE,
       emit_sourcesChanged: createEvent("sourcesChanged", "delta"),
       sources: null,
+      sourceValues_: null,
+      sourcesMap_: null,
+      sourceDelta_: null,
       rule: function(count, sourceCount) {
         return count > 0;
       },
+      emit_ruleChanged: createEvent("ruleChanged", "oldRule"),
       listen: {
-        source: MERGE_DATASET_HANDLER
+        source: MERGE_DATASET_HANDLER,
+        sourceValue: {
+          destroy: function(sender) {
+            this.removeSource(sender);
+          }
+        }
       },
       init: function() {
-        AbstractDataset.prototype.init.call(this);
+        ReadOnlyDataset.prototype.init.call(this);
         var sources = this.sources;
         this.sources = [];
-        if (sources) sources.forEach(this.addSource, this);
+        this.sourcesMap_ = {};
+        this.sourceValues_ = [];
+        if (sources) this.setSources(sources);
       },
       setRule: function(rule) {
-        if (typeof rule != "function") rule = Merge.UNION;
+        rule = getter(rule || Merge.UNION);
         if (this.rule !== rule) {
+          var oldRule = this.rule;
           this.rule = rule;
-          this.applyRule();
+          this.emit_ruleChanged(oldRule);
+          return this.applyRule();
         }
       },
       applyRule: function(scope) {
@@ -174,67 +184,145 @@ var __resources__ = {
         for (var objectId in scope) {
           memberCounter = memberMap[objectId];
           isMember = sourceCount && memberCounter.count && rule(memberCounter.count, sourceCount);
-          if (isMember != !!this.items_[objectId]) (isMember ? inserted : deleted).push(memberCounter.object);
+          if (isMember != objectId in this.items_) {
+            if (isMember) inserted.push(memberCounter.object); else deleted.push(memberCounter.object);
+          }
           if (memberCounter.count == 0) delete memberMap[objectId];
         }
         if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
         return delta;
       },
-      addSource: function(source) {
-        if (source instanceof AbstractDataset) {
-          if (basis.array.add(this.sources, source)) {
-            if (this.listen.source) source.addHandler(this.listen.source, this);
-            var memberMap = this.members_;
-            for (var objectId in source.items_) {
-              if (memberMap[objectId]) {
-                memberMap[objectId].count++;
-              } else {
-                memberMap[objectId] = {
-                  count: 1,
-                  object: source.items_[objectId]
-                };
-              }
-            }
-            this.applyRule();
-            this.emit_sourcesChanged({
-              inserted: [ source ]
-            });
-            return true;
+      addDataset_: function(dataset) {
+        this.sources.push(dataset);
+        if (this.listen.source) dataset.addHandler(this.listen.source, this);
+        var memberMap = this.members_;
+        for (var objectId in dataset.items_) {
+          if (memberMap[objectId]) {
+            memberMap[objectId].count++;
+          } else {
+            memberMap[objectId] = {
+              count: 1,
+              object: dataset.items_[objectId]
+            };
           }
-        } else {
-          basis.dev.warn(this.constructor.className + ".addSource: source isn't instance of AbstractDataset");
         }
+        return true;
+      },
+      removeDataset_: function(dataset) {
+        basis.array.remove(this.sources, dataset);
+        if (this.listen.source) dataset.removeHandler(this.listen.source, this);
+        var memberMap = this.members_;
+        for (var objectId in dataset.items_) memberMap[objectId].count--;
+      },
+      updateDataset_: function(source) {
+        var merge = this.owner;
+        var sourcesMap_ = merge.sourcesMap_;
+        var dataset = basis.data.resolveDataset(this, merge.updateDataset_, source, "adapter");
+        var inserted;
+        var deleted;
+        var delta;
+        if (this.dataset === dataset) return;
+        if (dataset) {
+          var count = (sourcesMap_[dataset.basisObjectId] || 0) + 1;
+          sourcesMap_[dataset.basisObjectId] = count;
+          if (count == 1) {
+            merge.addDataset_(dataset);
+            inserted = [ dataset ];
+          }
+        }
+        if (this.dataset) {
+          var count = (sourcesMap_[this.dataset.basisObjectId] || 0) - 1;
+          sourcesMap_[this.dataset.basisObjectId] = count;
+          if (count == 0) {
+            merge.removeDataset_(this.dataset);
+            deleted = [ this.dataset ];
+          }
+        }
+        this.dataset = dataset;
+        merge.applyRule();
+        if (delta = getDelta(inserted, deleted)) {
+          var setSourcesTransaction = merge.sourceDelta_;
+          if (setSourcesTransaction) {
+            if (delta.inserted) delta.inserted.forEach(function(source) {
+              if (!basis.array.remove(this.deleted, source)) basis.array.add(this.inserted, source);
+            }, setSourcesTransaction);
+            if (delta.deleted) delta.deleted.forEach(function(source) {
+              if (!basis.array.remove(this.inserted, source)) basis.array.add(this.deleted, source);
+            }, setSourcesTransaction);
+          } else {
+            merge.emit_sourcesChanged(delta);
+          }
+        }
+        return delta;
+      },
+      getSourceValues: function() {
+        return this.sourceValues_.map(function(item) {
+          return item.source;
+        });
+      },
+      addSource: function(source) {
+        if (!source || typeof source != "object" && typeof source != "function") {
+          basis.dev.warn(this.constructor.className + ".addSource: value should be a dataset instance or to be able to resolve in dataset");
+          return;
+        }
+        if (this.hasSource(source)) {
+          basis.dev.warn(this.constructor.className + ".addSource: value is already in source list");
+          return;
+        }
+        var sourceInfo = {
+          owner: this,
+          source: source,
+          adapter: null,
+          dataset: null
+        };
+        this.sourceValues_.push(sourceInfo);
+        this.updateDataset_.call(sourceInfo, source);
+        if (this.listen.sourceValue && source instanceof basis.event.Emitter) source.addHandler(this.listen.sourceValue, this);
       },
       removeSource: function(source) {
-        if (basis.array.remove(this.sources, source)) {
-          if (this.listen.source) source.removeHandler(this.listen.source, this);
-          var memberMap = this.members_;
-          for (var objectId in source.items_) memberMap[objectId].count--;
-          this.applyRule();
-          this.emit_sourcesChanged({
-            deleted: [ source ]
-          });
-          return true;
-        } else {
-          basis.dev.warn(this.constructor.className + ".removeSource: source isn't in dataset source list");
+        for (var i = 0, sourceInfo; sourceInfo = this.sourceValues_[i]; i++) if (sourceInfo.source === source) {
+          if (this.listen.sourceValue && source instanceof basis.event.Emitter) source.removeHandler(this.listen.sourceValue, this);
+          this.updateDataset_.call(sourceInfo, null);
+          this.sourceValues_.splice(i, 1);
+          return;
         }
+        basis.dev.warn(this.constructor.className + ".removeSource: source value isn't found in source list");
+      },
+      hasSource: function(source) {
+        for (var i = 0, sourceInfo; sourceInfo = this.sourceValues_[i]; i++) if (sourceInfo.source === source) return true;
+        return false;
       },
       setSources: function(sources) {
-        var exists = arrayFrom(this.sources);
-        for (var i = 0, source; source = sources[i]; i++) {
-          if (source instanceof AbstractDataset) {
-            if (!basis.array.remove(exists, source)) this.addSource(source);
+        var exists = this.sourceValues_.map(function(sourceInfo) {
+          return sourceInfo.source;
+        });
+        var inserted = [];
+        var deleted = [];
+        var delta;
+        if (!sources) sources = [];
+        this.sourceDelta_ = {
+          inserted: inserted,
+          deleted: deleted
+        };
+        for (var i = 0; i < sources.length; i++) {
+          var source = sources[i];
+          if (!basis.array.remove(exists, source)) {
+            this.addSource(source);
           } else {
-            basis.dev.warn(this.constructor.className + ".setSources: source isn't type of AbstractDataset", source);
+            basis.dev.warn(this.constructor.className + ".setSources: source isn't type of ReadOnlyDataset", source);
           }
         }
         exists.forEach(this.removeSource, this);
-      },
-      clear: function() {
-        arrayFrom(this.sources).forEach(this.removeSource, this);
+        this.sourceDelta_ = null;
+        if (delta = getDelta(inserted, deleted)) this.emit_sourcesChanged(delta);
+        return delta;
       },
       destroy: function() {
-        AbstractDataset.prototype.destroy.call(this);
+        this.setSources();
+        ReadOnlyDataset.prototype.destroy.call(this);
+        this.sourceValues_ = null;
+        this.sourcesMap_ = null;
+        this.sourceDelta_ = null;
         this.sources = null;
       }
     });
@@ -261,32 +349,34 @@ var __resources__ = {
         if (newDelta) this.emit_itemsChanged(newDelta);
       },
       destroy: function() {
-        this.setOperands(null, this.subtrahend);
+        if (!this.minuendAdapter_) this.setMinuend(null);
       }
     };
     var SUBTRACTDATASET_SUBTRAHEND_HANDLER = {
       itemsChanged: function(dataset, delta) {
         if (!this.minuend) return;
-        var newDelta = getDelta(delta.deleted && delta.deleted.filter(datasetAbsentFilter, this), delta.inserted && delta.inserted.filter(this.has, this));
+        var newDelta = getDelta(delta.deleted && delta.deleted.filter(this.minuend.has, this.minuend), delta.inserted && delta.inserted.filter(this.has, this));
         if (newDelta) this.emit_itemsChanged(newDelta);
       },
       destroy: function() {
-        this.setOperands(this.minuend, null);
+        if (!this.subtrahendAdapter_) this.setSubtrahend(null);
       }
     };
-    var Subtract = Class(AbstractDataset, {
+    var Subtract = Class(ReadOnlyDataset, {
       className: namespace + ".Subtract",
       subscribeTo: SUBSCRIPTION.MINUEND + SUBSCRIPTION.SUBTRAHEND,
       minuend: null,
+      minuendAdapter_: null,
       emit_minuendChanged: createEvent("minuendChanged", "oldMinuend"),
       subtrahend: null,
+      subtrahendAdapter_: null,
       emit_subtrahendChanged: createEvent("subtrahendChanged", "oldSubtrahend"),
       listen: {
         minuend: SUBTRACTDATASET_MINUEND_HANDLER,
         subtrahend: SUBTRACTDATASET_SUBTRAHEND_HANDLER
       },
       init: function() {
-        AbstractDataset.prototype.init.call(this);
+        ReadOnlyDataset.prototype.init.call(this);
         var minuend = this.minuend;
         var subtrahend = this.subtrahend;
         this.minuend = null;
@@ -296,8 +386,8 @@ var __resources__ = {
       setOperands: function(minuend, subtrahend) {
         var delta;
         var operandsChanged = false;
-        if (minuend instanceof AbstractDataset == false) minuend = null;
-        if (subtrahend instanceof AbstractDataset == false) subtrahend = null;
+        minuend = basis.data.resolveDataset(this, this.setMinuend, minuend, "minuendAdapter_");
+        subtrahend = basis.data.resolveDataset(this, this.setSubtrahend, subtrahend, "subtrahendAdapter_");
         var oldMinuend = this.minuend;
         var oldSubtrahend = this.subtrahend;
         if (oldMinuend !== minuend) {
@@ -335,16 +425,17 @@ var __resources__ = {
         return delta;
       },
       setMinuend: function(minuend) {
-        return this.setOperands(minuend, this.subtrahend);
+        return this.setOperands(minuend, this.subtrahendAdapter_ ? this.subtrahendAdapter_.source : this.subtrahend);
       },
       setSubtrahend: function(subtrahend) {
-        return this.setOperands(this.minuend, subtrahend);
+        return this.setOperands(this.minuendAdapter_ ? this.minuendAdapter_.source : this.minuend, subtrahend);
       },
-      clear: function() {
+      destroy: function() {
         this.setOperands();
+        ReadOnlyDataset.prototype.destroy.call(this);
       }
     });
-    var SourceDataset = Class(AbstractDataset, {
+    var SourceDataset = Class(ReadOnlyDataset, {
       className: namespace + ".SourceDataset",
       subscribeTo: SUBSCRIPTION.SOURCE,
       source: null,
@@ -360,7 +451,7 @@ var __resources__ = {
       },
       init: function() {
         this.sourceMap_ = {};
-        AbstractDataset.prototype.init.call(this);
+        ReadOnlyDataset.prototype.init.call(this);
         var source = this.source;
         if (source) {
           this.source = null;
@@ -375,6 +466,7 @@ var __resources__ = {
           this.source = source;
           if (listenHandler) {
             var itemsChangedHandler = listenHandler.itemsChanged;
+            setAccumulateState(true);
             if (oldSource) {
               oldSource.removeHandler(listenHandler, this);
               if (itemsChangedHandler) itemsChangedHandler.call(this, oldSource, {
@@ -387,15 +479,14 @@ var __resources__ = {
                 inserted: source.getItems()
               });
             }
+            setAccumulateState(false);
           }
           this.emit_sourceChanged(oldSource);
         }
       },
-      clear: function() {
-        this.setSource();
-      },
       destroy: function() {
-        AbstractDataset.prototype.destroy.call(this);
+        this.setSource();
+        ReadOnlyDataset.prototype.destroy.call(this);
         this.sourceMap_ = null;
       }
     });
@@ -441,7 +532,7 @@ var __resources__ = {
         var sourceObjectId;
         var member;
         var updateHandler = this.ruleEvents;
-        Dataset.setAccumulateState(true);
+        setAccumulateState(true);
         if (delta.inserted) {
           for (var i = 0; sourceObject = delta.inserted[i]; i++) {
             member = this.map ? this.map(sourceObject) : sourceObject;
@@ -479,7 +570,7 @@ var __resources__ = {
             }
           }
         }
-        Dataset.setAccumulateState(false);
+        setAccumulateState(false);
         if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
       }
     };
@@ -488,6 +579,7 @@ var __resources__ = {
       map: $self,
       filter: $false,
       rule: getter($true),
+      emit_ruleChanged: createEvent("ruleChanged", "oldRule"),
       ruleEvents: createRuleEvents(MAPFILTER_SOURCEOBJECT_UPDATE, "update"),
       addMemberRef: null,
       removeMemberRef: null,
@@ -509,9 +601,11 @@ var __resources__ = {
         }
       },
       setRule: function(rule) {
-        if (typeof rule != "function") rule = $true;
+        rule = getter(rule || $true);
         if (this.rule !== rule) {
+          var oldRule = this.rule;
           this.rule = rule;
+          this.emit_ruleChanged(oldRule);
           return this.applyRule();
         }
       },
@@ -560,25 +654,28 @@ var __resources__ = {
         return delta;
       }
     });
-    var Subset = Class(MapFilter, {
-      className: namespace + ".Subset",
+    var Filter = Class(MapFilter, {
+      className: namespace + ".Filter",
       filter: function(object) {
         return !this.rule(object);
       }
     });
     var Split = Class(MapFilter, {
       className: namespace + ".Split",
-      subsetClass: AbstractDataset,
+      subsetClass: ReadOnlyDataset,
       subsetWrapperClass: DatasetWrapper,
       keyMap: null,
       map: function(sourceObject) {
         return this.keyMap.resolve(sourceObject);
       },
+      rule: getter($undef),
       setRule: function(rule) {
-        if (typeof rule != "function") rule = $true;
+        rule = getter(rule || $undef);
         if (this.rule !== rule) {
+          var oldRule = this.rule;
           this.rule = rule;
           this.keyMap.keyGetter = rule;
+          this.emit_ruleChanged(oldRule);
           return this.applyRule();
         }
       },
@@ -693,6 +790,7 @@ var __resources__ = {
     var Slice = Class(SourceDataset, {
       className: namespace + ".Slice",
       rule: getter($true),
+      emit_ruleChanged: createEvent("ruleChanged", "oldRule", "oldOrderDesc"),
       ruleEvents: createRuleEvents(SLICE_SOURCEOBJECT_UPDATE, "update"),
       index_: null,
       orderDesc: false,
@@ -725,15 +823,22 @@ var __resources__ = {
         return this.setRange(this.offset, limit);
       },
       setRule: function(rule, orderDesc) {
-        rule = getter(rule);
-        this.orderDesc = !!orderDesc;
-        if (this.rule != rule) {
-          var index = this.index_;
-          for (var i = 0; i < index.length; i++) index[i].value = rule(index[i].object);
+        rule = getter(rule || $true);
+        orderDesc = !!orderDesc;
+        if (this.rule != rule || this.orderDesc != orderDesc) {
+          var oldRule = this.rule;
+          var oldOrderDesc = this.orderDesc;
+          if (this.rule != rule) {
+            var index = this.index_;
+            for (var i = 0; i < index.length; i++) index[i].value = rule(index[i].object);
+            index.sort(sliceIndexSort);
+            this.rule = rule;
+          }
+          this.orderDesc = orderDesc;
           this.rule = rule;
-          index.sort(sliceIndexSort);
+          this.emit_ruleChanged(oldRule, oldOrderDesc);
+          return this.applyRule();
         }
-        return this.applyRule();
       },
       applyRule: function() {
         var start = this.offset;
@@ -811,7 +916,7 @@ var __resources__ = {
         var subsetId;
         var inserted = [];
         var deleted = [];
-        Dataset.setAccumulateState(true);
+        setAccumulateState(true);
         if (array = delta.inserted) for (var i = 0, sourceObject; sourceObject = array[i]; i++) {
           var list = this.rule(sourceObject);
           var sourceObjectInfo = {
@@ -852,15 +957,15 @@ var __resources__ = {
           }
           if (updateHandler) sourceObject.removeHandler(updateHandler, this);
         }
-        Dataset.setAccumulateState(false);
+        setAccumulateState(false);
         if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
       }
     };
     var Cloud = Class(SourceDataset, {
       className: namespace + ".Cloud",
-      subsetClass: AbstractDataset,
+      subsetClass: ReadOnlyDataset,
       subsetWrapperClass: DatasetWrapper,
-      rule: getter($false),
+      rule: getter($undef),
       ruleEvents: createRuleEvents(CLOUD_SOURCEOBJECT_UPDATE, "update"),
       keyMap: null,
       map: $self,
@@ -880,14 +985,210 @@ var __resources__ = {
         this.keyMap = null;
       }
     });
+    var EXTRACT_SOURCEOBJECT_UPDATE = function(sourceObject) {
+      var sourceObjectInfo = this.sourceMap_[sourceObject.basisObjectId];
+      var newValue = this.rule(sourceObject) || null;
+      var oldValue = sourceObjectInfo.value;
+      var inserted;
+      var deleted;
+      var delta;
+      if (newValue === oldValue) return;
+      if (newValue instanceof DataObject || newValue instanceof ReadOnlyDataset) inserted = addToExtract(this, newValue, sourceObject);
+      if (oldValue) deleted = removeFromExtract(this, oldValue, sourceObject);
+      sourceObjectInfo.value = newValue;
+      if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
+    };
+    var EXTRACT_DATASET_ITEMSCHANGED = function(dataset, delta) {
+      var inserted = delta.inserted;
+      var deleted = delta.deleted;
+      var delta;
+      if (inserted) inserted = addToExtract(this, inserted, dataset);
+      if (deleted) deleted = removeFromExtract(this, deleted, dataset);
+      if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
+    };
+    var EXTRACT_DATASET_HANDLER = {
+      itemsChanged: EXTRACT_DATASET_ITEMSCHANGED,
+      destroy: function(dataset) {
+        var sourceMap = this.sourceMap_;
+        for (var cursor = sourceMap[dataset.basisObjectId]; cursor = cursor.ref; ) sourceMap[cursor.object.basisObjectId].value = null;
+        delete sourceMap[dataset.basisObjectId];
+      }
+    };
+    function hasExtractSourceRef(extract, object, marker) {
+      var sourceObjectInfo = extract.sourceMap_[object.basisObjectId];
+      if (sourceObjectInfo && sourceObjectInfo.visited !== marker) {
+        for (var cursor = sourceObjectInfo; cursor = cursor.ref; ) if (cursor.object === extract.source) return true;
+        sourceObjectInfo.visited = marker;
+        for (var cursor = sourceObjectInfo; cursor = cursor.ref; ) if (hasExtractSourceRef(extract, cursor.object, marker || {})) return true;
+      }
+    }
+    function addToExtract(extract, items, ref) {
+      var sourceMap = extract.sourceMap_;
+      var members = extract.members_;
+      var queue = arrayFrom(items);
+      var inserted = [];
+      for (var i = 0; i < queue.length; i++) {
+        var item = queue[i];
+        var sourceObjectId = item.basisObjectId;
+        if (!sourceObjectId) {
+          ref = item.ref;
+          item = item.object;
+          sourceObjectId = item.basisObjectId;
+        }
+        var sourceObjectInfo = sourceMap[sourceObjectId];
+        if (sourceObjectInfo) {
+          sourceObjectInfo.ref = {
+            object: ref,
+            ref: sourceObjectInfo.ref
+          };
+        } else {
+          sourceObjectInfo = sourceMap[sourceObjectId] = {
+            source: item,
+            ref: {
+              object: ref,
+              ref: null
+            },
+            visited: null,
+            value: null
+          };
+          if (item instanceof DataObject) {
+            var value = extract.rule(item) || null;
+            if (value instanceof DataObject || value instanceof ReadOnlyDataset) {
+              sourceObjectInfo.value = value;
+              queue.push({
+                object: value,
+                ref: item
+              });
+            }
+            members[sourceObjectId] = sourceObjectInfo;
+            inserted.push(item);
+            if (extract.ruleEvents) item.addHandler(extract.ruleEvents, extract);
+          } else {
+            item.addHandler(EXTRACT_DATASET_HANDLER, extract);
+            for (var j = 0, datasetItems = item.getItems(); j < datasetItems.length; j++) queue.push({
+              object: datasetItems[j],
+              ref: item
+            });
+          }
+        }
+      }
+      return inserted;
+    }
+    function removeFromExtract(extract, items, ref) {
+      var sourceMap = extract.sourceMap_;
+      var members = extract.members_;
+      var queue = arrayFrom(items);
+      var deleted = [];
+      for (var i = 0; i < queue.length; i++) {
+        var item = queue[i];
+        var sourceObjectId = item.basisObjectId;
+        if (!sourceObjectId) {
+          ref = item.ref;
+          item = item.object;
+          sourceObjectId = item.basisObjectId;
+        }
+        var sourceObjectInfo = sourceMap[sourceObjectId];
+        var sourceObjectValue = sourceObjectInfo.value;
+        for (var cursor = sourceObjectInfo, prevCursor = sourceObjectInfo; cursor = cursor.ref; ) {
+          if (cursor.object === ref) {
+            prevCursor.ref = cursor.ref;
+            break;
+          }
+          prevCursor = cursor;
+        }
+        if (!sourceObjectInfo.ref) {
+          if (item instanceof DataObject) {
+            delete members[sourceObjectId];
+            deleted.push(item);
+            if (extract.ruleEvents) item.removeHandler(extract.ruleEvents, extract);
+            if (sourceObjectValue) queue.push({
+              object: sourceObjectValue,
+              ref: item
+            });
+          } else {
+            item.removeHandler(EXTRACT_DATASET_HANDLER, extract);
+            for (var j = 0, datasetItems = item.getItems(); j < datasetItems.length; j++) queue.push({
+              object: datasetItems[j],
+              ref: item
+            });
+          }
+          delete sourceMap[sourceObjectId];
+        } else {
+          if (sourceObjectValue && !hasExtractSourceRef(extract, item)) {
+            sourceObjectInfo.value = null;
+            queue.push({
+              object: sourceObjectValue,
+              ref: item
+            });
+          }
+        }
+      }
+      return deleted;
+    }
+    var Extract = SourceDataset.subclass({
+      className: namespace + ".Extract",
+      rule: getter($undef),
+      emit_ruleChanged: createEvent("ruleChanged", "oldRule"),
+      ruleEvents: createRuleEvents(EXTRACT_SOURCEOBJECT_UPDATE, "update"),
+      listen: {
+        source: {
+          itemsChanged: EXTRACT_DATASET_ITEMSCHANGED
+        }
+      },
+      setRule: function(rule) {
+        rule = getter(rule || $undef);
+        if (this.rule !== rule) {
+          var oldRule = this.rule;
+          this.rule = rule;
+          this.emit_ruleChanged(oldRule);
+          return this.applyRule();
+        }
+      },
+      applyRule: function() {
+        var insertedMap = {};
+        var deletedMap = {};
+        var array;
+        var delta;
+        for (var key in this.sourceMap_) {
+          var sourceObjectInfo = this.sourceMap_[key];
+          var sourceObject = sourceObjectInfo.source;
+          if (sourceObject instanceof DataObject) {
+            var newValue = this.rule(sourceObject) || null;
+            var oldValue = sourceObjectInfo.value;
+            if (newValue === oldValue) continue;
+            if (newValue instanceof DataObject || newValue instanceof ReadOnlyDataset) {
+              var inserted = addToExtract(this, newValue, sourceObject);
+              for (var i = 0; i < inserted.length; i++) {
+                var item = inserted[i];
+                var id = item.basisObjectId;
+                if (deletedMap[id]) delete deletedMap[id]; else insertedMap[id] = item;
+              }
+            }
+            if (oldValue) {
+              var deleted = removeFromExtract(this, oldValue, sourceObject);
+              for (var i = 0; i < deleted.length; i++) {
+                var item = deleted[i];
+                var id = item.basisObjectId;
+                if (insertedMap[id]) delete insertedMap[id]; else deletedMap[id] = item;
+              }
+            }
+            sourceObjectInfo.value = newValue;
+          }
+        }
+        if (delta = getDelta(values(insertedMap), values(deletedMap))) this.emit_itemsChanged(delta);
+        return delta;
+      }
+    });
     module.exports = {
+      getDelta: getDelta,
       createRuleEvents: createRuleEvents,
       Merge: Merge,
       Subtract: Subtract,
       SourceDataset: SourceDataset,
       MapFilter: MapFilter,
-      Subset: Subset,
+      Filter: Filter,
       Split: Split,
+      Extract: Extract,
       Slice: Slice,
       Cloud: Cloud
     };
@@ -924,13 +1225,17 @@ var __resources__ = {
     var tokenIndex = [];
     var tokenComputeFn = {};
     var tokenComputes = {};
+    var updateToken = basis.Token.prototype.set;
     var ComputeToken = Class(basis.Token, {
       className: namespace + ".ComputeToken",
       init: function(value, token) {
         token.computeTokens[this.basisObjectId] = this;
         this.token = token;
-        this.get = token.computeGetMethod;
         basis.Token.prototype.init.call(this, value);
+      },
+      get: function() {
+        var key = this.token.type == "plural" ? cultures[currentCulture].plural(this.value) : this.value;
+        return this.token.dictionary.getValue(this.token.name + "." + key);
       },
       toString: function() {
         return this.get();
@@ -959,25 +1264,12 @@ var __resources__ = {
       toString: function() {
         return this.get();
       },
-      computeGetMethod: function() {},
       apply: function() {
-        var values = {};
-        var tokens = this.computeTokens;
-        var get = this.type == "plural" ? function() {
-          return values[cultures[currentCulture].plural(this.value)];
-        } : function() {
-          return values[this.value];
-        };
-        this.computeGetMethod = get;
-        if (this.type == "plural" && Array.isArray(this.value) || this.type == "default" && typeof this.value == "object") values = basis.object.slice(this.value, ownKeys(this.value));
-        for (var key in tokens) {
-          var computeToken = tokens[key];
-          var curValue = computeToken.get();
-          var newValue = get.call(computeToken);
-          computeToken.get = get;
-          if (curValue !== newValue) computeToken.apply();
-        }
+        for (var key in this.computeTokens) this.computeTokens[key].apply();
         basis.Token.prototype.apply.call(this);
+      },
+      set: function() {
+        basis.dev.warn("basis.l10n: Value for l10n token can't be set directly, but through dictionary update only");
       },
       setType: function(type) {
         if (type != "plural" && (!basis.l10n.enableMarkup || type != "markup")) type = "default";
@@ -994,12 +1286,12 @@ var __resources__ = {
         getter = basis.getter(getter);
         events = String(events).trim().split(/\s+|\s*,\s*/).sort();
         var tokenId = this.basisObjectId;
-        var enumId = events.concat(tokenId, getter.basisGetterId_).join("_");
+        var enumId = events.concat(tokenId, getter[basis.getter.ID]).join("_");
         if (tokenComputeFn[enumId]) return tokenComputeFn[enumId];
         var token = this;
         var objectTokenMap = {};
         var updateValue = function(object) {
-          this.set(getter(object));
+          updateToken.call(this, getter(object));
         };
         var handler = {
           destroy: function(object) {
@@ -1093,7 +1385,7 @@ var __resources__ = {
         return this;
       },
       syncValues: function() {
-        for (var tokenName in this.tokens) this.tokens[tokenName].set(this.getValue(tokenName));
+        for (var tokenName in this.tokens) updateToken.call(this.tokens[tokenName], this.getValue(tokenName));
       },
       getValue: function(tokenName) {
         var fallback = cultureFallback[currentCulture] || [];
@@ -1409,7 +1701,7 @@ var __resources__ = {
     basis.require("./3.js");
     var namespace = this.path;
     var Class = basis.Class;
-    var cleaner = basis.cleaner;
+    var sliceArray = Array.prototype.slice;
     var values = basis.object.values;
     var $self = basis.fn.$self;
     var Emitter = basis.event.Emitter;
@@ -1482,8 +1774,8 @@ var __resources__ = {
       addProperty: function(propertyName, eventName) {
         var handler = {};
         handler[eventName || propertyName + "Changed"] = function(object, oldValue) {
-          if (oldValue) SUBSCRIPTION.unlink(propertyName, object, oldValue);
-          if (object[propertyName]) SUBSCRIPTION.link(propertyName, object, object[propertyName]);
+          if (oldValue instanceof AbstractData) SUBSCRIPTION.unlink(propertyName, object, oldValue);
+          if (object[propertyName] instanceof AbstractData) SUBSCRIPTION.link(propertyName, object, object[propertyName]);
         };
         this.add(propertyName.toUpperCase(), handler, function(fn, object) {
           if (object[propertyName]) fn(propertyName, object, object[propertyName]);
@@ -1532,6 +1824,7 @@ var __resources__ = {
     SUBSCRIPTION.addProperty("delegate");
     SUBSCRIPTION.addProperty("target");
     SUBSCRIPTION.addProperty("dataset");
+    SUBSCRIPTION.addProperty("value", "change");
     var AbstractData = Class(Emitter, {
       className: namespace + ".AbstractData",
       state: STATE.UNDEFINED,
@@ -1631,11 +1924,7 @@ var __resources__ = {
         this.state = STATE.UNDEFINED;
       }
     });
-    var computeFunctions = {};
-    var valueSetters = {};
-    var valueSyncToken = function(value) {
-      this.set(this.fn(value));
-    };
+    var GETTER_ID = basis.getter.ID;
     var VALUE_EMMITER_HANDLER = {
       destroy: function(object) {
         this.value.unlink(object, this.fn);
@@ -1646,8 +1935,14 @@ var __resources__ = {
         this.set(null);
       }
     };
+    var computeFunctions = {};
+    var valueSetters = {};
+    var valueSyncToken = function(value) {
+      this.set(this.fn(value));
+    };
     var Value = Class(AbstractData, {
       className: namespace + ".Value",
+      subscribeTo: SUBSCRIPTION.VALUE,
       emit_change: createEvent("change", "oldValue") && function(oldValue) {
         events.change.call(this, oldValue);
         var cursor = this;
@@ -1656,7 +1951,7 @@ var __resources__ = {
       value: null,
       initValue: null,
       proxy: null,
-      locked: false,
+      locked: 0,
       lockedValue_: null,
       links_: null,
       setNullOnEmitterDestroy: true,
@@ -1694,18 +1989,21 @@ var __resources__ = {
       reset: function() {
         this.set(this.initValue);
       },
+      isLocked: function() {
+        return this.locked > 0;
+      },
       lock: function() {
-        if (!this.locked) {
-          this.locked = true;
-          this.lockedValue_ = this.value;
-        }
+        this.locked++;
+        if (this.locked == 1) this.lockedValue_ = this.value;
       },
       unlock: function() {
         if (this.locked) {
-          var lockedValue = this.lockedValue_;
-          this.lockedValue_ = null;
-          this.locked = false;
-          if (this.value !== lockedValue) this.emit_change(lockedValue);
+          this.locked--;
+          if (!this.locked) {
+            var lockedValue = this.lockedValue_;
+            this.lockedValue_ = null;
+            if (this.value !== lockedValue) this.emit_change(lockedValue);
+          }
         }
       },
       compute: function(events, fn) {
@@ -1713,11 +2011,13 @@ var __resources__ = {
           fn = events;
           events = null;
         }
+        if (!fn) fn = $self;
         var hostValue = this;
         var handler = basis.event.createHandler(events, function(object) {
           this.set(fn(object, hostValue.value));
         });
-        var getComputeTokenId = handler.events.concat(String(fn), this.basisObjectId).join("_");
+        var fnId = fn[GETTER_ID] || String(fn);
+        var getComputeTokenId = handler.events.concat(fnId, this.basisObjectId).join("_");
         var getComputeToken = computeFunctions[getComputeTokenId];
         if (!getComputeToken) {
           var tokenMap = {};
@@ -1743,7 +2043,7 @@ var __resources__ = {
             }
           });
           getComputeToken = computeFunctions[getComputeTokenId] = function(object) {
-            if (object instanceof basis.event.Emitter == false) basis.dev.warn("basis.data.Value#compute: object must be an instanceof basis.event.Emitter");
+            if (object instanceof basis.event.Emitter == false) basis.dev.warn("basis.data.Value#compute: object should be an instanceof basis.event.Emitter");
             var objectId = object.basisObjectId;
             var pair = tokenMap[objectId];
             var value = fn(object, hostValue.value);
@@ -1768,9 +2068,14 @@ var __resources__ = {
         return getComputeToken;
       },
       as: function(fn, deferred) {
+        if (!fn) fn = $self;
         if (this.links_) {
           var cursor = this;
-          while (cursor = cursor.links_) if (cursor.context instanceof basis.Token && cursor.context.fn == String(fn)) return deferred ? cursor.context.deferred() : cursor.context;
+          var fnId = fn[GETTER_ID] || String(fn);
+          while (cursor = cursor.links_) {
+            var context = cursor.context;
+            if (context instanceof basis.Token && (context.fn[GETTER_ID] || String(context.fn)) == fnId) return deferred ? context.deferred() : context;
+          }
         }
         var token = new basis.Token;
         token.fn = fn;
@@ -1824,7 +2129,10 @@ var __resources__ = {
         this.links_ = null;
       }
     });
-    var castValueMap = {};
+    var valueFromMap = {};
+    var valueFromSetProxy = function(object) {
+      Value.prototype.set.call(this, object);
+    };
     Value.from = function(obj, events, getter) {
       var result;
       if (!obj) return null;
@@ -1833,18 +2141,25 @@ var __resources__ = {
           getter = events;
           events = null;
         }
-        var handler = basis.event.createHandler(events, function(object) {
-          this.set(getter(object));
-        });
-        var id = handler.events.concat(String(getter), obj.basisObjectId).join("_");
-        result = castValueMap[id];
+        if (!getter) getter = $self;
+        var handler = basis.event.createHandler(events, valueFromSetProxy);
+        var getterId = getter[GETTER_ID] || String(getter);
+        var id = handler.events.concat(getterId, obj.basisObjectId).join("_");
+        result = valueFromMap[id];
         if (!result) {
-          getter = basis.getter(getter);
-          result = castValueMap[id] = new Value({
-            value: getter(obj)
+          result = valueFromMap[id] = new Value({
+            value: obj,
+            proxy: basis.getter(getter),
+            set: basis.fn.$undef,
+            handler: {
+              destroy: function() {
+                valueFromMap[id] = null;
+                obj.removeHandler(handler, this);
+              }
+            }
           });
           handler.destroy = function(sender) {
-            delete castValueMap[id];
+            valueFromMap[id] = null;
             this.destroy();
           };
           obj.addHandler(handler, result);
@@ -1854,9 +2169,9 @@ var __resources__ = {
         var id = obj.basisObjectId;
         var bindingBridge = obj.bindingBridge;
         if (id && bindingBridge) {
-          result = castValueMap[id];
+          result = valueFromMap[id];
           if (!result) {
-            result = castValueMap[id] = new Value({
+            result = valueFromMap[id] = new Value({
               value: bindingBridge.get(obj)
             });
             bindingBridge.attach(obj, result.set, result);
@@ -1871,6 +2186,7 @@ var __resources__ = {
         return Value.from(object, events, getter);
       };
     };
+    var INIT_DATA = {};
     function isConnected(a, b) {
       while (b && b !== a && b !== b.delegate) b = b.delegate;
       return b === a;
@@ -1929,6 +2245,7 @@ var __resources__ = {
         }
       },
       delegate: null,
+      delegateAdapter_: null,
       delegates_: null,
       debug_delegates: function() {
         var cursor = this.delegates_;
@@ -1948,14 +2265,15 @@ var __resources__ = {
         this.root = this;
         AbstractData.prototype.init.call(this);
         var delegate = this.delegate;
+        var data = this.data;
         if (delegate) {
           this.delegate = null;
           this.target = null;
-          this.data = delegate.data;
-          this.state = delegate.state;
+          this.data = INIT_DATA;
           this.setDelegate(delegate);
+          if (this.data === INIT_DATA) this.data = data || {};
         } else {
-          if (!this.data) this.data = {};
+          if (!data) this.data = {};
           if (this.target !== null) this.target = this;
         }
       },
@@ -1964,6 +2282,7 @@ var __resources__ = {
         AbstractData.prototype.setSyncAction.call(this, syncAction);
       },
       setDelegate: function(newDelegate) {
+        newDelegate = resolveObject(this, this.setDelegate, newDelegate, "delegateAdapter_");
         if (newDelegate && newDelegate instanceof DataObject) {
           if (newDelegate.delegate && isConnected(this, newDelegate)) {
             basis.dev.warn("New delegate has already connected to object. Delegate assignment has been ignored.", this, newDelegate);
@@ -1978,9 +2297,9 @@ var __resources__ = {
           var oldDelegate = this.delegate;
           var oldTarget = this.target;
           var oldRoot = this.root;
-          var delta = {};
-          var dataChanged = false;
           var delegateListenHandler = this.listen.delegate;
+          var dataChanged = false;
+          var delta;
           if (oldDelegate) {
             if (delegateListenHandler) oldDelegate.removeHandler(delegateListenHandler, this);
             var cursor = oldDelegate.delegates_;
@@ -1997,19 +2316,22 @@ var __resources__ = {
           }
           if (newDelegate) {
             this.delegate = newDelegate;
+            if (delegateListenHandler) newDelegate.addHandler(delegateListenHandler, this);
             newDelegate.delegates_ = {
               delegate: this,
               next: newDelegate.delegates_
             };
-            for (var key in newDelegate.data) if (key in oldData === false) {
-              dataChanged = true;
-              delta[key] = undefined;
+            if (this.data !== INIT_DATA) {
+              delta = {};
+              for (var key in newDelegate.data) if (key in oldData === false) {
+                dataChanged = true;
+                delta[key] = undefined;
+              }
+              for (var key in oldData) if (oldData[key] !== newDelegate.data[key]) {
+                dataChanged = true;
+                delta[key] = oldData[key];
+              }
             }
-            for (var key in oldData) if (oldData[key] !== newDelegate.data[key]) {
-              dataChanged = true;
-              delta[key] = oldData[key];
-            }
-            if (delegateListenHandler) newDelegate.addHandler(delegateListenHandler, this);
           } else {
             this.delegate = null;
             this.target = null;
@@ -2019,7 +2341,7 @@ var __resources__ = {
           }
           applyDelegateChanges(this, oldRoot, oldTarget);
           if (dataChanged) this.emit_update(delta);
-          if (oldState !== this.state && (String(oldState) != this.state || oldState.data !== this.state.data)) this.emit_stateChanged(oldState);
+          if (delta && oldState !== this.state && (String(oldState) != this.state || oldState.data !== this.state.data)) this.emit_stateChanged(oldState);
           this.emit_delegateChanged(oldDelegate);
           return true;
         }
@@ -2064,50 +2386,56 @@ var __resources__ = {
     });
     var KEYOBJECTMAP_MEMBER_HANDLER = {
       destroy: function() {
-        delete this.map[this.itemId];
+        delete this.map[this.id];
       }
     };
-    var KeyObjectMap = Class(null, {
+    var KeyObjectMap = Class(AbstractData, {
       className: namespace + ".KeyObjectMap",
       itemClass: DataObject,
       keyGetter: $self,
+      autoDestroyMembers: true,
       map_: null,
       extendConstructor_: true,
       init: function() {
         this.map_ = {};
-        cleaner.add(this);
+        AbstractData.prototype.init.call(this);
       },
       resolve: function(object) {
         return this.get(this.keyGetter(object), object);
       },
       create: function(key, object) {
-        var itemConfig = {};
-        if (key instanceof DataObject) {
-          itemConfig.delegate = key;
-        } else {
-          itemConfig.data = {
+        var itemConfig;
+        if (key instanceof DataObject) itemConfig = {
+          delegate: key
+        }; else itemConfig = {
+          data: {
             id: key,
             title: key
-          };
-        }
+          }
+        };
         return new this.itemClass(itemConfig);
       },
-      get: function(key, object) {
+      get: function(key, autocreate) {
         var itemId = key instanceof DataObject ? key.basisObjectId : key;
-        var item = this.map_[itemId];
-        if (!item && object) {
-          item = this.map_[itemId] = this.create(key, object);
-          item.addHandler(KEYOBJECTMAP_MEMBER_HANDLER, {
+        var itemInfo = this.map_[itemId];
+        if (!itemInfo && autocreate) {
+          itemInfo = this.map_[itemId] = {
             map: this.map_,
-            itemId: itemId
-          });
+            id: itemId,
+            item: this.create(key, autocreate)
+          };
+          itemInfo.item.addHandler(KEYOBJECTMAP_MEMBER_HANDLER, itemInfo);
         }
-        return item;
+        if (itemInfo) return itemInfo.item;
       },
       destroy: function() {
-        cleaner.remove(this);
-        var items = values(this.map_);
-        for (var i = 0, item; item = items[i++]; ) item.destroy();
+        AbstractData.prototype.destroy.call(this);
+        var map = this.map_;
+        this.map_ = null;
+        for (var itemId in map) {
+          var itemInfo = map[itemId];
+          if (this.autoDestroyMembers) itemInfo.item.destroy(); else itemInfo.item.removeHandler(KEYOBJECTMAP_MEMBER_HANDLER, itemInfo);
+        }
       }
     });
     function getDelta(inserted, deleted) {
@@ -2204,8 +2532,8 @@ var __resources__ = {
         DataObject.prototype.destroy.call(this);
       }
     });
-    var AbstractDataset = Class(AbstractData, {
-      className: namespace + ".AbstractDataset",
+    var ReadOnlyDataset = Class(AbstractData, {
+      className: namespace + ".ReadOnlyDataset",
       itemCount: 0,
       items_: null,
       members_: null,
@@ -2243,6 +2571,9 @@ var __resources__ = {
         if (!this.cache_) this.cache_ = values(this.items_);
         return this.cache_;
       },
+      getValues: function(getter) {
+        return this.getItems().map(basis.getter(getter || $self));
+      },
       pick: function() {
         for (var objectId in this.items_) return this.items_[objectId];
         return null;
@@ -2256,9 +2587,7 @@ var __resources__ = {
         var items = this.getItems();
         for (var i = 0; i < items.length; i++) fn(items[i]);
       },
-      clear: function() {},
       destroy: function() {
-        this.clear();
         AbstractData.prototype.destroy.call(this);
         this.cache_ = EMPTY_ARRAY;
         this.itemCount = 0;
@@ -2266,7 +2595,7 @@ var __resources__ = {
         this.items_ = null;
       }
     });
-    var Dataset = Class(AbstractDataset, {
+    var Dataset = Class(ReadOnlyDataset, {
       className: namespace + ".Dataset",
       listen: {
         item: {
@@ -2276,7 +2605,7 @@ var __resources__ = {
         }
       },
       init: function() {
-        AbstractDataset.prototype.init.call(this);
+        ReadOnlyDataset.prototype.init.call(this);
         var items = this.items;
         if (items) {
           this.items = null;
@@ -2299,7 +2628,7 @@ var __resources__ = {
               inserted.push(object);
             }
           } else {
-            basis.dev.warn("Wrong data type: value must be an instance of basis.data.Object");
+            basis.dev.warn("Wrong data type: value should be an instance of basis.data.Object");
           }
         }
         if (inserted.length) {
@@ -2325,7 +2654,7 @@ var __resources__ = {
               deleted.push(object);
             }
           } else {
-            basis.dev.warn("Wrong data type: value must be an instance of basis.data.Object");
+            basis.dev.warn("Wrong data type: value should be an instance of basis.data.Object");
           }
         }
         if (deleted.length) {
@@ -2357,7 +2686,7 @@ var __resources__ = {
               inserted.push(object);
             }
           } else {
-            basis.dev.warn("Wrong data type: value must be an instance of basis.data.Object");
+            basis.dev.warn("Wrong data type: value should be an instance of basis.data.Object");
           }
         }
         for (var objectId in memberMap) {
@@ -2391,29 +2720,58 @@ var __resources__ = {
           this.members_ = {};
         }
         return delta;
+      },
+      destroy: function() {
+        this.clear();
+        ReadOnlyDataset.prototype.destroy.call(this);
       }
     });
-    var DatasetAdapter = function(context, fn, source, handler) {
+    var ResolveAdapter = function(context, fn, source, handler) {
       this.context = context;
       this.fn = fn;
       this.source = source;
       this.handler = handler;
     };
-    DatasetAdapter.prototype.adapter_ = null;
-    DatasetAdapter.prototype.proxy = function() {
+    ResolveAdapter.prototype = {
+      context: null,
+      fn: null,
+      source: null,
+      handler: null,
+      next: null,
+      attach: function() {
+        this.source.addHandler(this.handler, this);
+      },
+      detach: function() {
+        this.source.removeHandler(this.handler, this);
+      },
+      proxy: function() {
+        this.fn.call(this.context, this.source);
+      }
+    };
+    var BBResolveAdapter = function() {
+      ResolveAdapter.apply(this, arguments);
+    };
+    BBResolveAdapter.prototype = new ResolveAdapter;
+    BBResolveAdapter.prototype.attach = function() {
+      this.source.bindingBridge.attach(this.source, this.handler, this);
+    };
+    BBResolveAdapter.prototype.detach = function() {
+      this.source.bindingBridge.detach(this.source, this.handler, this);
+    };
+    var TOKEN_ADAPTER_HANDLER = function() {
       this.fn.call(this.context, this.source);
     };
     var DATASETWRAPPER_ADAPTER_HANDLER = {
-      datasetChanged: function(wrapper) {
-        this.fn.call(this.context, wrapper);
+      datasetChanged: function() {
+        this.fn.call(this.context, this.source);
       },
       destroy: function() {
         this.fn.call(this.context, null);
       }
     };
     var VALUE_ADAPTER_HANDLER = {
-      change: function(value) {
-        this.fn.call(this.context, value);
+      change: function() {
+        this.fn.call(this.context, this.source);
       },
       destroy: function() {
         this.fn.call(this.context, null);
@@ -2423,32 +2781,59 @@ var __resources__ = {
       var oldAdapter = context[property] || null;
       var newAdapter = null;
       if (typeof source == "function") source = source.call(context, context);
-      if (source instanceof DatasetWrapper) {
-        newAdapter = new DatasetAdapter(context, fn, source, DATASETWRAPPER_ADAPTER_HANDLER);
-        source = source.dataset;
+      if (source) {
+        if (source instanceof DatasetWrapper) {
+          newAdapter = new ResolveAdapter(context, fn, source, DATASETWRAPPER_ADAPTER_HANDLER);
+          source = source.dataset;
+        } else if (source instanceof Value) {
+          newAdapter = new ResolveAdapter(context, fn, source, VALUE_ADAPTER_HANDLER);
+          source = resolveDataset(newAdapter, newAdapter.proxy, source.value, "next");
+        } else if (source.bindingBridge) {
+          newAdapter = new BBResolveAdapter(context, fn, source, TOKEN_ADAPTER_HANDLER);
+          source = resolveDataset(newAdapter, newAdapter.proxy, source.value, "next");
+        }
       }
-      if (source instanceof basis.Token) source = Value.from(source);
-      if (source instanceof Value) {
-        newAdapter = new DatasetAdapter(context, fn, source, VALUE_ADAPTER_HANDLER);
-        source = resolveDataset(newAdapter, newAdapter.proxy, source.value, "adapter_");
-      }
-      if (source instanceof AbstractDataset == false) source = null;
+      if (source instanceof ReadOnlyDataset == false) source = null;
       if (property && oldAdapter !== newAdapter) {
         if (oldAdapter) {
-          oldAdapter.source.removeHandler(oldAdapter.handler, oldAdapter);
-          if (oldAdapter.adapter_) resolveDataset(oldAdapter, null, null, "adapter_");
+          oldAdapter.detach();
+          if (oldAdapter.next) resolveDataset(oldAdapter, null, null, "next");
         }
-        if (newAdapter) newAdapter.source.addHandler(newAdapter.handler, newAdapter);
+        if (newAdapter) newAdapter.attach();
+        context[property] = newAdapter;
+      }
+      return source;
+    }
+    function resolveObject(context, fn, source, property) {
+      var oldAdapter = context[property] || null;
+      var newAdapter = null;
+      if (typeof source == "function") source = source.call(context, context);
+      if (source) {
+        if (source instanceof Value) {
+          newAdapter = new ResolveAdapter(context, fn, source, VALUE_ADAPTER_HANDLER);
+          source = resolveObject(newAdapter, newAdapter.proxy, source.value, "next");
+        } else if (source.bindingBridge) {
+          newAdapter = new BBResolveAdapter(context, fn, source, TOKEN_ADAPTER_HANDLER);
+          source = resolveObject(newAdapter, newAdapter.proxy, source.value, "next");
+        }
+      }
+      if (source instanceof DataObject == false) source = null;
+      if (property && oldAdapter !== newAdapter) {
+        if (oldAdapter) {
+          oldAdapter.detach();
+          if (oldAdapter.next) resolveObject(oldAdapter, null, null, "next");
+        }
+        if (newAdapter) newAdapter.attach();
         context[property] = newAdapter;
       }
       return source;
     }
     Dataset.setAccumulateState = function() {
-      var proto = AbstractDataset.prototype;
-      var realEvent = proto.emit_itemsChanged;
+      var proto = ReadOnlyDataset.prototype;
+      var eventCache = {};
       var setStateCount = 0;
       var urgentTimer;
-      var eventCache = {};
+      var realEvent;
       function flushCache(cache) {
         var dataset = cache.dataset;
         realEvent.call(dataset, cache);
@@ -2456,7 +2841,10 @@ var __resources__ = {
       function flushAllDataset() {
         var eventCacheCopy = eventCache;
         eventCache = {};
-        for (var datasetId in eventCacheCopy) flushCache(eventCacheCopy[datasetId]);
+        for (var datasetId in eventCacheCopy) {
+          var entry = eventCacheCopy[datasetId];
+          if (entry) flushCache(entry);
+        }
       }
       function storeDatasetDelta(delta) {
         var dataset = this;
@@ -2464,24 +2852,59 @@ var __resources__ = {
         var inserted = delta.inserted;
         var deleted = delta.deleted;
         var cache = eventCache[datasetId];
-        if (inserted && deleted) {
+        if (inserted && deleted || cache && cache.mixed) {
           if (cache) {
-            delete eventCache[datasetId];
+            eventCache[datasetId] = null;
             flushCache(cache);
           }
           realEvent.call(dataset, delta);
           return;
         }
-        var mode = inserted ? "inserted" : "deleted";
         if (cache) {
+          var mode = inserted ? "inserted" : "deleted";
           var array = cache[mode];
-          if (!array) flushCache(cache); else {
-            array.push.apply(array, inserted || deleted);
-            return;
-          }
+          if (!array) {
+            var inCacheMode = inserted ? "deleted" : "inserted";
+            var inCache = cache[inCacheMode];
+            var inCacheMap = {};
+            var deltaItems = inserted || deleted;
+            var newInCacheItems = [];
+            var inCacheRemoves = 0;
+            for (var i = 0; i < inCache.length; i++) inCacheMap[inCache[i].basisObjectId] = i;
+            for (var i = 0; i < deltaItems.length; i++) {
+              var id = deltaItems[i].basisObjectId;
+              if (id in inCacheMap == false) {
+                newInCacheItems.push(deltaItems[i]);
+              } else {
+                if (!inCacheRemoves) inCache = sliceArray.call(inCache);
+                inCacheRemoves++;
+                inCache[inCacheMap[id]] = null;
+              }
+            }
+            if (inCacheRemoves) {
+              if (inCacheRemoves < inCache.length) {
+                inCache = inCache.filter(Boolean);
+              } else {
+                inCache = null;
+              }
+              cache[inCacheMode] = inCache;
+            }
+            if (!newInCacheItems.length) {
+              newInCacheItems = null;
+              if (!inCache) eventCache[datasetId] = null;
+            } else {
+              cache[mode] = newInCacheItems;
+              if (inCache) cache.mixed = true;
+            }
+          } else array.push.apply(array, inserted || deleted);
+          return;
         }
-        eventCache[datasetId] = delta;
-        delta.dataset = dataset;
+        eventCache[datasetId] = {
+          inserted: inserted,
+          deleted: deleted,
+          dataset: dataset,
+          mixed: false
+        };
       }
       function urgentFlush() {
         urgentTimer = null;
@@ -2498,6 +2921,7 @@ var __resources__ = {
       return function(state) {
         if (state) {
           if (setStateCount == 0) {
+            realEvent = proto.emit_itemsChanged;
             proto.emit_itemsChanged = storeDatasetDelta;
             if (!urgentTimer) urgentTimer = basis.setImmediate(urgentFlush);
           }
@@ -2537,13 +2961,14 @@ var __resources__ = {
       Object: DataObject,
       Slot: Slot,
       KeyObjectMap: KeyObjectMap,
-      AbstractDataset: AbstractDataset,
+      ReadOnlyDataset: ReadOnlyDataset,
       Dataset: Dataset,
       DatasetWrapper: DatasetWrapper,
-      DatasetAdapter: DatasetAdapter,
       isConnected: isConnected,
       getDatasetDelta: getDatasetDelta,
+      ResolveAdapter: ResolveAdapter,
       resolveDataset: resolveDataset,
+      resolveObject: resolveObject,
       wrapData: wrapData,
       wrapObject: wrapObject,
       wrap: wrap
@@ -2567,7 +2992,7 @@ var __resources__ = {
     var STATE = basis.data.STATE;
     var AbstractData = basis.data.AbstractData;
     var DataObject = basis.data.Object;
-    var AbstractDataset = basis.data.AbstractDataset;
+    var ReadOnlyDataset = basis.data.ReadOnlyDataset;
     var Dataset = basis.data.Dataset;
     var DatasetWrapper = basis.data.DatasetWrapper;
     var EXCEPTION_CANT_INSERT = namespace + ": Node can't be inserted at specified point in hierarchy";
@@ -2709,14 +3134,6 @@ var __resources__ = {
         }
         if (handlerRequired) {
           var events = "events" in value ? value.events : "update";
-          if ("hook" in value) {
-            if ("events" in value == false) {
-              basis.dev.warn(namespace + ": hook property in satellite config is deprecated, use events property instead");
-              events = basis.object.keys(value.hook);
-            } else {
-              basis.dev.warn(namespace + ": hook property in satellite config was ignored (events property used)");
-            }
-          }
           if (Array.isArray(events)) events = events.join(" ");
           if (typeof events == "string") {
             var handler = {};
@@ -2731,20 +3148,12 @@ var __resources__ = {
       }
       return null;
     }
-    function extendSatelliteConfig(result, extend) {
-      for (var name in extend) result[name] = processSatelliteConfig(extend[name]);
-    }
     function applySatellites(node, satellites) {
       for (var name in satellites) if (satellites[name] && typeof satellites[name] == "object") node.setSatellite(name, satellites[name]);
     }
-    var NULL_SATELLITE_CONFIG = Class.customExtendProperty({}, function(result, extend) {
-      for (var key in extend) {
-        basis.dev.warn("basis.dom.wrapper.AbstractNode#satelliteConfig is deprecated now, use basis.dom.wrapper.AbstractNode#satellite instead");
-        break;
-      }
-      extendSatelliteConfig(result, extend);
+    var NULL_SATELLITE = Class.customExtendProperty({}, function(result, extend) {
+      for (var name in extend) result[name] = processSatelliteConfig(extend[name]);
     });
-    var NULL_SATELLITE = Class.customExtendProperty({}, extendSatelliteConfig);
     var SATELLITE_UPDATE = function(owner) {
       var name = this.name;
       var config = this.config;
@@ -2757,6 +3166,7 @@ var __resources__ = {
         } else {
           satellite = config.instance;
           if (!satellite) {
+            var listenHandler;
             var satelliteConfig = (typeof config.config == "function" ? config.config(owner) : config.config) || {};
             satelliteConfig.owner = owner;
             if (config.delegate) {
@@ -2766,7 +3176,8 @@ var __resources__ = {
             if (config.dataSource) satelliteConfig.dataSource = config.dataSource(owner);
             satellite = new config.instanceOf(satelliteConfig);
             satellite.destroy = warnOnAutoSatelliteDestoy;
-            if (owner.listen && owner.listen.satellite) satellite.addHandler(owner.listen && owner.listen.satellite, owner);
+            if (listenHandler = owner.listen.satellite) satellite.addHandler(listenHandler, owner);
+            if (listenHandler = owner.listen["satellite:" + name]) satellite.addHandler(listenHandler, owner);
           } else {
             if (config.delegate) satellite.setDelegate(config.delegate(owner));
             if (config.dataSource) satellite.setDataSource(config.dataSource(owner));
@@ -2847,7 +3258,6 @@ var __resources__ = {
       emit_groupingChanged: createEvent("groupingChanged", "oldGrouping"),
       groupNode: null,
       groupId: NaN,
-      satelliteConfig: NULL_SATELLITE_CONFIG,
       satellite: NULL_SATELLITE,
       ownerSatelliteName: null,
       emit_satelliteChanged: createEvent("satelliteChanged", "name", "oldSatellite"),
@@ -2873,10 +3283,6 @@ var __resources__ = {
           }
         }
         var satellites = this.satellite;
-        if (this.satelliteConfig !== NULL_SATELLITE_CONFIG) {
-          if (this.satelliteConfig !== this.constructor.prototype.satelliteConfig) basis.dev.warn("basis.dom.wrapper.AbstractNode#satelliteConfig is deprecated now, use basis.dom.wrapper.AbstractNode#satellite instead");
-          satellites = basis.object.merge(satellites, this.satelliteConfig);
-        }
         if (satellites !== NULL_SATELLITE) {
           this.satellite = NULL_SATELLITE;
           applySatellites(this, satellites);
@@ -2953,6 +3359,7 @@ var __resources__ = {
         }
         if (oldSatellite !== satellite) {
           var satelliteListen = this.listen.satellite;
+          var satellitePersonalListen = this.listen["satellite:" + name];
           var destroySatellite;
           if (oldSatellite) {
             delete this.satellite[name];
@@ -2961,6 +3368,7 @@ var __resources__ = {
               destroySatellite = oldSatellite;
             } else {
               if (satelliteListen) oldSatellite.removeHandler(satelliteListen, this);
+              if (satellitePersonalListen) oldSatellite.removeHandler(satellitePersonalListen, this);
               oldSatellite.setOwner(null);
             }
             if (preserveAuto && !satellite && autoConfig.config.instance) autoConfig.config.instance.setOwner = warnOnAutoSatelliteOwnerChange;
@@ -3000,6 +3408,7 @@ var __resources__ = {
               } else satellite.setOwner(this);
               if (satellite.owner !== this) return;
               if (satelliteListen) satellite.addHandler(satelliteListen, this);
+              if (satellitePersonalListen) satellite.addHandler(satellitePersonalListen, this);
             } else {
               if (satellite.ownerSatelliteName) {
                 delete this.satellite[satellite.ownerSatelliteName];
@@ -3586,7 +3995,7 @@ var __resources__ = {
       },
       init: function() {
         if (this.selection) {
-          if (this.selection instanceof AbstractDataset == false) this.selection = new Selection(this.selection);
+          if (this.selection instanceof ReadOnlyDataset == false) this.selection = new Selection(this.selection);
           if (this.listen.selection) this.selection.addHandler(this.listen.selection, this);
         }
         AbstractNode.prototype.init.call(this);
@@ -3711,10 +4120,6 @@ var __resources__ = {
       init: function() {
         this.map_ = {};
         this.nullGroup = new PartitionNode;
-        if ("groupGetter" in this) {
-          this.rule = getter(this.groupGetter);
-          basis.dev.warn("basis.dom.wrapper.GroupingNode#groupGetter is deprecated now, use basis.dom.wrapper.GroupingNode#rule instead. groupGetter value was set to rule property.");
-        }
         AbstractNode.prototype.init.call(this);
       },
       getGroupNode: function(node, autocreate) {
@@ -3841,11 +4246,11 @@ var __resources__ = {
         this.destroy();
       }
     };
-    var ChildNodesDataset = Class(AbstractDataset, {
+    var ChildNodesDataset = Class(ReadOnlyDataset, {
       className: namespace + ".ChildNodesDataset",
       sourceNode: null,
       init: function() {
-        AbstractDataset.prototype.init.call(this);
+        ReadOnlyDataset.prototype.init.call(this);
         var sourceNode = this.sourceNode;
         childNodesDatasetMap[sourceNode.basisObjectId] = this;
         if (sourceNode.firstChild) CHILDNODESDATASET_HANDLER.childNodesModified.call(this, sourceNode, {
@@ -3856,7 +4261,7 @@ var __resources__ = {
       destroy: function() {
         this.sourceNode.removeHandler(CHILDNODESDATASET_HANDLER, this);
         delete childNodesDatasetMap[this.sourceNode.basisObjectId];
-        AbstractDataset.prototype.destroy.call(this);
+        ReadOnlyDataset.prototype.destroy.call(this);
       }
     });
     var Selection = Class(Dataset, {
@@ -3908,7 +4313,7 @@ var __resources__ = {
       PartitionNode: PartitionNode,
       ChildNodesDataset: ChildNodesDataset,
       Selection: Selection,
-      nullSelection: new AbstractDataset
+      nullSelection: new ReadOnlyDataset
     };
   },
   "6.js": function(exports, module, basis, global, __filename, __dirname, require, resource) {
@@ -3964,8 +4369,10 @@ var __resources__ = {
     var REFERENCE = /([a-z_][a-z0-9_]*)(\||\}\s*)/ig;
     var ATTRIBUTE_VALUE = /"((?:(\\")|[^"])*?)"\s*/g;
     var BREAK_TAG_PARSE = /^/g;
+    var SINGLETON_TAG = /^(area|base|br|col|command|embed|hr|img|input|link|meta|param|source)$/i;
     var TAG_IGNORE_CONTENT = {
-      text: /((?:.|[\r\n])*?)(?:<\/b:text>|$)/g
+      text: /((?:.|[\r\n])*?)(?:<\/b:text>|$)/g,
+      style: /((?:.|[\r\n])*?)(?:<\/b:style>|$)/g
     };
     var quoteUnescape = /\\"/g;
     var tokenize = function(source) {
@@ -4083,9 +4490,14 @@ var __resources__ = {
             }
             if (m[3]) {
               parseTag = false;
-              if (m[3] == "/>") lastTag = tagStack.pop(); else if (lastTag.prefix == "b" && lastTag.name in TAG_IGNORE_CONTENT) {
-                state = TAG_IGNORE_CONTENT[lastTag.name];
-                break;
+              if (m[3] == "/>" || !lastTag.prefix && SINGLETON_TAG.test(lastTag.name)) {
+                if (m[3] != "/>") result.warns.push("Tag <" + lastTag.name + "> doesn't closed explicit (use `/>` as tag ending)");
+                lastTag = tagStack.pop();
+              } else {
+                if (lastTag.prefix == "b" && lastTag.name in TAG_IGNORE_CONTENT) {
+                  state = TAG_IGNORE_CONTENT[lastTag.name];
+                  break;
+                }
               }
               state = TEXT;
               break;
@@ -4131,6 +4543,7 @@ var __resources__ = {
             state = ATTRIBUTE_NAME_OR_END;
             break;
           case TAG_IGNORE_CONTENT.text:
+          case TAG_IGNORE_CONTENT.style:
             lastTag.childs.push({
               type: TYPE_TEXT,
               value: m[1]
@@ -4182,18 +4595,79 @@ var __resources__ = {
       if (!template) template = tokenTemplate[id] = new Template(new L10nProxyToken(token));
       return template;
     }
+    function genIsolateMarker() {
+      return "i" + basis.genUID() + "__";
+    }
+    function isolateCss(css, prefix) {
+      function addMatch(prefix) {
+        if (i > lastMatchPos) {
+          result.push((prefix || "") + css.substring(lastMatchPos, i));
+          lastMatchPos = i;
+        }
+      }
+      var result = [];
+      var sym = css.split("");
+      var len = sym.length;
+      var lastMatchPos = 0;
+      var blockScope = false;
+      var strSym;
+      if (!prefix) prefix = genIsolateMarker();
+      for (var i = 0; i < len; i++) {
+        switch (sym[i]) {
+          case "'":
+          case '"':
+            strSym = sym[i];
+            while (++i < len) {
+              if (sym[i] == "\\") i++; else if (sym[i] == strSym) {
+                i++;
+                break;
+              }
+            }
+            break;
+          case "/":
+            if (sym[i + 1] == "*") {
+              i++;
+              while (++i < len) if (sym[i] == "*" && sym[i + 1] == "/") {
+                i += 2;
+                break;
+              }
+            }
+            break;
+          case "{":
+            blockScope = true;
+            break;
+          case "}":
+            blockScope = false;
+            break;
+          case ".":
+            if (!blockScope) {
+              i++;
+              addMatch();
+              while (++i < len) if (!/[a-z0-9\-\_]/.test(sym[i])) {
+                addMatch(prefix);
+                i -= 1;
+                break;
+              }
+            }
+            break;
+        }
+      }
+      addMatch();
+      return result.join("");
+    }
     var makeDeclaration = function() {
       var IDENT = /^[a-z_][a-z0-9_\-]*$/i;
       var CLASS_ATTR_PARTS = /(\S+)/g;
-      var CLASS_ATTR_BINDING = /^([a-z_][a-z0-9_\-]*)?\{((anim:)?[a-z_][a-z0-9_\-]*)\}$/i;
+      var CLASS_ATTR_BINDING = /^((?:[a-z_][a-z0-9_\-]*)?(?::(?:[a-z_][a-z0-9_\-]*)?)?)\{((anim:)?[a-z_][a-z0-9_\-]*)\}$/i;
       var STYLE_ATTR_PARTS = /\s*[^:]+?\s*:(?:\(.*?\)|".*?"|'.*?'|[^;]+?)+(?:;|$)/gi;
       var STYLE_PROPERTY = /\s*([^:]+?)\s*:((?:\(.*?\)|".*?"|'.*?'|[^;]+?)+);?$/i;
       var STYLE_ATTR_BINDING = /\{([a-z_][a-z0-9_]*)\}/i;
       var ATTR_BINDING = /\{([a-z_][a-z0-9_]*|l10n:[a-z_][a-z0-9_]*(?:\.[a-z_][a-z0-9_]*)*(?:\.\{[a-z_][a-z0-9_]*\})?)\}/i;
       var NAMED_CHARACTER_REF = /&([a-z]+|#[0-9]+|#x[0-9a-f]{1,4});?/gi;
-      var tokenMap = basis.NODE_ENV ? node_require("./template/htmlentity.json") : {};
+      var tokenMap = basis.NODE_ENV ? __nodejsRequire("./template/htmlentity.json") : {};
       var tokenElement = !basis.NODE_ENV ? document.createElement("div") : null;
       var includeStack = [];
+      var styleNamespaceIsolate = {};
       function name(token) {
         return (token.prefix ? token.prefix + ":" : "") + token.name;
       }
@@ -4218,24 +4692,24 @@ var __resources__ = {
         if (!array || !array.length) return 0;
         return array;
       }
-      function processAttr(name, value) {
-        function buildExpression(parts) {
-          var bindName;
-          var names = [];
-          var expression = [];
-          var map = {};
-          for (var j = 0; j < parts.length; j++) if (j % 2) {
-            bindName = parts[j];
-            if (!map[bindName]) {
-              map[bindName] = names.length;
-              names.push(bindName);
-            }
-            expression.push(map[bindName]);
-          } else {
-            if (parts[j]) expression.push(untoken(parts[j]));
+      function buildAttrExpression(parts) {
+        var bindName;
+        var names = [];
+        var expression = [];
+        var map = {};
+        for (var j = 0; j < parts.length; j++) if (j % 2) {
+          bindName = parts[j];
+          if (!map[bindName]) {
+            map[bindName] = names.length;
+            names.push(bindName);
           }
-          return [ names, expression ];
+          expression.push(map[bindName]);
+        } else {
+          if (parts[j]) expression.push(untoken(parts[j]));
         }
+        return [ names, expression ];
+      }
+      function processAttr(name, value) {
         var bindings = 0;
         var parts;
         var m;
@@ -4261,7 +4735,7 @@ var __resources__ = {
                   var value = m[2].trim();
                   var valueParts = value.split(STYLE_ATTR_BINDING);
                   if (valueParts.length > 1) {
-                    var expr = buildExpression(valueParts);
+                    var expr = buildAttrExpression(valueParts);
                     expr.push(propertyName);
                     bindings.push(expr);
                   } else props.push(propertyName + ": " + untoken(value));
@@ -4274,7 +4748,7 @@ var __resources__ = {
               break;
             default:
               parts = value.split(ATTR_BINDING);
-              if (parts.length > 1) bindings = buildExpression(parts); else value = untoken(value);
+              if (parts.length > 1) bindings = buildAttrExpression(parts); else value = untoken(value);
           }
         }
         if (bindings && !bindings.length) bindings = 0;
@@ -4287,6 +4761,8 @@ var __resources__ = {
       function attrs(token, declToken, optimizeSize) {
         var attrs = token.attrs;
         var result = [];
+        var styleAttr;
+        var display;
         var m;
         for (var i = 0, attr; attr = attrs[i]; i++) {
           if (attr.prefix == "b") {
@@ -4294,6 +4770,10 @@ var __resources__ = {
               case "ref":
                 var refs = (attr.value || "").trim().split(/\s+/);
                 for (var j = 0; j < refs.length; j++) addTokenRef(declToken, refs[j]);
+                break;
+              case "show":
+              case "hide":
+                display = attr;
                 break;
             }
             continue;
@@ -4306,7 +4786,22 @@ var __resources__ = {
           var item = [ parsed.type, parsed.binding, refList(attr) ];
           if (parsed.type == 2) item.push(name(attr));
           if (parsed.value && (!optimizeSize || !parsed.binding || parsed.type != 2)) item.push(parsed.value);
+          if (parsed.type == TYPE_ATTRIBUTE_STYLE) styleAttr = item;
           result.push(item);
+        }
+        if (display) {
+          if (!styleAttr) {
+            styleAttr = [ TYPE_ATTRIBUTE_STYLE, 0, 0 ];
+            result.push(styleAttr);
+          }
+          if (!styleAttr[1]) styleAttr[1] = [];
+          var displayExpr = buildAttrExpression((display.value || display.name).split(ATTR_BINDING));
+          if (displayExpr[0].length - displayExpr[1].length) {
+            styleAttr[3] = (styleAttr[3] ? styleAttr[3] + "; " : "") + (display.name == "show" ^ display.value === "" ? "" : "display: none");
+          } else {
+            if (display.name == "show") styleAttr[3] = (styleAttr[3] ? styleAttr[3] + "; " : "") + "display: none";
+            styleAttr[1].push(displayExpr.concat("display", display.name));
+          }
         }
         return result.length ? result : 0;
       }
@@ -4334,7 +4829,23 @@ var __resources__ = {
       function addUnique(array, items) {
         for (var i = 0; i < items.length; i++) arrayAdd(array, items[i]);
       }
-      function process(tokens, template, options) {
+      function addStyles(array, items, prefix) {
+        for (var i = 0, item; item = items[i]; i++) if (item[1] !== styleNamespaceIsolate) item[1] = prefix + item[1];
+        array.unshift.apply(array, items);
+      }
+      function addStyle(template, token, src, isolatePrefix) {
+        var url;
+        if (src) {
+          if (!/^(\.\/|\.\.|\/)/.test(src)) basis.dev.warn("Bad usage: <b:" + token.name + ' src="' + src + '"/>.\nFilenames should starts with `./`, `..` or `/`. Otherwise it will treats as special reference in next minor release.');
+          url = path.resolve(template.baseURI + src);
+        } else {
+          var text = token.childs[0];
+          url = basis.resource.virtual("css", text ? text.value : "", template.sourceUrl).url;
+        }
+        template.resources.push([ url, isolatePrefix ]);
+        return url;
+      }
+      function process(tokens, template, options, context) {
         function modifyAttr(token, name, action) {
           var attrs = tokenAttrs(token);
           if (name) attrs.name = name;
@@ -4442,13 +4953,17 @@ var __resources__ = {
               if (token.prefix == "b") {
                 var elAttrs = tokenAttrs(token);
                 switch (token.name) {
-                  case "resource":
                   case "style":
-                    if (token.name == "resource") basis.dev.warn("<b:resource> is deprecated and will be removed in next minor release. Use <b:style> instead." + (template.sourceUrl ? " File: " + template.sourceUrl : ""));
-                    if (elAttrs.src) {
-                      if (!/^(\.\/|\.\.|\/)/.test(elAttrs.src)) basis.dev.warn("Bad usage: <b:" + token.name + ' src="' + elAttrs.src + '"/>.\nFilenames should starts with `./`, `..` or `/`. Otherwise it will treats as special reference in next minor release.');
-                      template.resources.push(path.resolve(template.baseURI + elAttrs.src));
+                    var styleNamespace = elAttrs.namespace || elAttrs.ns;
+                    var styleIsolate = styleNamespace ? styleNamespaceIsolate : context && context.isolate || "";
+                    var src = addStyle(template, token, elAttrs.src, styleIsolate);
+                    if (styleNamespace) {
+                      if (src in styleNamespaceIsolate == false) styleNamespaceIsolate[src] = genIsolateMarker();
+                      template.styleNSPrefix[styleNamespace] = styleNamespaceIsolate[src];
                     }
+                    break;
+                  case "isolate":
+                    if (!template.isolate) template.isolate = elAttrs.prefix || options.isolate || genIsolateMarker(); else basis.dev.warn("<b:isolate> is set already to `" + template.isolate + "`");
                     break;
                   case "l10n":
                     if (template.l10nResolved) template.warns.push("<b:l10n> must be declared before any `l10n:` token (instruction ignored)");
@@ -4483,9 +4998,16 @@ var __resources__ = {
                     var templateSrc = elAttrs.src;
                     if (templateSrc) {
                       var isTemplateRef = /^#\d+$/.test(templateSrc);
+                      var isDocumentIdRef = /^id:/.test(templateSrc);
                       var url = isTemplateRef ? templateSrc.substr(1) : templateSrc;
                       var resource;
-                      if (isTemplateRef) resource = templateList[url]; else if (/^[a-z0-9\.]+$/i.test(url) && !/\.tmpl$/.test(url)) resource = getSourceByPath(url); else {
+                      if (isTemplateRef) {
+                        resource = templateList[url];
+                      } else if (isDocumentIdRef) {
+                        resource = resolveSourceByDocumentId(url.substr(3));
+                      } else if (/^[a-z0-9\.]+$/i.test(url) && !/\.tmpl$/.test(url)) {
+                        resource = getSourceByPath(url);
+                      } else {
                         if (!/^(\.\/|\.\.|\/)/.test(url)) basis.dev.warn('Bad usage: <b:include src="' + url + '"/>.\nFilenames should starts with `./`, `..` or `/`. Otherwise it will treats as special reference in next minor release.');
                         resource = basis.resource(path.resolve(template.baseURI + url));
                       }
@@ -4495,21 +5017,21 @@ var __resources__ = {
                         continue;
                       }
                       if (includeStack.indexOf(resource) == -1) {
+                        var isolatePrefix = "isolate" in elAttrs ? elAttrs.isolate || genIsolateMarker() : "";
                         var decl;
-                        arrayAdd(template.deps, resource);
-                        includeStack.push(resource);
+                        if (!isDocumentIdRef) arrayAdd(template.deps, resource);
                         if (isTemplateRef) {
                           if (resource.source.bindingBridge) arrayAdd(template.deps, resource.source);
                           decl = getDeclFromSource(resource.source, resource.baseURI, true, options);
                         } else {
                           decl = getDeclFromSource(resource, resource.url ? path.dirname(resource.url) + "/" : "", true, options);
                         }
-                        includeStack.pop();
-                        if (decl.resources && "no-style" in elAttrs == false) addUnique(template.resources, decl.resources);
+                        if (decl.resources && "no-style" in elAttrs == false) addStyles(template.resources, decl.resources, isolatePrefix);
                         if (decl.deps) addUnique(template.deps, decl.deps);
                         if (decl.l10n) addUnique(template.l10n, decl.l10n);
                         var tokenRefMap = normalizeRefs(decl.tokens);
                         var instructions = (token.childs || []).slice();
+                        var styleNSPrefixMap = basis.object.slice(decl.styleNSPrefix);
                         if (elAttrs["class"]) instructions.push({
                           type: TYPE_ELEMENT,
                           prefix: "b",
@@ -4540,6 +5062,16 @@ var __resources__ = {
                         for (var j = 0, child; child = instructions[j]; j++) {
                           if (child.type == TYPE_ELEMENT && child.prefix == "b") {
                             switch (child.name) {
+                              case "style":
+                                var childAttrs = tokenAttrs(child);
+                                var styleNamespace = childAttrs.namespace || childAttrs.ns;
+                                var styleIsolate = styleNamespace ? styleNamespaceIsolate : isolatePrefix;
+                                var src = addStyle(template, child, childAttrs.src, styleIsolate);
+                                if (styleNamespace) {
+                                  if (src in styleNamespaceIsolate == false) styleNamespaceIsolate[src] = genIsolateMarker();
+                                  styleNSPrefixMap[styleNamespace] = styleNamespaceIsolate[src];
+                                }
+                                break;
                               case "replace":
                               case "remove":
                               case "before":
@@ -4608,6 +5140,8 @@ var __resources__ = {
                           } else decl.tokens.push.apply(decl.tokens, process([ child ], template, options) || []);
                         }
                         if (tokenRefMap.element) removeTokenRef(tokenRefMap.element.token, "element");
+                        basis.object.complete(template.styleNSPrefix, styleNSPrefixMap);
+                        if (isolatePrefix) isolateTokens(decl.tokens, isolatePrefix); else if (decl.isolate && !template.isolate) template.isolate = options.isolate || genIsolateMarker();
                         result.push.apply(result, decl.tokens);
                       } else {
                         var stack = includeStack.slice(includeStack.indexOf(resource) || 0).concat(resource).map(function(res) {
@@ -4616,7 +5150,7 @@ var __resources__ = {
                           return res.url || "[inline template]";
                         });
                         template.warns.push("Recursion: ", stack.join(" -> "));
-                        basis.dev.warn("Recursion in template " + (template.sourceUrl || "[inline template]") + ": ", stack.join(" -> "));
+                        basis.dev.warn("Recursion in template: ", stack.join(" -> "));
                       }
                     }
                     break;
@@ -4709,10 +5243,11 @@ var __resources__ = {
       function applyDefines(tokens, template, options, stIdx) {
         var unpredictable = 0;
         for (var i = stIdx || 0, token; token = tokens[i]; i++) {
-          if (token[TOKEN_TYPE] == TYPE_ELEMENT) unpredictable += applyDefines(token, template, options, ELEMENT_ATTRS);
-          if (token[TOKEN_TYPE] == TYPE_ATTRIBUTE_CLASS || token[TOKEN_TYPE] == TYPE_ATTRIBUTE && token[ATTR_NAME] == "class") {
+          var tokenType = token[TOKEN_TYPE];
+          if (tokenType == TYPE_ELEMENT) unpredictable += applyDefines(token, template, options, ELEMENT_ATTRS);
+          if (tokenType == TYPE_ATTRIBUTE_CLASS || tokenType == TYPE_ATTRIBUTE && token[ATTR_NAME] == "class") {
             var bindings = token[TOKEN_BINDINGS];
-            var valueIdx = ATTR_VALUE - (token[TOKEN_TYPE] == TYPE_ATTRIBUTE_CLASS);
+            var valueIdx = ATTR_VALUE_INDEX[tokenType];
             if (bindings) {
               var newAttrValue = (token[valueIdx] || "").trim().split(" ");
               for (var k = 0, bind; bind = bindings[k]; k++) {
@@ -4737,7 +5272,30 @@ var __resources__ = {
         }
         return unpredictable;
       }
-      return function makeDeclaration(source, baseURI, options, sourceUrl) {
+      function isolateTokens(tokens, isolate, template, stIdx) {
+        function processName(name) {
+          var parts = name.split(":");
+          if (parts.length == 1) return isolate + parts[0];
+          if (!template) return name;
+          if (!parts[0]) return parts[1];
+          if (parts[0] in template.styleNSPrefix == false) {
+            template.warns.push("Namespace `" + parts[0] + "` is not defined in template, no prefix added");
+            return name;
+          }
+          return template.styleNSPrefix[parts[0]] + parts[1];
+        }
+        for (var i = stIdx || 0, token; token = tokens[i]; i++) {
+          var tokenType = token[TOKEN_TYPE];
+          if (tokenType == TYPE_ELEMENT) isolateTokens(token, isolate, template, ELEMENT_ATTRS);
+          if (tokenType == TYPE_ATTRIBUTE_CLASS || tokenType == TYPE_ATTRIBUTE && token[ATTR_NAME] == "class") {
+            var bindings = token[TOKEN_BINDINGS];
+            var valueIndex = ATTR_VALUE_INDEX[tokenType];
+            if (token[valueIndex]) token[valueIndex] = token[valueIndex].split(/\s+/).map(processName).join(" ");
+            if (bindings) for (var k = 0, bind; bind = bindings[k]; k++) bind[0] = processName(bind[0]);
+          }
+        }
+      }
+      return function makeDeclaration(source, baseURI, options, sourceUrl, sourceOrigin) {
         options = options || {};
         var warns = [];
         var source_;
@@ -4746,11 +5304,13 @@ var __resources__ = {
           baseURI: baseURI || "",
           tokens: null,
           resources: [],
+          styleNSPrefix: {},
           deps: [],
           l10n: [],
           defines: {},
           unpredictable: true,
-          warns: warns
+          warns: warns,
+          isolate: false
         };
         result.dictURI = sourceUrl ? basis.path.resolve(sourceUrl) : baseURI || "";
         if (result.dictURI) {
@@ -4760,15 +5320,42 @@ var __resources__ = {
         if (!source.templateTokens) {
           source_ = source;
           source = tokenize(String(source));
-        } else {
-          if (source.warns) warns.push.apply(warns, source.warns);
         }
+        if (source.warns) warns.push.apply(warns, source.warns);
+        if (sourceOrigin) includeStack.push(sourceOrigin);
         result.tokens = process(source, result, options);
+        if (sourceOrigin) includeStack.pop();
         if (!result.tokens) result.tokens = [ [ 3, 0, 0, "" ] ];
         if (source_) result.tokens.source_ = source_;
         addTokenRef(result.tokens[0], "element");
         normalizeRefs(result.tokens, result.dictURI);
         result.unpredictable = !!applyDefines(result.tokens, result, options);
+        if (/^[^a-z]/i.test(result.isolate)) basis.dev.error("basis.template: isolation prefix `" + result.isolate + "` should not starts with symbol other than letter, otherwise it leads to incorrect css class names and broken styles");
+        if (includeStack.length == 0) {
+          isolateTokens(result.tokens, result.isolate || "", result);
+          if (result.isolate) for (var i = 0, item; item = result.resources[i]; i++) if (item[1] !== styleNamespaceIsolate) item[1] = result.isolate + item[1];
+          result.resources = result.resources.filter(function(item, idx, array) {
+            return !basis.array.search(array, String(item), String, idx + 1);
+          }).map(function(item) {
+            var url = item[0];
+            var isolate = item[1];
+            if (isolate === styleNamespaceIsolate) isolate = styleNamespaceIsolate[url];
+            if (!isolate) return url;
+            var resource = basis.resource.virtual("css", "").ready(function(cssResource) {
+              sourceResource();
+              basis.object.extend(cssResource, {
+                url: url + "?isolate-prefix=" + isolate,
+                baseURI: basis.path.dirname(url) + "/"
+              });
+            });
+            var sourceResource = basis.resource(url).ready(function(cssResource) {
+              var cssText = isolateCss(cssResource.cssText || "", isolate);
+              if (typeof btoa == "function") cssText += "\n/*# sourceMappingURL=data:application/json;base64," + btoa('{"version":3,"sources":["' + basis.path.origin + url + '"],' + '"mappings":"AAAA' + basis.string.repeat(";AACA", cssText.split("\n").length) + '"}') + " */";
+              resource.update(cssText);
+            });
+            return resource.url;
+          });
+        }
         for (var key in result.defines) if (!result.defines[key].used) warns.push("Unused define for " + key);
         delete result.defines;
         delete result.l10nResolved;
@@ -4776,14 +5363,13 @@ var __resources__ = {
         return result;
       };
     }();
-    var usableResources = {
-      ".css": true
-    };
     function startUseResource(uri) {
-      if (usableResources[path.extname(uri)]) basis.resource(uri)().startUse();
+      var resource = basis.resource(uri).fetch();
+      if (typeof resource.startUse == "function") resource.startUse();
     }
     function stopUseResource(uri) {
-      if (usableResources[path.extname(uri)]) basis.resource(uri)().stopUse();
+      var resource = basis.resource(uri).fetch();
+      if (typeof resource.stopUse == "function") resource.stopUse();
     }
     function templateSourceUpdate() {
       if (this.destroyBuilder) buildTemplate.call(this);
@@ -4816,7 +5402,7 @@ var __resources__ = {
       } else {
         if (typeof result != "object" || !Array.isArray(result.tokens)) result = String(result);
       }
-      if (typeof result == "string") result = makeDeclaration(result, baseURI, options, sourceUrl);
+      if (typeof result == "string") result = makeDeclaration(result, baseURI, options, sourceUrl, source);
       return result;
     }
     function l10nHandler(value) {
@@ -4825,7 +5411,9 @@ var __resources__ = {
       }
     }
     function buildTemplate() {
-      var decl = getDeclFromSource(this.source, this.baseURI);
+      var decl = getDeclFromSource(this.source, this.baseURI, false, {
+        isolate: this.getIsolatePrefix()
+      });
       var destroyBuilder = this.destroyBuilder;
       var funcs = this.builder(decl.tokens, this);
       var deps = this.deps_;
@@ -4868,20 +5456,25 @@ var __resources__ = {
       this.resources = declResources;
       if (destroyBuilder) destroyBuilder(true);
     }
-    function sourceById(sourceId) {
-      var host = document.getElementById(sourceId);
-      if (host && host.tagName == "SCRIPT") {
-        if (host.type == "text/basis-template") return host.textContent || host.text;
-        basis.dev.warn("Template script element with wrong type", host.type);
-        return "";
-      }
-      basis.dev.warn("Template script element with id `" + sourceId + "` not found");
-      return "";
+    var sourceByDocumentIdResolvers = {};
+    function getTemplateByDocumentId(id) {
+      var resolver = resolveSourceByDocumentId(id);
+      if (resolver.template) return resolver.template;
+      var host = document.getElementById(id);
+      var source = "";
+      if (host && host.tagName == "SCRIPT" && host.type == "text/basis-template") source = host.textContent || host.text; else if (!host) basis.dev.warn("Template script element with id `" + id + "` not found"); else basis.dev.warn('Template should be declared in <script type="text/basis-template"> element (id `' + sourceId + "`)");
+      return resolver.template = new Template(source);
     }
-    function resolveSourceById(sourceId) {
-      return function() {
-        return sourceById(sourceId);
-      };
+    function resolveSourceByDocumentId(sourceId) {
+      var resolver = sourceByDocumentIdResolvers[sourceId];
+      if (!resolver) {
+        resolver = sourceByDocumentIdResolvers[sourceId] = function() {
+          return getTemplateByDocumentId(sourceId).source;
+        };
+        resolver.id = sourceId;
+        resolver.url = '<script id="' + sourceId + '"/>';
+      }
+      return resolver;
     }
     var Template = Class(null, {
       className: namespace + ".Template",
@@ -4919,6 +5512,9 @@ var __resources__ = {
         return this.createInstance(object, actionCallback, updateCallback, bindings, bindingInterface);
       },
       clearInstance: function(tmpl) {},
+      getIsolatePrefix: function() {
+        return "i" + this.templateId + "__";
+      },
       getBinding: function(bindings) {
         buildTemplate.call(this);
         return this.getBinding(bindings);
@@ -4936,7 +5532,7 @@ var __resources__ = {
                   source = basis.resource(source);
                   break;
                 case "id":
-                  source = resolveSourceById(source);
+                  source = resolveSourceByDocumentId(source);
                   break;
                 case "tokens":
                   source = basis.string.toObject(source);
@@ -5214,7 +5810,7 @@ var __resources__ = {
         }
       });
       themes[name].fallback = extendFallback(name, []);
-      sourceList.push(themes["base"].sources);
+      sourceList.push(themes.base.sources);
       return themeInterface;
     }
     var themes = {};
@@ -5265,6 +5861,7 @@ var __resources__ = {
       SourceWrapper: SourceWrapper,
       switcher: switcher,
       tokenize: tokenize,
+      isolateCss: isolateCss,
       getDeclFromSource: getDeclFromSource,
       makeDeclaration: makeDeclaration,
       getL10nTemplate: getL10nTemplate,
@@ -5316,6 +5913,7 @@ var __resources__ = {
     var TEXT_VALUE = basis.template.TEXT_VALUE;
     var COMMENT_VALUE = basis.template.COMMENT_VALUE;
     var eventAttr = /^event-(.+)+/;
+    var basisTemplateIdMarker = "basisTemplateId_" + basis.genUID();
     var tmplEventListeners = {};
     var templates = {};
     var namespaceURI = {
@@ -5384,7 +5982,7 @@ var __resources__ = {
             if (relTarget && (cursor === relTarget || cursor.contains(relTarget))) cursor = null;
           }
           while (cursor) {
-            refId = cursor.basisTemplateId;
+            refId = cursor[basisTemplateIdMarker];
             if (typeof refId == "number") {
               if (tmplRef = resolveInstanceById(refId)) break;
             }
@@ -5393,7 +5991,16 @@ var __resources__ = {
           if (tmplRef && tmplRef.action) {
             var actions = attr.trim().split(/\s+/);
             event.actionTarget = actionTarget;
-            for (var i = 0, actionName; actionName = actions[i++]; ) tmplRef.action.call(tmplRef.context, actionName, event);
+            for (var i = 0, actionName; actionName = actions[i++]; ) switch (actionName) {
+              case "prevent-default":
+                event.preventDefault();
+                break;
+              case "stop-propagation":
+                event.stopPropagation();
+                break;
+              default:
+                tmplRef.action.call(tmplRef.context, actionName, event);
+            }
           }
         }
         if (event.type in afterEventAction) afterEventAction[event.type](event, attrCursor);
@@ -5475,6 +6082,7 @@ var __resources__ = {
             break;
         }
       }
+      if (!parent && tokens.length == 1) result = result.firstChild;
       return result;
     };
     function resolveTemplateById(refId) {
@@ -5645,9 +6253,28 @@ var __resources__ = {
         return value;
       }
       function createBindingUpdater(names, getters) {
-        return function bindingUpdater(object) {
-          for (var i = 0, bindingName; bindingName = names[i]; i++) this(bindingName, getters[bindingName](object));
-        };
+        var name1 = names[0];
+        var name2 = names[1];
+        var getter1 = getters[name1];
+        var getter2 = getters[name2];
+        switch (names.length) {
+          case 1:
+            return function bindingUpdater1(object) {
+              this(name1, getter1(object));
+            };
+          case 2:
+            return function bindingUpdater2(object) {
+              this(name1, getter1(object));
+              this(name2, getter2(object));
+            };
+          default:
+            var getters_ = names.map(function(name) {
+              return getters[name];
+            });
+            return function bindingUpdaterN(object) {
+              for (var i = 0; i < names.length; i++) this(names[i], getters_[i](object));
+            };
+        }
       }
       function makeHandler(events, getters) {
         for (var name in events) events[name] = createBindingUpdater(events[name], getters);
@@ -5704,16 +6331,13 @@ var __resources__ = {
         createBindingFunction: createBindingFunction
       };
       return function(tokens) {
-        var fn = getFunctions(tokens, true, this.source.url, tokens.source_, !CLONE_NORMALIZATION_TEXT_BUG);
+        var fn = getFunctions(tokens, true, this.source.url, tokens.source_, !CLONE_NORMALIZATION_TEXT_BUG, basisTemplateIdMarker);
         var createInstance;
         var instances = {};
         var l10nMap = {};
         var l10nLinks = [];
         var seed = 0;
         var proto = buildHtml(tokens);
-        var build = function() {
-          return proto.cloneNode(true);
-        };
         var id = this.templateId;
         templates[id] = {
           template: this,
@@ -5736,7 +6360,7 @@ var __resources__ = {
             link = null;
           }
         }
-        createInstance = fn.createInstance(id, instances, build, tools, l10nMap, CLONE_NORMALIZATION_TEXT_BUG);
+        createInstance = fn.createInstance(id, instances, proto, tools, l10nMap, CLONE_NORMALIZATION_TEXT_BUG);
         return {
           createInstance: function(obj, onAction, onRebuild, bindings, bindingInterface) {
             var instanceId = seed++;
@@ -5767,7 +6391,6 @@ var __resources__ = {
             }
             if (templates[id] && templates[id].instances === instances) delete templates[id];
             fn = null;
-            build = null;
             proto = null;
             l10nMap = null;
             l10nLinks = null;
@@ -5791,6 +6414,7 @@ var __resources__ = {
       templateClass: HtmlTemplate
     });
     module.exports = {
+      marker: basisTemplateIdMarker,
       Template: HtmlTemplate,
       TemplateSwitcher: HtmlTemplateSwitcher
     };
@@ -5867,9 +6491,11 @@ var __resources__ = {
       init: function(event) {
         event = wrap(event);
         for (var name in event) if (name != "returnValue" && name != "keyLocation" && name != "layerX" && name != "layerY") if (typeof event[name] != "function" && name in this == false) this[name] = event[name];
+        var target = sender(event);
         basis.object.extend(this, {
           event_: event,
-          sender: sender(event),
+          sender: target,
+          target: target,
           key: key(event),
           charCode: charCode(event),
           mouseLeft: mouseButton(event, MOUSE_LEFT),
@@ -6159,6 +6785,7 @@ var __resources__ = {
       var bindingList;
       var markedElementList;
       var rootPath;
+      var attrExprId;
       function putRefs(refs, pathIdx) {
         for (var i = 0, refName; refName = refs[i]; i++) if (refName.indexOf(":") == -1) refList.push(refName + ":" + pathIdx);
       }
@@ -6171,7 +6798,7 @@ var __resources__ = {
       function putBinding(binding) {
         bindingList.push(binding);
       }
-      function processTokens(tokens, path, noTextBug) {
+      function processTokens(tokens, path, noTextBug, templateMarker) {
         var localPath;
         var refs;
         var myRef;
@@ -6199,7 +6826,7 @@ var __resources__ = {
           }
           if (token[TOKEN_TYPE] == TYPE_ELEMENT) {
             myRef = -1;
-            if (path == rootPath) markedElementList.push(localPath + ".basisTemplateId");
+            if (path == rootPath) markedElementList.push(localPath + "." + templateMarker);
             if (!explicitRef) {
               localPath = putPath(localPath);
               myRef = pathList.length;
@@ -6221,10 +6848,14 @@ var __resources__ = {
                     for (var k = 0, binding; binding = bindings[k]; k++) putBinding([ 2, localPath, binding[1], attrName, binding[0] ].concat(binding.slice(2)));
                     break;
                   case "style":
-                    for (var k = 0, property; property = bindings[k]; k++) for (var m = 0, bindName; bindName = property[0][m]; m++) putBinding([ 2, localPath, bindName, attrName, property[0], property[1], property[2] ]);
+                    for (var k = 0, property; property = bindings[k]; k++) {
+                      attrExprId++;
+                      for (var m = 0, bindName; bindName = property[0][m]; m++) putBinding([ 2, localPath, bindName, attrName, property[0], property[1], property[2], property[3], attrExprId ]);
+                    }
                     break;
                   default:
-                    for (var k = 0, bindName; bindName = bindings[0][k]; k++) putBinding([ 2, localPath, bindName, attrName, bindings[0], bindings[1], token[ELEMENT_NAME] ]);
+                    attrExprId++;
+                    for (var k = 0, bindName; bindName = bindings[0][k]; k++) putBinding([ 2, localPath, bindName, attrName, bindings[0], bindings[1], token[ELEMENT_NAME], attrExprId ]);
                 }
               }
             }
@@ -6233,13 +6864,14 @@ var __resources__ = {
           }
         }
       }
-      return function(tokens, path, noTextBug) {
+      return function(tokens, path, noTextBug, templateMarker) {
         pathList = [];
         refList = [];
         bindingList = [];
         markedElementList = [];
         rootPath = path || "_";
-        processTokens(tokens, rootPath, noTextBug);
+        attrExprId = 0;
+        processTokens(tokens, rootPath, noTextBug, templateMarker);
         return {
           path: pathList,
           ref: refList,
@@ -6253,7 +6885,8 @@ var __resources__ = {
       var SPECIAL_ATTR_MAP = {
         disabled: "*",
         checked: [ "input" ],
-        value: [ "input", "textarea" ],
+        indeterminate: [ "input" ],
+        value: [ "input", "textarea", "select" ],
         minlength: [ "input" ],
         maxlength: [ "input" ],
         readonly: [ "input" ],
@@ -6265,7 +6898,8 @@ var __resources__ = {
         checked: true,
         selected: true,
         readonly: true,
-        multiple: true
+        multiple: true,
+        indeterminate: true
       };
       var bindFunctions = {
         1: "bind_element",
@@ -6312,16 +6946,18 @@ var __resources__ = {
         var l10nCompute = [];
         var l10nBindings = {};
         var l10nBindSeed = 1;
+        var specialAttr;
+        var attrExprId;
+        var attrExprMap = {};
+        var debugList = [];
         var toolsUsed = {
           resolve: true
         };
-        var specialAttr;
-        var debugList = [];
         for (var i = 0, binding; binding = bindings[i]; i++) {
           var bindType = binding[0];
           var domRef = binding[1];
           var bindName = binding[2];
-          if ([ "set", "templateId_" ].indexOf(bindName) != -1) {
+          if ([ "get", "set", "templateId_" ].indexOf(bindName) != -1) {
             basis.dev.warn("binding name `" + bindName + "` is prohibited, binding ignored");
             continue;
           }
@@ -6410,7 +7046,6 @@ var __resources__ = {
             }
           } else {
             var attrName = binding[ATTR_NAME];
-            debugList.push("{" + [ 'binding:"' + bindName + '"', "dom:" + domRef, 'attr:"' + attrName + '"', "val:" + bindVar, 'attachment:instance.attaches&&instance.attaches["' + bindName + '"]&&instance.attaches["' + bindName + '"].value' ] + "}");
             switch (attrName) {
               case "class":
                 var defaultExpr = "";
@@ -6449,15 +7084,28 @@ var __resources__ = {
                 putBindCode("bind_attrClass", domRef, bindVar, valueExpr, '"' + prefix + '"', anim);
                 break;
               case "style":
-                varList.push(bindVar + '=""');
-                putBindCode("bind_attrStyle", domRef, '"' + binding[6] + '"', bindVar, buildAttrExpression(binding, false, l10nBindings));
+                var expr = buildAttrExpression(binding, false, l10nBindings);
+                attrExprId = binding[8];
+                if (!attrExprMap[attrExprId]) {
+                  attrExprMap[attrExprId] = bindVar;
+                  varList.push(bindVar + "=" + (binding[7] == "hide" ? '""' : '"none"'));
+                }
+                if (binding[7]) expr = expr.replace(/\+""$/, "") + (binding[7] == "hide" ? '?"none":""' : '?"":"none"');
+                bindVar = attrExprMap[attrExprId];
+                putBindCode("bind_attrStyle", domRef, '"' + binding[6] + '"', bindVar, expr);
                 break;
               default:
                 specialAttr = SPECIAL_ATTR_MAP[attrName];
-                varList.push(bindVar + "=" + buildAttrExpression(binding, "l10n", l10nBindings));
+                attrExprId = binding[7];
+                if (!attrExprMap[attrExprId]) {
+                  varList.push(bindVar + "=" + buildAttrExpression(binding, "l10n", l10nBindings));
+                  attrExprMap[attrExprId] = bindVar;
+                }
+                bindVar = attrExprMap[attrExprId];
                 putBindCode("bind_attr", domRef, '"' + attrName + '"', bindVar, specialAttr && SPECIAL_ATTR_SINGLE[attrName] ? buildAttrExpression(binding, "bool", l10nBindings) + '?"' + attrName + '":""' : buildAttrExpression(binding, false, l10nBindings));
                 if (specialAttr && (specialAttr == "*" || specialAttr.indexOf(binding[6].toLowerCase()) != -1)) bindCode.push("if(" + domRef + "." + attrName + "!=" + bindVar + ")" + domRef + "." + attrName + "=" + (SPECIAL_ATTR_SINGLE[attrName] ? "!!" + bindVar : bindVar) + ";");
             }
+            debugList.push("{" + [ 'binding:"' + bindName + '"', "dom:" + domRef, 'attr:"' + attrName + '"', "val:" + bindVar, 'attachment:instance.attaches&&instance.attaches["' + bindName + '"]&&instance.attaches["' + bindName + '"].value' ] + "}");
           }
         }
         result.push(";function set(bindName,value){" + 'if(typeof bindName!="string")');
@@ -6493,10 +7141,10 @@ var __resources__ = {
         basis.dev.error("Can't build template function: " + e + "\n", "function(" + args + "){\n" + body + "\n}");
       }
     }
-    var getFunctions = function(tokens, debug, uri, source, noTextBug) {
+    var getFunctions = function(tokens, debug, uri, source, noTextBug, templateMarker) {
       var fn = tmplFunctions[uri && basis.path.relative(uri)];
       if (fn) return fn;
-      var paths = buildPathes(tokens, "_", noTextBug);
+      var paths = buildPathes(tokens, "_", noTextBug, templateMarker);
       var bindings = buildBindings(paths.binding);
       var objectRefs = paths.markedElementList.join("=");
       var createInstance;
@@ -6505,17 +7153,18 @@ var __resources__ = {
         keys: bindings.keys,
         l10nKeys: basis.object.keys(bindings.l10n)
       };
+      if (tokens.length == 1) paths.path[0] = "a=_";
       if (!uri) uri = basis.path.baseURI + "inline_template" + inlineSeed++ + ".tmpl";
       if (bindings.l10n) {
         var code = [];
         for (var key in bindings.l10n) code.push('case"' + key + '":' + 'if(value==null)value="{' + key + '}";' + "__l10n[token]=value;" + bindings.l10n[key].join("") + "break;");
         result.createL10nSync = compileFunction([ "_", "__l10n", "bind_attr", "TEXT_BUG" ], (source ? "\n// " + source.split(/\r\n?|\n\r?/).join("\n// ") + "\n\n" : "") + "var " + paths.path + ";" + "return function(token, value){" + "switch(token){" + code.join("") + "}" + "}" + "\n\n//# sourceURL=" + basis.path.origin + uri + "_l10n");
       }
-      result.createInstance = compileFunction([ "tid", "map", "build", "tools", "__l10n", "TEXT_BUG" ], (source ? "\n// " + source.split(/\r\n?|\n\r?/).join("\n// ") + "\n\n" : "") + "var getBindings=tools.createBindingFunction([" + bindings.keys.map(function(key) {
+      result.createInstance = compileFunction([ "tid", "map", "proto", "tools", "__l10n", "TEXT_BUG" ], (source ? "\n// " + source.split(/\r\n?|\n\r?/).join("\n// ") + "\n\n" : "") + "var getBindings=tools.createBindingFunction([" + bindings.keys.map(function(key) {
         return '"' + key + '"';
       }) + "])," + (bindings.tools.length ? bindings.tools + "," : "") + "Attaches=function(){};" + "Attaches.prototype={" + bindings.keys.map(function(key) {
         return key + ":null";
-      }) + "};" + "return function createInstance_(id,obj,onAction,onRebuild,bindings,bindingInterface){" + "var _=build()," + paths.path.concat(bindings.vars) + "," + "instance={" + "context:obj," + "action:onAction," + "rebuild:onRebuild," + (debug ? "debug:function debug(){return[" + bindings.debugList + "]}," : "") + "handler:null," + "bindings:bindings," + "bindingInterface:bindingInterface," + "attaches:null," + "tmpl:{" + [ paths.ref, "templateId_:id", "set:set" ] + "}" + "}" + (objectRefs ? ";if(obj||onAction)" + objectRefs + "=(id<<12)|tid" : "") + bindings.set + ";instance.handler=bindings?getBindings(bindings,obj,set,bindingInterface):null" + ";" + bindings.l10nCompute + ";return instance" + "}" + "\n\n//# sourceURL=" + basis.path.origin + uri);
+      }) + "};" + "return function createInstance_(id,obj,onAction,onRebuild,bindings,bindingInterface){" + "var _=proto.cloneNode(true)," + paths.path.concat(bindings.vars) + "," + "instance={" + "context:obj," + "action:onAction," + "rebuild:onRebuild," + (debug ? "debug:function debug(){return[" + bindings.debugList + "]}," : "") + "handler:null," + "bindings:bindings," + "bindingInterface:bindingInterface," + "attaches:null," + "tmpl:{" + [ paths.ref, "templateId_:id", "set:set" ] + "}" + "}" + (objectRefs ? ";if(obj||onAction)" + objectRefs + "=(id<<12)|tid" : "") + bindings.set + ";if(bindings)instance.handler=getBindings(bindings,obj,set,bindingInterface)" + ";" + bindings.l10nCompute + ";return instance" + "}" + "\n\n//# sourceURL=" + basis.path.origin + uri);
       return result;
     };
     module.exports = {
@@ -6526,6 +7175,7 @@ var __resources__ = {
     basis.require("./3.js");
     basis.require("./8.js");
     basis.require("./b.js");
+    basis.require("./c.js");
     var namespace = this.path;
     var document = global.document;
     var cleaner = basis.cleaner;
@@ -6534,6 +7184,8 @@ var __resources__ = {
     var removeGlobalHandler = Event.removeGlobalHandler;
     var Emitter = basis.event.Emitter;
     var createEvent = basis.event.create;
+    var getComputedStyle = basis.dom.computedStyle.get;
+    var getOffsetParent = basis.layout.getOffsetParent;
     var getBoundingRect = basis.layout.getBoundingRect;
     var getViewportRect = basis.layout.getViewportRect;
     var SELECTSTART_SUPPORTED = Event.getEventInfo("selectstart").supported;
@@ -6544,7 +7196,7 @@ var __resources__ = {
       return typeof value == "string" ? document.getElementById(value) : value;
     }
     function startDrag(event) {
-      if (dragElement) return;
+      if (dragElement || this.ignoreTarget(event.sender, event)) return;
       var viewport = getViewportRect(event.sender);
       if (event.mouseX < viewport.left || event.mouseX > viewport.right || event.mouseY < viewport.top || event.mouseY > viewport.bottom) return;
       dragElement = this;
@@ -6552,7 +7204,11 @@ var __resources__ = {
         initX: event.mouseX,
         initY: event.mouseY,
         deltaX: 0,
-        deltaY: 0
+        minDeltaX: -Infinity,
+        maxDeltaX: Infinity,
+        deltaY: 0,
+        minDeltaY: -Infinity,
+        maxDeltaY: Infinity
       };
       addGlobalHandler("mousemove", onDrag);
       addGlobalHandler("mouseup", stopDrag);
@@ -6562,13 +7218,16 @@ var __resources__ = {
       this.prepareDrag(dragData, event);
     }
     function onDrag(event) {
-      if (dragElement.axisX) dragData.deltaX = dragElement.axisXproxy(event.mouseX - dragData.initX);
-      if (dragElement.axisY) dragData.deltaY = dragElement.axisYproxy(event.mouseY - dragData.initY);
-      if (!dragging && dragElement.startRule(dragData.deltaX, dragData.deltaY)) {
+      var deltaX = event.mouseX - dragData.initX;
+      var deltaY = event.mouseY - dragData.initY;
+      if (!dragging) {
+        if (!dragElement.startRule(deltaX, deltaY)) return;
         dragging = true;
         dragElement.emit_start(dragData, event);
       }
-      if (dragging) dragElement.emit_drag(dragData, event);
+      if (dragElement.axisX) dragData.deltaX = dragElement.axisXproxy(basis.number.fit(deltaX, dragData.minDeltaX, dragData.maxDeltaX));
+      if (dragElement.axisY) dragData.deltaY = dragElement.axisYproxy(basis.number.fit(deltaY, dragData.minDeltaY, dragData.maxDeltaY));
+      dragElement.emit_drag(dragData, event);
     }
     function stopDrag(event) {
       removeGlobalHandler("mousemove", onDrag);
@@ -6587,20 +7246,18 @@ var __resources__ = {
     }
     var DragDropElement = Emitter.subclass({
       className: namespace + ".DragDropElement",
-      containerGetter: basis.getter("element"),
       element: null,
       trigger: null,
       baseElement: null,
-      fixTop: true,
-      fixRight: true,
-      fixBottom: true,
-      fixLeft: true,
       axisX: true,
       axisY: true,
       axisXproxy: basis.fn.$self,
       axisYproxy: basis.fn.$self,
+      prepareDrag: basis.fn.$undef,
       startRule: basis.fn.$true,
-      prepareDrag: function() {},
+      ignoreTarget: function(target, event) {
+        return /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(target.tagName);
+      },
       emit_start: createEvent("start"),
       emit_drag: createEvent("drag"),
       emit_over: createEvent("over"),
@@ -6646,136 +7303,97 @@ var __resources__ = {
         this.setBase();
       }
     });
+    var DeltaWriter = basis.Class(null, {
+      className: namespace + ".DeltaWriter",
+      property: null,
+      invert: false,
+      format: basis.fn.$self,
+      init: function(element) {
+        if (typeof this.property == "function") this.property = this.property(element);
+        if (typeof this.invert == "function") this.invert = this.invert(this.property);
+        this.value = this.read(element);
+      },
+      read: function() {
+        return element[this.property];
+      },
+      write: function(element, formattedValue) {
+        element[this.property] = formattedValue;
+      },
+      applyDelta: function(element, delta) {
+        if (this.invert) delta = -delta;
+        this.write(element, this.format(this.value + delta, delta));
+      }
+    });
+    var StyleDeltaWriter = DeltaWriter.subclass({
+      className: namespace + ".StyleDeltaWriter",
+      format: function(value, delta) {
+        return value + "px";
+      },
+      read: function(element) {
+        return parseFloat(getComputedStyle(element, this.property));
+      },
+      write: function(element, formattedValue) {
+        element.style[this.property] = formattedValue;
+      }
+    });
+    var StylePositionX = StyleDeltaWriter.subclass({
+      property: function(element) {
+        return getComputedStyle(element, "left") == "auto" ? "right" : "left";
+      },
+      invert: function(property) {
+        return property != "left";
+      }
+    });
+    var StylePositionY = StyleDeltaWriter.subclass({
+      property: function(element) {
+        return getComputedStyle(element, "top") == "auto" ? "bottom" : "top";
+      },
+      invert: function(property) {
+        return property != "top";
+      }
+    });
     var MoveableElement = DragDropElement.subclass({
       className: namespace + ".MoveableElement",
+      fixTop: true,
+      fixRight: true,
+      fixBottom: true,
+      fixLeft: true,
+      axisX: StylePositionX,
+      axisY: StylePositionY,
       emit_start: function(dragData, event) {
-        var element = this.containerGetter(this, dragData.initX, dragData.initY);
+        var element = this.element;
         if (element) {
+          var viewport = getViewportRect(this.getBase());
+          var box = getBoundingRect(element);
           dragData.element = element;
-          dragData.box = getBoundingRect(element);
-          dragData.viewport = getViewportRect(this.getBase());
+          if (this.axisX) {
+            dragData.axisX = new this.axisX(element);
+            if (this.fixLeft) dragData.minDeltaX = viewport.left - box.left;
+            if (this.fixRight) dragData.maxDeltaX = viewport.right - box.right;
+          }
+          if (this.axisY) {
+            dragData.axisY = new this.axisY(element);
+            if (this.fixTop) dragData.minDeltaY = viewport.top - box.top;
+            if (this.fixBottom) dragData.maxDeltaY = viewport.bottom - box.bottom;
+          }
         }
         DragDropElement.prototype.emit_start.call(this, dragData, event);
       },
       emit_drag: function(dragData, event) {
         if (!dragData.element) return;
-        if (this.axisX) {
-          var newLeft = dragData.box.left + dragData.deltaX;
-          if (this.fixLeft && newLeft < 0) newLeft = 0; else if (this.fixRight && newLeft + dragData.box.width > dragData.viewport.width) newLeft = dragData.viewport.width - dragData.box.width;
-          dragData.element.style.left = newLeft + "px";
-        }
-        if (this.axisY) {
-          var newTop = dragData.box.top + dragData.deltaY;
-          if (this.fixTop && newTop < 0) newTop = 0; else if (this.fixBottom && newTop + dragData.box.height > dragData.viewport.height) newTop = dragData.viewport.height - dragData.box.height;
-          dragData.element.style.top = newTop + "px";
-        }
+        if (dragData.axisX) dragData.axisX.applyDelta(dragData.element, dragData.deltaX);
+        if (dragData.axisY) dragData.axisY.applyDelta(dragData.element, dragData.deltaY);
         DragDropElement.prototype.emit_drag.call(this, dragData, event);
       }
     });
     module.exports = {
       DragDropElement: DragDropElement,
-      MoveableElement: MoveableElement
+      MoveableElement: MoveableElement,
+      DeltaWriter: DeltaWriter,
+      StyleDeltaWriter: StyleDeltaWriter
     };
   },
   "b.js": function(exports, module, basis, global, __filename, __dirname, require, resource) {
-    basis.require("./c.js");
-    var namespace = this.path;
-    var document = global.document;
-    var documentElement = document.documentElement;
-    var computedStyle = basis.dom.computedStyle.get;
-    function getOffsetParent(node) {
-      var offsetParent = node.offsetParent || documentElement;
-      while (offsetParent && offsetParent !== documentElement && computedStyle(offsetParent, "position") == "static") offsetParent = offsetParent.offsetParent;
-      return offsetParent || documentElement;
-    }
-    function getPageOffset() {
-      var top = 0;
-      var left = 0;
-      if (document.compatMode == "CSS1Compat") {
-        top = global.pageYOffset || documentElement.scrollTop;
-        left = global.pageXOffset || documentElement.scrollLeft;
-      } else {
-        var body = document.body;
-        if (element !== body) {
-          top = body.scrollTop - body.clientTop;
-          left = body.scrollLeft - body.clientLeft;
-        }
-      }
-      return {
-        x: left,
-        y: top
-      };
-    }
-    function getTopLeftPoint(element) {
-      var left = 0;
-      var top = 0;
-      if (element && element.getBoundingClientRect) {
-        var box = element.getBoundingClientRect();
-        var offset = getPageOffset();
-        top = box.top + offset.y;
-        left = box.left + offset.x;
-      }
-      return {
-        top: top,
-        left: left
-      };
-    }
-    function getBoundingRect(element, relElement) {
-      var top = 0;
-      var left = 0;
-      var right = 0;
-      var bottom = 0;
-      if (element && element.getBoundingClientRect) {
-        var rect = element.getBoundingClientRect();
-        var offset;
-        if (relElement && relElement.getBoundingClientRect) {
-          var relRect = relElement.getBoundingClientRect();
-          offset = {
-            x: -relRect.left,
-            y: -relRect.top
-          };
-        } else {
-          offset = getPageOffset();
-        }
-        top = rect.top + offset.y;
-        left = rect.left + offset.x;
-        right = rect.right + offset.x;
-        bottom = rect.bottom + offset.y;
-      }
-      return {
-        top: top,
-        left: left,
-        right: right,
-        bottom: bottom,
-        width: right - left,
-        height: bottom - top
-      };
-    }
-    function getViewportRect(element) {
-      var point = getTopLeftPoint(element);
-      var top = point.top;
-      var left = point.left;
-      var width = element.clientWidth;
-      var height = element.clientHeight;
-      top += element.clientTop + (global.pageYOffset || documentElement.scrollTop);
-      left += element.clientLeft + (global.pageXOffset || documentElement.scrollLeft);
-      return {
-        top: top,
-        left: left,
-        bottom: top + height,
-        right: left + width,
-        width: width,
-        height: height
-      };
-    }
-    module.exports = {
-      getOffsetParent: getOffsetParent,
-      getTopLeftPoint: getTopLeftPoint,
-      getBoundingRect: getBoundingRect,
-      getViewportRect: getViewportRect
-    };
-  },
-  "c.js": function(exports, module, basis, global, __filename, __dirname, require, resource) {
     var document = global.document;
     var computedStyle;
     if ("getComputedStyle" in global) {
@@ -6840,6 +7458,99 @@ var __resources__ = {
       get: computedStyle
     };
   },
+  "c.js": function(exports, module, basis, global, __filename, __dirname, require, resource) {
+    basis.require("./b.js");
+    var namespace = this.path;
+    var document = global.document;
+    var documentElement = document.documentElement;
+    var computedStyle = basis.dom.computedStyle.get;
+    function getOffsetParent(node) {
+      var offsetParent = node.offsetParent || documentElement;
+      while (offsetParent && offsetParent !== documentElement && computedStyle(offsetParent, "position") == "static") offsetParent = offsetParent.offsetParent;
+      return offsetParent || documentElement;
+    }
+    function getOffset(element) {
+      var top = 0;
+      var left = 0;
+      if (element && element.getBoundingClientRect) {
+        var relRect = element.getBoundingClientRect();
+        left = -relRect.left;
+        top = -relRect.top;
+      } else {
+        if (document.compatMode == "CSS1Compat") {
+          top = global.pageYOffset || documentElement.scrollTop;
+          left = global.pageXOffset || documentElement.scrollLeft;
+        } else {
+          var body = document.body;
+          if (element !== body) {
+            top = body.scrollTop - body.clientTop;
+            left = body.scrollLeft - body.clientLeft;
+          }
+        }
+      }
+      return {
+        x: left,
+        y: top
+      };
+    }
+    function getTopLeftPoint(element, relElement) {
+      var left = 0;
+      var top = 0;
+      if (element && element.getBoundingClientRect) {
+        var box = element.getBoundingClientRect();
+        var offset = getOffset(relElement);
+        top = box.top + offset.y;
+        left = box.left + offset.x;
+      }
+      return {
+        top: top,
+        left: left
+      };
+    }
+    function getBoundingRect(element, relElement) {
+      var top = 0;
+      var left = 0;
+      var right = 0;
+      var bottom = 0;
+      if (element && element.getBoundingClientRect) {
+        var rect = element.getBoundingClientRect();
+        var offset = getOffset(relElement);
+        top = rect.top + offset.y;
+        left = rect.left + offset.x;
+        right = rect.right + offset.x;
+        bottom = rect.bottom + offset.y;
+      }
+      return {
+        top: top,
+        left: left,
+        right: right,
+        bottom: bottom,
+        width: right - left,
+        height: bottom - top
+      };
+    }
+    function getViewportRect(element, relElement) {
+      var point = getTopLeftPoint(element, relElement);
+      var top = point.top + element.clientTop;
+      var left = point.left + element.clientLeft;
+      var width = element.clientWidth;
+      var height = element.clientHeight;
+      return {
+        top: top,
+        left: left,
+        bottom: top + height,
+        right: left + width,
+        width: width,
+        height: height
+      };
+    }
+    module.exports = {
+      getOffsetParent: getOffsetParent,
+      getTopLeftPoint: getTopLeftPoint,
+      getBoundingRect: getBoundingRect,
+      getViewportRect: getViewportRect
+    };
+  },
   "1.js": function(exports, module, basis, global, __filename, __dirname, require, resource) {
     basis.require("./2.js");
     basis.require("./4.js");
@@ -6851,10 +7562,13 @@ var __resources__ = {
     var Class = basis.Class;
     var createEvent = basis.event.create;
     var HtmlTemplate = basis.template.html.Template;
+    var htmlTemplateIdMarker = basis.template.html.marker;
     var TemplateSwitcher = basis.template.TemplateSwitcher;
     var DWNode = basis.dom.wrapper.Node;
     var DWPartitionNode = basis.dom.wrapper.PartitionNode;
     var DWGroupingNode = basis.dom.wrapper.GroupingNode;
+    var instances = {};
+    var notifier = new basis.Token;
     var bindingSeed = 1;
     var unknownEventBindingCheck = {};
     function extendBinding(binding, extension) {
@@ -7014,10 +7728,6 @@ var __resources__ = {
         tmpl: null,
         element: null,
         childNodesElement: null,
-        emit_update: function(delta) {
-          this.templateUpdate(this.tmpl, "update", delta);
-          super_.emit_update.call(this, delta);
-        },
         init: function() {
           this.element = this.childNodesElement = getDocumentFragment();
           super_.init.call(this);
@@ -7046,9 +7756,15 @@ var __resources__ = {
               this.container = null;
             }
           }
+          instances[this.basisObjectId] = this;
+          notifier.set({
+            action: "create",
+            instance: this
+          });
         },
         templateSync: function() {
           var oldElement = this.element;
+          var oldTmpl = this.tmpl;
           var tmpl = this.template.createInstance(this, this.templateAction, this.templateSync, this.binding, BINDING_TEMPLATE_INTERFACE);
           var noChildNodesElement;
           if (tmpl.childNodesHere) {
@@ -7074,8 +7790,6 @@ var __resources__ = {
             for (var child = this.lastChild; child; child = child.previousSibling) this.insertBefore(child, child.nextSibling);
           }
           if (this instanceof PartitionNode) reinsertPartitionNodes(this);
-          if (this.content) (tmpl.content || tmpl.element).appendChild(this.content.nodeType ? this.content : document.createTextNode(this.content));
-          this.templateUpdate(this.tmpl);
           if (oldElement && oldElement !== this.element && oldElement.nodeType != 11) {
             var parentNode = oldElement && oldElement.parentNode;
             if (parentNode) {
@@ -7083,7 +7797,7 @@ var __resources__ = {
               if (this.element.parentNode !== parentNode) parentNode.replaceChild(this.element, oldElement);
             }
           }
-          this.emit_templateChanged();
+          if (oldTmpl) this.emit_templateChanged();
         },
         setTemplate: function(template) {
           var curSwitcher = this.templateSwitcher_;
@@ -7105,9 +7819,12 @@ var __resources__ = {
             this.templateSwitcher_ = null;
             this.removeHandler(TEMPLATE_SWITCHER_HANDLER, this);
           }
-          if (this.template !== template) {
+          var oldTmpl = this.tmpl;
+          var oldTemplate = this.template;
+          if (oldTemplate !== template) {
             this.template = template;
             this.templateSync();
+            if (oldTemplate) oldTemplate.clearInstance(oldTmpl);
           }
         },
         updateBind: function(bindName) {
@@ -7120,7 +7837,6 @@ var __resources__ = {
           if (action) action.call(this, event);
           if (!action) basis.dev.warn("template call `" + actionName + "` action, but it isn't defined in action list");
         },
-        templateUpdate: function(tmpl, eventName, delta) {},
         focus: function(select) {
           var focusElement = this.tmpl ? this.tmpl.focus || this.element : null;
           if (focusElement) {
@@ -7140,6 +7856,11 @@ var __resources__ = {
           } catch (e) {}
         },
         destroy: function() {
+          delete instances[this.basisObjectId];
+          notifier.set({
+            action: "destroy",
+            instance: this
+          });
           var template = this.template;
           var element = this.element;
           if (this.templateSwitcher_) {
@@ -7226,6 +7947,11 @@ var __resources__ = {
       init: function() {
         this.element = this.childNodesElement = document.createDocumentFragment();
         DWGroupingNode.prototype.init.call(this);
+        instances[this.basisObjectId] = this;
+        notifier.set({
+          action: "create",
+          instance: this
+        });
       },
       syncDomRefs: function() {
         var cursor = this;
@@ -7237,6 +7963,11 @@ var __resources__ = {
         } while (cursor = cursor.grouping);
       },
       destroy: function() {
+        delete instances[this.basisObjectId];
+        notifier.set({
+          action: "destroy",
+          instance: this
+        });
         DWGroupingNode.prototype.destroy.call(this);
         this.element = null;
         this.childNodesElement = null;
@@ -7260,13 +7991,13 @@ var __resources__ = {
         disabled: {
           events: "disable enable",
           getter: function(node) {
-            return node.disabled || node.contextDisabled;
+            return node.isDisabled();
           }
         },
         enabled: {
           events: "disable enable",
           getter: function(node) {
-            return !(node.disabled || node.contextDisabled);
+            return !node.isDisabled();
           }
         }
       },
@@ -7303,7 +8034,7 @@ var __resources__ = {
           Node.prototype.templateSync.call(this);
           var newElement = this.getElement(this.delegate);
           if (newElement) {
-            newElement.basisTemplateId = this.delegate.element.basisTemplateId;
+            newElement[htmlTemplateIdMarker] = this.delegate.element[htmlTemplateIdMarker];
             this.element = newElement;
           }
         },
@@ -7313,7 +8044,7 @@ var __resources__ = {
               var oldElement = this.element;
               var oldElementParent = oldElement.parentNode;
               var newElement = this.getElement(this.delegate);
-              if (newElement) newElement.basisTemplateId = this.delegate.element.basisTemplateId;
+              if (newElement) newElement[htmlTemplateIdMarker] = this.delegate.element[htmlTemplateIdMarker];
               this.element = newElement || this.tmpl.element;
               if (oldElementParent) oldElementParent.replaceChild(this.element, oldElement);
             }
@@ -7322,6 +8053,10 @@ var __resources__ = {
       }
     });
     module.exports = {
+      debug_notifier: notifier,
+      debug_getInstances: function() {
+        return basis.object.values(instances);
+      },
       BINDING_PRESET: BINDING_PRESET,
       Node: Node,
       PartitionNode: PartitionNode,
@@ -7501,7 +8236,7 @@ var __resources__ = {
     var Class = basis.Class;
     var DataObject = basis.data.Object;
     var KeyObjectMap = basis.data.KeyObjectMap;
-    var AbstractDataset = basis.data.AbstractDataset;
+    var ReadOnlyDataset = basis.data.ReadOnlyDataset;
     var DatasetWrapper = basis.data.DatasetWrapper;
     var Value = basis.data.Value;
     var MapFilter = basis.data.dataset.MapFilter;
@@ -7590,7 +8325,7 @@ var __resources__ = {
     });
     var VectorIndex = Class(Index, {
       className: namespace + ".VectorIndex",
-      itemGetter: basis.fn.$null,
+      vectorGetter: basis.fn.$null,
       vector_: null,
       value: undefined,
       init: function() {
@@ -7634,6 +8369,33 @@ var __resources__ = {
         return vector[vector.length - 1];
       }
     });
+    var Distinct = Class(Index, {
+      className: namespace + ".Distinct",
+      map_: null,
+      init: function() {
+        this.map_ = {};
+        Index.prototype.init.call(this);
+      },
+      add_: function(value) {
+        if (!this.map_.hasOwnProperty(value)) this.map_[value] = 0;
+        if (++this.map_[value] == 1) this.value += 1;
+      },
+      remove_: function(value) {
+        if (--this.map_[value] == 0) this.value -= 1;
+      },
+      update_: function(newValue, oldValue) {
+        var delta = 0;
+        if (!this.map_.hasOwnProperty(newValue)) this.map_[newValue] = 0;
+        if (++this.map_[newValue] == 1) delta += 1;
+        if (--this.map_[oldValue] == 0) delta -= 1;
+        if (delta) this.set(this.value + delta);
+      },
+      normalize: String,
+      destroy: function() {
+        Index.prototype.destroy.call(this);
+        this.map_ = null;
+      }
+    });
     var indexConstructors_ = {};
     var DATASET_INDEX_HANDLER = {
       destroy: function(object) {
@@ -7647,7 +8409,7 @@ var __resources__ = {
       events = events || "update";
       if (typeof events != "string") throw "Events must be a event names space separated string";
       events = events.trim().split(" ").sort();
-      var indexId = [ BaseClass.basisClassId_, getter.basisGetterId_, events ].join("_");
+      var indexId = [ BaseClass.basisClassId_, getter[basis.getter.ID], events ].join("_");
       var indexConstructor = indexConstructors_[indexId];
       if (indexConstructor) return indexConstructor.owner;
       var events_ = {};
@@ -7667,7 +8429,7 @@ var __resources__ = {
     var createIndexConstructor = function(IndexClass, defGetter) {
       return function(events, getter) {
         var dataset;
-        if (events instanceof AbstractDataset || events instanceof DatasetWrapper) {
+        if (events instanceof ReadOnlyDataset || events instanceof DatasetWrapper) {
           dataset = events;
           events = getter;
           getter = arguments[2];
@@ -7676,11 +8438,6 @@ var __resources__ = {
           getter = events;
           events = "";
         }
-        if (events) if (typeof getter == "string" && getter.split(/\s+/).some(function(e) {
-          return e in basis.event.events;
-        }) || Array.isArray(getter) && getter.some(function(e) {
-          return e in basis.event.events;
-        })) basis.dev.warn("events must be before getter in basis.data.index constructor");
         var indexConstructor = getIndexConstructor(IndexClass, getter || defGetter, events);
         if (dataset) return getDatasetIndex(dataset, indexConstructor); else return indexConstructor;
       };
@@ -7690,6 +8447,7 @@ var __resources__ = {
     var avg = createIndexConstructor(Avg);
     var min = createIndexConstructor(Min);
     var max = createIndexConstructor(Max);
+    var distinct = createIndexConstructor(Distinct);
     function applyIndexDelta(index, inserted, deleted) {
       var indexCache = index.indexCache_;
       var objectId;
@@ -7992,15 +8750,17 @@ var __resources__ = {
         return this.keyMap.get(sourceObject, true);
       },
       destroy: function() {
-        this.timer_ = clearTimeout(this.timer_);
-        this.calcs = null;
-        this.indexUpdated = null;
-        this.memberSourceMap = null;
-        this.indexesBind_ = null;
         this.keyMap.destroy();
         this.keyMap = null;
         for (var indexName in this.indexes) this.removeIndex(indexName);
         MapFilter.prototype.destroy.call(this);
+        this.timer_ = basis.clearImmediate(this.timer_);
+        this.calcs = null;
+        this.indexes = null;
+        this.indexes_ = null;
+        this.indexValues = null;
+        this.memberSourceMap = null;
+        this.indexesBind_ = null;
       }
     });
     module.exports = {
@@ -8015,11 +8775,13 @@ var __resources__ = {
       VectorIndex: VectorIndex,
       Min: Min,
       Max: Max,
+      Distinct: Distinct,
       count: count,
       sum: sum,
       avg: avg,
       max: max,
       min: min,
+      distinct: distinct,
       CalcIndexPreset: CalcIndexPreset,
       percentOfRange: percentOfRange,
       percentOfMax: percentOfMax,
@@ -8031,20 +8793,24 @@ var __resources__ = {
     basis.require("./4.js");
     var namespace = this.path;
     var DataObject = basis.data.Object;
-    function generateGetData(names, sourceNames) {
-      return new Function("data", "return {" + names.map(function(name, idx) {
-        var ownName = name.replace(/"/g, '\\"');
-        var sourceName = (sourceNames && sourceNames[idx] || name).replace(/"/g, '\\"');
+    function generateGetData(nameMap) {
+      return new Function("data", "return {" + basis.object.iterate(nameMap, function(ownName, sourceName) {
+        ownName = ownName.replace(/"/g, '\\"');
+        sourceName = sourceName.replace(/"/g, '\\"');
         return '"' + ownName + '": data["' + sourceName + '"]';
       }) + "}");
     }
     var MERGE_SOURCE_HANDLER = {
       update: function(sender, senderDelta) {
+        var fields = this.host.fields;
         var data = {};
-        if (this.name == this.host.fields.defaultSource) {
-          for (var key in senderDelta) if (key in this.host.fields.sourceField == false) data[key] = sender.data[key];
+        if (this.name == fields.defaultSource) {
+          for (var key in senderDelta) if (key in fields.fieldSource == false) data[key] = sender.data[key];
         } else {
-          for (var key in senderDelta) if (this.host.fields.sourceField[key] == this.name) data[key] = sender.data[key];
+          for (var key in senderDelta) {
+            var mergeKey = fields.fromNames[this.name][key];
+            if (mergeKey && this.host.fields.fieldSource[mergeKey] == this.name) data[mergeKey] = sender.data[key];
+          }
         }
         for (var key in data) return this.host.update(data);
       },
@@ -8054,27 +8820,41 @@ var __resources__ = {
     };
     var fieldsExtend = function(fields) {
       var sources = {};
+      var toNames = {};
+      var fromNames = {};
       var result = {
         defaultSource: false,
-        sourceField: {},
-        sources: {},
+        fieldSource: {},
+        toNames: toNames,
+        fromNames: fromNames,
+        sources: sources,
         __extend__: fieldsExtend
       };
       if (fields["*"]) result.defaultSource = fields["*"];
       for (var field in fields) {
-        var sourceName = fields[field];
+        var def = fields[field].split(":");
+        var sourceName = def.shift();
+        var sourceField = def.length ? def.join(":") : field;
         if (sourceName == result.defaultSource) {
-          if (field != "*") basis.dev.warn("basis.data.object.Merge: source `" + sourceName + "` has already defined for any field (star rule), definition this source for `" + field + "` field is superfluous.");
+          if (field != "*") basis.dev.warn("basis.data.object.Merge: source `" + sourceName + "` has already defined for any field (star rule), definition this source for `" + field + "` field is superfluous (ignored).");
           continue;
         }
-        if (!sources[sourceName]) sources[sourceName] = [];
-        sources[sourceName].push(field);
-        result.sourceField[field] = sourceName;
+        if (sourceName == "-" && sourceField != field) {
+          basis.dev.warn("basis.data.object.Merge: custom field name can't be used for own properties, definition `" + field + ': "' + fields[field] + '"` ignored.');
+          continue;
+        }
+        if (!toNames[sourceName]) {
+          toNames[sourceName] = {};
+          fromNames[sourceName] = {};
+        }
+        toNames[sourceName][field] = sourceField;
+        fromNames[sourceName][sourceField] = field;
+        result.fieldSource[field] = sourceName;
       }
-      for (var sourceName in sources) result.sources[sourceName] = generateGetData(sources[sourceName]);
-      if (result.defaultSource) result.sources[result.defaultSource] = function(data) {
+      for (var sourceName in toNames) sources[sourceName] = generateGetData(toNames[sourceName]);
+      if (result.defaultSource) sources[result.defaultSource] = function(data) {
         var res = {};
-        for (var key in data) if (key in result.sourceField == false) res[key] = data[key];
+        for (var key in data) if (key in result.fieldSource == false) res[key] = data[key];
         return res;
       };
       return result;
@@ -8096,7 +8876,7 @@ var __resources__ = {
         this.delegate = null;
         DataObject.prototype.init.call(this);
         for (var key in data) {
-          var name = this.fields.sourceField[key] || this.fields.defaultSource;
+          var name = this.fields.fieldSource[key] || this.fields.defaultSource;
           if (name == "-") this.data[key] = data[key];
         }
         this.sources = {};
@@ -8106,12 +8886,13 @@ var __resources__ = {
       update: function(data) {
         if (this.delta_) {
           for (var key in data) {
-            var name = this.fields.sourceField[key] || this.fields.defaultSource;
-            if (!name) {
+            var sourceName = this.fields.fieldSource[key] || this.fields.defaultSource;
+            if (!sourceName) {
               basis.dev.warn("Unknown source for field `" + key + "`");
               continue;
             }
-            var value = this.sources[name].data[key];
+            var sourceKey = sourceName != this.fields.defaultSource ? this.fields.toNames[sourceName][key] : key;
+            var value = this.sources[sourceName].data[sourceKey];
             if (value !== this.data[key]) {
               if (key in this.delta_ == false) {
                 this.delta_[key] = this.data[key];
@@ -8127,21 +8908,22 @@ var __resources__ = {
         var delta = {};
         this.delta_ = delta;
         for (var key in data) {
-          var name = this.fields.sourceField[key] || this.fields.defaultSource;
-          if (!name) {
+          var sourceName = this.fields.fieldSource[key] || this.fields.defaultSource;
+          if (!sourceName) {
             basis.dev.warn("Unknown source for field `" + key + "`");
             continue;
           }
-          if (name == "-") {
+          if (sourceName == "-") {
             delta[key] = this.data[key];
             this.data[key] = data[key];
             continue;
           }
-          if (this.sources[name]) {
-            if (this.sources[name].data[key] !== data[key]) {
+          if (this.sources[sourceName]) {
+            var sourceKey = sourceName != this.fields.defaultSource ? this.fields.toNames[sourceName][key] : key;
+            if (this.sources[sourceName].data[sourceKey] !== data[key]) {
               if (!sourceDelta) sourceDelta = {};
-              if (name in sourceDelta == false) sourceDelta[name] = {};
-              sourceDelta[name][key] = data[key];
+              if (sourceName in sourceDelta == false) sourceDelta[sourceName] = {};
+              sourceDelta[sourceName][sourceKey] = data[key];
             } else {
               if (this.data[key] !== data[key]) {
                 delta[key] = this.data[key];
@@ -8150,7 +8932,7 @@ var __resources__ = {
             }
           }
         }
-        if (sourceDelta) for (var key in sourceDelta) this.sources[key].update(sourceDelta[key]);
+        if (sourceDelta) for (var sourceName in sourceDelta) this.sources[sourceName].update(sourceDelta[sourceName]);
         this.delta_ = null;
         for (var key in delta) {
           this.emit_update(delta);
@@ -8164,12 +8946,17 @@ var __resources__ = {
       setSource: function(name, source) {
         var oldSource = this.sources[name];
         if (name in this.fields.sources == false) {
-          basis.dev.warn("basis.data.object.Merge#setSource: can't set source with name `" + name + "` as it not specified by fields configuration");
+          basis.dev.warn("basis.data.object.Merge#setSource: can't set source with name `" + name + "` as not specified by fields configuration");
           return;
         }
+        if (name == "-") return;
         if (source instanceof DataObject == false) source = null;
         if (oldSource !== source) {
-          if (oldSource) oldSource.removeHandler(MERGE_SOURCE_HANDLER, this.sourcesContext_[name]);
+          var listenHandler = this.listen["source:" + name];
+          if (oldSource) {
+            if (listenHandler) oldSource.removeHandler(listenHandler, this);
+            oldSource.removeHandler(MERGE_SOURCE_HANDLER, this.sourcesContext_[name]);
+          }
           this.sources[name] = source;
           if (source) {
             if (name in this.sourcesContext_ == false) this.sourcesContext_[name] = {
@@ -8177,6 +8964,7 @@ var __resources__ = {
               name: name
             };
             source.addHandler(MERGE_SOURCE_HANDLER, this.sourcesContext_[name]);
+            if (listenHandler) source.addHandler(listenHandler, this);
             this.update(this.fields.sources[name](source.data));
           }
           this.emit_sourceChanged(name, oldSource);
@@ -8185,6 +8973,7 @@ var __resources__ = {
       setSources: function(sources) {
         if (!sources) sources = {};
         for (var name in this.fields.sources) this.setSource(name, sources[name]);
+        for (var name in sources) if (name in this.fields.sources == false) basis.dev.warn("basis.data.object.Merge#setSource: can't set source with name `" + name + "` as not specified by fields configuration");
       },
       destroy: function() {
         this.setSources();
@@ -8215,7 +9004,7 @@ var __resources__ = {
     var DataObject = basis.data.Object;
     var Slot = basis.data.Slot;
     var Dataset = basis.data.Dataset;
-    var Subset = basis.data.dataset.Subset;
+    var Filter = basis.data.dataset.Filter;
     var Split = basis.data.dataset.Split;
     var NULL_INFO = {};
     var entityTypes = [];
@@ -8241,6 +9030,7 @@ var __resources__ = {
       return name + untitledNames[name]++;
     }
     var namedTypes = {};
+    var namedIndexes = {};
     var deferredTypeDef = {};
     var TYPE_DEFINITION_PLACEHOLDER = function TYPE_DEFINITION_PLACEHOLDER() {};
     function resolveType(typeName, type) {
@@ -8262,7 +9052,8 @@ var __resources__ = {
       list.push([ typeHost, field ]);
       return function(value, oldValue) {
         var Type = namedTypes[typeName];
-        if (Type) return Type(value, oldValue); else if (arguments.length) basis.dev.warn(namespace + ": type `" + typeName + "` is not defined for " + field + ", but function called");
+        if (Type) return Type(value, oldValue);
+        if (arguments.length) basis.dev.warn(namespace + ": type `" + typeName + "` is not defined for " + field + ", but function called");
       };
     }
     function validateScheme() {
@@ -8271,25 +9062,21 @@ var __resources__ = {
     var Index = Class(null, {
       className: namespace + ".Index",
       items: null,
-      fn: String,
       init: function(fn) {
         this.items = {};
-        if (typeof fn == "function") this.fn = fn;
-      },
-      calcWrapper: function(newValue, oldValue) {
-        var value = this.fn(newValue, oldValue);
-        if (value !== oldValue && hasOwnProperty.call(this.items, value)) throw "Duplicate value for index [" + oldValue + " -> " + newValue + "]";
-        return value;
       },
       get: function(value, checkType) {
         var item = hasOwnProperty.call(this.items, value) && this.items[value];
         if (item && (!checkType || item.entityType === checkType)) return item;
       },
-      add: function(value, item) {
-        var cur = hasOwnProperty.call(this.items, value) && this.items[value];
-        if (item && (!cur || cur === item)) {
-          this.items[value] = item;
-          return true;
+      add: function(value, newItem) {
+        if (newItem) {
+          var curItem = this.get(value);
+          if (!curItem) {
+            this.items[value] = newItem;
+            return true;
+          }
+          if (curItem !== newItem) throw "basis.entity: Value `" + value + "` for index is already occupied";
         }
       },
       remove: function(value, item) {
@@ -8353,14 +9140,14 @@ var __resources__ = {
       result.calc = result;
       return result;
     }
-    function ConcatString() {
+    function ConcatStringField(name) {
+      if (arguments.length == 1) return function(delta, data, oldValue) {
+        if (name in delta) return data[name] != null ? String(data[name]) : null;
+        return oldValue;
+      };
       return CalculateField.apply(null, arrayFrom(arguments).concat(function() {
-        var value = [];
-        for (var i = arguments.length; i-- > 0; ) {
-          if (arguments[i] == null) return null;
-          value.push(arguments[i]);
-        }
-        return value.join("-");
+        for (var i = arguments.length - 1; i >= 0; i--) if (arguments[i] == null) return null;
+        return Array.prototype.join.call(arguments, "-");
       }));
     }
     var ENTITYSET_WRAP_METHOD = function(superClass, method) {
@@ -8378,6 +9165,7 @@ var __resources__ = {
       return function(data) {
         var destroyItems = basis.object.slice(this.items_);
         var inserted = [];
+        var deleted = [];
         if (data) {
           Dataset.setAccumulateState(true);
           for (var i = 0; i < data.length; i++) {
@@ -8387,8 +9175,12 @@ var __resources__ = {
           Dataset.setAccumulateState(false);
         }
         for (var key in this.items_) if (key in destroyItems == false) inserted.push(this.items_[key]);
+        for (var key in destroyItems) if (destroyItems[key]) deleted.push(destroyItems[key]);
+        if (deleted.length && this.wrapper.all) this.wrapper.all.emit_itemsChanged({
+          deleted: deleted
+        });
         Dataset.setAccumulateState(true);
-        for (var key in destroyItems) if (destroyItems[key]) destroyItems[key].destroy();
+        for (var i = 0; i < deleted.length; i++) deleted[i].destroy();
         Dataset.setAccumulateState(false);
         return inserted.length ? inserted : null;
       };
@@ -8414,11 +9206,11 @@ var __resources__ = {
       remove: basis.fn.$false,
       clear: basis.fn.$false
     });
-    var EntityCollection = Class(Subset, {
+    var EntityCollection = Class(Filter, {
       className: namespace + ".EntityCollection",
       name: null,
-      init: ENTITYSET_INIT_METHOD(Subset, "EntityCollection"),
-      sync: ENTITYSET_SYNC_METHOD(Subset)
+      init: ENTITYSET_INIT_METHOD(Filter, "EntityCollection"),
+      sync: ENTITYSET_SYNC_METHOD(Filter)
     });
     var EntityGrouping = Class(Split, {
       className: namespace + ".EntityGrouping",
@@ -8441,11 +9233,12 @@ var __resources__ = {
         }
         var entitySetType = new EntitySetConstructor({
           entitySetClass: {
-            name: "Set of {" + (typeof wrapper == "string" ? wrapper : (wrapper.entityType || wrapper).name || "UnknownType") + "}",
+            className: namespace + ".EntitySet(" + (typeof wrapper == "string" ? wrapper : (wrapper.type || wrapper).name || "UnknownType") + ")",
+            name: "Set of {" + (typeof wrapper == "string" ? wrapper : (wrapper.type || wrapper).name || "UnknownType") + "}",
             wrapper: wrapper
           }
         });
-        var entitySetClass = entitySetType.entitySetClass;
+        var EntitySetClass = entitySetType.entitySetClass;
         var result = function(data, entitySet) {
           if (data != null) {
             if (entitySet instanceof EntitySet == false) entitySet = entitySetType.createEntitySet();
@@ -8453,28 +9246,24 @@ var __resources__ = {
             return entitySet;
           } else return null;
         };
-        if (typeof wrapper == "string") entitySetClass.prototype.wrapper = getTypeByName(wrapper, entitySetClass.prototype, "wrapper");
+        if (typeof wrapper == "string") EntitySetClass.prototype.wrapper = getTypeByName(wrapper, EntitySetClass.prototype, "wrapper");
         resolveType(name, result);
         extend(result, {
           type: entitySetType,
           typeName: name,
           toString: function() {
-            return this.typeName + "()";
-          },
-          entitySetType: entitySetType,
-          extend: function() {
-            return entitySetClass.extend.apply(entitySetClass, arguments);
-          },
-          extendClass: function() {
-            entitySetClass.extend.apply(entitySetClass, arguments);
-            return result;
+            return name + "()";
           },
           reader: function(data) {
             if (Array.isArray(data)) {
-              var wrapper = entitySetClass.prototype.wrapper;
+              var wrapper = EntitySetClass.prototype.wrapper;
               return data.map(wrapper.reader || wrapper);
             }
             return data;
+          },
+          extendClass: function(source) {
+            EntitySetClass.extend.call(EntitySetClass, source);
+            return result;
           },
           extendReader: function(extReader) {
             var reader = result.reader;
@@ -8482,6 +9271,18 @@ var __resources__ = {
               if (Array.isArray(data)) extReader(data);
               return reader(data);
             };
+            return result;
+          },
+          entitySetType: entitySetType,
+          extend: function() {
+            basis.dev.warn("basis.entity: EntitySetType.extend() is deprecated, use EntitySetType.extendClass() instead.");
+            return EntitySetClass.extend.apply(EntitySetClass, arguments);
+          }
+        });
+        if (Object.defineProperty) Object.defineProperty(result, "entitySetType", {
+          get: function() {
+            basis.dev.warn("basis.entity: EntitySetType.entitySetType is deprecated, use EntitySetType.type instead.");
+            return entitySetType;
           }
         });
         return result;
@@ -8520,7 +9321,7 @@ var __resources__ = {
               data = {};
               data[idField] = idValue;
             } else {
-              if (entityType.compositeKey) idValue = entityType.compositeKey(data, data); else if (idField) idValue = data[idField];
+              if (entityType.compositeKey) idValue = entityType.compositeKey(data, data);
               if (idValue != null) entity = entityType.index.get(idValue, entityType);
             }
             if (entity && entity.entityType === entityType) entity.update(data); else entity = new EntityClass(data);
@@ -8529,17 +9330,14 @@ var __resources__ = {
         };
         var entityType = new EntityTypeConstructor(config || {}, result);
         var EntityClass = entityType.entityClass;
-        resolveType(entityType.name, result);
+        var name = entityType.name;
+        resolveType(name, result);
         extend(result, {
           all: entityType.all,
           type: entityType,
-          typeName: entityType.name,
-          entityType: entityType,
+          typeName: name,
           toString: function() {
-            return this.typeName + "()";
-          },
-          reader: function(data) {
-            return entityType.reader(data);
+            return name + "()";
           },
           get: function(data) {
             return entityType.get(data);
@@ -8547,11 +9345,12 @@ var __resources__ = {
           getSlot: function(id, defaults) {
             return entityType.getSlot(id, defaults);
           },
-          extend: function() {
-            return EntityClass.extend.apply(EntityClass, arguments);
+          reader: function(data) {
+            return entityType.reader(data);
           },
-          extendClass: function() {
-            return EntityClass.extend.apply(EntityClass, arguments);
+          extendClass: function(source) {
+            EntityClass.extend.call(EntityClass, source);
+            return result;
           },
           extendReader: function(extReader) {
             var reader = result.reader;
@@ -8559,6 +9358,18 @@ var __resources__ = {
               if (data && typeof data == "object") extReader(data);
               return reader(data);
             };
+            return result;
+          },
+          entityType: entityType,
+          extend: function() {
+            basis.dev.warn("basis.entity: EntityType.extend() is deprecated, use EntityType.extendClass() instead.");
+            return EntityClass.extend.apply(EntityClass, arguments);
+          }
+        });
+        if (Object.defineProperty) Object.defineProperty(result, "entityType", {
+          get: function() {
+            basis.dev.warn("basis.entity: EntityType.entityType is deprecated, use EntityType.type instead.");
+            return entityType;
           }
         });
         return result;
@@ -8588,11 +9399,34 @@ var __resources__ = {
       if (!fn) fn = dataBuilderFactory[code] = new Function(args, "return function(data){" + "return {" + code + "};" + "};");
       return fn.apply(null, values);
     }
-    function chooseArray(newArray, oldArray) {
+    function arrayField(newArray, oldArray) {
       if (!Array.isArray(newArray)) return null;
       if (!Array.isArray(oldArray) || newArray.length != oldArray.length) return newArray || null;
       for (var i = 0; i < newArray.length; i++) if (newArray[i] !== oldArray[i]) return newArray;
       return oldArray;
+    }
+    var fromISOString = function() {
+      function fastDateParse(y, m, d, h, i, s, ms) {
+        var date = new Date(y, m - 1, d, h || 0, 0, s || 0, ms ? ms.substr(0, 3) : 0);
+        date.setMinutes((i || 0) - tz - date.getTimezoneOffset());
+        return date;
+      }
+      var tz;
+      return function(isoDateString) {
+        tz = 0;
+        return fastDateParse.apply(null, String(isoDateString || "").replace(reIsoTimezoneDesignator, function(m, pre, h, i) {
+          tz = i ? h * 60 + i * 1 : h * 1;
+          return pre;
+        }).split(reIsoStringSplit));
+      };
+    }();
+    function dateField(value, oldValue) {
+      if (typeof value == "string") return fromISOString(value);
+      if (typeof value == "number") return new Date(value);
+      if (value == null) return null;
+      if (value && value.constructor === Date) return value;
+      basis.dev.warn("basis.entity: Bad value for Date field, value ignored");
+      return oldValue;
     }
     function addField(entityType, name, config) {
       entityType.aliases[name] = name;
@@ -8601,7 +9435,7 @@ var __resources__ = {
           type: config
         };
       } else {
-        config = basis.object.slice(config);
+        config = config ? basis.object.slice(config) : {};
       }
       if ("type" in config) {
         if (typeof config.type == "string") config.type = getTypeByName(config.type, entityType.fields, name);
@@ -8614,30 +9448,21 @@ var __resources__ = {
           } else {
             config.type = function(value, oldValue) {
               var exists = values.indexOf(value) != -1;
-              if (!exists) basis.dev.warn("Set value that not in list for " + entityType.name + "#field." + name + ", new value ignored.");
+              if (!exists) basis.dev.warn("Set value that not in list for " + entityType.name + "#field." + name + " (new value ignored).\nVariants:", values, "\nIgnored value:", value);
               return exists ? value : oldValue;
             };
             config.defValue = values.indexOf(config.defValue) != -1 ? config.defValue : values[0];
           }
         }
-        if (config.type === Array) config.type = chooseArray;
+        if (config.type === Array) config.type = arrayField;
+        if (config.type === Date) config.type = dateField;
         if (typeof config.type != "function") {
           basis.dev.warn("EntityType " + entityType.name + ": Field wrapper for `" + name + "` field is not a function. Field wrapper has been ignored. Wrapper: ", config.type);
-          config.type = $self;
+          config.type = null;
         }
       }
       var wrapper = config.type || $self;
-      if ([ NumericId, NumberId, IntId, StringId ].indexOf(wrapper) != -1) config.id = true;
-      if (config.id) {
-        if (!entityType.index) entityType.index = new Index(String);
-        entityType.idFields[name] = true;
-        if (entityType.idField || entityType.compositeKey) {
-          entityType.idField = null;
-          entityType.compositeKey = ConcatString.apply(null, keys(entityType.idFields));
-        } else {
-          entityType.idField = name;
-        }
-      }
+      if (config.id || config.index || [ NumericId, NumberId, IntId, StringId ].indexOf(wrapper) != -1) entityType.idFields[name] = config;
       if (config.calc) {
         addCalcField(entityType, name, config.calc);
         entityType.fields[name] = calcFieldWrapper;
@@ -8682,7 +9507,6 @@ var __resources__ = {
           basis.dev.warn("Can't add calculate field `" + name + "`, because recursion");
           return;
         }
-        if (entityType.idField && name == entityType.idField) entityType.compositeKey = wrapper;
         deps[name] = calcArgs.reduce(function(res, ref) {
           var items = deps[ref] || [ ref ];
           for (var i = 0; i < items.length; i++) basis.array.add(res, items[i]);
@@ -8713,12 +9537,14 @@ var __resources__ = {
       wrapper: null,
       all: null,
       fields: null,
+      idField: null,
       idFields: null,
       defaults: null,
       aliases: null,
       slots: null,
       singleton: false,
       index: null,
+      indexes: null,
       entityClass: null,
       init: function(config, wrapper) {
         this.name = config.name;
@@ -8757,6 +9583,53 @@ var __resources__ = {
         if (config.constrains) config.constrains.forEach(function(item) {
           addCalcField(this, null, item);
         }, this);
+        var idFields = keys(this.idFields);
+        var indexes = {};
+        if (idFields.length) {
+          for (var field in this.idFields) {
+            var fieldCfg = this.idFields[field];
+            var index = fieldCfg.index;
+            var indexDescriptor;
+            if (!index || index instanceof Index == false) {
+              if (typeof index == "string") {
+                if (index in namedIndexes == false) namedIndexes[index] = new Index;
+                index = namedIndexes[index];
+              } else {
+                if (!this.index) this.index = new Index;
+                index = this.index;
+              }
+            }
+            indexDescriptor = indexes[index.basisObjectId];
+            if (!indexDescriptor) indexDescriptor = indexes[index.basisObjectId] = {
+              index: index,
+              fields: []
+            };
+            indexDescriptor.fields.push(field);
+            this.idFields[field] = indexDescriptor;
+          }
+          if (this.index && this.index.basisObjectId in indexes == false) {
+            basis.dev.warn("basis.entity: entity index is not used for any field, index ignored");
+            this.index = null;
+          }
+          for (var id in indexes) {
+            var indexDescriptor = indexes[id];
+            indexDescriptor.property = "__id__" + id;
+            indexDescriptor.compositeKey = ConcatStringField.apply(null, indexDescriptor.fields);
+            if (indexDescriptor.fields.length == 1) indexDescriptor.idField = indexDescriptor.fields[0];
+          }
+          var indexesKeys = keys(indexes);
+          var primaryIndex = indexes[this.index ? this.index.basisObjectId : indexesKeys[0]];
+          this.index = primaryIndex.index;
+          this.idField = primaryIndex.idField;
+          this.compositeKey = primaryIndex.compositeKey;
+          this.idProperty = primaryIndex.property;
+          this.indexes = indexes;
+        } else {
+          if (this.index) {
+            basis.dev.warn("basis.entity: entity has no any id field, index ignored");
+            this.index = null;
+          }
+        }
         var initDelta = {};
         for (var key in this.defaults) initDelta[key] = undefined;
         this.entityClass = createEntityClass(this, this.all, this.fields, this.slots);
@@ -8789,14 +9662,14 @@ var __resources__ = {
       },
       get: function(entityOrData) {
         var id = this.getId(entityOrData);
-        if (id != null) return this.index.get(id, this);
+        if (this.index && id != null) return this.index.get(id, this);
       },
       getId: function(entityOrData) {
-        if ((this.idField || this.compositeKey) && entityOrData != null) {
+        if (this.compositeKey && entityOrData != null) {
           if (isKeyType[typeof entityOrData]) return entityOrData;
-          if (entityOrData && entityOrData.entityType === this) return entityOrData.__id__;
+          if (entityOrData && entityOrData.entityType === this) return entityOrData[this.idProperty];
           if (entityOrData instanceof DataObject) entityOrData = entityOrData.data;
-          if (this.compositeKey) return this.compositeKey(entityOrData, entityOrData); else return entityOrData[this.idField];
+          if (this.compositeKey) return this.compositeKey(entityOrData, entityOrData);
         }
       },
       getSlot: function(data) {
@@ -8806,7 +9679,7 @@ var __resources__ = {
           if (!slot) {
             if (isKeyType[typeof data]) {
               var tmp = {};
-              if (this.idField && !this.compositeKey) tmp[this.idField] = data;
+              if (this.idField) tmp[this.idField] = data;
               data = tmp;
             }
             slot = this.slots[id] = new Slot({
@@ -8825,6 +9698,8 @@ var __resources__ = {
       className: namespace + ".BaseEntity",
       target: true,
       setDelegate: function() {},
+      extendConstructor_: false,
+      fieldHandlers_: null,
       modified: null,
       emit_rollbackUpdate: createEvent("rollbackUpdate")
     });
@@ -8833,8 +9708,6 @@ var __resources__ = {
         var calcs = entityType.calcs;
         var data = entity.data;
         var updated = false;
-        var curId = entity.__id__;
-        var newId;
         try {
           if (calcs) {
             for (var i = 0, calc; calc = calcs[i]; i++) {
@@ -8842,45 +9715,41 @@ var __resources__ = {
               var oldValue = data[key];
               var newValue = calc.wrapper(delta, data, oldValue);
               if (key && newValue !== oldValue) {
-                data[key] = newValue;
                 delta[key] = oldValue;
+                data[key] = newValue;
                 updated = true;
               }
             }
           }
-          if (entityType.compositeKey) newId = entityType.compositeKey(delta, data, curId); else newId = entityType.idField && entityType.idField in delta ? data[entityType.idField] : curId;
-          if (newId !== curId) entityType.index.calcWrapper(newId, curId);
+          for (var id in entityType.indexes) {
+            var indexDescriptor = entityType.indexes[id];
+            var curId = entity[indexDescriptor.property];
+            var newId = curId;
+            if (indexDescriptor.compositeKey) newId = indexDescriptor.compositeKey(delta, data, curId);
+            if (newId !== curId) {
+              updateIndex(indexDescriptor.index, entity, curId, newId);
+              entity[indexDescriptor.property] = newId;
+            }
+          }
+          return updated;
         } catch (e) {
           entityWarn(entity, "(rollback changes) Exception on field calcs: " + (e && e.message || e));
-          updated = false;
-          newId = curId;
           for (var key in delta) entity.data[key] = delta[key];
-          if (rollbackDelta && !entity.modified) for (var key in rollbackDelta) {
-            entity.modified = rollbackDelta;
-            break;
-          }
+          if (rollbackDelta && !entity.modified) entity.modified = rollbackDelta;
         }
-        if (newId !== curId) {
-          entity.__id__ = newId;
-          updateIndex(entity, curId, newId);
-        }
-        return updated;
       }
-      function updateIndex(entity, curValue, newValue) {
-        var index = entityType.index;
-        if (curValue != null) {
-          index.remove(curValue, entity);
-          if (hasOwnProperty.call(slots, curValue)) slots[curValue].setDelegate();
-        }
+      function updateIndex(index, entity, curValue, newValue) {
         if (newValue != null) {
           index.add(newValue, entity);
           if (hasOwnProperty.call(slots, newValue)) slots[newValue].setDelegate(entity);
         }
+        if (curValue != null) {
+          index.remove(curValue, entity);
+          if (hasOwnProperty.call(slots, curValue)) slots[curValue].setDelegate();
+        }
       }
       return Class(BaseEntity, {
-        className: namespace + ".Entity",
-        extendConstructor_: false,
-        fieldHandlers_: null,
+        className: entityType.name,
         init: function(data) {
           this.delegate = null;
           this.data = this.generateData(data);
@@ -8904,7 +9773,7 @@ var __resources__ = {
           return "[object " + this.constructor.className + "(" + this.entityType.name + ")]";
         },
         getId: function() {
-          return this.__id__;
+          return this[entityType.idProperty];
         },
         get: function(key, real) {
           if (real && this.modified && key in this.modified) return this.modified[key];
@@ -8918,7 +9787,7 @@ var __resources__ = {
           }
           var result;
           var rollbackData = this.modified;
-          if (valueWrapper === chooseArray && rollbackData && key in rollbackData) value = chooseArray(value, rollbackData[key]);
+          if (valueWrapper === arrayField && rollbackData && key in rollbackData) value = arrayField(value, rollbackData[key]);
           var newValue = valueWrapper(value, this.data[key]);
           var curValue = this.data[key];
           var valueChanged = newValue !== curValue && (!newValue || !curValue || newValue.constructor !== Date || curValue.constructor !== Date || +newValue !== +curValue);
@@ -9003,8 +9872,7 @@ var __resources__ = {
           var update = false;
           var delta = {};
           if (data) {
-            var rollbackUpdate;
-            var rollbackDelta = {};
+            var rollbackDelta;
             var setResult;
             for (var key in data) {
               if (setResult = this.set(key, data[key], rollback, true)) {
@@ -9013,14 +9881,14 @@ var __resources__ = {
                   delta[setResult.key] = setResult.value;
                 }
                 if (setResult.rollback) {
-                  rollbackUpdate = true;
+                  if (!rollbackDelta) rollbackDelta = {};
                   rollbackDelta[setResult.rollback.key] = setResult.rollback.value;
                 }
               }
             }
             if (calc(this, delta, rollbackDelta)) update = true;
             if (update) this.emit_update(delta);
-            if (rollbackUpdate) this.emit_rollbackUpdate(rollbackDelta);
+            if (rollbackDelta) this.emit_rollbackUpdate(rollbackDelta);
           }
           return update ? delta : false;
         },
@@ -9056,11 +9924,15 @@ var __resources__ = {
             for (var key in this.fieldHandlers_) if (this.fieldHandlers_[key]) this.data[key].removeHandler(fieldDestroyHandlers[key], this);
             this.fieldHandlers_ = null;
           }
-          if (this.__id__ != null) updateIndex(this, this.__id__, null);
-          DataObject.prototype.destroy.call(this);
-          if (all) all.emit_itemsChanged({
+          for (var key in entityType.indexes) {
+            var indexDescriptor = entityType.indexes[key];
+            var id = this[indexDescriptor.property];
+            if (id != null) updateIndex(indexDescriptor.index, this, id, null);
+          }
+          if (all && all.has(this)) all.emit_itemsChanged({
             deleted: [ this ]
           });
+          DataObject.prototype.destroy.call(this);
           this.data = NULL_INFO;
           this.modified = null;
         }
@@ -9096,9 +9968,19 @@ var __resources__ = {
       getTypeByName: function(typeName) {
         return namedTypes[typeName];
       },
-      get: function(typeName, id) {
-        var type = namedTypes[typeName];
-        if (type) return type.get(id);
+      getIndexByName: function(name) {
+        return namedIndexes[name];
+      },
+      get: function(typeName, value) {
+        var Type = namedTypes[typeName];
+        if (Type) return Type.get(value);
+      },
+      resolve: function(typeName, value) {
+        var Type = namedTypes[typeName];
+        if (Type) return Type(value);
+      },
+      getByIndex: function(indexName, id) {
+        if (indexName in namedIndexes) return namedIndexes[indexName].get(id); else basis.dev.warn("basis.entity: index with name `" + indexName + "` doesn't exists");
       },
       NumericId: NumericId,
       NumberId: NumberId,
@@ -9106,6 +9988,7 @@ var __resources__ = {
       StringId: StringId,
       Index: Index,
       CalculateField: CalculateField,
+      ConcatStringField: ConcatStringField,
       calc: CalculateField,
       EntityType: EntityTypeWrapper,
       Entity: createEntityClass,
@@ -9149,7 +10032,7 @@ var __resources__ = {
       return data;
     }
     function releaseCallback(name) {
-      fetchCallbackData(name);
+      delete callbackData[name];
       delete global[name];
     }
     function readyStateChangeHandler(readyState, abort) {
@@ -9157,6 +10040,7 @@ var __resources__ = {
       var newStateData;
       var error = false;
       if (typeof readyState != "number") {
+        if (!readyState || this.script !== readyState.target) return;
         error = readyState && readyState.type == "error";
         readyState = error || !this.script.readyState || /loaded|complete/.test(this.script.readyState) ? STATE_DONE : STATE_LOADING;
       }
@@ -9165,7 +10049,7 @@ var __resources__ = {
       this.emit_readyStateChanged(readyState);
       if (readyState == STATE_DONE) {
         this.clearTimeout();
-        this.script.onload = this.script.onreadystatechange = null;
+        this.script.onload = this.script.onerror = this.script.onreadystatechange = null;
         if (this.script.parentNode) this.script.parentNode.removeChild(this.script);
         this.script = null;
         if (abort) {
@@ -9183,7 +10067,14 @@ var __resources__ = {
           }
         }
         this.emit_complete(this);
-        this.callback = releaseCallback(this.callback);
+        var callback = this.callback;
+        if (abort) {
+          setTimeout(global[callback] = function() {
+            releaseCallback(callback);
+          }, 5 * 60 * 1e3);
+        } else {
+          releaseCallback(callback);
+        }
       } else newState = STATE.PROCESSING;
       this.setState(newState, newStateData);
     }
@@ -9193,7 +10084,7 @@ var __resources__ = {
       timer_: null,
       emit_readyStateChanged: createRequestEvent("readyStateChanged"),
       isIdle: function() {
-        return !!this.script;
+        return !this.script;
       },
       isSuccessful: function() {
         return this.data.status == 200;
@@ -9434,6 +10325,24 @@ var __resources__ = {
         this.clearInfluence();
       }
     });
+    var TRANSPORT_REQUEST_HANDLER = {
+      start: function(sender, request) {
+        basis.array.add(this.inprogressRequests, request);
+      },
+      complete: function(sender, request) {
+        basis.array.remove(this.inprogressRequests, request);
+      }
+    };
+    var TRANSPORT_POOL_LIMIT_HANDLER = {
+      complete: function() {
+        var nextRequest = this.requestQueue.shift();
+        if (nextRequest) {
+          basis.nextTick(function() {
+            nextRequest.doRequest();
+          });
+        }
+      }
+    };
     var AbstractTransport = Emitter.subclass({
       className: namespace + ".AbstractTransport",
       requestClass: AbstractRequest,
@@ -9515,24 +10424,6 @@ var __resources__ = {
         Emitter.prototype.destroy.call(this);
       }
     });
-    var TRANSPORT_REQUEST_HANDLER = {
-      start: function(sender, request) {
-        basis.array.add(this.inprogressRequests, request);
-      },
-      complete: function(sender, request) {
-        basis.array.remove(this.inprogressRequests, request);
-      }
-    };
-    var TRANSPORT_POOL_LIMIT_HANDLER = {
-      complete: function() {
-        var nextRequest = this.requestQueue.shift();
-        if (nextRequest) {
-          basis.nextTick(function() {
-            nextRequest.doRequest();
-          });
-        }
-      }
-    };
     module.exports = {
       createTransportEvent: createTransportEvent,
       createRequestEvent: createRequestEvent,
@@ -9721,6 +10612,7 @@ var __resources__ = {
       var newState;
       var newStateData;
       var aborted;
+      this.sendDelayTimer_ = clearTimeout(this.sendDelayTimer_);
       if (!xhr) return;
       if (typeof readyState != "number") readyState = xhr.readyState;
       if (readyState == this.prevReadyState_) return;
@@ -9759,6 +10651,9 @@ var __resources__ = {
       requestStartTime: 0,
       timeout: 3e4,
       timer_: null,
+      sendDelay: null,
+      sendDelayTimer_: null,
+      lastRequestUrl_: null,
       debug: false,
       emit_readyStateChanged: createRequestEvent("readyStateChanged"),
       init: function() {
@@ -9780,7 +10675,7 @@ var __resources__ = {
       },
       getResponseData: function() {
         var xhr = this.xhr;
-        if (!xhr.responseType) if (this.responseType == "json" || /^application\/json/i.test(this.data.contentType)) return safeJsonParse(xhr.responseText, this.requestData.url);
+        if (!xhr.responseType) if (this.responseType == "json" || /^application\/json/i.test(this.data.contentType)) return safeJsonParse(xhr.responseText, this.lastRequestUrl_);
         if ("response" in xhr) return xhr.response;
         return xhr.responseText;
       },
@@ -9831,6 +10726,7 @@ var __resources__ = {
         xhr.onreadystatechange = readyStateChangeHandler.bind(this);
         if (!requestData.asynchronous) readyStateChangeHandler.call(this, STATE_UNSENT);
         xhr.open(requestData.method, requestData.requestUrl, requestData.asynchronous);
+        this.lastRequestUrl_ = requestData.requestUrl;
         setResponseType(xhr, requestData);
         this.responseType = requestData.responseType || "";
         setRequestHeaders(xhr, requestData);
@@ -9839,7 +10735,13 @@ var __resources__ = {
         if (IS_METHOD_WITH_BODY.test(requestData.method) && ua.test("ie9-")) {
           if (typeof postBody == "object" && typeof postBody.documentElement != "undefined" && typeof postBody.xml == "string") postBody = postBody.xml; else if (typeof postBody == "string") postBody = postBody.replace(/\r/g, ""); else if (postBody == null || postBody == "") postBody = "[No data]";
         }
-        xhr.send(postBody);
+        if (this.sendDelay) {
+          if (this.sendDelayTimer_) this.sendDelayTimer_ = clearTimeout(this.sendDelayTimer_);
+          this.sendDelayTimer_ = setTimeout(function() {
+            this.sendDelayTimer_ = null;
+            if (this.xhr === xhr && xhr.readyState == STATE_OPENED) xhr.send(postBody);
+          }.bind(this), this.sendDelay);
+        } else xhr.send(postBody);
         if (this.debug) basis.dev.log("Request over, waiting for response");
         return true;
       },
@@ -9893,9 +10795,13 @@ var __resources__ = {
       requestHeaders: basis.Class.extensibleProperty(),
       responseType: "",
       params: null,
+      routerParams: null,
+      url: "",
+      postBody: null,
       init: function() {
         AbstractTransport.prototype.init.call(this);
         this.params = objectSlice(this.params);
+        this.routerParams = objectSlice(this.routerParams);
       },
       setParam: function(name, value) {
         this.params[name] = value;
@@ -9914,7 +10820,8 @@ var __resources__ = {
         if (!requestData.url && !this.url) throw new Error("URL is not defined");
         extend(requestData, {
           headers: objectMerge(this.requestHeaders, requestData.headers),
-          params: objectMerge(this.params, requestData.params)
+          params: objectMerge(this.params, requestData.params),
+          routerParams: objectMerge(this.routerParams, requestData.routerParams)
         });
         basis.object.complete(requestData, {
           asynchronous: this.asynchronous,
@@ -10416,11 +11323,20 @@ var __resources__ = {
   }
 };
 
-(function(global) {
+(function createBasisInstance(global, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.2.1";
+  var VERSION = "1.3.0";
   var document = global.document;
-  var Object_toString = Object.prototype.toString;
+  var toString = Object.prototype.toString;
+  function genUID(len) {
+    function base36(val) {
+      return parseInt(Number(val), 10).toString(36);
+    }
+    var result = (global.performance ? base36(global.performance.now()) : "") + base36(new Date);
+    if (!len) len = 16;
+    while (result.length < len) result = base36(1e12 * Math.random()) + result;
+    return result.substr(result.length - len, len);
+  }
   function extend(dest, source) {
     for (var key in source) dest[key] = source[key];
     return dest;
@@ -10499,6 +11415,7 @@ var __resources__ = {
   }
   function $undef() {}
   var getter = function() {
+    var ID = "basisGetterId" + genUID() + "_";
     var modificatorSeed = 1;
     var simplePath = /^[a-z$_][a-z$_0-9]*(\.[a-z$_][a-z$_0-9]*)*$/i;
     var getterMap = [];
@@ -10543,13 +11460,13 @@ var __resources__ = {
       }
       return new Function("object", "return object != null ? object." + path + " : object");
     }
-    return function(path, modificator) {
+    var getterFn = function(path, modificator) {
       var func;
       var result;
       var getterId;
       if (!path || path === nullGetter) return nullGetter;
       if (typeof path == "function") {
-        getterId = path.basisGetterId_;
+        getterId = path[ID];
         if (getterId) {
           func = getterMap[Math.abs(getterId) - 1];
         } else {
@@ -10559,19 +11476,19 @@ var __resources__ = {
           func.base = path;
           func.__extend__ = getter;
           getterId = getterMap.push(func);
-          path.basisGetterId_ = -getterId;
-          func.basisGetterId_ = getterId;
+          path[ID] = -getterId;
+          func[ID] = getterId;
         }
       } else {
         func = pathCache[path];
         if (func) {
-          getterId = func.basisGetterId_;
+          getterId = func[ID];
         } else {
           func = buildFunction(path);
           func.base = path;
           func.__extend__ = getter;
           getterId = getterMap.push(func);
-          func.basisGetterId_ = getterId;
+          func[ID] = getterId;
           pathCache[path] = func;
         }
       }
@@ -10588,7 +11505,7 @@ var __resources__ = {
       switch (modType) {
         case "string":
           result = function(object) {
-            return String_extensions.format(modificator, func(object));
+            return stringFunctions.format(modificator, func(object));
           };
           break;
         case "function":
@@ -10614,10 +11531,12 @@ var __resources__ = {
         }
         modList[modId] = result;
         result.mod = modificator;
-        result.basisGetterId_ = getterMap.push(result);
+        result[ID] = getterMap.push(result);
       } else {}
       return result;
     };
+    getterFn.ID = ID;
+    return getterFn;
   }();
   var nullGetter = extend(function() {}, {
     __extend__: getter
@@ -10685,9 +11604,13 @@ var __resources__ = {
     var runTask = function() {
       var taskById = {};
       var taskId = 1;
-      setImmediate = function() {
+      setImmediate = function(fn) {
+        if (typeof fn != "function") {
+          consoleMethods.warn("basis.setImmediate() and basis.nextTick() accept functions only (call ignored)");
+          return;
+        }
         taskById[++taskId] = {
-          fn: arguments[0],
+          fn: fn,
           args: arrayFrom(arguments, 1)
         };
         addToQueue(taskId);
@@ -10699,15 +11622,8 @@ var __resources__ = {
       return function(id) {
         var task = taskById[id];
         if (task) {
-          try {
-            if (typeof task.fn == "function") task.fn.apply(undefined, task.args); else {
-              (global.execScript || function(fn) {
-                global["eval"].call(global, fn);
-              })(String(task.fn));
-            }
-          } finally {
-            delete taskById[id];
-          }
+          delete taskById[id];
+          return task.fn.apply(undefined, task.args);
         }
       };
     }();
@@ -10766,10 +11682,10 @@ var __resources__ = {
                   addToQueue = function(taskId) {
                     var scriptEl = createScript();
                     scriptEl.onreadystatechange = function() {
-                      runTask(taskId);
                       scriptEl.onreadystatechange = null;
                       documentInterface.remove(scriptEl);
                       scriptEl = null;
+                      runTask(taskId);
                     };
                     documentInterface.head.add(scriptEl);
                   };
@@ -10782,17 +11698,17 @@ var __resources__ = {
       }
     }
   })();
-  var NODE_ENV = typeof process == "object" && Object_toString.call(process) == "[object process]";
+  var NODE_ENV = typeof process == "object" && toString.call(process) == "[object process]";
   var pathUtils = function() {
     var ABSOLUTE_RX = /^([^\/]+:|\/)/;
     var PROTOCOL_RX = /^[a-zA-Z0-9\-]+:\/?/;
     var ORIGIN_RX = /^(?:[a-zA-Z0-9\-]+:)?\/\/[^\/]+\/?/;
     var SEARCH_HASH_RX = /[\?#].*$/;
-    var utils = {};
-    var origin = "";
     var baseURI;
+    var origin;
+    var utils;
     if (NODE_ENV) {
-      var path = require("path").resolve(".").replace(/\\/g, "/");
+      var path = (process.basisjsBaseURI || require("path").resolve(".")).replace(/\\/g, "/");
       baseURI = path.replace(/^[^\/]*/, "");
       origin = path.replace(/\/.*/, "");
     } else {
@@ -10860,14 +11776,88 @@ var __resources__ = {
     };
     return utils;
   }();
-  var basisFilename = "";
-  var config = {
-    path: {
-      basis: ""
-    },
+  var basisFilename = __basisFilename || "";
+  var config = __config || {
     noConflict: true,
-    autoload: "./0.js"
+    modules: {},
+    autoload: [ "./0.js" ]
   };
+  function fetchConfig() {
+    var config = __config;
+    if (!config) {
+      if (NODE_ENV) {
+        basisFilename = __filename.replace(/\\/g, "/");
+      } else {
+        var scripts = document.scripts;
+        for (var i = 0, scriptEl; scriptEl = scripts[i]; i++) {
+          var configAttrValue = scriptEl.hasAttribute("basis-config") ? scriptEl.getAttribute("basis-config") : scriptEl.getAttribute("data-basis-config");
+          scriptEl.removeAttribute("basis-config");
+          scriptEl.removeAttribute("data-basis-config");
+          if (configAttrValue !== null) {
+            basisFilename = pathUtils.normalize(scriptEl.src);
+            try {
+              config = Function("return{" + configAttrValue + "}")();
+            } catch (e) {
+              consoleMethods.error("basis-config: basis.js config parse fault: " + e);
+            }
+            break;
+          }
+        }
+      }
+    }
+    return processConfig(config);
+  }
+  function processConfig(config, verbose) {
+    config = slice(config);
+    if ("extProto" in config) consoleMethods.warn("basis-config: `extProto` option in basis-config is not support anymore");
+    if ("path" in config) consoleMethods.warn("basis-config: `path` option in basis-config is deprecated, use `modules` instead");
+    var autoload = [];
+    var modules = merge(config.path, config.modules, {
+      basis: basisFilename
+    });
+    config.modules = {};
+    if (config.autoload) {
+      var m = String(config.autoload).match(/^((?:[^\/]*\/)*)([a-z$_][a-z0-9$_]*)((?:\.[a-z$_][a-z0-9$_]*)*)$/i);
+      if (m) {
+        modules[m[2]] = {
+          autoload: true,
+          filename: m[1] + m[2] + (m[3] || ".js")
+        };
+      } else {
+        consoleMethods.warn("basis-config: wrong `autoload` value (setting ignored): " + config.autoload);
+      }
+      delete config.autoload;
+    }
+    for (var name in modules) {
+      var module = modules[name];
+      if (typeof module == "string") module = {
+        filename: module.replace(/\/$/, "/" + name + ".js")
+      };
+      var filename = module.filename;
+      var path = module.path;
+      if (path) path = pathUtils.resolve(path);
+      if (filename) filename = pathUtils.resolve(filename);
+      if (filename && !path) {
+        path = filename.substr(0, filename.length - pathUtils.extname(filename).length);
+        filename = "../" + pathUtils.basename(filename);
+      }
+      if (!filename && path) {
+        filename = pathUtils.basename(path);
+        path = pathUtils.dirname(path);
+      }
+      if (!pathUtils.extname(filename)) filename += ".js";
+      filename = pathUtils.resolve(path, filename);
+      config.modules[name] = {
+        path: path,
+        filename: filename
+      };
+      if (module.autoload) {
+        config.autoload = autoload;
+        autoload.push(name);
+      }
+    }
+    return config;
+  }
   var Class = function() {
     var instanceSeed = {
       id: 1
@@ -10883,7 +11873,7 @@ var __resources__ = {
       while (cursor && cursor !== superClass) cursor = cursor.superClass_;
       return cursor === superClass;
     }
-    function dev_verboseNameWrap(name, args, fn) {
+    function devVerboseName(name, args, fn) {
       return (new Function(keys(args), 'return {"' + name + '": ' + fn + '\n}["' + name + '"]')).apply(null, values(args));
     }
     var TOSTRING_BUG = function() {
@@ -10899,7 +11889,7 @@ var __resources__ = {
       for (var i = 1, extension; extension = arguments[i]; i++) if (typeof extension != "function" && extension.className) className = extension.className;
       if (!className) className = SuperClass.className + "._Class" + classId;
       var NewClassProto = function() {};
-      NewClassProto = dev_verboseNameWrap(className, {}, NewClassProto);
+      NewClassProto = devVerboseName(className, {}, NewClassProto);
       NewClassProto.prototype = SuperClass.prototype;
       var newProto = new NewClassProto;
       var newClassProps = {
@@ -10933,7 +11923,7 @@ var __resources__ = {
         this.init.apply(this, arguments);
         this.postInit();
       };
-      newClass = dev_verboseNameWrap(className, {
+      newClass = devVerboseName(className, {
         instanceSeed: instanceSeed
       }, newClass);
       newProto.constructor = newClass;
@@ -10944,7 +11934,7 @@ var __resources__ = {
     }
     function extendClass(source) {
       var proto = this.prototype;
-      if (typeof source == "function" && !isClass(source)) source = source(this.superClass_.prototype);
+      if (typeof source == "function" && !isClass(source)) source = source(this.superClass_.prototype, slice(proto));
       if (source.prototype) source = source.prototype;
       for (var key in source) {
         var value = source[key];
@@ -10955,7 +11945,7 @@ var __resources__ = {
           }
         }
       }
-      if (TOSTRING_BUG && source[key = "toString"] !== Object_toString) proto[key] = source[key];
+      if (TOSTRING_BUG && source[key = "toString"] !== toString) proto[key] = source[key];
       return this;
     }
     var BaseClass = extend(createClass, {
@@ -10981,7 +11971,7 @@ var __resources__ = {
           if (!extension) return extension;
           if (extension && extension.__extend__) return extension;
           var Base = function() {};
-          Base = dev_verboseNameWrap(devName || "customExtendProperty", {}, Base);
+          Base = devVerboseName(devName || "customExtendProperty", {}, Base);
           Base.prototype = this;
           var result = new Base;
           fn(result, extension);
@@ -11007,7 +11997,7 @@ var __resources__ = {
         };
         if (keys) {
           if (keys.__extend__) return keys;
-          var Cls = dev_verboseNameWrap("oneFunctionProperty", {}, function() {});
+          var Cls = devVerboseName("oneFunctionProperty", {}, function() {});
           result = new Cls;
           result.__extend__ = create;
           for (var key in keys) if (keys[key]) result[key] = fn;
@@ -11128,13 +12118,13 @@ var __resources__ = {
   var resources = {};
   var resourceContentCache = {};
   var resourcePatch = {};
+  var virtualResourceSeed = 1;
   var resourceResolvingStack = [];
   var requires;
   (function() {
     var map = typeof __resources__ != "undefined" ? __resources__ : null;
     if (map) {
       for (var key in map) resourceContentCache[pathUtils.resolve(key)] = map[key];
-      __resources__ = null;
     }
   })();
   function applyResourcePatches(resource) {
@@ -11158,7 +12148,7 @@ var __resources__ = {
         }
       } else {
         try {
-          resourceContent = require("fs").readFileSync(url, "utf-8");
+          resourceContent = process.basisjsReadFile ? process.basisjsReadFile(url) : require("fs").readFileSync(url, "utf-8");
         } catch (e) {
           consoleMethods.error("basis.resource: Unable to load " + url, e);
         }
@@ -11167,91 +12157,101 @@ var __resources__ = {
     }
     return resourceContentCache[url];
   };
-  var getResource = function(resourceUrl) {
-    if (!/^(\.\/|\.\.|\/)/.test(resourceUrl)) consoleMethods.warn("Bad usage: basis.resource('" + resourceUrl + "').\nFilenames should starts with `./`, `..` or `/`. Otherwise it will treats as special reference in next minor release.");
-    resourceUrl = pathUtils.resolve(resourceUrl);
-    if (!resources[resourceUrl]) {
-      var contentWrapper = getResource.extensions[pathUtils.extname(resourceUrl)];
-      var resolved = false;
-      var wrapped = false;
-      var content;
-      var wrappedContent;
-      var resource = function() {
-        if (resolved) return content;
-        var urlContent = getResourceContent(resourceUrl);
-        var idx = resourceResolvingStack.indexOf(resourceUrl);
-        if (idx != -1) consoleMethods.warn("basis.resource recursion:", resourceResolvingStack.slice(idx).concat(resourceUrl).map(pathUtils.relative, pathUtils).join(" -> "));
-        resourceResolvingStack.push(resourceUrl);
-        if (contentWrapper) {
-          if (!wrapped) {
-            wrapped = true;
-            content = contentWrapper(urlContent, resourceUrl);
-            wrappedContent = urlContent;
-          }
-        } else {
-          content = urlContent;
+  var createResource = function(resourceUrl, content) {
+    var contentType = pathUtils.extname(resourceUrl);
+    var contentWrapper = getResource.extensions[contentType];
+    var isVirtual = arguments.length > 1;
+    var resolved = false;
+    var wrapped = false;
+    var wrappedContent;
+    if (isVirtual) resourceUrl += "#virtual";
+    var resource = function() {
+      if (resolved) return content;
+      var urlContent = isVirtual ? content : getResourceContent(resourceUrl);
+      var idx = resourceResolvingStack.indexOf(resourceUrl);
+      if (idx != -1) consoleMethods.warn("basis.resource recursion:", resourceResolvingStack.slice(idx).concat(resourceUrl).map(pathUtils.relative, pathUtils).join(" -> "));
+      resourceResolvingStack.push(resourceUrl);
+      if (contentWrapper) {
+        if (!wrapped) {
+          wrapped = true;
+          content = contentWrapper(urlContent, resourceUrl);
+          wrappedContent = urlContent;
         }
-        resolved = true;
-        applyResourcePatches(resource);
-        resource.apply();
-        resourceResolvingStack.pop();
-        return content;
-      };
-      extend(resource, extend(new Token, {
-        url: resourceUrl,
-        fetch: function() {
-          return resource();
-        },
-        toString: function() {
-          return "[basis.resource " + resourceUrl + "]";
-        },
-        isResolved: function() {
-          return resolved;
-        },
-        hasChanges: function() {
-          return contentWrapper ? resourceContentCache[resourceUrl] !== wrappedContent : false;
-        },
-        update: function(newContent) {
-          newContent = String(newContent);
-          if (!resolved || newContent != resourceContentCache[resourceUrl]) {
-            resourceContentCache[resourceUrl] = newContent;
-            if (contentWrapper) {
-              if (wrapped && !contentWrapper.permanent) {
-                content = contentWrapper(newContent, resourceUrl);
-                applyResourcePatches(resource);
-                resource.apply();
-              }
-            } else {
-              content = newContent;
-              resolved = true;
+      } else {
+        content = urlContent;
+      }
+      resolved = true;
+      applyResourcePatches(resource);
+      resource.apply();
+      resourceResolvingStack.pop();
+      return content;
+    };
+    extend(resource, extend(new Token, {
+      url: resourceUrl,
+      type: contentType,
+      virtual: isVirtual,
+      fetch: function() {
+        return resource();
+      },
+      toString: function() {
+        return "[basis.resource " + resourceUrl + "]";
+      },
+      isResolved: function() {
+        return resolved;
+      },
+      hasChanges: function() {
+        return contentWrapper ? resourceContentCache[resourceUrl] !== wrappedContent : false;
+      },
+      update: function(newContent) {
+        if (!resolved || isVirtual || newContent != resourceContentCache[resourceUrl]) {
+          if (!isVirtual) resourceContentCache[resourceUrl] = newContent;
+          if (contentWrapper) {
+            if (!wrapped && isVirtual) content = newContent;
+            if (wrapped && !contentWrapper.permanent) {
+              content = contentWrapper(newContent, resourceUrl, content);
               applyResourcePatches(resource);
               resource.apply();
             }
+          } else {
+            content = newContent;
+            resolved = true;
+            applyResourcePatches(resource);
+            resource.apply();
           }
-        },
-        reload: function() {
-          var oldContent = resourceContentCache[resourceUrl];
-          var newContent = getResourceContent(resourceUrl, true);
-          if (newContent != oldContent) {
-            resolved = false;
-            resource.update(newContent);
-          }
-        },
-        get: function(source) {
-          return source ? getResourceContent(resourceUrl) : resource();
-        },
-        ready: function(fn, context) {
-          if (resolved) {
-            fn.call(context, resource());
-            if (contentWrapper && contentWrapper.permanent) return;
-          }
-          resource.attach(fn, context);
-          return resource;
         }
-      }));
-      resources[resourceUrl] = resource;
-    }
-    return resources[resourceUrl];
+      },
+      reload: function() {
+        if (isVirtual) return;
+        var oldContent = resourceContentCache[resourceUrl];
+        var newContent = getResourceContent(resourceUrl, true);
+        if (newContent != oldContent) {
+          resolved = false;
+          resource.update(newContent);
+        }
+      },
+      get: function(source) {
+        if (isVirtual) if (source) return contentWrapper ? wrappedContent : content;
+        return source ? getResourceContent(resourceUrl) : resource();
+      },
+      ready: function(fn, context) {
+        if (resolved) {
+          fn.call(context, resource());
+          if (contentWrapper && contentWrapper.permanent) return;
+        }
+        resource.attach(fn, context);
+        return resource;
+      }
+    }));
+    resources[resourceUrl] = resource;
+    return resource;
+  };
+  var getResource = function(resourceUrl) {
+    var resource = resources[resourceUrl];
+    if (resource) return resource;
+    if (!/^(\.\/|\.\.|\/)/.test(resourceUrl)) consoleMethods.warn("Bad usage: basis.resource('" + resourceUrl + "').\nFilenames should starts with `./`, `..` or `/`. Otherwise it will treats as special reference in next minor release.");
+    resourceUrl = pathUtils.resolve(resourceUrl);
+    resource = resources[resourceUrl];
+    return resource || createResource(resourceUrl);
   };
   extend(getResource, {
     isResource: function(value) {
@@ -11274,24 +12274,27 @@ var __resources__ = {
     getFiles: function(cache) {
       return keys(cache ? resourceContentCache : resources).map(pathUtils.relative);
     },
+    virtual: function(type, content, ownerUrl) {
+      return createResource((ownerUrl ? ownerUrl + ":" : pathUtils.normalize(pathUtils.baseURI == "/" ? "" : pathUtils.baseURI) + "/") + "virtual-resource" + virtualResourceSeed++ + "." + type, content);
+    },
     extensions: {
       ".js": extend(function(content, filename) {
         var namespace = filename2namespace[filename];
         if (!namespace) {
           var implicitNamespace = true;
-          namespace = pathUtils.dirname(filename) + "/" + pathUtils.basename(filename, pathUtils.extname(filename));
-          for (var ns in config.path) {
-            var path = config.path[ns] + ns + "/";
-            if (filename.substr(0, path.length) == path) {
+          var resolvedFilename = pathUtils.dirname(filename) + "/" + pathUtils.basename(filename, pathUtils.extname(filename));
+          for (var ns in nsRootPath) {
+            var path = nsRootPath[ns] + ns + "/";
+            if (resolvedFilename.substr(0, path.length) == path) {
               implicitNamespace = false;
-              namespace = namespace.substr(config.path[ns].length);
+              resolvedFilename = resolvedFilename.substr(nsRootPath[ns].length);
               break;
             }
           }
-          namespace = namespace.replace(/\./g, "_").replace(/^\//g, "").replace(/\//g, ".");
+          namespace = resolvedFilename.replace(/\./g, "_").replace(/^\//g, "").replace(/\//g, ".");
           if (implicitNamespace) namespace = "implicit." + namespace;
         }
-        if (requires) Array_extensions.add(requires, namespace);
+        if (requires) arrayFunctions.add(requires, namespace);
         if (!namespaces[namespace]) {
           var ns = getNamespace(namespace);
           var savedRequires = requires;
@@ -11310,10 +12313,10 @@ var __resources__ = {
       }, {
         permanent: true
       }),
-      ".css": function(content, url) {
-        var resource = CssResource.resources[url];
-        if (!resource) resource = new CssResource(url); else resource.updateCssText(content);
-        return resource;
+      ".css": function(content, url, cssResource) {
+        if (!cssResource) cssResource = new CssResource(url);
+        cssResource.updateCssText(content);
+        return cssResource;
       },
       ".json": function(content, url) {
         if (typeof content == "object") return content;
@@ -11368,7 +12371,12 @@ var __resources__ = {
   var namespaces = {};
   var namespace2filename = {};
   var filename2namespace = {};
-  var nsRootPath = slice(config.path);
+  var nsRootPath = {};
+  iterate(config.modules, function(name, module) {
+    nsRootPath[name] = module.path + "/";
+    namespace2filename[name] = module.filename;
+    filename2namespace[module.filename] = name;
+  });
   (function(map) {
     var map = typeof __namespace_map__ != "undefined" ? __namespace_map__ : null;
     if (map) {
@@ -11397,12 +12405,14 @@ var __resources__ = {
     }
   });
   function resolveNSFilename(namespace) {
-    var namespaceRoot = namespace.split(".")[0];
-    var filename = namespace.replace(/\./g, "/") + ".js";
     if (namespace in namespace2filename == false) {
-      if (namespaceRoot in nsRootPath == false) nsRootPath[namespaceRoot] = pathUtils.baseURI;
-      if (namespaceRoot == namespace) filename2namespace[nsRootPath[namespaceRoot] + filename] = namespaceRoot;
-      namespace2filename[namespace] = nsRootPath[namespaceRoot] + filename;
+      var parts = namespace.split(".");
+      var namespaceRoot = parts.shift();
+      var filename = parts.join("/") + ".js";
+      if (namespaceRoot in nsRootPath == false) nsRootPath[namespaceRoot] = pathUtils.baseURI + namespaceRoot + "/";
+      if (namespaceRoot == namespace) filename = nsRootPath[namespaceRoot].replace(/\/$/, "") + ".js"; else filename = nsRootPath[namespaceRoot] + filename;
+      namespace2filename[namespace] = filename;
+      filename2namespace[filename] = namespace;
     }
     return namespace2filename[namespace];
   }
@@ -11441,7 +12451,7 @@ var __resources__ = {
           var namespace = getNamespace(filename);
           moduleProto._compile = function(content, filename) {
             this.basis = basis;
-            content = "var node_require = require;\n" + "var basis = module.basis;\n" + 'var resource = function(filename){ return basis.resource(__dirname + "/" + filename) };\n' + "var require = function(filename, baseURI){ return basis.require(filename, baseURI || __dirname) };\n" + content;
+            content = "var __nodejsRequire = require;\n" + "var basis = module.basis;\n" + 'var resource = function(filename){ return basis.resource(__dirname + "/" + filename) };\n' + "var require = function(filename, baseURI){ return basis.require(filename, baseURI || __dirname) };\n" + content;
             _compile.call(extend(this, namespace), content, filename);
           };
           var exports = require(__dirname + "/" + filename.replace(/\./g, "/"));
@@ -11477,16 +12487,6 @@ var __resources__ = {
     var resource = getResource.get(filename);
     if (resource && resource.isResolved()) patchFn(resource.get(), resource.url);
   }
-  function extendProto(cls, extensions) {
-    if (config.extProto) for (var key in extensions) cls.prototype[key] = function(method, clsName) {
-      return function() {
-        if (config.extProto == "warn") consoleMethods.warn(clsName + "#" + method + " is not a standard method and will be removed soon; use basis." + clsName.toLowerCase() + "." + method + " instead");
-        var args = [ this ];
-        Array.prototype.push.apply(args, arguments);
-        return extensions[method].apply(extensions, args);
-      };
-    }(key, cls.name || cls.toString().match(/^\s*function\s*(\w*)\s*\(/)[1]);
-  }
   complete(Function.prototype, {
     bind: function(thisObject) {
       var fn = this;
@@ -11500,13 +12500,13 @@ var __resources__ = {
   });
   complete(Array, {
     isArray: function(value) {
-      return Object_toString.call(value) === "[object Array]";
+      return toString.call(value) === "[object Array]";
     }
   });
   function arrayFrom(object, offset) {
     if (object != null) {
       var len = object.length;
-      if (typeof len == "undefined" || Object_toString.call(object) == "[object Function]") return [ object ];
+      if (typeof len == "undefined" || toString.call(object) == "[object Function]") return [ object ];
       if (!offset) offset = 0;
       if (len - offset > 0) {
         for (var result = [], k = 0, i = offset; i < len; ) result[k++] = object[i++];
@@ -11570,12 +12570,14 @@ var __resources__ = {
       return result;
     }
   });
-  var Array_extensions = {
+  var arrayFunctions = {
+    from: arrayFrom,
+    create: createArray,
     flatten: function(this_) {
       return this_.concat.apply([], this_);
     },
     repeat: function(this_, count) {
-      return Array_extensions.flatten(createArray(parseInt(count, 10) || 0, this_));
+      return arrayFunctions.flatten(createArray(parseInt(count, 10) || 0, this_));
     },
     search: function(this_, value, getter_, offset) {
       this_.lastSearchIndex = -1;
@@ -11599,7 +12601,11 @@ var __resources__ = {
     has: function(this_, value) {
       return this_.indexOf(value) != -1;
     },
-    sortAsObject: function(this_, getter_, comparator, desc) {
+    sortAsObject: function() {
+      consoleMethods.warn("basis.array.sortAsObject is deprecated, use basis.array.sort instead");
+      return arrayFunctions.sort.apply(this, arguments);
+    },
+    sort: function(this_, getter_, comparator, desc) {
       getter_ = getter(getter_);
       desc = desc ? -1 : 1;
       return this_.map(function(item, index) {
@@ -11610,11 +12616,10 @@ var __resources__ = {
       }).sort(comparator || function(a, b) {
         return desc * (a.v > b.v || -(a.v < b.v) || (a.i > b.i ? 1 : -1));
       }).map(function(item) {
-        return this_[item.i];
+        return this[item.i];
       }, this_);
     }
   };
-  extendProto(Array, Array_extensions);
   if (![ 1, 2 ].splice(1).length) {
     var nativeArraySplice = Array.prototype.splice;
     Array.prototype.splice = function() {
@@ -11625,12 +12630,6 @@ var __resources__ = {
   }
   var ESCAPE_FOR_REGEXP = /([\/\\\(\)\[\]\?\{\}\|\*\+\-\.\^\$])/g;
   var FORMAT_REGEXP = /\{([a-z\d_]+)(?::([\.0])(\d+)|:(\?))?\}/gi;
-  function isEmptyString(value) {
-    return value == null || String(value) == "";
-  }
-  function isNotEmptyString(value) {
-    return value != null && String(value) != "";
-  }
   complete(String, {
     toLowerCase: function(value) {
       return String(value).toLowerCase();
@@ -11659,7 +12658,7 @@ var __resources__ = {
       return this.trimLeft().trimRight();
     }
   });
-  var String_extensions = {
+  var stringFunctions = {
     toObject: function(this_, rethrow) {
       try {
         return (new Function("return 0," + this_))();
@@ -11684,7 +12683,7 @@ var __resources__ = {
         var value = key in data ? data[key] : noNull ? "" : m;
         if (numFormat && !isNaN(value)) {
           value = Number(value);
-          return numFormat == "." ? value.toFixed(num) : Number_extensions.lead(value, num);
+          return numFormat == "." ? value.toFixed(num) : numberFunctions.lead(value, num);
         }
         return value;
       });
@@ -11701,9 +12700,14 @@ var __resources__ = {
       return this_.replace(/[A-Z]/g, function(m) {
         return "-" + m.toLowerCase();
       });
+    },
+    isEmpty: function(value) {
+      return value == null || String(value) == "";
+    },
+    isNotEmpty: function(value) {
+      return value != null && String(value) != "";
     }
   };
-  extendProto(String, String_extensions);
   if ("|||".split(/\|/).length + "|||".split(/(\|)/).length != 11) {
     var nativeStringSplit = String.prototype.split;
     String.prototype.split = function(pattern, count) {
@@ -11727,7 +12731,7 @@ var __resources__ = {
       return nativeStringSubstr.call(this, start < 0 ? Math.max(0, this.length + start) : start, end);
     };
   }
-  var Number_extensions = {
+  var numberFunctions = {
     fit: function(this_, min, max) {
       if (!isNaN(min) && this_ < min) return Number(min);
       if (!isNaN(max) && this_ > max) return Number(max);
@@ -11754,7 +12758,6 @@ var __resources__ = {
       return res + (postfix || "");
     }
   };
-  extendProto(Number, Number_extensions);
   complete(Date, {
     now: function() {
       return Number(new Date);
@@ -11843,10 +12846,10 @@ var __resources__ = {
     }
     function remove(node) {
       for (var key in callbacks) {
-        var entry = Array_extensions.search(callbacks[key], node, function(item) {
+        var entry = arrayFunctions.search(callbacks[key], node, function(item) {
           return item[1] && item[1][1];
         });
-        if (entry) Array_extensions.remove(callbacks[key], entry);
+        if (entry) arrayFunctions.remove(callbacks[key], entry);
       }
       if (node && node.parentNode && node.parentNode.nodeType == 1) node.parentNode.removeChild(node);
     }
@@ -11908,7 +12911,7 @@ var __resources__ = {
         if (object != null) objects.push(object);
       },
       remove: function(object) {
-        Array_extensions.remove(objects, object);
+        arrayFunctions.remove(objects, object);
       }
     };
     result.destroy_ = destroy;
@@ -11916,8 +12919,6 @@ var __resources__ = {
     return result;
   }();
   var CssResource = function() {
-    var cssResources = {};
-    var cleanupDom = true;
     var STYLE_APPEND_BUGGY = function() {
       try {
         return !document.createElement("style").appendChild(document.createTextNode(""));
@@ -11925,13 +12926,6 @@ var __resources__ = {
         return true;
       }
     }();
-    cleaner.add({
-      destroy: function() {
-        cleanupDom = false;
-        for (var url in cssResources) cssResources[url].destroy();
-        cssResources = null;
-      }
-    });
     var baseEl = document && document.createElement("base");
     function setBase(baseURI) {
       baseEl.setAttribute("href", baseURI);
@@ -11945,26 +12939,23 @@ var __resources__ = {
       setBase(this.baseURI);
       if (!this.element) {
         this.element = document.createElement("style");
-        if (!STYLE_APPEND_BUGGY) this.textNode = this.element.appendChild(document.createTextNode(""));
-        this.element.setAttribute("src", pathUtils.relative(this.url));
+        if (!STYLE_APPEND_BUGGY) this.element.appendChild(document.createTextNode(""));
+        this.element.setAttribute("src", this.url);
       }
       documentInterface.head.add(this.element);
       this.syncCssText();
       restoreBase();
     }
-    var CssResource = Class(null, {
+    return Class(null, {
       className: "basis.CssResource",
       inUse: 0,
       url: "",
       baseURI: "",
-      cssText: "",
-      resource: null,
+      cssText: undefined,
       element: null,
-      textNode: null,
       init: function(url) {
-        this.url = pathUtils.resolve(url);
+        this.url = url;
         this.baseURI = pathUtils.dirname(url) + "/";
-        cssResources[url] = this;
       },
       updateCssText: function(cssText) {
         if (this.cssText != cssText) {
@@ -11976,22 +12967,15 @@ var __resources__ = {
           }
         }
       },
-      syncCssText: function() {
-        if (this.textNode) {
-          this.textNode.nodeValue = this.cssText;
-        } else {
-          this.element.styleSheet.cssText = this.cssText;
-        }
+      syncCssText: STYLE_APPEND_BUGGY ? function() {
+        this.element.styleSheet.cssText = this.cssText;
+      } : function() {
+        var cssText = this.cssText;
+        cssText += "\n/*# sourceURL=" + pathUtils.origin + this.url + " */";
+        this.element.firstChild.nodeValue = cssText;
       },
       startUse: function() {
-        if (!this.inUse) {
-          if (!this.resource) {
-            var resource = getResource(this.url);
-            this.resource = resource;
-            this.cssText = resource.get(true);
-          }
-          documentInterface.head.ready(injectStyleToHead, this);
-        }
+        if (!this.inUse) documentInterface.head.ready(injectStyleToHead, this);
         this.inUse += 1;
       },
       stopUse: function() {
@@ -12001,22 +12985,23 @@ var __resources__ = {
         }
       },
       destroy: function() {
-        if (this.element && cleanupDom) documentInterface.remove(this.element);
+        if (this.element) documentInterface.remove(this.element);
         this.element = null;
-        this.textNode = null;
-        this.resource = null;
         this.cssText = null;
       }
     });
-    CssResource.resources = cssResources;
-    return CssResource;
   }();
   var basis = getNamespace("basis").extend({
     filename_: basisFilename,
+    processConfig: processConfig,
     version: VERSION,
     NODE_ENV: NODE_ENV,
     config: config,
-    platformFeature: {},
+    createSandbox: function(config) {
+      return createBasisInstance(global, basisFilename, complete({
+        noConflict: true
+      }, config));
+    },
     resolveNSFilename: resolveNSFilename,
     patch: patch,
     namespace: getNamespace,
@@ -12033,6 +13018,7 @@ var __resources__ = {
     Class: Class,
     Token: Token,
     DeferredToken: DeferredToken,
+    genUID: genUID,
     getter: getter,
     ready: ready,
     cleaner: cleaner,
@@ -12069,15 +13055,9 @@ var __resources__ = {
       lazyInitAndRun: lazyInitAndRun,
       runOnce: runOnce
     },
-    array: extend(arrayFrom, merge(Array_extensions, {
-      from: arrayFrom,
-      create: createArray
-    })),
-    string: merge(String_extensions, {
-      isEmpty: isEmptyString,
-      isNotEmpty: isNotEmptyString
-    }),
-    number: Number_extensions,
+    array: extend(arrayFrom, arrayFunctions),
+    string: stringFunctions,
+    number: numberFunctions,
     bool: {
       invert: function(value) {
         return !value;
@@ -12085,11 +13065,14 @@ var __resources__ = {
     },
     json: {
       parse: typeof JSON != "undefined" ? JSON.parse : function(str) {
-        return String_extensions.toObject(str, true);
+        return stringFunctions.toObject(str, true);
       }
     }
   });
   getNamespace("basis.dev").extend(consoleMethods);
-  if (config.autoload) requireNamespace(config.autoload);
+  if (config.autoload) config.autoload.forEach(function(name) {
+    requireNamespace(name);
+  });
+  return basis;
 })(this);
 }).call(this);

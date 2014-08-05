@@ -7330,7 +7330,7 @@ var __resources__ = {
         return value + "px";
       },
       read: function(element) {
-        return parseFloat(getComputedStyle(element, this.property));
+        return parseFloat(getComputedStyle(element, this.property)) || 0;
       },
       write: function(element, formattedValue) {
         element.style[this.property] = formattedValue;
@@ -7338,18 +7338,18 @@ var __resources__ = {
     });
     var StylePositionX = StyleDeltaWriter.subclass({
       property: function(element) {
-        return getComputedStyle(element, "left") == "auto" ? "right" : "left";
+        return getComputedStyle(element, "left") == "auto" && getComputedStyle(element, "right") != "auto" ? "right" : "left";
       },
       invert: function(property) {
-        return property != "left";
+        return property == "right";
       }
     });
     var StylePositionY = StyleDeltaWriter.subclass({
       property: function(element) {
-        return getComputedStyle(element, "top") == "auto" ? "bottom" : "top";
+        return getComputedStyle(element, "top") == "auto" && getComputedStyle(element, "bottom") != "auto" ? "bottom" : "top";
       },
       invert: function(property) {
-        return property != "top";
+        return property == "bottom";
       }
     });
     var MoveableElement = DragDropElement.subclass({
@@ -8530,6 +8530,9 @@ var __resources__ = {
         index.removeHandler(DATASET_INDEX_HANDLER, dataset);
         for (var key in indexes) return;
         dataset.removeHandler(DATASET_WITH_INDEX_HANDLER);
+        DATASET_WITH_INDEX_HANDLER.itemsChanged.call(dataset, dataset, {
+          deleted: dataset.getItems()
+        });
         delete datasetIndexes[dataset.basisObjectId];
       }
     }
@@ -9308,6 +9311,7 @@ var __resources__ = {
           return entity;
         }; else result = function(data, entity) {
           if (data != null) {
+            if (!entity || entity.entityType !== entityType) entity = null;
             if (data === entity || data.entityType === entityType) return data;
             var idValue;
             var idField = entityType.idField;
@@ -11325,7 +11329,7 @@ var __resources__ = {
 
 (function createBasisInstance(global, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.3.1-dev";
+  var VERSION = "1.3.2";
   var document = global.document;
   var toString = Object.prototype.toString;
   function genUID(len) {

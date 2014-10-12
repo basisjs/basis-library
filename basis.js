@@ -9062,6 +9062,32 @@ var __resources__ = {
     function validateScheme() {
       for (var typeName in deferredTypeDef) basis.dev.warn(namespace + ": type `" + typeName + "` is not defined, but used by " + deferredTypeDef[typeName].length + " type(s)");
     }
+    var warnPropertyAccess = function() {
+      try {
+        if (Object.defineProperty) {
+          var obj = {};
+          Object.defineProperty(obj, "x", {
+            get: function() {
+              return true;
+            }
+          });
+          if (obj.x) {
+            return function(object, name, value, warning) {
+              Object.defineProperty(object, name, {
+                get: function() {
+                  basis.dev.warn(warning);
+                  return value;
+                },
+                set: function(newValue) {
+                  value = newValue;
+                }
+              });
+            };
+          }
+        }
+      } catch (e) {}
+      return function() {};
+    }();
     var Index = Class(null, {
       className: namespace + ".Index",
       items: null,
@@ -9282,12 +9308,7 @@ var __resources__ = {
             return EntitySetClass.extend.apply(EntitySetClass, arguments);
           }
         });
-        if (Object.defineProperty) Object.defineProperty(result, "entitySetType", {
-          get: function() {
-            basis.dev.warn("basis.entity: EntitySetType.entitySetType is deprecated, use EntitySetType.type instead.");
-            return entitySetType;
-          }
-        });
+        warnPropertyAccess(result, "entitySetType", entitySetType, "basis.entity: EntitySetType.entitySetType is deprecated, use EntitySetType.type instead.");
         return result;
       }
     };
@@ -9370,12 +9391,7 @@ var __resources__ = {
             return EntityClass.extend.apply(EntityClass, arguments);
           }
         });
-        if (Object.defineProperty) Object.defineProperty(result, "entityType", {
-          get: function() {
-            basis.dev.warn("basis.entity: EntityType.entityType is deprecated, use EntityType.type instead.");
-            return entityType;
-          }
-        });
+        warnPropertyAccess(result, "entityType", entityType, "basis.entity: EntityType.entityType is deprecated, use EntityType.type instead.");
         return result;
       }
     };
@@ -11329,7 +11345,7 @@ var __resources__ = {
 
 (function createBasisInstance(global, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.3.2";
+  var VERSION = "1.3.3";
   var document = global.document;
   var toString = Object.prototype.toString;
   function genUID(len) {
@@ -11375,7 +11391,9 @@ var __resources__ = {
     return result;
   }
   function merge() {
-    return arrayFrom(arguments).reduce(extend, {});
+    var result = {};
+    for (var i = 0; i < arguments.length; i++) extend(result, arguments[i]);
+    return result;
   }
   function iterate(object, callback, thisObject) {
     var result = [];

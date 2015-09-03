@@ -1,4 +1,4 @@
-// resources (34):
+// resources(34):
 //   [function] ../../src/basis/dragdrop.js -> f.js
 //   [function] library.js -> 0.js
 //   [function] ../../src/basis/event.js -> 2.js
@@ -34,8 +34,9 @@
 //   [function] ../../src/basis/router.js -> u.js
 //   [function] ../../src/basis/app.js -> v.js
 //
-// filelist (1): 
-//   library.js
+// filelist(1):
+//   /scripts/release-configs/library.js
+//
 (function(){
 "use strict";
 
@@ -611,9 +612,10 @@ var __resources__ = {
               if (template) {
                 var context = this.context;
                 var bindings = this.bindings;
+                var onAction = this.action;
                 var bindingInterface = this.bindingInterface;
-                tmpl = template.createInstance(context, null, function onRebuild() {
-                  tmpl = newAttach.tmpl = template.createInstance(context, null, onRebuild, bindings, bindingInterface);
+                tmpl = template.createInstance(context, onAction, function onRebuild() {
+                  tmpl = newAttach.tmpl = template.createInstance(context, onAction, onRebuild, bindings, bindingInterface);
                   tmpl.parent = tmpl.element.parentNode || tmpl.element;
                   updateAttach.call(newAttach);
                 }, bindings, bindingInterface);
@@ -10649,8 +10651,8 @@ var __resources__ = {
     var ENTITYSET_SYNC_METHOD = function() {
       return function(data) {
         if (this.localId) return this.set(data);
-        var isAll = this.wrapper.all === this;
         var destroyItems = basis.object.slice(this.items_);
+        var itemsChangedFired = false;
         var listenHandler = this.listen.item;
         var inserted = [];
         var deleted = [];
@@ -10664,10 +10666,17 @@ var __resources__ = {
               destroyItems[entity.basisObjectId] = false;
             }
           }
+          var checkHandler = {
+            itemsChanged: function() {
+              itemsChangedFired = true;
+            }
+          };
+          this.addHandler(checkHandler);
           Dataset.setAccumulateState(false);
+          this.removeHandler(checkHandler);
         }
         for (var key in destroyItems) if (destroyItems[key]) deleted.push(destroyItems[key]);
-        if (!isAll && (delta = getDelta(inserted, deleted))) {
+        if (!itemsChangedFired && (delta = getDelta(inserted, deleted))) {
           if (listenHandler) {
             if (delta.deleted) for (var i = 0; i < delta.deleted.length; i++) delta.deleted[i].removeHandler(listenHandler, this);
             if (delta.inserted) for (var i = 0; i < delta.inserted.length; i++) delta.inserted[i].addHandler(listenHandler, this);
@@ -12579,7 +12588,7 @@ var __resources__ = {
       abort: function(transport, request) {
         var origin = request.requestData.origin;
         this.abort.call(origin);
-        if (origin.state == STATE_PROCESSING) origin.setState(STATE_UNDEFINED);
+        if (origin.state == STATE_PROCESSING) origin.setState(transport.stateOnAbort || request.stateOnAbort || STATE_UNDEFINED);
       },
       complete: function(transport, request) {
         this.complete.call(request.requestData.origin);
@@ -13247,7 +13256,7 @@ var __resources__ = {
 
 (function createBasisInstance(context, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.4.0";
+  var VERSION = "1.4.1";
   var global = Function("return this")();
   var NODE_ENV = global !== context ? global : false;
   var document = global.document;

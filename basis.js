@@ -1,38 +1,68 @@
-// resources(34):
-//   [function] ../../src/basis/dragdrop.js -> f.js
-//   [function] library.js -> 0.js
-//   [function] ../../src/basis/event.js -> 2.js
-//   [function] ../../src/basis/template/html.js -> 3.js
-//   [function] ../../src/basis/l10n.js -> 4.js
-//   [function] ../../src/basis/template/htmlfgen.js -> 5.js
-//   [function] ../../src/basis/template/const.js -> 6.js
-//   [function] ../../src/basis/template.js -> 7.js
-//   [function] ../../src/basis/template/declaration.js -> 8.js
-//   [function] ../../src/basis/template/tokenize.js -> w.js
-//   [function] ../../src/basis/template/isolateCss.js -> x.js
-//   [function] ../../src/basis/template/store.js -> 9.js
-//   [function] ../../src/basis/template/theme.js -> a.js
-//   [function] ../../src/basis/template/buildDom.js -> b.js
-//   [function] ../../src/basis/dom/event.js -> c.js
-//   [function] ../../src/basis/dom/wrapper.js -> d.js
-//   [function] ../../src/basis/data.js -> e.js
-//   [function] ../../src/basis/ui.js -> 1.js
-//   [function] ../../src/basis/dom/computedStyle.js -> g.js
-//   [function] ../../src/basis/layout.js -> h.js
-//   [function] ../../src/basis/data/dataset.js -> i.js
-//   [function] ../../src/basis/data/value.js -> j.js
-//   [function] ../../src/basis/data/index.js -> k.js
-//   [function] ../../src/basis/data/object.js -> l.js
-//   [function] ../../src/basis/entity.js -> m.js
-//   [function] ../../src/basis/net/jsonp.js -> n.js
-//   [function] ../../src/basis/net.js -> o.js
-//   [function] ../../src/basis/net/service.js -> p.js
-//   [function] ../../src/basis/net/ajax.js -> q.js
-//   [function] ../../src/basis/ua.js -> r.js
-//   [function] ../../src/basis/net/action.js -> s.js
-//   [function] ../../src/basis/promise.js -> t.js
-//   [function] ../../src/basis/router.js -> u.js
-//   [function] ../../src/basis/app.js -> v.js
+// resources(64):
+//   [function] ../../src/basis/data/dataset/MapFilter.js -> 19.js
+//   [function] ../../src/basis/devpanel.js -> 0.js
+//   [function] ../../src/basis/ui.js -> 2.js
+//   [function] ../../src/basis/event.js -> 3.js
+//   [function] ../../src/basis/template/html.js -> 4.js
+//   [function] ../../src/basis/l10n.js -> 5.js
+//   [function] ../../src/basis/template/htmlfgen.js -> 6.js
+//   [function] ../../src/basis/template/const.js -> 7.js
+//   [function] ../../src/basis/template/namespace.js -> 8.js
+//   [function] ../../src/basis/template.js -> 9.js
+//   [function] ../../src/basis/template/declaration.js -> a.js
+//   [function] ../../src/basis/template/tokenize.js -> 11.js
+//   [function] ../../src/basis/template/isolateCss.js -> 12.js
+//   [function] ../../src/basis/template/store.js -> b.js
+//   [function] ../../src/basis/template/theme.js -> c.js
+//   [function] ../../src/basis/template/buildDom.js -> d.js
+//   [function] ../../src/basis/dom/event.js -> e.js
+//   [function] ../../src/basis/dom/wrapper.js -> f.js
+//   [function] ../../src/basis/data.js -> g.js
+//   [function] ../../src/basis/data/state.js -> h.js
+//   [function] ../../src/basis/data/subscription.js -> i.js
+//   [function] ../../src/basis/data/resolve.js -> j.js
+//   [function] ../../src/basis/data/AbstractData.js -> 13.js
+//   [function] ../../src/basis/dragdrop.js -> k.js
+//   [function] ../../src/basis/dom/computedStyle.js -> l.js
+//   [function] ../../src/basis/layout.js -> m.js
+//   [function] ../../src/basis/data/dataset.js -> n.js
+//   [function] ../../src/basis/data/dataset/getDelta.js -> 14.js
+//   [function] ../../src/basis/data/dataset/createRuleEvents.js -> 15.js
+//   [function] ../../src/basis/data/dataset/SourceDataset.js -> 16.js
+//   [function] ../../src/basis/data/dataset/Merge.js -> 17.js
+//   [function] ../../src/basis/data/dataset/Subtract.js -> 18.js
+//   [function] library.js -> 1.js
+//   [function] ../../src/basis/data/dataset/Split.js -> 1a.js
+//   [function] ../../src/basis/data/dataset/createKeyMap.js -> 1b.js
+//   [function] ../../src/basis/data/dataset/Cloud.js -> 1c.js
+//   [function] ../../src/basis/data/dataset/Extract.js -> 1d.js
+//   [function] ../../src/basis/data/dataset/Filter.js -> 1e.js
+//   [function] ../../src/basis/data/dataset/Slice.js -> 1f.js
+//   [function] ../../src/basis/data/value.js -> o.js
+//   [function] ../../src/basis/data/index.js -> p.js
+//   [function] ../../src/basis/data/index/Index.js -> 1g.js
+//   [function] ../../src/basis/data/index/VectorIndex.js -> 1h.js
+//   [function] ../../src/basis/data/index/IndexWrapper.js -> 1i.js
+//   [function] ../../src/basis/data/index/IndexMap.js -> 1j.js
+//   [function] ../../src/basis/data/index/IndexedCalc.js -> 1k.js
+//   [function] ../../src/basis/data/index/constructor.js -> 1l.js
+//   [function] ../../src/basis/data/index/Count.js -> 1m.js
+//   [function] ../../src/basis/data/index/Sum.js -> 1n.js
+//   [function] ../../src/basis/data/index/Avg.js -> 1o.js
+//   [function] ../../src/basis/data/index/Min.js -> 1p.js
+//   [function] ../../src/basis/data/index/Max.js -> 1q.js
+//   [function] ../../src/basis/data/index/Distinct.js -> 1r.js
+//   [function] ../../src/basis/data/object.js -> q.js
+//   [function] ../../src/basis/entity.js -> r.js
+//   [function] ../../src/basis/net/jsonp.js -> s.js
+//   [function] ../../src/basis/net.js -> t.js
+//   [function] ../../src/basis/net/service.js -> u.js
+//   [function] ../../src/basis/net/ajax.js -> v.js
+//   [function] ../../src/basis/ua.js -> w.js
+//   [function] ../../src/basis/net/action.js -> x.js
+//   [function] ../../src/basis/promise.js -> y.js
+//   [function] ../../src/basis/router.js -> z.js
+//   [function] ../../src/basis/app.js -> 10.js
 //
 // filelist(1):
 //   /scripts/release-configs/library.js
@@ -40,260 +70,764 @@
 (function(){
 "use strict";
 
-var __namespace_map__ = {"0.js":"library","1.js":"basis.ui","2.js":"basis.event","3.js":"basis.template.html","4.js":"basis.l10n","5.js":"basis.template.htmlfgen","6.js":"basis.template.const","7.js":"basis.template","8.js":"basis.template.declaration","9.js":"basis.template.store","a.js":"basis.template.theme","b.js":"basis.template.buildDom","c.js":"basis.dom.event","d.js":"basis.dom.wrapper","e.js":"basis.data","f.js":"basis.dragdrop","g.js":"basis.dom.computedStyle","h.js":"basis.layout","i.js":"basis.data.dataset","j.js":"basis.data.value","k.js":"basis.data.index","l.js":"basis.data.object","m.js":"basis.entity","n.js":"basis.net.jsonp","o.js":"basis.net","p.js":"basis.net.service","q.js":"basis.net.ajax","r.js":"basis.ua","s.js":"basis.net.action","t.js":"basis.promise","u.js":"basis.router","v.js":"basis.app"};
+var __namespace_map__ = {"0.js":"basis.devpanel","1.js":"library","2.js":"basis.ui","3.js":"basis.event","4.js":"basis.template.html","5.js":"basis.l10n","6.js":"basis.template.htmlfgen","7.js":"basis.template.const","8.js":"basis.template.namespace","9.js":"basis.template","a.js":"basis.template.declaration","b.js":"basis.template.store","c.js":"basis.template.theme","d.js":"basis.template.buildDom","e.js":"basis.dom.event","f.js":"basis.dom.wrapper","g.js":"basis.data","h.js":"basis.data.state","i.js":"basis.data.subscription","j.js":"basis.data.resolve","k.js":"basis.dragdrop","l.js":"basis.dom.computedStyle","m.js":"basis.layout","n.js":"basis.data.dataset","o.js":"basis.data.value","p.js":"basis.data.index","q.js":"basis.data.object","r.js":"basis.entity","s.js":"basis.net.jsonp","t.js":"basis.net","u.js":"basis.net.service","v.js":"basis.net.ajax","w.js":"basis.ua","x.js":"basis.net.action","y.js":"basis.promise","z.js":"basis.router","10.js":"basis.app"};
 var library;
 
 var __resources__ = {
-  "f.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
-    var document = global.document;
-    var cleaner = basis.cleaner;
-    var eventUtils = basis.require("./c.js");
-    var addGlobalHandler = eventUtils.addGlobalHandler;
-    var removeGlobalHandler = eventUtils.removeGlobalHandler;
-    var basisEvent = basis.require("./2.js");
-    var Emitter = basisEvent.Emitter;
-    var createEvent = basisEvent.create;
-    var getComputedStyle = basis.require("./g.js").get;
-    var basisLayout = basis.require("./h.js");
-    var getBoundingRect = basisLayout.getBoundingRect;
-    var getViewportRect = basisLayout.getViewportRect;
-    var SELECTSTART_SUPPORTED = eventUtils.getEventInfo("selectstart").supported;
-    var dragging;
-    var dragElement;
-    var dragData;
-    function resolveElement(value) {
-      return typeof value == "string" ? document.getElementById(value) : value;
-    }
-    function startDrag(event) {
-      if (dragElement || this.ignoreTarget(event.sender, event)) return;
-      var viewport = getViewportRect(event.sender);
-      if (event.mouseX < viewport.left || event.mouseX > viewport.right || event.mouseY < viewport.top || event.mouseY > viewport.bottom) return;
-      dragElement = this;
-      dragData = {
-        initX: event.mouseX,
-        initY: event.mouseY,
-        deltaX: 0,
-        minDeltaX: -Infinity,
-        maxDeltaX: Infinity,
-        deltaY: 0,
-        minDeltaY: -Infinity,
-        maxDeltaY: Infinity
-      };
-      addGlobalHandler("mousedown", stopDrag);
-      addGlobalHandler("touchstart", stopDrag);
-      addGlobalHandler("mousemove", onDrag);
-      addGlobalHandler("touchmove", onDrag);
-      addGlobalHandler("mouseup", stopDrag);
-      addGlobalHandler("touchend", stopDrag);
-      if (SELECTSTART_SUPPORTED) addGlobalHandler("selectstart", eventUtils.kill);
-      event.preventDefault();
-      this.prepareDrag(dragData, event);
-    }
-    function onDrag(event) {
-      var deltaX = event.mouseX - dragData.initX;
-      var deltaY = event.mouseY - dragData.initY;
-      if (!dragging) {
-        if (!dragElement.startRule(deltaX, deltaY)) return;
-        dragging = true;
-        dragElement.emit_start(dragData, event);
-      }
-      if (dragElement.axisX) dragData.deltaX = dragElement.axisXproxy(basis.number.fit(deltaX, dragData.minDeltaX, dragData.maxDeltaX));
-      if (dragElement.axisY) dragData.deltaY = dragElement.axisYproxy(basis.number.fit(deltaY, dragData.minDeltaY, dragData.maxDeltaY));
-      dragElement.emit_drag(dragData, event);
-    }
-    function stopDrag(event) {
-      removeGlobalHandler("mousedown", stopDrag);
-      removeGlobalHandler("touchstart", stopDrag);
-      removeGlobalHandler("mousemove", onDrag);
-      removeGlobalHandler("touchmove", onDrag);
-      removeGlobalHandler("mouseup", stopDrag);
-      removeGlobalHandler("touchend", stopDrag);
-      if (SELECTSTART_SUPPORTED) removeGlobalHandler("selectstart", eventUtils.kill);
-      var element = dragElement;
-      var data = dragData;
-      dragElement = null;
-      dragData = null;
-      if (dragging) {
-        dragging = false;
-        element.emit_over(data, event);
-      }
-      event.die();
-    }
-    var DragDropElement = Emitter.subclass({
-      className: namespace + ".DragDropElement",
-      element: null,
-      trigger: null,
-      baseElement: null,
-      axisX: true,
-      axisY: true,
-      axisXproxy: basis.fn.$self,
-      axisYproxy: basis.fn.$self,
-      prepareDrag: basis.fn.$undef,
-      startRule: basis.fn.$true,
-      ignoreTarget: function(target) {
-        return /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(target.tagName);
-      },
-      emit_start: createEvent("start"),
-      emit_drag: createEvent("drag"),
-      emit_over: createEvent("over"),
-      init: function() {
-        Emitter.prototype.init.call(this);
-        var element = this.element;
-        var trigger = this.trigger;
-        this.element = null;
-        this.trigger = null;
-        this.setElement(element, trigger);
-        this.setBase(this.baseElement);
-        cleaner.add(this);
-      },
-      setElement: function(element, trigger) {
-        this.element = resolveElement(element);
-        trigger = resolveElement(trigger) || this.element;
-        if (this.trigger !== trigger) {
-          if (this.trigger) {
-            eventUtils.removeHandler(this.trigger, "mousedown", startDrag, this);
-            eventUtils.removeHandler(this.trigger, "touchstart", startDrag, this);
-          }
-          this.trigger = trigger;
-          if (this.trigger) {
-            eventUtils.addHandler(this.trigger, "mousedown", startDrag, this);
-            eventUtils.addHandler(this.trigger, "touchstart", startDrag, this);
+  "19.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var $self = basis.fn.$self;
+    var $true = basis.fn.$true;
+    var $false = basis.fn.$false;
+    var createEvent = basis.require("./3.js").create;
+    var createRuleEvents = basis.require("./15.js");
+    var getDelta = basis.require("./14.js");
+    var DataObject = basis.require("./g.js").Object;
+    var setAccumulateState = basis.require("./g.js").Dataset.setAccumulateState;
+    var SourceDataset = basis.require("./16.js");
+    var MAPFILTER_SOURCEOBJECT_UPDATE = function(sourceObject) {
+      var newMember = this.map ? this.map(sourceObject) : sourceObject;
+      if (newMember instanceof DataObject == false || this.filter(newMember)) newMember = null;
+      var sourceMap = this.sourceMap_[sourceObject.basisObjectId];
+      var curMember = sourceMap.member;
+      if (curMember !== newMember) {
+        var memberMap = this.members_;
+        var delta;
+        var inserted;
+        var deleted;
+        sourceMap.member = newMember;
+        if (curMember) {
+          var curMemberId = curMember.basisObjectId;
+          if (this.removeMemberRef) this.removeMemberRef(curMember, sourceObject);
+          if (--memberMap[curMemberId] == 0) {
+            delete memberMap[curMemberId];
+            deleted = [ curMember ];
           }
         }
+        if (newMember) {
+          var newMemberId = newMember.basisObjectId;
+          if (this.addMemberRef) this.addMemberRef(newMember, sourceObject);
+          if (memberMap[newMemberId]) {
+            memberMap[newMemberId]++;
+          } else {
+            memberMap[newMemberId] = 1;
+            inserted = [ newMember ];
+          }
+        }
+        if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
+      }
+    };
+    var MAPFILTER_SOURCE_HANDLER = {
+      itemsChanged: function(source, delta) {
+        var sourceMap = this.sourceMap_;
+        var memberMap = this.members_;
+        var inserted = [];
+        var deleted = [];
+        var sourceObject;
+        var sourceObjectId;
+        var member;
+        var updateHandler = this.ruleEvents;
+        setAccumulateState(true);
+        if (delta.inserted) {
+          for (var i = 0; sourceObject = delta.inserted[i]; i++) {
+            member = this.map ? this.map(sourceObject) : sourceObject;
+            if (member instanceof DataObject == false || this.filter(member)) member = null;
+            if (updateHandler) sourceObject.addHandler(updateHandler, this);
+            sourceMap[sourceObject.basisObjectId] = {
+              sourceObject: sourceObject,
+              member: member
+            };
+            if (member) {
+              var memberId = member.basisObjectId;
+              if (memberMap[memberId]) {
+                memberMap[memberId]++;
+              } else {
+                memberMap[memberId] = 1;
+                inserted.push(member);
+              }
+              if (this.addMemberRef) this.addMemberRef(member, sourceObject);
+            }
+          }
+        }
+        if (delta.deleted) {
+          for (var i = 0; sourceObject = delta.deleted[i]; i++) {
+            sourceObjectId = sourceObject.basisObjectId;
+            member = sourceMap[sourceObjectId].member;
+            if (updateHandler) sourceObject.removeHandler(updateHandler, this);
+            delete sourceMap[sourceObjectId];
+            if (member) {
+              var memberId = member.basisObjectId;
+              if (--memberMap[memberId] == 0) {
+                delete memberMap[memberId];
+                deleted.push(member);
+              }
+              if (this.removeMemberRef) this.removeMemberRef(member, sourceObject);
+            }
+          }
+        }
+        setAccumulateState(false);
+        if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
+      }
+    };
+    module.exports = SourceDataset.subclass({
+      className: "basis.data.dataset.MapFilter",
+      propertyDescriptors: {
+        rule: "ruleChanged",
+        addMemberRef: false,
+        removeMemberRef: false,
+        ruleEvents: false
       },
-      setBase: function(baseElement) {
-        this.baseElement = resolveElement(baseElement);
+      map: $self,
+      filter: $false,
+      rule: basis.getter($true),
+      emit_ruleChanged: createEvent("ruleChanged", "oldRule"),
+      ruleEvents: createRuleEvents(MAPFILTER_SOURCEOBJECT_UPDATE, "update"),
+      addMemberRef: null,
+      removeMemberRef: null,
+      listen: {
+        source: MAPFILTER_SOURCE_HANDLER
       },
-      getBase: function() {
-        if (getComputedStyle(this.element, "position") == "fixed") return global;
-        if (this.baseElement) return this.baseElement;
-        return document.compatMode == "CSS1Compat" ? document.documentElement : document.body;
+      setMap: function(map) {
+        if (typeof map != "function") map = $self;
+        if (this.map !== map) {
+          this.map = map;
+          return this.applyRule();
+        }
       },
-      isDragging: function() {
-        return dragElement === this;
+      setFilter: function(filter) {
+        if (typeof filter != "function") filter = $false;
+        if (this.filter !== filter) {
+          this.filter = filter;
+          return this.applyRule();
+        }
       },
-      start: function(event) {
-        if (!this.isDragging()) startDrag.call(this, event);
+      setRule: function(rule) {
+        rule = basis.getter(rule || $true);
+        if (this.rule !== rule) {
+          var oldRule = this.rule;
+          this.rule = rule;
+          this.emit_ruleChanged(oldRule);
+          return this.applyRule();
+        }
       },
-      stop: function() {
-        if (this.isDragging()) stopDrag();
+      applyRule: function() {
+        var sourceMap = this.sourceMap_;
+        var memberMap = this.members_;
+        var curMember;
+        var newMember;
+        var curMemberId;
+        var newMemberId;
+        var sourceObject;
+        var sourceObjectInfo;
+        var inserted = [];
+        var deleted = [];
+        var delta;
+        for (var sourceObjectId in sourceMap) {
+          sourceObjectInfo = sourceMap[sourceObjectId];
+          sourceObject = sourceObjectInfo.sourceObject;
+          curMember = sourceObjectInfo.member;
+          newMember = this.map ? this.map(sourceObject) : sourceObject;
+          if (newMember instanceof DataObject == false || this.filter(newMember)) newMember = null;
+          if (curMember != newMember) {
+            sourceObjectInfo.member = newMember;
+            if (curMember) {
+              curMemberId = curMember.basisObjectId;
+              if (this.removeMemberRef) this.removeMemberRef(curMember, sourceObject);
+              memberMap[curMemberId]--;
+            }
+            if (newMember) {
+              newMemberId = newMember.basisObjectId;
+              if (this.addMemberRef) this.addMemberRef(newMember, sourceObject);
+              if (newMemberId in memberMap) {
+                memberMap[newMemberId]++;
+              } else {
+                memberMap[newMemberId] = 1;
+                inserted.push(newMember);
+              }
+            }
+          }
+        }
+        for (curMemberId in this.items_) if (memberMap[curMemberId] == 0) {
+          delete memberMap[curMemberId];
+          deleted.push(this.items_[curMemberId]);
+        }
+        if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
+        return delta;
+      }
+    });
+  },
+  "0.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    if (basis.filename_) {
+      basis.createSandbox({
+        inspect: basis,
+        devInfoResolver: basis.config.devInfoResolver,
+        modules: {
+          devpanel: {
+            autoload: true,
+            path: basis.path.dirname(basis.filename_) + "/devpanel/",
+            filename: "index.js"
+          }
+        }
+      });
+    }
+  },
+  "2.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.ui";
+    var document = global.document;
+    var Class = basis.Class;
+    var createEvent = basis.require("./3.js").create;
+    var HtmlTemplate = basis.require("./4.js").Template;
+    var htmlTemplateIdMarker = basis.require("./7.js").MARKER;
+    var TemplateSwitcher = basis.require("./9.js").TemplateSwitcher;
+    var basisDomWrapper = basis.require("./f.js");
+    var DWNode = basisDomWrapper.Node;
+    var DWPartitionNode = basisDomWrapper.PartitionNode;
+    var DWGroupingNode = basisDomWrapper.GroupingNode;
+    var instances = {};
+    var notifier = new basis.Token;
+    var notifyCreateSchedule = basis.asap.schedule(function(instance) {
+      instances[instance.basisObjectId] = instance;
+      notifier.set({
+        action: "create",
+        instance: instance
+      });
+    });
+    var notifyDestroySchedule = basis.asap.schedule(function(instance) {
+      delete instances[instance.basisObjectId];
+      notifier.set({
+        action: "destroy",
+        instance: instance
+      });
+    });
+    var bindingSeed = 1;
+    var unknownEventBindingCheck = {};
+    function extendBinding(binding, extension) {
+      var info = basis.dev.getInfo(extension, "map");
+      binding.bindingId = bindingSeed++;
+      for (var key in extension) {
+        var def = null;
+        var value = extension[key];
+        if (Node && value instanceof Node || basis.resource.isResource(value)) {
+          def = {
+            events: "satelliteChanged",
+            getter: function(key, satellite) {
+              var resource = typeof satellite == "function" ? satellite : null;
+              var init = function(node) {
+                init = false;
+                if (resource) {
+                  satellite = resource();
+                  if (satellite instanceof Node == false) return;
+                  resource = null;
+                }
+                node.setSatellite(key, satellite);
+                if (node.satellite[key] !== satellite) basis.dev.warn("basis.ui.binding: implicit satellite `" + key + "` attach to owner failed");
+              };
+              return function(node) {
+                if (init) init(node);
+                return resource || (node.satellite[key] ? node.satellite[key].element : null);
+              };
+            }(key, value)
+          };
+        } else {
+          if (value) {
+            if (typeof value == "string") value = BINDING_PRESET.process(key, value); else if (value.bindingBridge) value = basis.fn.$const(value);
+            if (typeof value != "object") {
+              def = {
+                getter: typeof value == "function" ? value : basis.getter(value)
+              };
+            } else if (Array.isArray(value)) {
+              def = {
+                events: value[0],
+                getter: basis.getter(value[1])
+              };
+            } else {
+              def = {
+                events: value.events,
+                getter: basis.getter(value.getter)
+              };
+            }
+          }
+        }
+        if (def && info && info.hasOwnProperty(key)) def.loc = info[key];
+        binding[key] = def;
+      }
+    }
+    var BINDING_PRESET = function() {
+      var presets = {};
+      var prefixRegExp = /^([a-z_][a-z0-9_]*):(.*)/i;
+      return {
+        add: function(prefix, func) {
+          if (!presets[prefix]) {
+            presets[prefix] = func;
+          } else {
+            basis.dev.warn("Preset `" + prefix + "` already exists, new definition ignored");
+          }
+        },
+        process: function(key, value) {
+          var preset;
+          var m = value.match(prefixRegExp);
+          if (m) {
+            preset = presets[m[1]];
+            value = m[2] || key;
+          }
+          return preset ? preset(value) : value;
+        }
+      };
+    }();
+    BINDING_PRESET.add("data", function(path) {
+      return {
+        events: "update",
+        getter: "data." + path
+      };
+    });
+    BINDING_PRESET.add("satellite", function(satelliteName) {
+      return {
+        events: "satelliteChanged",
+        getter: function(node) {
+          return node.satellite[satelliteName] ? node.satellite[satelliteName].element : null;
+        }
+      };
+    });
+    var TEMPLATE_BINDING = Class.customExtendProperty({
+      $role: {
+        events: "ownerSatelliteNameChanged",
+        getter: function(node) {
+          if (node.role) {
+            var roleId = node.roleId && node.binding[node.roleId];
+            if (roleId && typeof roleId.getter == "function") {
+              roleId = roleId.getter(node);
+              if (roleId === undefined) return "";
+            }
+            return node.role + (roleId !== undefined ? "(" + roleId + ")" : "");
+          }
+          return node.ownerSatelliteName || "";
+        }
+      },
+      active: {
+        events: "activeChanged",
+        getter: function(node) {
+          return node.active;
+        }
+      },
+      state: {
+        events: "stateChanged",
+        getter: function(node) {
+          return String(node.state);
+        }
+      },
+      childNodesState: {
+        events: "childNodesStateChanged",
+        getter: function(node) {
+          return String(node.childNodesState);
+        }
+      },
+      childCount: {
+        events: "childNodesModified",
+        getter: function(node) {
+          return node.childNodes ? node.childNodes.length : 0;
+        }
+      },
+      hasChildren: {
+        events: "childNodesModified",
+        getter: function(node) {
+          return !!node.firstChild;
+        }
+      },
+      empty: {
+        events: "childNodesModified",
+        getter: function(node) {
+          return !node.firstChild;
+        }
+      }
+    }, extendBinding);
+    var BINDING_TEMPLATE_INTERFACE = {
+      attach: function(object, handler, context) {
+        object.addHandler(handler, context);
+      },
+      detach: function(object, handler, context) {
+        object.removeHandler(handler, context);
+      }
+    };
+    var TEMPLATE_ACTION = Class.extensibleProperty({
+      select: function(event) {
+        if (this.isDisabled()) return;
+        if (this.selectedRA_) {
+          basis.dev.warn("`selected` property is under bb-value and can't be changed by user action. Override `select` action to make your logic working.");
+          return;
+        }
+        if (this.contextSelection && this.contextSelection.multiple) this.select(event.ctrlKey || event.metaKey); else this.select();
+      }
+    });
+    var TEMPLATE_SWITCHER_HANDLER = {
+      "*": function(event) {
+        var switcher = this.templateSwitcher_;
+        if (switcher && switcher.ruleEvents && switcher.ruleEvents[event.type]) this.setTemplate(switcher.resolve(this));
+      }
+    };
+    var TEMPLATE = new HtmlTemplate("<div/>");
+    var fragments = [];
+    function getDocumentFragment() {
+      return fragments.pop() || document.createDocumentFragment();
+    }
+    function reinsertPartitionNodes(partition) {
+      var nodes = partition.nodes;
+      if (nodes) for (var i = nodes.length - 1, child; child = nodes[i]; i--) child.parentNode.insertBefore(child, child.nextSibling);
+    }
+    var focusTimer;
+    var TemplateMixin = function(super_) {
+      return {
+        propertyDescriptors: {
+          action: false,
+          binding: false,
+          template: "templateChanged",
+          tmpl: "templateChanged",
+          element: false,
+          childNodesElement: false
+        },
+        template: TEMPLATE,
+        emit_templateChanged: createEvent("templateChanged"),
+        templateSwitcher_: null,
+        binding: TEMPLATE_BINDING,
+        action: TEMPLATE_ACTION,
+        tmpl: null,
+        element: null,
+        childNodesElement: null,
+        init: function() {
+          this.element = this.childNodesElement = getDocumentFragment();
+          super_.init.call(this);
+        },
+        postInit: function() {
+          super_.postInit.call(this);
+          var template = this.template;
+          if (template) {
+            var nodeDocumentFragment = this.childNodesElement;
+            var bindingId = this.constructor.basisClassId_ + "_" + this.binding.bindingId;
+            if (bindingId in unknownEventBindingCheck == false) {
+              unknownEventBindingCheck[bindingId] = true;
+              for (var bindName in this.binding) {
+                var events = this.binding[bindName] && this.binding[bindName].events;
+                if (events) {
+                  events = String(events).trim().split(/\s+|\s*,\s*/);
+                  for (var i = 0, eventName; eventName = events[i]; i++) if ("emit_" + eventName in this == false) basis.dev.warn("basis.ui: binding `" + bindName + "` has unknown event `" + eventName + "` for " + this.constructor.className);
+                }
+              }
+            }
+            this.template = null;
+            this.setTemplate(template);
+            fragments.push(nodeDocumentFragment);
+            if (this.container) {
+              this.container.appendChild(this.element);
+              this.container = null;
+            }
+          }
+          notifyCreateSchedule.add(this);
+        },
+        templateSync: function() {
+          var oldElement = this.element;
+          var tmpl = this.template.createInstance(this, this.templateAction, this.templateSync, this.binding, BINDING_TEMPLATE_INTERFACE);
+          var noChildNodesElement;
+          if (tmpl.childNodesHere) {
+            tmpl.childNodesElement = tmpl.childNodesHere.parentNode;
+            tmpl.childNodesElement.insertPoint = tmpl.childNodesHere;
+          }
+          this.tmpl = tmpl;
+          this.element = tmpl.element;
+          this.childNodesElement = tmpl.childNodesElement || tmpl.element;
+          noChildNodesElement = this.childNodesElement.nodeType != 1;
+          if (noChildNodesElement) this.childNodesElement = document.createDocumentFragment();
+          if (noChildNodesElement) this.noChildNodesElement_ = true; else delete this.noChildNodesElement_;
+          if (this.grouping) {
+            this.grouping.syncDomRefs();
+            var cursor = this;
+            while (cursor.grouping) cursor = cursor.grouping;
+            var topGrouping = cursor;
+            for (var groupNode = topGrouping.lastChild; groupNode; groupNode = groupNode.previousSibling) {
+              if (groupNode instanceof PartitionNode) topGrouping.insertBefore(groupNode, groupNode.nextSibling); else reinsertPartitionNodes(groupNode);
+            }
+            reinsertPartitionNodes(topGrouping.nullGroup);
+          } else {
+            for (var child = this.lastChild; child; child = child.previousSibling) this.insertBefore(child, child.nextSibling);
+          }
+          if (this instanceof PartitionNode) reinsertPartitionNodes(this);
+          if (oldElement && oldElement !== this.element && oldElement.nodeType != 11) {
+            var parentNode = oldElement && oldElement.parentNode;
+            if (parentNode) {
+              if (this.owner && this.owner.tmpl) this.owner.tmpl.set(oldElement, this.element);
+              if (this.element.parentNode !== parentNode) parentNode.replaceChild(this.element, oldElement);
+            }
+          }
+          this.emit_templateChanged();
+        },
+        setTemplate: function(template) {
+          var curSwitcher = this.templateSwitcher_;
+          var switcher;
+          if (template instanceof TemplateSwitcher) {
+            switcher = template;
+            template = switcher.resolve(this);
+          }
+          if (template instanceof HtmlTemplate == false) template = null;
+          if (!template) {
+            basis.dev.warn("basis.ui.Node#setTemplate: set null to template possible only on node destroy");
+            return;
+          }
+          if (switcher) {
+            this.templateSwitcher_ = switcher;
+            if (!curSwitcher) this.addHandler(TEMPLATE_SWITCHER_HANDLER, this);
+          }
+          if (curSwitcher && curSwitcher.resolve(this) !== template) {
+            this.templateSwitcher_ = null;
+            this.removeHandler(TEMPLATE_SWITCHER_HANDLER, this);
+          }
+          var oldTmpl = this.tmpl;
+          var oldTemplate = this.template;
+          if (oldTemplate !== template) {
+            this.template = template;
+            this.templateSync();
+            if (oldTemplate) oldTemplate.clearInstance(oldTmpl);
+          }
+        },
+        updateBind: function(bindName) {
+          var binding = this.binding[bindName];
+          var getter = binding && binding.getter;
+          if (getter && this.tmpl) this.tmpl.set(bindName, getter(this));
+          if (this.roleId == bindName) this.updateBind("$roleId");
+        },
+        templateAction: function(actionName, event) {
+          var action = this.action[actionName];
+          if (action) action.call(this, event);
+          if (!action) basis.dev.warn("template call `" + actionName + "` action, but it isn't defined in action list");
+        },
+        focus: function(select) {
+          var focusElement = this.tmpl ? this.tmpl.focus || this.element : null;
+          if (focusElement) {
+            if (focusTimer) focusTimer = basis.clearImmediate(focusTimer);
+            focusTimer = basis.setImmediate(function() {
+              try {
+                focusElement.focus();
+                if (select) focusElement.select();
+              } catch (e) {}
+            });
+          }
+        },
+        blur: function() {
+          var focusElement = this.tmpl ? this.tmpl.focus || this.element : null;
+          if (focusElement) try {
+            focusElement.blur();
+          } catch (e) {}
+        },
+        destroy: function() {
+          if (instances[this.basisObjectId]) notifyDestroySchedule.add(this); else notifyCreateSchedule.remove(this);
+          var template = this.template;
+          var element = this.element;
+          if (this.templateSwitcher_) {
+            this.templateSwitcher_ = null;
+            this.removeHandler(TEMPLATE_SWITCHER_HANDLER, this);
+          }
+          template.clearInstance(this.tmpl);
+          super_.destroy.call(this);
+          this.tmpl = null;
+          this.element = null;
+          this.childNodesElement = null;
+          var parentNode = element && element.parentNode;
+          if (parentNode && parentNode.nodeType == 1) parentNode.removeChild(element);
+        }
+      };
+    };
+    var ContainerTemplateMixin = function(super_) {
+      return {
+        insertBefore: function(newChild, refChild) {
+          if (this.noChildNodesElement_) {
+            delete this.noChildNodesElement_;
+            basis.dev.warn("basis.ui: Template has no childNodesElement container, but insertBefore method called; probably it's a bug");
+          }
+          newChild = super_.insertBefore.call(this, newChild, refChild);
+          var target = newChild.groupNode || this;
+          var container = target.childNodesElement || this.childNodesElement;
+          var nextSibling = newChild.nextSibling;
+          var insertPoint = nextSibling && nextSibling.element.parentNode == container ? nextSibling.element : null;
+          var childElement = newChild.element;
+          var refNode = insertPoint || container.insertPoint || null;
+          if (childElement.parentNode !== container || childElement.nextSibling !== refNode) container.insertBefore(childElement, refNode);
+          return newChild;
+        },
+        removeChild: function(oldChild) {
+          super_.removeChild.call(this, oldChild);
+          var element = oldChild.element;
+          var parent = element.parentNode;
+          if (parent) parent.removeChild(element);
+          return oldChild;
+        },
+        clear: function(alive) {
+          if (alive) {
+            var node = this.firstChild;
+            while (node) {
+              var element = node.element;
+              var parent = element.parentNode;
+              if (parent) parent.removeChild(element);
+              node = node.nextSibling;
+            }
+          }
+          super_.clear.call(this, alive);
+        },
+        setChildNodes: function(childNodes, keepAlive) {
+          if (this.noChildNodesElement_) {
+            delete this.noChildNodesElement_;
+            basis.dev.warn("basis.ui: Template has no childNodesElement container, but setChildNodes method called; probably it's a bug");
+          }
+          var domFragment = document.createDocumentFragment();
+          var target = this.grouping || this;
+          var container = target.childNodesElement;
+          target.childNodesElement = domFragment;
+          super_.setChildNodes.call(this, childNodes, keepAlive);
+          container.insertBefore(domFragment, container.insertPoint || null);
+          target.childNodesElement = container;
+        }
+      };
+    };
+    var PartitionNode = Class(DWPartitionNode, TemplateMixin, {
+      className: namespace + ".PartitionNode",
+      binding: {
+        title: "data:"
+      }
+    });
+    var GroupingNode = Class(DWGroupingNode, ContainerTemplateMixin, {
+      className: namespace + ".GroupingNode",
+      childClass: PartitionNode,
+      groupingClass: Class.SELF,
+      element: null,
+      childNodesElement: null,
+      emit_ownerChanged: function(oldOwner) {
+        this.syncDomRefs();
+        DWGroupingNode.prototype.emit_ownerChanged.call(this, oldOwner);
+      },
+      init: function() {
+        this.element = this.childNodesElement = document.createDocumentFragment();
+        DWGroupingNode.prototype.init.call(this);
+        instances[this.basisObjectId] = this;
+        notifier.set({
+          action: "create",
+          instance: this
+        });
+      },
+      syncDomRefs: function() {
+        var cursor = this;
+        var owner = this.owner;
+        var element = null;
+        if (owner) element = owner.tmpl && owner.tmpl.groupsElement || owner.childNodesElement;
+        do {
+          cursor.element = cursor.childNodesElement = element;
+        } while (cursor = cursor.grouping);
       },
       destroy: function() {
-        this.stop();
-        cleaner.remove(this);
-        Emitter.prototype.destroy.call(this);
-        this.setElement();
-        this.setBase();
+        delete instances[this.basisObjectId];
+        notifier.set({
+          action: "destroy",
+          instance: this
+        });
+        DWGroupingNode.prototype.destroy.call(this);
+        this.element = null;
+        this.childNodesElement = null;
       }
     });
-    var DeltaWriter = basis.Class(null, {
-      className: namespace + ".DeltaWriter",
-      property: null,
-      invert: false,
-      format: basis.fn.$self,
-      init: function(element) {
-        if (typeof this.property == "function") this.property = this.property(element);
-        if (typeof this.invert == "function") this.invert = this.invert(this.property);
-        this.value = this.read(element);
-      },
-      read: function(element) {
-        return element[this.property];
-      },
-      write: function(element, formattedValue) {
-        element[this.property] = formattedValue;
-      },
-      applyDelta: function(element, delta) {
-        if (this.invert) delta = -delta;
-        this.write(element, this.format(this.value + delta, delta));
-      }
-    });
-    var StyleDeltaWriter = DeltaWriter.subclass({
-      className: namespace + ".StyleDeltaWriter",
-      format: function(value) {
-        return value + "px";
-      },
-      read: function(element) {
-        return parseFloat(getComputedStyle(element, this.property)) || 0;
-      },
-      write: function(element, formattedValue) {
-        element.style[this.property] = formattedValue;
-      }
-    });
-    var StylePositionX = StyleDeltaWriter.subclass({
-      property: function(element) {
-        return getComputedStyle(element, "left") == "auto" && getComputedStyle(element, "right") != "auto" ? "right" : "left";
-      },
-      invert: function(property) {
-        return property == "right";
-      }
-    });
-    var StylePositionY = StyleDeltaWriter.subclass({
-      property: function(element) {
-        return getComputedStyle(element, "top") == "auto" && getComputedStyle(element, "bottom") != "auto" ? "bottom" : "top";
-      },
-      invert: function(property) {
-        return property == "bottom";
-      }
-    });
-    var MoveableElement = DragDropElement.subclass({
-      className: namespace + ".MoveableElement",
-      fixTop: true,
-      fixRight: true,
-      fixBottom: true,
-      fixLeft: true,
-      axisX: StylePositionX,
-      axisY: StylePositionY,
-      emit_start: function(dragData, event) {
-        var element = this.element;
-        if (element) {
-          var viewport = getViewportRect(this.getBase());
-          var box = getBoundingRect(element, this.getBase());
-          dragData.element = element;
-          if (this.axisX) {
-            dragData.axisX = new this.axisX(element);
-            if (this.fixLeft) dragData.minDeltaX = viewport.left - box.left;
-            if (this.fixRight) dragData.maxDeltaX = viewport.right - box.right;
+    var Node = Class(DWNode, TemplateMixin, ContainerTemplateMixin, {
+      className: namespace + ".Node",
+      binding: {
+        selected: {
+          events: "select unselect",
+          getter: function(node) {
+            return node.selected;
           }
-          if (this.axisY) {
-            dragData.axisY = new this.axisY(element);
-            if (this.fixTop) dragData.minDeltaY = viewport.top - box.top;
-            if (this.fixBottom) dragData.maxDeltaY = viewport.bottom - box.bottom;
+        },
+        unselected: {
+          events: "select unselect",
+          getter: function(node) {
+            return !node.selected;
+          }
+        },
+        disabled: {
+          events: "disable enable",
+          getter: function(node) {
+            return node.isDisabled();
+          }
+        },
+        enabled: {
+          events: "disable enable",
+          getter: function(node) {
+            return !node.isDisabled();
+          }
+        },
+        tabindex: {
+          events: "enable disable",
+          getter: function(node) {
+            return node.isDisabled() ? -1 : node.tabindex || 0;
           }
         }
-        DragDropElement.prototype.emit_start.call(this, dragData, event);
       },
-      emit_drag: function(dragData, event) {
-        if (!dragData.element) return;
-        if (dragData.axisX) dragData.axisX.applyDelta(dragData.element, dragData.deltaX);
-        if (dragData.axisY) dragData.axisY.applyDelta(dragData.element, dragData.deltaY);
-        DragDropElement.prototype.emit_drag.call(this, dragData, event);
+      childClass: Class.SELF,
+      childFactory: function(config) {
+        return new this.childClass(config);
+      },
+      groupingClass: GroupingNode
+    });
+    var ShadowNodeList = Node.subclass({
+      className: namespace + ".ShadowNodeList",
+      emit_ownerChanged: function(oldOwner) {
+        Node.prototype.emit_ownerChanged.call(this, oldOwner);
+        this.setDataSource(this.owner && this.owner.getChildNodesDataset());
+      },
+      getChildNodesElement: function(owner) {
+        return owner.childNodesElement;
+      },
+      listen: {
+        owner: {
+          templateChanged: function() {
+            this.childNodes.forEach(function(child) {
+              this.appendChild(child.element);
+            }, this.getChildNodesElement(this.owner) || this.owner.element);
+          }
+        }
+      },
+      childClass: {
+        className: namespace + ".ShadowNode",
+        getElement: function(node) {
+          return node.element;
+        },
+        templateSync: function() {
+          Node.prototype.templateSync.call(this);
+          var newElement = this.getElement(this.delegate);
+          if (newElement) {
+            newElement[htmlTemplateIdMarker] = this.delegate.element[htmlTemplateIdMarker];
+            this.element = newElement;
+          }
+        },
+        listen: {
+          delegate: {
+            templateChanged: function() {
+              var oldElement = this.element;
+              var oldElementParent = oldElement.parentNode;
+              var newElement = this.getElement(this.delegate);
+              if (newElement) newElement[htmlTemplateIdMarker] = this.delegate.element[htmlTemplateIdMarker];
+              this.element = newElement || this.tmpl.element;
+              if (oldElementParent) oldElementParent.replaceChild(this.element, oldElement);
+            }
+          }
+        }
       }
     });
     module.exports = {
-      DragDropElement: DragDropElement,
-      MoveableElement: MoveableElement,
-      DeltaWriter: DeltaWriter,
-      StyleDeltaWriter: StyleDeltaWriter
+      debug_notifier: notifier,
+      debug_getInstances: function() {
+        return basis.object.values(instances);
+      },
+      BINDING_PRESET: BINDING_PRESET,
+      Node: Node,
+      PartitionNode: PartitionNode,
+      GroupingNode: GroupingNode,
+      ShadowNodeList: ShadowNodeList,
+      ShadowNode: ShadowNodeList.prototype.childClass
     };
   },
-  "0.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    basis.require("./1.js");
-    basis.require("./f.js");
-    basis.require("./i.js");
-    basis.require("./j.js");
-    basis.require("./k.js");
-    basis.require("./l.js");
-    basis.require("./m.js");
-    basis.require("./n.js");
-    basis.require("./p.js");
-    basis.require("./s.js");
-    basis.require("./u.js");
-    basis.require("./v.js");
-    global.basis = basis;
-  },
-  "2.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "3.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.event";
     var Class = basis.Class;
     var NULL_HANDLER = {};
     var events = {};
@@ -360,6 +894,24 @@ var __resources__ = {
     var Emitter = Class(null, {
       className: namespace + ".Emitter",
       extendConstructor_: true,
+      propertyDescriptors: Class.customExtendProperty({
+        basisObjectId: true,
+        propertyDescriptors: false,
+        handler: false,
+        listen: false
+      }, function(result, extension) {
+        for (var property in extension) {
+          var value = extension[property];
+          if (value === true || value == "<static>") value = {
+            isStatic: true
+          }; else if (value === false) value = {
+            isPrivate: true
+          }; else if (typeof value == "string") value = {
+            events: value
+          };
+          result[property] = value;
+        }
+      }),
       handler: null,
       emit_destroy: createDispatcher("destroy"),
       listen: Class.nestedExtendProperty(),
@@ -417,21 +969,21 @@ var __resources__ = {
       Emitter: Emitter
     };
   },
-  "3.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "4.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.template.html";
     var document = global.document;
     var Node = global.Node;
     var camelize = basis.string.camelize;
-    var isMarkupToken = basis.require("./4.js").isMarkupToken;
-    var getL10nToken = basis.require("./4.js").token;
-    var getFunctions = basis.require("./5.js").getFunctions;
-    var basisTemplate = basis.require("./7.js");
+    var isMarkupToken = basis.require("./5.js").isMarkupToken;
+    var getL10nToken = basis.require("./5.js").token;
+    var getFunctions = basis.require("./6.js").getFunctions;
+    var basisTemplate = basis.require("./9.js");
     var TemplateSwitchConfig = basisTemplate.TemplateSwitchConfig;
     var TemplateSwitcher = basisTemplate.TemplateSwitcher;
     var Template = basisTemplate.Template;
     var getSourceByPath = basisTemplate.get;
-    var buildDOM = basis.require("./b.js");
-    var CLONE_NORMALIZATION_TEXT_BUG = basis.require("./6.js").CLONE_NORMALIZATION_TEXT_BUG;
+    var buildDOM = basis.require("./d.js");
+    var CLONE_NORMALIZATION_TEXT_BUG = basis.require("./7.js").CLONE_NORMALIZATION_TEXT_BUG;
     var IS_SET_STYLE_SAFE = !!function() {
       try {
         return document.documentElement.style.color = "x";
@@ -536,8 +1088,11 @@ var __resources__ = {
         if (newNode === domRef) domRef.nodeValue = String(newValue);
         return newNode;
       };
-      var bind_attrClass = CLASSLIST_SUPPORTED ? function(domRef, oldClass, newValue, anim) {
-        var newClass = newValue ? newValue : "";
+      var bind_attrClass = CLASSLIST_SUPPORTED ? normalAttrClass : legacyAttrClass;
+      function normalAttrClass(domRef, oldClass, newValue, anim) {
+        var classList = domRef.classList;
+        if (!classList) return legacyAttrClass(domRef, oldClass, newValue, anim);
+        var newClass = newValue || "";
         if (newClass != oldClass) {
           if (oldClass) domRef.classList.remove(oldClass);
           if (newClass) {
@@ -551,8 +1106,9 @@ var __resources__ = {
           }
         }
         return newClass;
-      } : function(domRef, oldClass, newValue, anim) {
-        var newClass = newValue ? newValue : "";
+      }
+      function legacyAttrClass(domRef, oldClass, newValue, anim) {
+        var newClass = newValue || "";
         if (newClass != oldClass) {
           var className = domRef.className;
           var classNameIsObject = typeof className != "string";
@@ -574,7 +1130,7 @@ var __resources__ = {
           if (classNameIsObject) domRef.className.baseVal = classList.join(" "); else domRef.className = classList.join(" ");
         }
         return newClass;
-      };
+      }
       var bind_attrStyle = IS_SET_STYLE_SAFE ? function(domRef, propertyName, oldValue, newValue) {
         if (oldValue !== newValue) domRef.style[camelize(propertyName)] = newValue;
         return newValue;
@@ -589,6 +1145,12 @@ var __resources__ = {
       var bind_attr = function(domRef, attrName, oldValue, newValue) {
         if (oldValue !== newValue) {
           if (newValue) domRef.setAttribute(attrName, newValue); else domRef.removeAttribute(attrName);
+        }
+        return newValue;
+      };
+      var bind_attrNS = function(domRef, namespace, attrName, oldValue, newValue) {
+        if (oldValue !== newValue) {
+          if (newValue) domRef.setAttributeNS(namespace, attrName, newValue); else domRef.removeAttributeNS(namespace, attrName);
         }
         return newValue;
       };
@@ -719,6 +1281,7 @@ var __resources__ = {
         bind_element: bind_element,
         bind_comment: bind_comment,
         bind_attr: bind_attr,
+        bind_attrNS: bind_attrNS,
         bind_attrClass: bind_attrClass,
         bind_attrStyle: bind_attrStyle,
         resolve: resolveValue,
@@ -840,13 +1403,18 @@ var __resources__ = {
       TemplateSwitcher: HtmlTemplateSwitcher
     };
   },
-  "4.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "5.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.l10n";
     var Class = basis.Class;
-    var Emitter = basis.require("./2.js").Emitter;
+    var Emitter = basis.require("./3.js").Emitter;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
+    var autoFetchDictionaryResource = true;
     basis.resource.extensions[".l10n"] = function(content, url) {
-      return resolveDictionary(url).update(basis.resource.extensions[".json"](content, url));
+      var dictionary;
+      autoFetchDictionaryResource = false;
+      dictionary = resolveDictionary(url);
+      autoFetchDictionaryResource = true;
+      return dictionary.update(basis.resource.extensions[".json"](content, url));
     };
     var tokenIndex = [];
     var tokenComputeFn = {};
@@ -1053,7 +1621,7 @@ var __resources__ = {
             dictionaryByUrl[resource.url] = this;
             createDictionaryNotifier.set(resource.url);
           }
-          resource.fetch();
+          if (autoFetchDictionaryResource) resource.fetch();
         } else {
           this.update(content || {});
         }
@@ -1284,9 +1852,10 @@ var __resources__ = {
       } catch (e) {}
     })();
   },
-  "5.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "6.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var consts = basis.require("./6.js");
+    var consts = basis.require("./7.js");
+    var namespaces = basis.require("./8.js");
     var MARKER = consts.MARKER;
     var TYPE_ELEMENT = consts.TYPE_ELEMENT;
     var TYPE_ATTRIBUTE = consts.TYPE_ATTRIBUTE;
@@ -1304,6 +1873,7 @@ var __resources__ = {
     var ELEMENT_ATTRIBUTES_AND_CHILDREN = consts.ELEMENT_ATTRIBUTES_AND_CHILDREN;
     var CLASS_BINDING_ENUM = consts.CLASS_BINDING_ENUM;
     var CLASS_BINDING_BOOL = consts.CLASS_BINDING_BOOL;
+    var CLASS_BINDING_INVERT = consts.CLASS_BINDING_INVERT;
     var inlineSeed = 1;
     var tmplFunctions = {};
     var SET_NONELEMENT_PROPERTY_SUPPORT = function() {
@@ -1459,8 +2029,13 @@ var __resources__ = {
       function simpleStringify(val) {
         return typeof val == "string" ? quoteString(val) : val;
       }
+      function stringifyBindingNames(val) {
+        if (val.indexOf("l10n:") == 0) val = this[val.substr(5)] || val;
+        return quoteString(val);
+      }
       function buildAttrExpression(binding, special, l10n) {
         var expression = [];
+        var cond = [];
         var symbols = binding[5];
         var dictionary = binding[4];
         var exprVar;
@@ -1471,18 +2046,25 @@ var __resources__ = {
             colonPos = exprVar.indexOf(":");
             if (colonPos == -1) {
               expression.push(special == "l10n" ? '"{' + exprVar + '}"' : special == "bool" ? "(__" + exprVar + '||"")' : "__" + exprVar);
+              if (!special) cond.push("__" + exprVar + "!==UNSET&&__" + exprVar + "!==undefined");
             } else {
               var bindingName = null;
               var l10nPath = exprVar.substr(colonPos + 1).replace(L10N_BINDING, function(m, name) {
                 bindingName = name;
                 return "";
               });
-              if (bindingName) expression.push(l10n[exprVar.substr(colonPos + 1)]); else expression.push('l10n["' + l10nPath + '"]');
+              if (bindingName) {
+                if (l10n === false) return false;
+                expression.push(l10n[exprVar.substr(colonPos + 1)]);
+                if (!special) cond.push(l10n[exprVar.substr(colonPos + 1)] + "!==undefined");
+              } else expression.push('l10n["' + l10nPath + '"]');
             }
           }
         }
         if (expression.length == 1) expression.push('""');
-        return expression.join("+");
+        expression = expression.join("+");
+        if (!special && cond.length) expression = cond.join("&&") + "?(" + expression + '):""';
+        return expression;
       }
       return function(bindings) {
         function putBindCode(type) {
@@ -1494,8 +2076,8 @@ var __resources__ = {
         var bindVar;
         var bindVarSeed = 0;
         var varList = [];
-        var result = [];
         var bindingsWoL10nCompute = [];
+        var l10nComputeBindings = [];
         var varName;
         var l10nMap;
         var l10nCompute = [];
@@ -1504,14 +2086,9 @@ var __resources__ = {
         var attrExprId;
         var attrExprMap = {};
         var debugList = [];
-        var toolsUsed = {
-          resolve: true
-        };
+        var toolsUsed = {};
         for (var i = 0, binding; binding = bindings[i]; i++) {
-          var bindType = binding[0];
-          var domRef = binding[1];
           var bindName = binding[2];
-          var nodeBindingProhibited = binding[3];
           var namePart = bindName.split(":");
           if (namePart[0] == "l10n" && namePart[1]) {
             var l10nFullPath = namePart[1];
@@ -1521,6 +2098,7 @@ var __resources__ = {
               return "";
             });
             if (l10nBinding) {
+              l10nComputeBindings.push(binding);
               if (l10nFullPath in l10nBindings == false) {
                 varName = "$l10n_" + l10nBindSeed++;
                 l10nBindings[l10nFullPath] = varName;
@@ -1529,32 +2107,45 @@ var __resources__ = {
                 bindCode = bindMap[l10nBinding];
                 if (!bindCode) {
                   bindCode = bindMap[l10nBinding] = [];
-                  varList.push("__" + l10nBinding);
+                  varList.push("__" + l10nBinding + "=UNSET");
                 }
                 bindCode.push(varName + ".set(__" + l10nBinding + ");");
-              }
-              bindName = l10nBindings[l10nFullPath];
-              bindVar = "_" + bindVarSeed++;
-              varName = "__" + bindName;
-              bindCode = bindMap[bindName];
-              if (!bindCode) {
-                bindCode = bindMap[bindName] = [];
-                varList.push(varName);
-              }
-              if (bindType == TYPE_TEXT) {
-                debugList.push("{" + [ 'binding:"' + bindName + '"', "dom:" + domRef, "val:" + bindVar, "l10n:true", "attachment:" + bindName ] + "}");
-                varList.push(bindVar + "=" + domRef);
-                putBindCode(bindFunctions[bindType], domRef, bindVar, "value", nodeBindingProhibited);
-              } else {
-                attrName = '"' + binding[ATTR_NAME] + '"';
-                debugList.push("{" + [ 'binding:"' + l10nFullPath + '"', "dom:" + domRef, "attr:" + attrName, "val:" + bindVar, "l10n:true", "attachment:" + bindName ] + "}");
-                varList.push(bindVar);
-                putBindCode("bind_attr", domRef, attrName, bindVar, buildAttrExpression(binding, false, l10nBindings));
               }
               continue;
             }
           }
           bindingsWoL10nCompute.push(binding);
+        }
+        for (var i = 0, binding; binding = l10nComputeBindings[i]; i++) {
+          var bindType = binding[0];
+          var domRef = binding[1];
+          var bindName = binding[2];
+          var nodeBindingProhibited = binding[3];
+          var l10nFullPath = bindName.split(":")[1];
+          bindName = l10nBindings[l10nFullPath];
+          bindVar = "_" + bindVarSeed++;
+          varName = "__" + bindName;
+          bindCode = bindMap[bindName];
+          if (!bindCode) {
+            bindCode = bindMap[bindName] = [];
+            varList.push(varName);
+          }
+          if (bindType == TYPE_TEXT) {
+            debugList.push("{" + [ 'binding:"' + bindName + '"', "dom:" + domRef, "val:" + bindVar, "l10n:true", "attachment:" + bindName ] + "}");
+            varList.push(bindVar + "=" + domRef);
+            putBindCode(bindFunctions[bindType], domRef, bindVar, "value", nodeBindingProhibited);
+          } else {
+            var expr = buildAttrExpression(binding, false, l10nBindings);
+            attrExprId = binding[7];
+            if (!attrExprMap[attrExprId]) {
+              varList.push(bindVar);
+              attrExprMap[attrExprId] = bindVar;
+            }
+            bindVar = attrExprMap[attrExprId];
+            attrName = '"' + binding[ATTR_NAME] + '"';
+            debugList.push("{" + [ 'binding:"' + bindName + '"', "raw:" + bindName + ".get()", "l10n:true", 'type:"l10n"', "expr:[[" + binding[5].map(simpleStringify) + "],[" + binding[4].map(simpleStringify) + "],[" + binding[4].map(stringifyBindingNames, l10nBindings) + "]]", "dom:" + domRef, "attr:" + attrName, "val:" + bindVar, "attachment:" + bindName ] + "}");
+            putBindCode("bind_attr", domRef, attrName, bindVar, expr);
+          }
         }
         for (var i = 0, binding; binding = bindingsWoL10nCompute[i]; i++) {
           var bindType = binding[0];
@@ -1597,12 +2188,15 @@ var __resources__ = {
               }
               continue;
             } else {
-              l10nMap[l10nName].push("bind_attr(" + [ domRef, '"' + binding[ATTR_NAME] + '"', "NaN", buildAttrExpression(binding, "l10n", l10nBindings) ] + ");");
+              var expr = buildAttrExpression(binding, "l10n", false);
+              if (expr !== false) {
+                l10nMap[l10nName].push("bind_attr(" + [ domRef, '"' + binding[ATTR_NAME] + '"', "NaN", expr ] + ");");
+              }
             }
           }
           if (!bindCode) {
             bindCode = bindMap[bindName] = [];
-            varList.push(varName);
+            varList.push(varName + "=UNSET");
           }
           if (bindType != TYPE_ATTRIBUTE) {
             debugList.push("{" + [ 'binding:"' + bindName + '"', "dom:" + domRef, "val:" + (bindCode.nodeBind ? varName : bindVar), "updates:$$" + bindName, 'attachment:instance.attaches&&instance.attaches["' + bindName + '"]&&instance.attaches["' + bindName + '"].value' ] + "}");
@@ -1623,6 +2217,10 @@ var __resources__ = {
           } else {
             var attrName = binding[ATTR_NAME];
             switch (attrName) {
+              case "role-marker":
+                varList.push(bindVar + '=""');
+                putBindCode("bind_attr", domRef, '"' + attrName + '"', bindVar, "value?value" + (binding[5][1] ? "+" + quoteString(binding[5][1]) : "") + ':""');
+                break;
               case "class":
                 var defaultExpr = "";
                 var valueExpr = "value";
@@ -1630,12 +2228,13 @@ var __resources__ = {
                 var defaultValue = binding[7];
                 switch (bindingType) {
                   case CLASS_BINDING_BOOL:
+                  case CLASS_BINDING_INVERT:
                     var values = [ binding[6] ];
                     var prefix = binding[4];
                     var classes = Array.isArray(prefix) ? prefix : values.map(function(val) {
                       return prefix + val;
                     });
-                    valueExpr = 'value?"' + classes[0] + '":""';
+                    valueExpr = (bindingType == CLASS_BINDING_INVERT ? "!" : "") + 'value?"' + classes[0] + '":""';
                     if (defaultValue) defaultExpr = classes[defaultValue - 1];
                     break;
                   case CLASS_BINDING_ENUM:
@@ -1655,10 +2254,10 @@ var __resources__ = {
                 }
                 varList.push(bindVar + '="' + defaultExpr + '"');
                 putBindCode("bind_attrClass", domRef, bindVar, valueExpr, anim);
-                debugList.push("{" + [ 'binding:"' + bindName + '"', "raw:__" + bindName, 'prefix:"' + "???" + '"', "anim:" + anim, "dom:" + domRef, 'attr:"' + attrName + '"', "val:" + bindVar, 'attachment:instance.attaches&&instance.attaches["' + bindName + '"]&&instance.attaches["' + bindName + '"].value' ] + "}");
+                debugList.push("{" + [ 'binding:"' + bindName + '"', "raw:__" + bindName, 'prefix:"' + prefix + '"', "anim:" + anim, "dom:" + domRef, 'attr:"' + attrName + '"', "val:" + bindVar, 'attachment:instance.attaches&&instance.attaches["' + bindName + '"]&&instance.attaches["' + bindName + '"].value' ] + "}");
                 break;
               case "style":
-                var expr = buildAttrExpression(binding, false, l10nBindings);
+                var expr = buildAttrExpression(binding, "style", l10nBindings);
                 attrExprId = binding[8];
                 if (!attrExprMap[attrExprId]) {
                   attrExprMap[attrExprId] = bindVar;
@@ -1675,38 +2274,46 @@ var __resources__ = {
                 var expr = specialAttr && SPECIAL_ATTR_SINGLE[attrName] ? buildAttrExpression(binding, "bool", l10nBindings) + '?"' + attrName + '":""' : buildAttrExpression(binding, false, l10nBindings);
                 attrExprId = binding[7];
                 if (!attrExprMap[attrExprId]) {
-                  varList.push(bindVar + "=" + expr);
+                  varList.push(bindVar + "=UNSET");
                   attrExprMap[attrExprId] = bindVar;
                 }
                 bindVar = attrExprMap[attrExprId];
-                if (attrName == "tabindex") putBindCode("bind_attr", domRef, '"' + attrName + '"', bindVar, expr + "==-1?" + ([ "input", "button", "textarea" ].indexOf(tagName) == -1 ? '""' : "-1") + ":" + expr); else putBindCode("bind_attr", domRef, '"' + attrName + '"', bindVar, expr);
+                if (attrName == "tabindex") putBindCode("bind_attr", domRef, '"' + attrName + '"', bindVar, expr + "==-1?" + ([ "input", "button", "textarea" ].indexOf(tagName) == -1 ? '""' : "-1") + ":" + expr); else {
+                  var namespace = namespaces.getNamespace(attrName);
+                  if (namespace) putBindCode("bind_attrNS", domRef, '"' + namespace + '"', '"' + attrName + '"', bindVar, expr); else putBindCode("bind_attr", domRef, '"' + attrName + '"', bindVar, expr);
+                }
                 if (specialAttr && (specialAttr == "*" || specialAttr.indexOf(tagName) != -1)) bindCode.push("if(" + domRef + "." + attrName + "!=" + bindVar + ")" + domRef + "." + attrName + "=" + (SPECIAL_ATTR_SINGLE[attrName] ? "!!" + bindVar : bindVar) + ";");
-                debugList.push("{" + [ 'binding:"' + bindName + '"', "raw:" + (l10n ? 'l10n["' + bindName + '"]' : "__" + bindName), 'type:"' + (specialAttr && SPECIAL_ATTR_SINGLE[attrName] ? "bool" : "string") + '"', "expr:[[" + binding[5].map(simpleStringify) + "],[" + binding[4].map(simpleStringify) + "]]", "dom:" + domRef, 'attr:"' + attrName + '"', "val:" + bindVar, 'attachment:instance.attaches&&instance.attaches["' + bindName + '"]&&instance.attaches["' + bindName + '"].value' ] + "}");
+                debugList.push("{" + [ 'binding:"' + bindName + '"', "raw:" + (l10n ? 'l10n["' + l10nFullPath + '"]' : "__" + bindName), 'type:"' + (specialAttr && SPECIAL_ATTR_SINGLE[attrName] ? "bool" : "string") + '"', "expr:[[" + binding[5].map(simpleStringify) + "],[" + binding[4].map(simpleStringify) + "],[" + binding[4].map(stringifyBindingNames, l10nBindings) + "]]", "dom:" + domRef, 'attr:"' + attrName + '"', "val:" + bindVar, 'attachment:instance.attaches&&instance.attaches["' + bindName + '"]&&instance.attaches["' + bindName + '"].value' ] + "}");
             }
           }
         }
-        result.push(";function set(bindName,value){" + 'if(typeof bindName!="string")');
-        for (var bindName in bindMap) if (bindMap[bindName].nodeBind) {
-          result.push("if(bindName===" + bindMap[bindName].nodeBind + ")" + 'bindName="' + bindName + '";' + "else ");
+        var bindMapKeys = basis.object.keys(bindMap);
+        var setFunction = "";
+        if (bindMapKeys.length) {
+          toolsUsed.resolve = true;
+          setFunction = [ ";function set(bindName,value){", 'if(typeof bindName!="string")' ];
+          for (var bindName in bindMap) if (bindMap[bindName].nodeBind) {
+            setFunction.push("if(bindName===" + bindMap[bindName].nodeBind + ")" + 'bindName="' + bindName + '";' + "else ");
+          }
+          setFunction.push("return;", "rawValues[bindName]=value;", "value=resolve.call(instance,bindName,value,Attaches);", "switch(bindName){");
+          for (var bindName in bindMap) {
+            var stateVar = bindMap[bindName].l10n || bindName;
+            varList.push("$$" + stateVar + "=0");
+            setFunction.push('case"' + bindName + '":', "if(__" + stateVar + "!==value)", "{", "$$" + stateVar + "++;", "__" + stateVar + "=value;", bindMap[bindName].join(""), "}", "break;");
+          }
+          setFunction = setFunction.join("") + "}}";
         }
-        result.push("return;");
-        result.push("value=resolve.call(instance,bindName,value,Attaches);" + "switch(bindName){");
-        for (var bindName in bindMap) {
-          var stateVar = bindMap[bindName].l10n || bindName;
-          varList.push("$$" + stateVar + "=0");
-          result.push('case"' + bindName + '":' + "if(__" + stateVar + "!==value)" + "{" + "$$" + stateVar + "++;" + "__" + stateVar + "=value;" + bindMap[bindName].join("") + "}" + "break;");
-        }
-        result.push("}}");
         var toolsVarList = [];
         for (var key in toolsUsed) toolsVarList.push(key + "=tools." + key);
         return {
           debugList: debugList,
-          keys: basis.object.keys(bindMap).filter(function(key) {
+          allKeys: bindMapKeys,
+          keys: bindMapKeys.filter(function(key) {
             return key.indexOf("@") == -1;
           }),
           tools: toolsVarList,
           vars: varList,
-          set: result.join(""),
+          set: setFunction,
           l10n: l10nMap,
           l10nCompute: l10nCompute
         };
@@ -1736,11 +2343,11 @@ var __resources__ = {
         for (var key in bindings.l10n) code.push('case"' + key + '":' + bindings.l10n[key].join("") + "break;");
         result.createL10nSync = compileFunction([ "_", "l10n", "bind_attr", "TEXT_BUG" ], (source ? "\n// " + source.split(/\r\n?|\n\r?/).join("\n// ") + "\n\n" : "") + "var " + paths.path + ";" + "return function(path, value){" + "switch(path){" + code.join("") + "}" + "}" + "\n\n//# sourceURL=" + basis.path.origin + uri + "_l10n");
       }
-      result.createInstanceFactory = compileFunction([ "tid", "createDOM", "tools", "l10nMap", "l10nMarkup", "getBindings", "TEXT_BUG" ], (source ? "\n// " + source.split(/\r\n?|\n\r?/).join("\n// ") + "\n\n" : "") + "var " + (bindings.tools.length ? bindings.tools + "," : "") + "Attaches=function(){};" + "Attaches.prototype={" + bindings.keys.map(function(key) {
+      result.createInstanceFactory = compileFunction([ "tid", "createDOM", "tools", "l10nMap", "l10nMarkup", "getBindings", "TEXT_BUG" ], (source ? "\n// " + source.split(/\r\n?|\n\r?/).join("\n// ") + "\n\n" : "") + "var UNSET={valueOf:function(){}}," + (bindings.tools.length ? bindings.tools + "," : "") + (bindings.set ? "Attaches=function(){};" + "Attaches.prototype={" + bindings.keys.map(function(key) {
         return key + ":null";
-      }) + "};" + "return function createTmpl_(id,instance,initL10n){" + "var _=createDOM()," + (bindings.l10n ? "l10n=initL10n?{}:l10nMap," : "") + paths.path.concat(bindings.vars) + (debug ? ";instance.debug=function debug(){" + "return {" + "bindings:[" + bindings.debugList + "]," + "values:{" + bindings.keys.map(function(key) {
+      }) + "};" : "set=function(){};") + "return function createTmpl_(id,instance,initL10n){" + "var _=createDOM()," + (bindings.l10n ? "l10n=initL10n?{}:l10nMap," : "") + paths.path.concat(bindings.vars) + ",rawValues={}" + (debug ? ";instance.debug=function debug(){" + "return {" + "bindings:[" + bindings.debugList + "]," + "values:{" + bindings.keys.map(function(key) {
         return '"' + key + '":__' + key;
-      }) + "}," + "compute:Array.prototype.slice.call(instance.compute || [])" + "}" + "}" : "") + (bindings.l10nCompute.length ? ";instance.compute=[" + bindings.l10nCompute + "]" : "") + ";instance.tmpl={" + [ paths.ref, "templateId_:id", "set:set" ] + "}" + (objectRefs ? ";if(instance.context||instance.onAction)" + objectRefs + "=(id<<12)|tid" : "") + bindings.set + (bindings.l10n ? ";if(initL10n){l10n=l10nMap;initL10n(set)}" + ";if(l10nMarkup.length)for(var idx=0,token;token=l10nMarkup[idx];idx++)set(token.path,token.token);" : "") + ";if(instance.bindings)instance.handler=getBindings(instance,set)" + ";" + bindings.l10nCompute.map(function(varName) {
+      }) + "}," + "rawValues:rawValues," + (bindings.l10nCompute.length ? "compute:Array.prototype.slice.call(instance.compute)" : "compute:[]") + "}" + "}" : "") + (bindings.l10nCompute.length ? ";instance.compute=[" + bindings.l10nCompute + "]" : "") + ";instance.tmpl={" + [ paths.ref, "templateId_:id", "set:set" ] + "}" + (objectRefs ? ";if(instance.context||instance.onAction)" + objectRefs + "=(id<<12)|tid" : "") + bindings.set + (bindings.l10n ? ";if(initL10n){l10n=l10nMap;initL10n(set)}" + ";if(l10nMarkup.length)for(var idx=0,token;token=l10nMarkup[idx];idx++)set(token.path,token.token);" : "") + (bindings.set ? ";if(instance.bindings)instance.handler=getBindings(instance,set)" : "") + ";" + bindings.l10nCompute.map(function(varName) {
         return 'set("' + varName + '",' + varName + ")";
       }) + "}" + "\n\n//# sourceURL=" + basis.path.origin + uri);
       return result;
@@ -1749,7 +2356,7 @@ var __resources__ = {
       getFunctions: getFunctions
     };
   },
-  "6.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "7.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var MARKER = "basisTemplateId_" + basis.genUID();
     var TYPE_ELEMENT = 1;
     var TYPE_ATTRIBUTE = 2;
@@ -1822,18 +2429,37 @@ var __resources__ = {
       CLONE_NORMALIZATION_TEXT_BUG: CLONE_NORMALIZATION_TEXT_BUG
     };
   },
-  "7.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "8.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespaceURI = {
+      xlink: "http://www.w3.org/1999/xlink",
+      svg: "http://www.w3.org/2000/svg"
+    };
+    function getNamespace(name, node) {
+      if (!name) return;
+      var colonIndex = name.indexOf(":");
+      if (colonIndex != -1) {
+        var prefix = name.substr(0, colonIndex);
+        return namespaceURI[prefix] || node && node.lookupNamespaceURI(prefix);
+      }
+    }
+    module.exports = {
+      namespaceURI: namespaceURI,
+      getNamespace: getNamespace
+    };
+  },
+  "9.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.template";
     var document = global.document;
     var Class = basis.Class;
     var cleaner = basis.cleaner;
     var path = basis.path;
-    var consts = basis.require("./6.js");
-    var DECLARATION_VERSION = basis.require("./8.js").VERSION;
-    var getDeclFromSource = basis.require("./8.js").getDeclFromSource;
-    var makeDeclaration = basis.require("./8.js").makeDeclaration;
-    var store = basis.require("./9.js");
-    var theme = basis.require("./a.js");
+    var consts = basis.require("./7.js");
+    var DECLARATION_VERSION = basis.require("./a.js").VERSION;
+    var getDeclFromSource = basis.require("./a.js").getDeclFromSource;
+    var makeDeclaration = basis.require("./a.js").makeDeclaration;
+    var setIsolatePrefixGenerator = basis.require("./a.js").setIsolatePrefixGenerator;
+    var store = basis.require("./b.js");
+    var theme = basis.require("./c.js");
     var getSourceByPath = theme.get;
     var templateList = [];
     var sourceByDocumentId = {};
@@ -1876,8 +2502,8 @@ var __resources__ = {
       var newDeps = declaration.deps;
       var oldDeps = this.deps_;
       this.deps_ = newDeps;
-      if (oldDeps) for (var i = 0, dep; dep = oldDeps[i]; i++) dep.bindingBridge.detach(dep, buildTemplate, this);
-      if (newDeps) for (var i = 0, dep; dep = newDeps[i]; i++) dep.bindingBridge.attach(dep, buildTemplate, this);
+      if (oldDeps) for (var i = 0, dep; dep = oldDeps[i]; i++) dep.bindingBridge.detach(dep, templateSourceUpdate, this);
+      if (newDeps) for (var i = 0, dep; dep = newDeps[i]; i++) dep.bindingBridge.attach(dep, templateSourceUpdate, this);
       var newResources = declaration.resources;
       var oldResources = this.resources;
       this.resources = newResources;
@@ -2069,6 +2695,7 @@ var __resources__ = {
       getDeclFromSource: getDeclFromSource,
       makeDeclaration: makeDeclaration,
       resolveResource: resolveResource,
+      setIsolatePrefixGenerator: setIsolatePrefixGenerator,
       getDebugInfoById: store.getDebugInfoById,
       getTemplateCount: function() {
         return templateList.length;
@@ -2088,14 +2715,14 @@ var __resources__ = {
       getPathList: theme.getPathList
     };
   },
-  "8.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "a.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var hasOwnProperty = Object.prototype.hasOwnProperty;
     var arraySearch = basis.array.search;
     var arrayAdd = basis.array.add;
     var arrayRemove = basis.array.remove;
-    var tokenize = basis.require("./w.js");
-    var isolateCss = basis.require("./x.js");
-    var consts = basis.require("./6.js");
+    var tokenize = basis.require("./11.js");
+    var isolateCss = basis.require("./12.js");
+    var consts = basis.require("./7.js");
     var TYPE_ELEMENT = consts.TYPE_ELEMENT;
     var TYPE_ATTRIBUTE = consts.TYPE_ATTRIBUTE;
     var TYPE_ATTRIBUTE_CLASS = consts.TYPE_ATTRIBUTE_CLASS;
@@ -2115,6 +2742,7 @@ var __resources__ = {
     var TEXT_VALUE = consts.TEXT_VALUE;
     var CLASS_BINDING_ENUM = consts.CLASS_BINDING_ENUM;
     var CLASS_BINDING_BOOL = consts.CLASS_BINDING_BOOL;
+    var CLASS_BINDING_INVERT = consts.CLASS_BINDING_INVERT;
     var IDENT = /^[a-z_][a-z0-9_\-]*$/i;
     var ATTR_EVENT_RX = /^event-(.+)$/;
     var Template = function() {};
@@ -2263,6 +2891,15 @@ var __resources__ = {
           if (attr.name == "show" || attr.name == "hide") setStylePropertyBinding(host, attr, "display", "show", "display: none;");
           if (attr.name == "visible" || attr.name == "hidden") setStylePropertyBinding(host, attr, "visibility", "visible", "visibility: hidden;");
         }
+        function addRoleAttribute(host, role) {
+          var sourceToken = arguments[2];
+          if (!/[\/\(\)]/.test(role)) {
+            var item = [ TYPE_ATTRIBUTE, [ [ "$role" ], [ 0, role ? "/" + role : "" ] ], 0, "role-marker" ];
+            item.sourceToken = sourceToken;
+            addTokenLocation(item, sourceToken);
+            host.push(item);
+          } else addTemplateWarn(template, options, 'Value for role was ignored as value can\'t contains ["/", "(", ")"]: ' + role, sourceToken.loc);
+        }
         function processAttrs(token, declToken) {
           var result = [];
           var styleAttr;
@@ -2285,6 +2922,9 @@ var __resources__ = {
                 case "hidden":
                   visibilityAttr = attr;
                   break;
+                case "role":
+                  addRoleAttribute(result, attr.value || "", attr);
+                  break;
               }
               continue;
             }
@@ -2292,8 +2932,8 @@ var __resources__ = {
               item = m[1] == attr.value ? [ TYPE_ATTRIBUTE_EVENT, m[1] ] : [ TYPE_ATTRIBUTE_EVENT, m[1], attr.value ];
             } else {
               item = [ attr.type, attr.binding, 0 ];
-              if (attr.type == 2) item.push(getTokenName(attr));
-              if (attr.value && (!options.optimizeSize || !attr.binding || attr.type != 2)) item.push(attr.value);
+              if (attr.type == TYPE_ATTRIBUTE) item.push(getTokenName(attr));
+              if (attr.value && (!options.optimizeSize || !attr.binding || attr.type != TYPE_ATTRIBUTE)) item.push(attr.value);
               if (attr.type == TYPE_ATTRIBUTE_STYLE) styleAttr = item;
             }
             item.valueLocMap = getAttributeValueLocationMap(attr);
@@ -2531,6 +3171,12 @@ var __resources__ = {
                         case "bool":
                           define = [ bindingName, CLASS_BINDING_BOOL, defineName, elAttrs["default"] == "true" ? 1 : 0 ];
                           addStateInfo(bindingName, "bool", true);
+                          if ("default" in elAttrs && !elAttrs["default"]) addTemplateWarn(template, options, "Bool <b:define> has no value as default (value ignored)", elAttrs_["default"] && elAttrs_["default"].loc);
+                          break;
+                        case "invert":
+                          define = [ bindingName, CLASS_BINDING_INVERT, defineName, !elAttrs["default"] || elAttrs["default"] == "true" ? 1 : 0 ];
+                          addStateInfo(bindingName, "invert", false);
+                          if ("default" in elAttrs && !elAttrs["default"]) addTemplateWarn(template, options, "Invert <b:define> has no value as default (value ignored)", elAttrs_["default"] && elAttrs_["default"].loc);
                           break;
                         case "enum":
                           if ("values" in elAttrs == false) {
@@ -2641,6 +3287,16 @@ var __resources__ = {
                             var tokenRef = tokenRefMap.element;
                             var token = tokenRef && tokenRef.token;
                             if (token && token[TOKEN_TYPE] == TYPE_ELEMENT) applyShowHideAttribute(token, elAttrs_[includeAttrName]);
+                            break;
+                          case "role":
+                            var role = elAttrs_.role.value;
+                            if (role) {
+                              if (!/[\/\(\)]/.test(role)) {
+                                var loc;
+                                loc = getLocation(template, elAttrs_.role.loc);
+                                applyRole(decl.tokens, role, elAttrs_.role, loc);
+                              } else addTemplateWarn(template, options, 'Value for role was ignored as value can\'t contains ["/", "(", ")"]: ' + role, elAttrs_.role.loc);
+                            }
                             break;
                         }
                         for (var j = 0, child; child = instructions[j]; j++) {
@@ -2774,6 +3430,24 @@ var __resources__ = {
                                 var token = tokenRef && tokenRef.token;
                                 if (token) removeTokenRef(token, childAttrs.name || childAttrs.ref);
                                 break;
+                              case "role":
+                              case "set-role":
+                                var childAttrs = tokenAttrs(child);
+                                var ref = "ref" in childAttrs ? childAttrs.ref : "element";
+                                var tokenRef = ref && tokenRefMap[ref];
+                                var token = tokenRef && tokenRef.token;
+                                if (token) {
+                                  arrayRemove(token, getAttrByName(token, "role-marker"));
+                                  addRoleAttribute(token, childAttrs.value || "", child);
+                                }
+                                break;
+                              case "remove-role":
+                                var childAttrs = tokenAttrs(child);
+                                var ref = "ref" in childAttrs ? childAttrs.ref : "element";
+                                var tokenRef = ref && tokenRefMap[ref];
+                                var token = tokenRef && tokenRef.token;
+                                if (token) arrayRemove(token, getAttrByName(token, "role-marker"));
+                                break;
                               default:
                                 addTemplateWarn(template, options, "Unknown instruction tag: <b:" + child.name + ">", child.loc);
                             }
@@ -2828,7 +3502,7 @@ var __resources__ = {
         if (typeof value == "string") {
           var parts = value.split(":");
           var key = parts[1];
-          if (parts[0] == "l10n") {
+          if (key && parts[0] == "l10n") {
             if (parts.length == 2 && key.indexOf("@") == -1) {
               if (!dictURI) return false;
               key = key + "@" + dictURI;
@@ -2838,6 +3512,25 @@ var __resources__ = {
           }
         }
         return value;
+      }
+      function applyRole(tokens, role, sourceToken, location, stIdx) {
+        for (var i = stIdx || 0, token; token = tokens[i]; i++) {
+          var tokenType = token[TOKEN_TYPE];
+          switch (tokenType) {
+            case TYPE_ELEMENT:
+              applyRole(token, role, sourceToken, location, ELEMENT_ATTRIBUTES_AND_CHILDREN);
+              break;
+            case TYPE_ATTRIBUTE:
+              if (token[ATTR_NAME] == "role-marker") {
+                var roleExpression = token[TOKEN_BINDINGS][1];
+                var currentRole = roleExpression[1];
+                roleExpression[1] = "/" + role + (currentRole ? "/" + currentRole : "");
+                token.sourceToken = sourceToken;
+                token.loc = location;
+              }
+              break;
+          }
+        }
       }
       function normalizeRefs(tokens, isolate, map, stIdx) {
         function processName(name) {
@@ -2883,7 +3576,7 @@ var __resources__ = {
         for (var i = stIdx || 0, token; token = tokens[i]; i++) {
           var tokenType = token[TOKEN_TYPE];
           var bindings = token[TOKEN_BINDINGS];
-          switch (token[TOKEN_TYPE]) {
+          switch (tokenType) {
             case TYPE_ELEMENT:
               applyDefines(token, template, options, ELEMENT_ATTRIBUTES_AND_CHILDREN);
               break;
@@ -2900,10 +3593,17 @@ var __resources__ = {
             case TYPE_ATTRIBUTE:
               if (bindings) {
                 var array = bindings[0];
-                for (var j = 0; j < array.length; j++) {
+                for (var j = array.length - 1; j >= 0; j--) {
                   var binding = absl10n(array[j], options.dictURI, template.l10n);
-                  array[j] = binding === false ? "{" + array[j] + "}" : binding;
-                  if (binding === false) addTemplateWarn(template, options, "Dictionary for l10n binding on attribute can't be resolved: {" + array[j] + "}", token.loc);
+                  if (binding === false) {
+                    addTemplateWarn(template, options, "Dictionary for l10n binding on attribute can't be resolved: {" + array[j] + "}", token.loc);
+                    var expr = bindings[1];
+                    for (var k = 0; k < expr.length; k++) if (typeof expr[k] == "number") {
+                      if (expr[k] == j) expr[k] = "{" + array[j] + "}"; else if (expr[k] > j) expr[k] = expr[k] - 1;
+                    }
+                    array.splice(j, 1);
+                    if (!array.length) token[TOKEN_BINDINGS] = 0;
+                  } else array[j] = binding;
                 }
               }
               break;
@@ -3132,18 +3832,21 @@ var __resources__ = {
       if (typeof result == "string") result = makeDeclaration(result, baseURI, options, sourceUrl, source);
       return result;
     }
-    basis.resource("./7.js").ready(function(exports) {
+    basis.resource("./9.js").ready(function(exports) {
       resolveResource = exports.resolveResource;
       Template = exports.Template;
     });
     module.exports = {
       VERSION: 3,
       makeDeclaration: makeDeclaration,
-      getDeclFromSource: getDeclFromSource
+      getDeclFromSource: getDeclFromSource,
+      setIsolatePrefixGenerator: function(fn) {
+        genIsolateMarker = fn;
+      }
     };
   },
-  "w.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var consts = basis.require("./6.js");
+  "11.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var consts = basis.require("./7.js");
     var TYPE_ELEMENT = consts.TYPE_ELEMENT;
     var TYPE_ATTRIBUTE = consts.TYPE_ATTRIBUTE;
     var TYPE_TEXT = consts.TYPE_TEXT;
@@ -3395,7 +4098,7 @@ var __resources__ = {
           if (parseTag) lastTag = tagStack.pop();
           if (token) lastTag.children.pop();
           if (token = lastTag.children.pop()) {
-            if (token.type == TYPE_TEXT && !token.refs) textStateEndPos -= "len" in token ? token.len : token.value.length; else lastTag.children.push(token);
+            if (token.type == TYPE_TEXT && !token.refs) textStateEndPos -= token.value.length; else lastTag.children.push(token);
           }
           parseTag = false;
           state = TEXT;
@@ -3410,7 +4113,6 @@ var __resources__ = {
               sourceText = sourceText.replace(/\s*(\r\n?|\n\r?)\s*/g, "");
               if (sourceText) lastTag.children.push({
                 type: TYPE_TEXT,
-                len: sourceText.length,
                 value: sourceText,
                 range: {
                   start_: textStateEndPos,
@@ -3618,7 +4320,7 @@ var __resources__ = {
     }
     module.exports = tokenize;
   },
-  "x.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "12.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var CSS_CLASSNAME_START = /^\-?([_a-z]|[^\x00-\xb1]|\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?|\\[^\n\r\f0-9a-f])/i;
     var CSS_CLASSNAME_START_MAXLEN = 8;
     var CSS_NESTED_ATRULE = /^(media|supports|document)\b/i;
@@ -3699,7 +4401,7 @@ var __resources__ = {
       }
       function parseStyleSheet(nested) {
         for (nestedStyleSheet = false; i < len; i++) {
-          if (parseComment() || parseAtRule() || parsePseudo() || parseBraces() || parseClassName()) continue;
+          if (parseComment() || parseAtRule() || parsePseudo() || parseBraces() || parseString() || parseClassName()) continue;
           if (nested && sym[i] == "}") return;
           parseBlock();
         }
@@ -3722,7 +4424,7 @@ var __resources__ = {
     }
     module.exports = isolateCss;
   },
-  "9.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "b.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var templates = {};
     function add(id, template, instances) {
       templates[id] = {
@@ -3773,8 +4475,8 @@ var __resources__ = {
       resolveTmplById: resolveTmplById
     };
   },
-  "a.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "c.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.template.theme";
     var themes = {};
     var sourceByPath = {};
     var themeChangeHandlers = [];
@@ -3843,6 +4545,7 @@ var __resources__ = {
         if (name == themeName || used[name]) continue;
         used[name] = true;
         result.push(name);
+        getTheme(name);
         list.splice.apply(list, [ i + 1, 0 ].concat(themes[name].fallback));
       }
       result.unshift(themeName);
@@ -4001,12 +4704,13 @@ var __resources__ = {
       }
     };
   },
-  "b.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "d.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var Node = global.Node;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var eventUtils = basis.require("./c.js");
-    var resolveActionById = basis.require("./9.js").resolveActionById;
-    var consts = basis.require("./6.js");
+    var eventUtils = basis.require("./e.js");
+    var resolveActionById = basis.require("./b.js").resolveActionById;
+    var consts = basis.require("./7.js");
+    var namespaces = basis.require("./8.js");
     var MARKER = consts.MARKER;
     var CLONE_NORMALIZATION_TEXT_BUG = consts.CLONE_NORMALIZATION_TEXT_BUG;
     var TYPE_ELEMENT = consts.TYPE_ELEMENT;
@@ -4028,6 +4732,7 @@ var __resources__ = {
     var COMMENT_VALUE = consts.COMMENT_VALUE;
     var CLASS_BINDING_ENUM = consts.CLASS_BINDING_ENUM;
     var CLASS_BINDING_BOOL = consts.CLASS_BINDING_BOOL;
+    var CLASS_BINDING_INVERT = consts.CLASS_BINDING_INVERT;
     var MOUSE_ENTER_LEAVE_SUPPORT = "onmouseenter" in document.documentElement;
     var USE_CAPTURE_FALLBACK = false;
     var tmplEventListeners = {};
@@ -4049,12 +4754,13 @@ var __resources__ = {
       return function(event) {
         if (event.type == "click" && event.which == 3) return;
         var bubble = insideElementEvent[event.type] || event.type != "mouseenter" && event.type != "mouseleave";
-        var attrCursor = event.sender;
+        var nodePath = event.path.slice(0, event.path.length - 1);
+        var attrCursor = nodePath.shift();
         var attr;
         while (attrCursor) {
           attr = attrCursor.getAttribute && attrCursor.getAttribute(attrName);
           if (!bubble || typeof attr == "string") break;
-          attrCursor = attrCursor.parentNode;
+          attrCursor = nodePath.shift();
         }
         if (typeof attr == "string") {
           var cursor = attrCursor;
@@ -4070,7 +4776,7 @@ var __resources__ = {
             if (typeof refId == "number") {
               if (tmplRef = resolveActionById(refId)) break;
             }
-            cursor = cursor.parentNode;
+            cursor = nodePath.shift();
           }
           var actions = attr.trim().split(/\s+/);
           var actionCallback = tmplRef && tmplRef.action;
@@ -4120,9 +4826,6 @@ var __resources__ = {
       }
       for (var i = 0, names = eventUtils.browserEvents(eventName), browserEventName; browserEventName = names[i]; i++) eventUtils.addGlobalHandler(browserEventName, tmplEventListeners[eventName]);
     }
-    var namespaceURI = {
-      svg: "http://www.w3.org/2000/svg"
-    };
     var SET_CLASS_ATTRIBUTE_BUG = function() {
       var element = document.createElement("div");
       element.setAttribute("class", "a");
@@ -4141,7 +4844,8 @@ var __resources__ = {
     function setAttribute(node, name, value) {
       if (SET_CLASS_ATTRIBUTE_BUG && name == "class") name = "className";
       if (SET_STYLE_ATTRIBUTE_BUG && name == "style") return node.style.cssText = value;
-      node.setAttribute(name, value);
+      var namespace = namespaces.getNamespace(name, node);
+      if (namespace) node.setAttributeNS(namespace, name, value); else node.setAttribute(name, value);
     }
     var buildDOM = function(tokens, parent) {
       var result = parent || document.createDocumentFragment();
@@ -4151,8 +4855,8 @@ var __resources__ = {
         switch (tokenType) {
           case TYPE_ELEMENT:
             var tagName = token[ELEMENT_NAME];
-            var colonIndex = tagName.indexOf(":");
-            var element = colonIndex != -1 ? document.createElementNS(namespaceURI[tagName.substr(0, colonIndex)], tagName) : document.createElement(tagName);
+            var namespace = namespaces.getNamespace(tagName);
+            var element = namespace ? document.createElementNS(namespace, tagName) : document.createElement(tagName);
             buildDOM(token, element);
             result.appendChild(element);
             break;
@@ -4171,6 +4875,7 @@ var __resources__ = {
                 } else {
                   switch (binding[2]) {
                     case CLASS_BINDING_BOOL:
+                    case CLASS_BINDING_INVERT:
                       attrValue.push(prefix + binding[3]);
                       break;
                     case CLASS_BINDING_ENUM:
@@ -4198,13 +4903,13 @@ var __resources__ = {
             break;
         }
       }
-      if (!parent && tokens.length == 1) result = result.firstChild;
+      if (!parent && tokens.length == 1) result = result.removeChild(result.firstChild);
       return result;
     };
     module.exports = buildDOM;
   },
-  "c.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "e.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.dom.event";
     var document = global.document;
     var $null = basis.fn.$null;
     var arrayFrom = basis.array.from;
@@ -4260,20 +4965,30 @@ var __resources__ = {
     var BROWSER_EVENTS = {
       mousewheel: [ "wheel", "mousewheel", "DOMMouseScroll" ]
     };
+    var DEPRECATED = /^(returnValue|keyLocation|layerX|layerY|webkitMovementX|webkitMovementY)$/;
     function browserEvents(eventName) {
       return BROWSER_EVENTS[eventName] || [ eventName ];
+    }
+    function getPath(node) {
+      var path = [];
+      do {
+        path.push(node);
+      } while (node = node.parentNode);
+      path.push(global);
+      return path;
     }
     var Event = basis.Class(null, {
       className: namespace + ".Event",
       KEY: KEY,
       init: function(event) {
         event = wrap(event);
-        for (var name in event) if (name != "returnValue" && name != "keyLocation" && name != "layerX" && name != "layerY" && (event.type != "progress" || name != "totalSize" && name != "position")) if (typeof event[name] != "function" && name in this == false) this[name] = event[name];
+        for (var name in event) if (!DEPRECATED.test(name) && (event.type != "progress" || name != "totalSize" && name != "position")) if (typeof event[name] != "function" && name in this == false) this[name] = event[name];
         var target = sender(event);
         basis.object.extend(this, {
           event_: event,
           sender: target,
           target: target,
+          path: event.path ? basis.array(event.path) : getPath(target),
           key: key(event),
           charCode: charCode(event),
           mouseLeft: mouseButton(event, MOUSE_LEFT),
@@ -4565,8 +5280,9 @@ var __resources__ = {
       wrap: wrap
     };
   },
-  "d.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "f.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.dom.wrapper";
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
     var Class = basis.Class;
     var complete = basis.object.complete;
     var arrayFrom = basis.array;
@@ -4574,10 +5290,10 @@ var __resources__ = {
     var $undef = basis.fn.$undef;
     var getter = basis.getter;
     var nullGetter = basis.fn.nullGetter;
-    var basisEvent = basis.require("./2.js");
+    var basisEvent = basis.require("./3.js");
     var createEvent = basisEvent.create;
     var events = basisEvent.events;
-    var basisData = basis.require("./e.js");
+    var basisData = basis.require("./g.js");
     var resolveValue = basisData.resolveValue;
     var resolveDataset = basisData.resolveDataset;
     var createResolveFunction = basisData.createResolveFunction;
@@ -4745,12 +5461,13 @@ var __resources__ = {
       return InstanceClass;
     }
     function processSatelliteConfig(satelliteConfig) {
+      var loc;
       if (!satelliteConfig) return null;
       if (satelliteConfig.isSatelliteConfig) return satelliteConfig;
       if (satelliteConfig instanceof AbstractNode) return satelliteConfig;
       if (satelliteConfig.constructor !== Object) satelliteConfig = {
         instance: satelliteConfig
-      };
+      }; else loc = basis.dev.getInfo(satelliteConfig, "loc");
       var handlerRequired = false;
       var events = "update";
       var config = {
@@ -4783,7 +5500,7 @@ var __resources__ = {
               break;
             }
             if (Class.isClass(value)) {
-              basis.dev.warn(namespace + ": `satelliteClass` in satellite config is deprecated, use `instance` instead");
+              basis.dev.warn(namespace + ": `" + key + "` in satellite config is deprecated, use `instance` instead");
               config.instanceClass = processInstanceClass(value);
             } else basis.dev.warn(namespace + ": bad value for `" + key + "` in satellite config, value should be a subclass of basis.dom.wrapper.AbstractNode");
             break;
@@ -4819,13 +5536,18 @@ var __resources__ = {
           }
         }
       }
+      if (loc) basis.dev.setInfo(config, "loc", loc);
       return config;
     }
     function applySatellites(node, satellites) {
       for (var name in satellites) if (satellites[name] && typeof satellites[name] == "object") node.setSatellite(name, satellites[name]);
     }
     var NULL_SATELLITE = Class.customExtendProperty({}, function(result, extend) {
-      for (var name in extend) result[name] = processSatelliteConfig(extend[name]);
+      var map = basis.dev.getInfo(extend, "map");
+      for (var name in extend) {
+        result[name] = processSatelliteConfig(extend[name]);
+        if (map && !basis.dev.getInfo(result[name]) && hasOwnProperty.call(map, name)) basis.dev.setInfo(result[name], "loc", map[name]);
+      }
     });
     var SATELLITE_UPDATE = function() {
       var name = this.name;
@@ -4857,6 +5579,8 @@ var __resources__ = {
             if (config.config) basis.object.complete(satelliteConfig, typeof config.config == "function" ? config.config(owner) : config.config);
             this.instance = new this.factory(satelliteConfig);
             owner.setSatellite(name, this.instance, true);
+            var loc = basis.dev.getInfo(config, "loc");
+            if (loc) basis.dev.setInfo(this.instance, "loc", loc);
             return;
           }
           satellite = resolveAbstractNode(this, SATELLITE_UPDATE, this.factory, "instanceRA_");
@@ -4888,6 +5612,31 @@ var __resources__ = {
     };
     var AbstractNode = Class(DataObject, {
       className: namespace + ".AbstractNode",
+      propertyDescriptors: {
+        owner: "ownerChanged",
+        parentNode: "parentChanged",
+        childNodes: "childNodesModified",
+        childNodesState: "childNodesStateChanged",
+        dataSource: "dataSourceChanged",
+        "getChildNodesDataset()": true,
+        satellite: {
+          nested: true,
+          events: "satelliteChanged"
+        },
+        sorting: "sortingChanged",
+        sortingDesc: "sortingChanged",
+        grouping: "groupingChanged",
+        ownerSatelliteName: "ownerSatelliteNameChanged",
+        firstChild: false,
+        lastChild: false,
+        previousSibling: false,
+        nextSibling: false,
+        groupNode: false,
+        groupId: true,
+        autoDelegate: false,
+        destroyDataSourceMember: false,
+        name: true
+      },
       subscribeTo: DataObject.prototype.subscribeTo + SUBSCRIPTION.DATASOURCE + SUBSCRIPTION.SATELLITE,
       isSyncRequired: function() {
         return this.state == STATE.UNDEFINED || this.state == STATE.DEPRECATED;
@@ -4924,7 +5673,7 @@ var __resources__ = {
       },
       childNodesState: STATE.UNDEFINED,
       emit_childNodesStateChanged: createEvent("childNodesStateChanged", "oldState"),
-      childClass: AbstractNode,
+      childClass: Class.SELF,
       dataSource: null,
       emit_dataSourceChanged: createEvent("dataSourceChanged", "oldDataSource"),
       dataSourceRA_: null,
@@ -4945,8 +5694,9 @@ var __resources__ = {
       groupNode: null,
       groupId: NaN,
       satellite: NULL_SATELLITE,
-      ownerSatelliteName: null,
       emit_satelliteChanged: createEvent("satelliteChanged", "name", "oldSatellite"),
+      ownerSatelliteName: null,
+      emit_ownerSatelliteNameChanged: createEvent("ownerSatelliteNameChanged", "name", "oldName"),
       owner: null,
       emit_ownerChanged: createEvent("ownerChanged", "oldOwner"),
       init: function() {
@@ -5047,7 +5797,11 @@ var __resources__ = {
           var destroySatellite;
           if (oldSatellite) {
             delete this.satellite[name];
-            oldSatellite.ownerSatelliteName = null;
+            var oldSatelliteName = oldSatellite.ownerSatelliteName;
+            if (oldSatelliteName != null) {
+              oldSatellite.ownerSatelliteName = null;
+              oldSatellite.emit_ownerSatelliteNameChanged(oldSatelliteName);
+            }
             if (autoConfig && oldSatellite.destroy === warnOnAutoSatelliteDestoy) {
               destroySatellite = oldSatellite;
             } else {
@@ -5108,7 +5862,11 @@ var __resources__ = {
             }
             if (this.satellite == NULL_SATELLITE) this.satellite = {};
             this.satellite[name] = satellite;
-            satellite.ownerSatelliteName = name;
+            var oldSatelliteName = satellite.ownerSatelliteName;
+            if (oldSatelliteName != name) {
+              satellite.ownerSatelliteName = name;
+              satellite.emit_ownerSatelliteNameChanged(oldSatelliteName);
+            }
           }
           this.emit_satelliteChanged(name, oldSatellite);
           if (destroySatellite) {
@@ -5286,7 +6044,11 @@ var __resources__ = {
       var child;
       if (typeof node.childFactory == "function") {
         child = node.childFactory(config);
-        if (child instanceof node.childClass) return child;
+        if (child instanceof node.childClass) {
+          var info = basis.dev.getInfo(config);
+          if (info) for (var key in info) basis.dev.setInfo(child, key, info[key]);
+          return child;
+        }
       }
       if (!child) throw EXCEPTION_NULL_CHILD;
       basis.dev.warn(EXCEPTION_BAD_CHILD_CLASS + " (expected " + (node.childClass && node.childClass.className) + " but " + (child && child.constructor && child.constructor.className) + ")");
@@ -5465,7 +6227,7 @@ var __resources__ = {
         if (!oldChild || oldChild.parentNode !== this) throw EXCEPTION_NODE_NOT_FOUND;
         if (oldChild instanceof this.childClass == false) throw EXCEPTION_BAD_CHILD_CLASS;
         if (this.dataSource) {
-          if (this.dataSource.has(oldChild.delegate)) throw EXCEPTION_DATASOURCE_CONFLICT;
+          if (!oldChild.delegate || this.dataSourceMap_[oldChild.delegate.basisObjectId]) throw EXCEPTION_DATASOURCE_CONFLICT;
         } else {
           if (this.dataSourceRA_) throw EXCEPTION_DATASOURCEADAPTER_CONFLICT;
         }
@@ -5541,29 +6303,48 @@ var __resources__ = {
         dataSource = resolveDataset(this, this.setDataSource, dataSource, "dataSourceRA_");
         if (this.dataSource !== dataSource) {
           var oldDataSource = this.dataSource;
+          var dataSourceMap = this.dataSourceMap_ || {};
           var listenHandler = this.listen.dataSource;
+          var inserted;
+          var deleted;
           if (oldDataSource) {
-            this.dataSourceMap_ = null;
-            this.dataSource = null;
             if (listenHandler) oldDataSource.removeHandler(listenHandler, this);
+            if (dataSource) {
+              inserted = dataSource.getItems().filter(function(item) {
+                return !oldDataSource.has(item);
+              });
+              deleted = oldDataSource.getItems().filter(function(item) {
+                return !dataSource.has(item);
+              });
+            } else {
+              deleted = oldDataSource.getItems();
+            }
+          } else {
+            if (dataSource) inserted = dataSource.getItems();
           }
-          if (this.firstChild) {
-            if (oldDataSource) for (var i = 0, child; child = this.childNodes[i]; i++) unlockDataSourceItemNode(child);
-            this.clear(!this.destroyDataSourceMember);
+          if (!oldDataSource || !dataSource) {
+            if (this.firstChild) {
+              if (oldDataSource) for (var i = 0, child; child = this.childNodes[i]; i++) unlockDataSourceItemNode(child);
+              this.dataSource = null;
+              this.clear(oldDataSource && !this.destroyDataSourceMember);
+            }
+          } else {
+            if (oldDataSource && deleted.length && listenHandler) listenHandler.itemsChanged.call(this, oldDataSource, {
+              deleted: deleted
+            });
           }
           this.dataSource = dataSource;
           if (dataSource) {
-            this.dataSourceMap_ = {};
+            this.dataSourceMap_ = dataSourceMap;
             this.setChildNodesState(dataSource.state, dataSource.state.data);
             if (listenHandler) {
               dataSource.addHandler(listenHandler, this);
-              if (dataSource.itemCount && listenHandler.itemsChanged) {
-                listenHandler.itemsChanged.call(this, dataSource, {
-                  inserted: dataSource.getItems()
-                });
-              }
+              if (inserted.length) listenHandler.itemsChanged.call(this, dataSource, {
+                inserted: inserted
+              });
             }
           } else {
+            this.dataSourceMap_ = null;
             this.setChildNodesState(STATE.UNDEFINED);
           }
           this.emit_dataSourceChanged(oldDataSource);
@@ -5652,6 +6433,22 @@ var __resources__ = {
     };
     var Node = Class(AbstractNode, DomMixin, {
       className: namespace + ".Node",
+      propertyDescriptors: {
+        disabled: "disable enable",
+        contextDisabled: false,
+        selected: "select unselect",
+        contextSelection: false,
+        selection: "selectionChanged",
+        matched: "match unmatch",
+        matchFunction: "matchFunctionChanged"
+      },
+      emit_satelliteChanged: function(name, oldSatellite) {
+        AbstractNode.prototype.emit_satelliteChanged.call(this, name, oldSatellite);
+        if (this.satellite[name] instanceof Node) updateNodeDisableContext(this.satellite[name], this.disabled || this.contextDisabled);
+      },
+      contextDisabled: false,
+      disabled: false,
+      disabledRA_: null,
       emit_enable: createEvent("enable") && function() {
         for (var child = this.firstChild; child; child = child.nextSibling) updateNodeDisableContext(child, false);
         events.enable.call(this);
@@ -5660,24 +6457,18 @@ var __resources__ = {
         for (var child = this.firstChild; child; child = child.nextSibling) updateNodeDisableContext(child, true);
         events.disable.call(this);
       },
-      emit_satelliteChanged: function(name, oldSatellite) {
-        AbstractNode.prototype.emit_satelliteChanged.call(this, name, oldSatellite);
-        if (this.satellite[name] instanceof Node) updateNodeDisableContext(this.satellite[name], this.disabled || this.contextDisabled);
-      },
-      emit_select: createEvent("select"),
-      emit_unselect: createEvent("unselect"),
-      emit_match: createEvent("match"),
-      emit_unmatch: createEvent("unmatch"),
-      emit_matchFunctionChanged: createEvent("matchFunctionChanged", "oldMatchFunction"),
+      selection: null,
+      emit_selectionChanged: createEvent("selectionChanged", "oldSelection"),
+      contextSelection: null,
       selected: false,
       selectedRA_: null,
-      selection: null,
-      contextSelection: null,
-      matchFunction: null,
+      emit_select: createEvent("select"),
+      emit_unselect: createEvent("unselect"),
       matched: true,
-      disabled: false,
-      disabledRA_: null,
-      contextDisabled: false,
+      emit_match: createEvent("match"),
+      emit_unmatch: createEvent("unmatch"),
+      matchFunction: null,
+      emit_matchFunctionChanged: createEvent("matchFunctionChanged", "oldMatchFunction"),
       listen: {
         owner: {
           enable: function() {
@@ -5699,7 +6490,7 @@ var __resources__ = {
         var selection = this.selection;
         if (selection) {
           this.selection = null;
-          this.setSelection(selection);
+          this.setSelection(selection, true);
         }
         AbstractNode.prototype.init.call(this);
         if (disabled) {
@@ -5711,13 +6502,17 @@ var __resources__ = {
         }
         if (this.selected) this.selected = !!resolveValue(this, this.setSelected, this.selected, "selectedRA_");
       },
-      setSelection: function(selection) {
+      setSelection: function(selection, silent) {
+        var oldSelection = this.selection;
         if (selection instanceof Selection === false) selection = selection ? new Selection(selection) : null;
-        if (this.selection !== selection) {
-          updateNodeContextSelection(this, this.selection || this.contextSelection, selection || this.contextSelection, false, true);
-          if (this.selection && this.listen.selection) this.selection.removeHandler(this.listen.selection, this);
+        if (oldSelection !== selection) {
+          updateNodeContextSelection(this, oldSelection || this.contextSelection, selection || this.contextSelection, false, true);
+          if (this.listen.selection) {
+            if (oldSelection) oldSelection.removeHandler(this.listen.selection, this);
+            if (selection) selection.addHandler(this.listen.selection, this);
+          }
           this.selection = selection;
-          if (selection && this.listen.selection) selection.addHandler(this.listen.selection, this);
+          if (!silent) this.emit_selectionChanged(oldSelection);
           return true;
         }
       },
@@ -6058,268 +6853,35 @@ var __resources__ = {
       nullSelection: new ReadOnlyDataset
     };
   },
-  "e.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "g.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.data";
     var Class = basis.Class;
     var sliceArray = Array.prototype.slice;
-    var hasOwnProperty = Object.prototype.hasOwnProperty;
     var values = basis.object.values;
     var $self = basis.fn.$self;
-    var basisEvent = basis.require("./2.js");
+    var STATE = basis.require("./h.js");
+    var SUBSCRIPTION = basis.require("./i.js");
+    var resolvers = basis.require("./j.js");
+    var createResolveFunction = resolvers.createResolveFunction;
+    var resolveValue = resolvers.resolveValue;
+    var ResolveAdapter = resolvers.ResolveAdapter;
+    var BBResolveAdapter = resolvers.BBResolveAdapter;
+    var DEFAULT_CHANGE_ADAPTER_HANDLER = resolvers.DEFAULT_CHANGE_ADAPTER_HANDLER;
+    var DEFAULT_DESTROY_ADAPTER_HANDLER = resolvers.DEFAULT_DESTROY_ADAPTER_HANDLER;
+    var basisEvent = basis.require("./3.js");
     var Emitter = basisEvent.Emitter;
     var createEvent = basisEvent.create;
     var createEventHandler = basisEvent.createHandler;
     var events = basisEvent.events;
+    var AbstractData = basis.require("./13.js");
     var NULL_OBJECT = {};
     var EMPTY_ARRAY = [];
     var FACTORY = basis.FACTORY;
     var PROXY = basis.PROXY;
-    var STATE_EXISTS = {};
-    var STATE = {
-      priority: [],
-      values: {},
-      add: function(state, order) {
-        var name = state;
-        var value = state.toLowerCase();
-        STATE[name] = value;
-        STATE_EXISTS[value] = name;
-        this.values[value] = name;
-        if (order) order = this.priority.indexOf(order); else order = -1;
-        if (order == -1) this.priority.push(value); else this.priority.splice(order, 0, value);
-      },
-      getList: function() {
-        return values(STATE_EXISTS);
-      },
-      factory: function(events, getter) {
-        basis.dev.warn("basis.data.STATE.factory() is deprecated, use basis.data.Value.stateFactory() instead.");
-        return Value.stateFactory(events, getter);
-      },
-      from: function(source) {
-        basis.dev.warn("basis.data.STATE.state() is deprecated, use basis.data.Value.state() instead.");
-        return Value.state(source);
-      }
-    };
-    STATE.add("READY");
-    STATE.add("DEPRECATED");
-    STATE.add("UNDEFINED");
-    STATE.add("ERROR");
-    STATE.add("PROCESSING");
-    var subscriptionConfig = {};
-    var subscriptionSeed = 1;
-    var SUBSCRIPTION = {
-      NONE: 0,
-      ALL: 0,
-      link: function(type, from, to) {
-        var subscriberId = type + from.basisObjectId;
-        var subscribers = to.subscribers_;
-        if (!subscribers) subscribers = to.subscribers_ = {};
-        if (!subscribers[subscriberId]) {
-          subscribers[subscriberId] = from;
-          var count = to.subscriberCount += 1;
-          if (count == 1) to.emit_subscribersChanged(+1);
-        } else {
-          basis.dev.warn("Attempt to add duplicate subscription");
-        }
-      },
-      unlink: function(type, from, to) {
-        var subscriberId = type + from.basisObjectId;
-        var subscribers = to.subscribers_;
-        if (subscribers && subscribers[subscriberId]) {
-          delete subscribers[subscriberId];
-          var count = to.subscriberCount -= 1;
-          if (count == 0) {
-            to.emit_subscribersChanged(-1);
-            to.subscribers_ = null;
-          }
-        } else {
-          basis.dev.warn("Trying remove non-exists subscription");
-        }
-      },
-      add: function(name, handler, action) {
-        subscriptionConfig[subscriptionSeed] = {
-          handler: handler,
-          action: action
-        };
-        SUBSCRIPTION[name] = subscriptionSeed;
-        SUBSCRIPTION.ALL |= subscriptionSeed;
-        subscriptionSeed <<= 1;
-      },
-      addProperty: function(propertyName, eventName) {
-        var handler = {};
-        handler[eventName || propertyName + "Changed"] = function(object, oldValue) {
-          if (oldValue instanceof AbstractData) SUBSCRIPTION.unlink(propertyName, object, oldValue);
-          if (object[propertyName] instanceof AbstractData) SUBSCRIPTION.link(propertyName, object, object[propertyName]);
-        };
-        this.add(propertyName.toUpperCase(), handler, function(fn, object) {
-          if (object[propertyName]) fn(propertyName, object, object[propertyName]);
-        });
-      }
-    };
-    var maskConfig = {};
-    function mixFunctions(fnA, fnB) {
-      return function() {
-        fnA.apply(this, arguments);
-        fnB.apply(this, arguments);
-      };
-    }
-    function getMaskConfig(mask) {
-      var config = maskConfig[mask];
-      if (!config) {
-        var actions = [];
-        var handler = {};
-        var idx = 1;
-        config = maskConfig[mask] = {
-          actions: actions,
-          handler: handler
-        };
-        while (mask) {
-          if (mask & 1) {
-            var cfg = subscriptionConfig[idx];
-            actions.push(cfg.action);
-            for (var key in cfg.handler) handler[key] = handler[key] ? mixFunctions(handler[key], cfg.handler[key]) : cfg.handler[key];
-          }
-          idx <<= 1;
-          mask >>= 1;
-        }
-      }
-      return config;
-    }
-    function addSub(object, mask) {
-      var config = getMaskConfig(mask);
-      for (var i = 0, action; action = config.actions[i]; i++) action(SUBSCRIPTION.link, object);
-      object.addHandler(config.handler);
-    }
-    function remSub(object, mask) {
-      var config = getMaskConfig(mask);
-      for (var i = 0, action; action = config.actions[i++]; ) action(SUBSCRIPTION.unlink, object);
-      object.removeHandler(config.handler);
-    }
     SUBSCRIPTION.addProperty("delegate");
     SUBSCRIPTION.addProperty("target");
     SUBSCRIPTION.addProperty("dataset");
     SUBSCRIPTION.addProperty("value", "change");
-    var AbstractData = Class(Emitter, {
-      className: namespace + ".AbstractData",
-      state: STATE.UNDEFINED,
-      stateRA_: null,
-      emit_stateChanged: createEvent("stateChanged", "oldState"),
-      active: false,
-      activeRA_: null,
-      emit_activeChanged: createEvent("activeChanged"),
-      subscribeTo: SUBSCRIPTION.NONE,
-      subscriberCount: 0,
-      subscribers_: null,
-      emit_subscribersChanged: createEvent("subscribersChanged", "delta"),
-      syncEvents: Class.oneFunctionProperty(function() {
-        if (this.isSyncRequired()) this.syncAction();
-      }, {
-        stateChanged: true,
-        subscribersChanged: true
-      }),
-      syncAction: null,
-      init: function() {
-        Emitter.prototype.init.call(this);
-        if (this.active) {
-          if (this.active === PROXY) this.active = Value.from(this, "subscribersChanged", "subscriberCount");
-          this.active = !!resolveValue(this, this.setActive, this.active, "activeRA_");
-          if (this.active) this.addHandler(getMaskConfig(this.subscribeTo).handler);
-        }
-        if (this.state != STATE.UNDEFINED) {
-          var state = this.state;
-          if (typeof this.state != "string") state = resolveValue(this, this.setState, state, "stateRA_");
-          if (state && !hasOwnProperty.call(STATE_EXISTS, state)) {
-            basis.dev.error("Wrong value for state (value has been ignored and state set to STATE.UNDEFINED)", state);
-            state = false;
-          }
-          this.state = state || STATE.UNDEFINED;
-        }
-        var syncAction = this.syncAction;
-        if (syncAction) {
-          this.syncAction = null;
-          this.setSyncAction(syncAction);
-        }
-      },
-      setState: function(state, data) {
-        state = resolveValue(this, this.setState, state, "stateRA_") || STATE.UNDEFINED;
-        var stateCode = String(state);
-        if (!hasOwnProperty.call(STATE_EXISTS, stateCode)) {
-          basis.dev.error("Wrong value for state (value has been ignored)", stateCode);
-          return false;
-        }
-        if (this.stateRA_ && data === undefined) data = state.data;
-        if (this.state != stateCode || this.state.data != data) {
-          var oldState = this.state;
-          this.state = Object(stateCode);
-          this.state.data = data;
-          this.emit_stateChanged(oldState);
-          return true;
-        }
-        return false;
-      },
-      deprecate: function() {
-        if (this.state != STATE.PROCESSING) this.setState(STATE.DEPRECATED);
-      },
-      setActive: function(isActive) {
-        if (isActive === PROXY) isActive = Value.from(this, "subscribersChanged", "subscriberCount");
-        isActive = !!resolveValue(this, this.setActive, isActive, "activeRA_");
-        if (this.active != isActive) {
-          this.active = isActive;
-          this.emit_activeChanged();
-          if (isActive) addSub(this, this.subscribeTo); else remSub(this, this.subscribeTo);
-          return true;
-        }
-        return false;
-      },
-      setSubscription: function(subscriptionType) {
-        var curSubscriptionType = this.subscribeTo;
-        var newSubscriptionType = subscriptionType & SUBSCRIPTION.ALL;
-        var delta = curSubscriptionType ^ newSubscriptionType;
-        if (delta) {
-          this.subscribeTo = newSubscriptionType;
-          if (this.active) {
-            var curConfig = getMaskConfig(curSubscriptionType);
-            var newConfig = getMaskConfig(newSubscriptionType);
-            this.removeHandler(curConfig.handler);
-            this.addHandler(newConfig.handler);
-            var idx = 1;
-            while (delta) {
-              if (delta & 1) {
-                var cfg = subscriptionConfig[idx];
-                if (curSubscriptionType & idx) cfg.action(SUBSCRIPTION.unlink, this); else cfg.action(SUBSCRIPTION.link, this);
-              }
-              idx <<= 1;
-              delta >>= 1;
-            }
-          }
-          return true;
-        }
-        return false;
-      },
-      isSyncRequired: function() {
-        return this.subscriberCount > 0 && (this.state == STATE.UNDEFINED || this.state == STATE.DEPRECATED);
-      },
-      setSyncAction: function(syncAction) {
-        var oldAction = this.syncAction;
-        if (typeof syncAction != "function") syncAction = null;
-        this.syncAction = syncAction;
-        if (syncAction) {
-          if (!oldAction) this.addHandler(this.syncEvents);
-          if (this.isSyncRequired()) this.syncAction();
-        } else {
-          if (oldAction) this.removeHandler(this.syncEvents);
-        }
-      },
-      destroy: function() {
-        Emitter.prototype.destroy.call(this);
-        if (this.active) {
-          var config = getMaskConfig(this.subscribeTo);
-          for (var i = 0, action; action = config.actions[i]; i++) action(SUBSCRIPTION.unlink, this);
-        }
-        if (this.activeRA_) resolveValue(this, false, false, "activeRA_");
-        if (this.stateRA_) resolveValue(this, false, false, "stateRA_");
-        this.state = STATE.UNDEFINED;
-      }
-    });
     var GETTER_ID = basis.getter.ID;
     var VALUE_EMMITER_HANDLER = {
       destroy: function(object) {
@@ -6343,6 +6905,14 @@ var __resources__ = {
     };
     var Value = Class(AbstractData, {
       className: namespace + ".Value",
+      propertyDescriptors: {
+        value: "change",
+        bindingBridge: false,
+        initValue: false,
+        locked: false,
+        proxy: false,
+        setNullOnEmitterDestroy: false
+      },
       subscribeTo: SUBSCRIPTION.VALUE,
       emit_change: createEvent("change", "oldValue") && function(oldValue) {
         events.change.call(this, oldValue);
@@ -6454,6 +7024,12 @@ var __resources__ = {
               var computeValue = new ReadOnlyValue({
                 value: value
               });
+              basis.dev.setInfo(computeValue, "sourceInfo", {
+                type: "Value#compute",
+                source: [ object, hostValue ],
+                events: events,
+                transform: fn
+              });
               object.addHandler(handler, computeValue);
               pair = computeMap[objectId] = {
                 value: computeValue,
@@ -6487,6 +7063,12 @@ var __resources__ = {
           }
           pipes[id] = pipeValue;
           this.link(pipeValue, valueSyncPipe, true, pipeValue.destroy);
+          basis.dev.setInfo(pipeValue, "sourceInfo", {
+            type: "Value#pipe",
+            source: this,
+            events: events,
+            transform: pipeValue.proxy
+          });
         }
         return pipeValue;
       },
@@ -6505,15 +7087,26 @@ var __resources__ = {
           proxy: fn,
           value: this.value
         });
+        basis.dev.setInfo(result, "sourceInfo", {
+          type: "Value#as",
+          source: this,
+          transform: fn
+        });
         this.link(result, valueSyncAs, true, result.destroy);
         return result;
       },
       deferred: function() {
         if (arguments.length > 0) basis.dev.warn("basis.data.Value#deferred() doesn't accept parameters anymore. Use value.as(fn).deferred() instead.");
-        if (!this.deferred_) this.deferred_ = new DeferredValue({
-          source: this,
-          value: this.value
-        });
+        if (!this.deferred_) {
+          this.deferred_ = new DeferredValue({
+            source: this,
+            value: this.value
+          });
+          basis.dev.setInfo(this.deferred_, "sourceInfo", {
+            type: "Value#deferred",
+            source: this
+          });
+        }
         return this.deferred_;
       },
       link: function(context, fn, noApply, onDestroy) {
@@ -6571,6 +7164,9 @@ var __resources__ = {
       className: namespace + ".ReadOnlyValue",
       set: basis.fn.$false
     });
+    var deferredSchedule = basis.asap.schedule(function(value) {
+      value.unlock();
+    });
     var DEFERRED_HANDLER = {
       change: function(source) {
         if (!this.isLocked()) {
@@ -6583,15 +7179,12 @@ var __resources__ = {
         this.destroy();
       }
     };
-    var deferredSchedule = basis.asap.schedule(function(value) {
-      value.unlock();
-    });
     var DeferredValue = Class(ReadOnlyValue, {
       className: namespace + ".DeferredValue",
       setNullOnEmitterDestroy: false,
       source: null,
       init: function() {
-        Value.prototype.init.call(this);
+        ReadOnlyValue.prototype.init.call(this);
         this.source.addHandler(DEFERRED_HANDLER, this);
       },
       deferred: function() {
@@ -6600,7 +7193,7 @@ var __resources__ = {
       destroy: function() {
         deferredSchedule.remove(this);
         this.source = null;
-        Value.prototype.destroy.call(this);
+        ReadOnlyValue.prototype.destroy.call(this);
       }
     });
     var PipeValue = Class(ReadOnlyValue, {
@@ -6615,7 +7208,7 @@ var __resources__ = {
         source.pipes_[this.pipeId] = null;
         this.source = null;
         this.pipeHandler = null;
-        Value.prototype.destroy.call(this);
+        ReadOnlyValue.prototype.destroy.call(this);
       }
     });
     var valueFromMap = {};
@@ -6646,6 +7239,12 @@ var __resources__ = {
               }
             }
           });
+          basis.dev.setInfo(result, "sourceInfo", {
+            type: "Value.from",
+            source: obj,
+            events: events,
+            transform: result.proxy
+          });
           handler.destroy = function() {
             valueFromMap[id] = null;
             this.destroy();
@@ -6672,7 +7271,81 @@ var __resources__ = {
           }
         }
       }
-      if (!result) throw "Bad object type";
+      if (!result) throw new Error("Bad object type");
+      return result;
+    };
+    var UNDEFINED_VALUE = new ReadOnlyValue({
+      value: undefined
+    });
+    var queryAsFunctionCache = {};
+    var queryNestedFunctionCache = {};
+    function getQueryPathFragment(target, path, index) {
+      var pathFragment = path[index];
+      var isStatic = false;
+      if (/^<static>/.test(pathFragment)) {
+        isStatic = true;
+        pathFragment = pathFragment.substr(8);
+      }
+      var descriptor = target.propertyDescriptors[pathFragment];
+      var events = descriptor ? descriptor.events : null;
+      if (descriptor && descriptor.isPrivate) {
+        isStatic = true;
+        events = null;
+        var warnMessage = "Property can't be accessed via query: ";
+        basis.dev.warn(warnMessage + path.join(".") + "\n" + basis.string.repeat(" ", warnMessage.length + path.slice(0, index).join(".").length) + basis.string.repeat("^", pathFragment.length));
+      }
+      if (descriptor && descriptor.isStatic) isStatic = true;
+      if (events) {
+        if (isStatic) {
+          events = null;
+          var warnMessage = "<static> was applied for property that has events: ";
+          basis.dev.warn(warnMessage + path.join(".") + "\n" + basis.string.repeat(" ", warnMessage.length + path.slice(0, index).join(".").length) + basis.string.repeat("^", "<static>".length) + "\n" + "Propably is't a bug and <static> should be removed from path");
+        } else {
+          if (descriptor && descriptor.nested && index < path.length - 1) {
+            var path0 = pathFragment;
+            var path1 = path[++index];
+            var fullPath = path0 + "." + path1;
+            pathFragment = queryNestedFunctionCache[fullPath];
+            if (!pathFragment) pathFragment = queryNestedFunctionCache[fullPath] = basis.getter(function(object) {
+              object = object && object[path0];
+              return object ? object[path1] : undefined;
+            });
+          }
+        }
+      } else {
+        if (!isStatic) {
+          var warnMessage = "No events found for property: ";
+          basis.dev.warn(warnMessage + path.join(".") + "\n" + basis.string.repeat(" ", warnMessage.length + path.slice(0, index).join(".").length) + basis.string.repeat("^", pathFragment.length) + "\n" + "If a property never changes use `<static>` before property name, i.e. " + path.slice(0, index).join(".") + (index ? "." : "") + "<static>" + path.slice(index).join("."));
+          return;
+        }
+      }
+      return {
+        getter: pathFragment,
+        rest: path.slice(index + 1).join("."),
+        events: events || null
+      };
+    }
+    function getQueryPathFunction(path) {
+      var result = queryAsFunctionCache[path];
+      if (!result) result = queryAsFunctionCache[path] = basis.getter(function(target) {
+        if (target instanceof Emitter) return Value.query(target, path);
+      });
+      return result;
+    }
+    Value.query = function(target, path) {
+      if (arguments.length == 1) {
+        path = target;
+        return chainValueFactory(function(target) {
+          return Value.query(target, path);
+        });
+      }
+      if (target instanceof Emitter == false) throw new Error("Bad target type");
+      if (typeof path != "string") throw new Error("Path should be a string");
+      var pathFragment = getQueryPathFragment(target, path.split("."), 0);
+      var result;
+      if (!pathFragment) return UNDEFINED_VALUE;
+      result = Value.from(target, pathFragment.events, pathFragment.getter);
+      if (pathFragment.rest) result = result.as(getQueryPathFunction(pathFragment.rest)).pipe("change", "value");
       return result;
     };
     function chainValueFactory(fn) {
@@ -6761,6 +7434,15 @@ var __resources__ = {
     }
     var DataObject = Class(AbstractData, {
       className: namespace + ".Object",
+      propertyDescriptors: {
+        delegate: "delegateChanged",
+        target: "targetChanged",
+        root: "rootChanged",
+        data: {
+          nested: true,
+          events: "update"
+        }
+      },
       subscribeTo: SUBSCRIPTION.DELEGATE + SUBSCRIPTION.TARGET,
       data: null,
       emit_update: createEvent("update", "delta") && function(delta) {
@@ -6920,6 +7602,7 @@ var __resources__ = {
         this.target = null;
       }
     });
+    var resolveObject = createResolveFunction(DataObject);
     var Slot = Class(DataObject, {
       className: namespace + ".Slot"
     });
@@ -7011,7 +7694,13 @@ var __resources__ = {
     }
     var DatasetWrapper = Class(DataObject, {
       className: namespace + ".DatasetWrapper",
-      active: basis.PROXY,
+      propertyDescriptors: {
+        dataset: "datasetChanged",
+        itemCount: "itemsChanged",
+        "pick()": "itemsChanged",
+        "getItems()": "itemsChanged"
+      },
+      active: PROXY,
       subscribeTo: DataObject.prototype.subscribeTo + SUBSCRIPTION.DATASET,
       listen: {
         dataset: {
@@ -7077,6 +7766,11 @@ var __resources__ = {
     });
     var ReadOnlyDataset = Class(AbstractData, {
       className: namespace + ".ReadOnlyDataset",
+      propertyDescriptors: {
+        itemCount: "itemsChanged",
+        "pick()": "itemsChanged",
+        "getItems()": "itemsChanged"
+      },
       itemCount: 0,
       items_: null,
       members_: null,
@@ -7273,51 +7967,13 @@ var __resources__ = {
         ReadOnlyDataset.prototype.destroy.call(this);
       }
     });
-    function resolveAdapterProxy() {
-      this.fn.call(this.context, this.source);
-    }
-    var ResolveAdapter = function(context, fn, source, handler) {
-      this.context = context;
-      this.fn = fn;
-      this.source = source;
-      this.handler = handler;
-    };
-    ResolveAdapter.prototype = {
-      context: null,
-      fn: null,
-      source: null,
-      handler: null,
-      next: null,
-      attach: function() {
-        this.source.addHandler(this.handler, this);
-      },
-      detach: function() {
-        this.source.removeHandler(this.handler, this);
-      }
-    };
-    var BBResolveAdapter = function() {
-      ResolveAdapter.apply(this, arguments);
-    };
-    BBResolveAdapter.prototype = new ResolveAdapter;
-    BBResolveAdapter.prototype.attach = function(destroyCallback) {
-      this.source.bindingBridge.attach(this.source, this.handler, this, destroyCallback);
-    };
-    BBResolveAdapter.prototype.detach = function() {
-      this.source.bindingBridge.detach(this.source, this.handler, this);
-    };
-    var DEFAULT_CHANGE_ADAPTER_HANDLER = function() {
-      this.fn.call(this.context, this.source);
-    };
-    var DEFAULT_DESTROY_ADAPTER_HANDLER = function() {
-      this.fn.call(this.context, null);
-    };
-    var RESOLVEVALUE_DESTROY_ADAPTER_HANDLER = function() {
-      this.fn.call(this.context, resolveValue(NULL_OBJECT, null, this.source.bindingBridge.get(this.source)));
-    };
     var DATASETWRAPPER_ADAPTER_HANDLER = {
       datasetChanged: DEFAULT_CHANGE_ADAPTER_HANDLER,
       destroy: DEFAULT_DESTROY_ADAPTER_HANDLER
     };
+    function resolveAdapterProxy() {
+      this.fn.call(this.context, this.source);
+    }
     function resolveDataset(context, fn, source, property, factoryContext) {
       var oldAdapter = context[property] || null;
       var newAdapter = null;
@@ -7346,52 +8002,6 @@ var __resources__ = {
       }
       return source;
     }
-    function createResolveFunction(Class) {
-      return function resolveObject(context, fn, source, property, factoryContext) {
-        var oldAdapter = context[property] || null;
-        var newAdapter = null;
-        if (fn !== resolveAdapterProxy && typeof source == "function") source = source.call(factoryContext || context, factoryContext || context);
-        if (source && source.bindingBridge) {
-          if (!oldAdapter || oldAdapter.source !== source) newAdapter = new BBResolveAdapter(context, fn, source, DEFAULT_CHANGE_ADAPTER_HANDLER); else newAdapter = oldAdapter;
-          source = resolveObject(newAdapter, resolveAdapterProxy, source.bindingBridge.get(source), "next");
-        }
-        if (source instanceof Class == false) source = null;
-        if (property && oldAdapter !== newAdapter) {
-          var cursor = oldAdapter;
-          while (cursor) {
-            var adapter = cursor;
-            adapter.detach();
-            cursor = adapter.next;
-            adapter.next = null;
-          }
-          if (newAdapter) newAdapter.attach(DEFAULT_DESTROY_ADAPTER_HANDLER);
-          context[property] = newAdapter;
-        }
-        return source;
-      };
-    }
-    var resolveObject = createResolveFunction(DataObject);
-    function resolveValue(context, fn, source, property, factoryContext) {
-      var oldAdapter = context[property] || null;
-      var newAdapter = null;
-      if (source && fn !== resolveAdapterProxy && basis.fn.isFactory(source)) source = source.call(factoryContext || context, factoryContext || context);
-      if (source && source.bindingBridge) {
-        if (!oldAdapter || oldAdapter.source !== source) newAdapter = new BBResolveAdapter(context, fn, source, DEFAULT_CHANGE_ADAPTER_HANDLER); else newAdapter = oldAdapter;
-        source = resolveValue(newAdapter, resolveAdapterProxy, source.bindingBridge.get(source), "next");
-      }
-      if (property && oldAdapter !== newAdapter) {
-        var cursor = oldAdapter;
-        while (cursor) {
-          var adapter = cursor;
-          adapter.detach();
-          cursor = adapter.next;
-          adapter.next = null;
-        }
-        if (newAdapter) newAdapter.attach(RESOLVEVALUE_DESTROY_ADAPTER_HANDLER);
-        context[property] = newAdapter;
-      }
-      return source;
-    }
     Dataset.setAccumulateState = function() {
       var proto = ReadOnlyDataset.prototype;
       var eventCache = {};
@@ -7399,16 +8009,25 @@ var __resources__ = {
       var urgentTimer;
       var realEvent;
       function flushCache(cache) {
-        var dataset = cache.dataset;
-        realEvent.call(dataset, cache);
+        realEvent.call(cache.dataset, cache);
       }
       function flushAllDataset() {
-        var eventCacheCopy = eventCache;
-        eventCache = {};
-        for (var datasetId in eventCacheCopy) {
+        function processEntry(datasetId) {
           var entry = eventCacheCopy[datasetId];
-          if (entry) flushCache(entry);
+          if (entry) {
+            eventCacheCopy[datasetId] = null;
+            flushCache(entry);
+          }
         }
+        var eventCacheCopy = eventCache;
+        var realEvent = proto.emit_itemsChanged;
+        proto.emit_itemsChanged = function(delta) {
+          processEntry(this.basisObjectId);
+          realEvent.call(this, delta);
+        };
+        eventCache = {};
+        for (var datasetId in eventCacheCopy) processEntry(datasetId);
+        proto.emit_itemsChanged = realEvent;
       }
       function storeDatasetDelta(delta) {
         var dataset = this;
@@ -7525,6 +8144,7 @@ var __resources__ = {
       ReadOnlyValue: ReadOnlyValue,
       DeferredValue: DeferredValue,
       PipeValue: PipeValue,
+      chainValueFactory: chainValueFactory,
       Object: DataObject,
       Slot: Slot,
       KeyObjectMap: KeyObjectMap,
@@ -7535,540 +8155,635 @@ var __resources__ = {
       getDatasetDelta: getDatasetDelta,
       ResolveAdapter: ResolveAdapter,
       createResolveFunction: createResolveFunction,
-      resolveDataset: resolveDataset,
-      resolveObject: resolveObject,
       resolveValue: resolveValue,
+      resolveObject: resolveObject,
+      resolveDataset: resolveDataset,
       wrapData: wrapData,
       wrapObject: wrapObject,
       wrap: wrap
     };
   },
-  "1.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
-    var document = global.document;
-    var Class = basis.Class;
-    var createEvent = basis.require("./2.js").create;
-    var HtmlTemplate = basis.require("./3.js").Template;
-    var htmlTemplateIdMarker = basis.require("./6.js").MARKER;
-    var TemplateSwitcher = basis.require("./7.js").TemplateSwitcher;
-    var basisDomWrapper = basis.require("./d.js");
-    var DWNode = basisDomWrapper.Node;
-    var DWPartitionNode = basisDomWrapper.PartitionNode;
-    var DWGroupingNode = basisDomWrapper.GroupingNode;
-    var instances = {};
-    var notifier = new basis.Token;
-    var bindingSeed = 1;
-    var unknownEventBindingCheck = {};
-    function extendBinding(binding, extension) {
-      binding.bindingId = bindingSeed++;
-      for (var key in extension) {
-        var def = null;
-        var value = extension[key];
-        if (Node && value instanceof Node || basis.resource.isResource(value)) {
-          def = {
-            events: "satelliteChanged",
-            getter: function(key, satellite) {
-              var resource = typeof satellite == "function" ? satellite : null;
-              var init = function(node) {
-                init = false;
-                if (resource) {
-                  satellite = resource();
-                  if (satellite instanceof Node == false) return;
-                  resource = null;
-                }
-                node.setSatellite(key, satellite);
-                if (node.satellite[key] !== satellite) basis.dev.warn("basis.ui.binding: implicit satellite `" + key + "` attach to owner failed");
-              };
-              return function(node) {
-                if (init) init(node);
-                return resource || (node.satellite[key] ? node.satellite[key].element : null);
-              };
-            }(key, value)
-          };
-        } else {
-          if (value) {
-            if (typeof value == "string") value = BINDING_PRESET.process(key, value); else if (value.bindingBridge) value = basis.fn.$const(value);
-            if (typeof value != "object") {
-              def = {
-                getter: typeof value == "function" ? value : basis.getter(value)
-              };
-            } else if (Array.isArray(value)) {
-              def = {
-                events: value[0],
-                getter: basis.getter(value[1])
-              };
-            } else {
-              def = {
-                events: value.events,
-                getter: basis.getter(value.getter)
-              };
-            }
-          }
-        }
-        binding[key] = def;
+  "h.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
+    var values = basis.object.values;
+    var STATE_EXISTS = {};
+    var STATE = {
+      priority: [],
+      values: {},
+      add: function(state, order) {
+        var name = state;
+        var value = state.toLowerCase();
+        STATE[name] = value;
+        STATE_EXISTS[value] = name;
+        this.values[value] = name;
+        if (order) order = this.priority.indexOf(order); else order = -1;
+        if (order == -1) this.priority.push(value); else this.priority.splice(order, 0, value);
+      },
+      getList: function() {
+        return values(STATE_EXISTS);
+      },
+      isValid: function(value) {
+        return hasOwnProperty.call(STATE_EXISTS, value);
       }
+    };
+    STATE.add("READY");
+    STATE.add("DEPRECATED");
+    STATE.add("UNDEFINED");
+    STATE.add("ERROR");
+    STATE.add("PROCESSING");
+    module.exports = STATE;
+  },
+  "i.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var subscriptionConfig = {};
+    var subscriptionSeed = 1;
+    var maskConfig = {};
+    function mixFunctions(fnA, fnB) {
+      return function() {
+        fnA.apply(this, arguments);
+        fnB.apply(this, arguments);
+      };
     }
-    var BINDING_PRESET = function() {
-      var presets = {};
-      var prefixRegExp = /^([a-z_][a-z0-9_]*):(.*)/i;
-      return {
-        add: function(prefix, func) {
-          if (!presets[prefix]) {
-            presets[prefix] = func;
-          } else {
-            basis.dev.warn("Preset `" + prefix + "` already exists, new definition ignored");
-          }
-        },
-        process: function(key, value) {
-          var preset;
-          var m = value.match(prefixRegExp);
-          if (m) {
-            preset = presets[m[1]];
-            value = m[2] || key;
-          }
-          return preset ? preset(value) : value;
-        }
-      };
-    }();
-    BINDING_PRESET.add("data", function(path) {
-      return {
-        events: "update",
-        getter: "data." + path
-      };
-    });
-    BINDING_PRESET.add("satellite", function(satelliteName) {
-      return {
-        events: "satelliteChanged",
-        getter: function(node) {
-          return node.satellite[satelliteName] ? node.satellite[satelliteName].element : null;
-        }
-      };
-    });
-    var TEMPLATE_BINDING = Class.customExtendProperty({
-      active: {
-        events: "activeChanged",
-        getter: function(node) {
-          return node.active;
-        }
+    var SUBSCRIPTION = {
+      NONE: 0,
+      ALL: 0,
+      add: function(name, handler, action) {
+        subscriptionConfig[subscriptionSeed] = {
+          handler: handler,
+          action: action
+        };
+        SUBSCRIPTION[name] = subscriptionSeed;
+        SUBSCRIPTION.ALL |= subscriptionSeed;
+        subscriptionSeed <<= 1;
       },
-      state: {
-        events: "stateChanged",
-        getter: function(node) {
-          return String(node.state);
-        }
-      },
-      childNodesState: {
-        events: "childNodesStateChanged",
-        getter: function(node) {
-          return String(node.childNodesState);
-        }
-      },
-      childCount: {
-        events: "childNodesModified",
-        getter: function(node) {
-          return node.childNodes ? node.childNodes.length : 0;
-        }
-      },
-      hasChildren: {
-        events: "childNodesModified",
-        getter: function(node) {
-          return !!node.firstChild;
-        }
-      },
-      empty: {
-        events: "childNodesModified",
-        getter: function(node) {
-          return !node.firstChild;
-        }
-      }
-    }, extendBinding);
-    var BINDING_TEMPLATE_INTERFACE = {
-      attach: function(object, handler, context) {
-        object.addHandler(handler, context);
-      },
-      detach: function(object, handler, context) {
-        object.removeHandler(handler, context);
-      }
-    };
-    var TEMPLATE_ACTION = Class.extensibleProperty({
-      select: function(event) {
-        if (this.isDisabled()) return;
-        if (this.selectedRA_) {
-          basis.dev.warn("`selected` property is under bb-value and can't be changed by user action. Override `select` action to make your logic working.");
-          return;
-        }
-        if (this.contextSelection && this.contextSelection.multiple) this.select(event.ctrlKey || event.metaKey); else this.select();
-      }
-    });
-    var TEMPLATE_SWITCHER_HANDLER = {
-      "*": function(event) {
-        var switcher = this.templateSwitcher_;
-        if (switcher && switcher.ruleEvents && switcher.ruleEvents[event.type]) this.setTemplate(switcher.resolve(this));
-      }
-    };
-    var TEMPLATE = new HtmlTemplate("<div/>");
-    var fragments = [];
-    function getDocumentFragment() {
-      return fragments.pop() || document.createDocumentFragment();
-    }
-    function reinsertPartitionNodes(partition) {
-      var nodes = partition.nodes;
-      if (nodes) for (var i = nodes.length - 1, child; child = nodes[i]; i--) child.parentNode.insertBefore(child, child.nextSibling);
-    }
-    var focusTimer;
-    var TemplateMixin = function(super_) {
-      return {
-        template: TEMPLATE,
-        emit_templateChanged: createEvent("templateChanged"),
-        templateSwitcher_: null,
-        binding: TEMPLATE_BINDING,
-        action: TEMPLATE_ACTION,
-        tmpl: null,
-        element: null,
-        childNodesElement: null,
-        init: function() {
-          this.element = this.childNodesElement = getDocumentFragment();
-          super_.init.call(this);
-        },
-        postInit: function() {
-          super_.postInit.call(this);
-          var template = this.template;
-          if (template) {
-            var nodeDocumentFragment = this.childNodesElement;
-            var bindingId = this.constructor.basisClassId_ + "_" + this.binding.bindingId;
-            if (bindingId in unknownEventBindingCheck == false) {
-              unknownEventBindingCheck[bindingId] = true;
-              for (var bindName in this.binding) {
-                var events = this.binding[bindName] && this.binding[bindName].events;
-                if (events) {
-                  events = String(events).trim().split(/\s+|\s*,\s*/);
-                  for (var i = 0, eventName; eventName = events[i]; i++) if ("emit_" + eventName in this == false) basis.dev.warn("basis.ui: binding `" + bindName + "` has unknown event `" + eventName + "` for " + this.constructor.className);
-                }
-              }
-            }
-            this.template = null;
-            this.setTemplate(template);
-            fragments.push(nodeDocumentFragment);
-            if (this.container) {
-              this.container.appendChild(this.element);
-              this.container = null;
-            }
-          }
-          instances[this.basisObjectId] = this;
-          notifier.set({
-            action: "create",
-            instance: this
-          });
-        },
-        templateSync: function() {
-          var oldElement = this.element;
-          var tmpl = this.template.createInstance(this, this.templateAction, this.templateSync, this.binding, BINDING_TEMPLATE_INTERFACE);
-          var noChildNodesElement;
-          if (tmpl.childNodesHere) {
-            tmpl.childNodesElement = tmpl.childNodesHere.parentNode;
-            tmpl.childNodesElement.insertPoint = tmpl.childNodesHere;
-          }
-          this.tmpl = tmpl;
-          this.element = tmpl.element;
-          this.childNodesElement = tmpl.childNodesElement || tmpl.element;
-          noChildNodesElement = this.childNodesElement.nodeType != 1;
-          if (noChildNodesElement) this.childNodesElement = document.createDocumentFragment();
-          if (noChildNodesElement) this.noChildNodesElement_ = true; else delete this.noChildNodesElement_;
-          if (this.grouping) {
-            this.grouping.syncDomRefs();
-            var cursor = this;
-            while (cursor.grouping) cursor = cursor.grouping;
-            var topGrouping = cursor;
-            for (var groupNode = topGrouping.lastChild; groupNode; groupNode = groupNode.previousSibling) {
-              if (groupNode instanceof PartitionNode) topGrouping.insertBefore(groupNode, groupNode.nextSibling); else reinsertPartitionNodes(groupNode);
-            }
-            reinsertPartitionNodes(topGrouping.nullGroup);
-          } else {
-            for (var child = this.lastChild; child; child = child.previousSibling) this.insertBefore(child, child.nextSibling);
-          }
-          if (this instanceof PartitionNode) reinsertPartitionNodes(this);
-          if (oldElement && oldElement !== this.element && oldElement.nodeType != 11) {
-            var parentNode = oldElement && oldElement.parentNode;
-            if (parentNode) {
-              if (this.owner && this.owner.tmpl) this.owner.tmpl.set(oldElement, this.element);
-              if (this.element.parentNode !== parentNode) parentNode.replaceChild(this.element, oldElement);
-            }
-          }
-          this.emit_templateChanged();
-        },
-        setTemplate: function(template) {
-          var curSwitcher = this.templateSwitcher_;
-          var switcher;
-          if (template instanceof TemplateSwitcher) {
-            switcher = template;
-            template = switcher.resolve(this);
-          }
-          if (template instanceof HtmlTemplate == false) template = null;
-          if (!template) {
-            basis.dev.warn("basis.ui.Node#setTemplate: set null to template possible only on node destroy");
-            return;
-          }
-          if (switcher) {
-            this.templateSwitcher_ = switcher;
-            if (!curSwitcher) this.addHandler(TEMPLATE_SWITCHER_HANDLER, this);
-          }
-          if (curSwitcher && curSwitcher.resolve(this) !== template) {
-            this.templateSwitcher_ = null;
-            this.removeHandler(TEMPLATE_SWITCHER_HANDLER, this);
-          }
-          var oldTmpl = this.tmpl;
-          var oldTemplate = this.template;
-          if (oldTemplate !== template) {
-            this.template = template;
-            this.templateSync();
-            if (oldTemplate) oldTemplate.clearInstance(oldTmpl);
-          }
-        },
-        updateBind: function(bindName) {
-          var binding = this.binding[bindName];
-          var getter = binding && binding.getter;
-          if (getter && this.tmpl) this.tmpl.set(bindName, getter(this));
-        },
-        templateAction: function(actionName, event) {
-          var action = this.action[actionName];
-          if (action) action.call(this, event);
-          if (!action) basis.dev.warn("template call `" + actionName + "` action, but it isn't defined in action list");
-        },
-        focus: function(select) {
-          var focusElement = this.tmpl ? this.tmpl.focus || this.element : null;
-          if (focusElement) {
-            if (focusTimer) focusTimer = basis.clearImmediate(focusTimer);
-            focusTimer = basis.setImmediate(function() {
-              try {
-                focusElement.focus();
-                if (select) focusElement.select();
-              } catch (e) {}
-            });
-          }
-        },
-        blur: function() {
-          var focusElement = this.tmpl ? this.tmpl.focus || this.element : null;
-          if (focusElement) try {
-            focusElement.blur();
-          } catch (e) {}
-        },
-        destroy: function() {
-          delete instances[this.basisObjectId];
-          notifier.set({
-            action: "destroy",
-            instance: this
-          });
-          var template = this.template;
-          var element = this.element;
-          if (this.templateSwitcher_) {
-            this.templateSwitcher_ = null;
-            this.removeHandler(TEMPLATE_SWITCHER_HANDLER, this);
-          }
-          template.clearInstance(this.tmpl);
-          super_.destroy.call(this);
-          this.tmpl = null;
-          this.element = null;
-          this.childNodesElement = null;
-          var parentNode = element && element.parentNode;
-          if (parentNode && parentNode.nodeType == 1) parentNode.removeChild(element);
-        }
-      };
-    };
-    var ContainerTemplateMixin = function(super_) {
-      return {
-        insertBefore: function(newChild, refChild) {
-          if (this.noChildNodesElement_) {
-            delete this.noChildNodesElement_;
-            basis.dev.warn("basis.ui: Template has no childNodesElement container, but insertBefore method called; probably it's a bug");
-          }
-          newChild = super_.insertBefore.call(this, newChild, refChild);
-          var target = newChild.groupNode || this;
-          var container = target.childNodesElement || this.childNodesElement;
-          var nextSibling = newChild.nextSibling;
-          var insertPoint = nextSibling && nextSibling.element.parentNode == container ? nextSibling.element : null;
-          var childElement = newChild.element;
-          var refNode = insertPoint || container.insertPoint || null;
-          if (childElement.parentNode !== container || childElement.nextSibling !== refNode) container.insertBefore(childElement, refNode);
-          return newChild;
-        },
-        removeChild: function(oldChild) {
-          super_.removeChild.call(this, oldChild);
-          var element = oldChild.element;
-          var parent = element.parentNode;
-          if (parent) parent.removeChild(element);
-          return oldChild;
-        },
-        clear: function(alive) {
-          if (alive) {
-            var node = this.firstChild;
-            while (node) {
-              var element = node.element;
-              var parent = element.parentNode;
-              if (parent) parent.removeChild(element);
-              node = node.nextSibling;
-            }
-          }
-          super_.clear.call(this, alive);
-        },
-        setChildNodes: function(childNodes, keepAlive) {
-          if (this.noChildNodesElement_) {
-            delete this.noChildNodesElement_;
-            basis.dev.warn("basis.ui: Template has no childNodesElement container, but setChildNodes method called; probably it's a bug");
-          }
-          var domFragment = document.createDocumentFragment();
-          var target = this.grouping || this;
-          var container = target.childNodesElement;
-          target.childNodesElement = domFragment;
-          super_.setChildNodes.call(this, childNodes, keepAlive);
-          container.insertBefore(domFragment, container.insertPoint || null);
-          target.childNodesElement = container;
-        }
-      };
-    };
-    var PartitionNode = Class(DWPartitionNode, TemplateMixin, {
-      className: namespace + ".PartitionNode",
-      binding: {
-        title: "data:"
-      }
-    });
-    var GroupingNode = Class(DWGroupingNode, ContainerTemplateMixin, {
-      className: namespace + ".GroupingNode",
-      childClass: PartitionNode,
-      groupingClass: Class.SELF,
-      element: null,
-      childNodesElement: null,
-      emit_ownerChanged: function(oldOwner) {
-        this.syncDomRefs();
-        DWGroupingNode.prototype.emit_ownerChanged.call(this, oldOwner);
-      },
-      init: function() {
-        this.element = this.childNodesElement = document.createDocumentFragment();
-        DWGroupingNode.prototype.init.call(this);
-        instances[this.basisObjectId] = this;
-        notifier.set({
-          action: "create",
-          instance: this
+      addProperty: function(propertyName, eventName) {
+        var handler = {};
+        handler[eventName || propertyName + "Changed"] = function(object, oldValue) {
+          if (oldValue) SUBSCRIPTION.unlink(propertyName, object, oldValue);
+          if (object[propertyName]) SUBSCRIPTION.link(propertyName, object, object[propertyName]);
+        };
+        this.add(propertyName.toUpperCase(), handler, function(fn, object) {
+          if (object[propertyName]) fn(propertyName, object, object[propertyName]);
         });
       },
-      syncDomRefs: function() {
-        var cursor = this;
-        var owner = this.owner;
-        var element = null;
-        if (owner) element = owner.tmpl && owner.tmpl.groupsElement || owner.childNodesElement;
-        do {
-          cursor.element = cursor.childNodesElement = element;
-        } while (cursor = cursor.grouping);
+      getMaskConfig: function(mask) {
+        var config = maskConfig[mask];
+        if (!config) {
+          var actions = [];
+          var handler = {};
+          var idx = 1;
+          config = maskConfig[mask] = {
+            actions: actions,
+            handler: handler
+          };
+          while (mask) {
+            if (mask & 1) {
+              var cfg = subscriptionConfig[idx];
+              actions.push(cfg.action);
+              for (var key in cfg.handler) handler[key] = handler[key] ? mixFunctions(handler[key], cfg.handler[key]) : cfg.handler[key];
+            }
+            idx <<= 1;
+            mask >>= 1;
+          }
+        }
+        return config;
+      },
+      link: function(type, from, to) {
+        var subscriberId = type + from.basisObjectId;
+        var subscribers = to.subscribers_;
+        if (!subscribers) subscribers = to.subscribers_ = {};
+        if (!subscribers[subscriberId]) {
+          subscribers[subscriberId] = from;
+          var count = to.subscriberCount += 1;
+          if (count == 1) to.emit_subscribersChanged(+1);
+        } else {
+          basis.dev.warn("Attempt to add duplicate subscription");
+        }
+      },
+      unlink: function(type, from, to) {
+        var subscriberId = type + from.basisObjectId;
+        var subscribers = to.subscribers_;
+        if (subscribers && subscribers[subscriberId]) {
+          delete subscribers[subscriberId];
+          var count = to.subscriberCount -= 1;
+          if (count == 0) {
+            to.emit_subscribersChanged(-1);
+            to.subscribers_ = null;
+          }
+        } else {
+          basis.dev.warn("Trying remove non-exists subscription");
+        }
+      },
+      subscribe: function(object, mask) {
+        var config = this.getMaskConfig(mask);
+        for (var i = 0, action; action = config.actions[i]; i++) action(SUBSCRIPTION.link, object);
+        object.addHandler(config.handler);
+      },
+      unsubscribe: function(object, mask) {
+        var config = this.getMaskConfig(mask);
+        for (var i = 0, action; action = config.actions[i++]; ) action(SUBSCRIPTION.unlink, object);
+        object.removeHandler(config.handler);
+      },
+      changeSubscription: function(object, oldSubscriptionType, newSubscriptionType) {
+        var delta = oldSubscriptionType ^ newSubscriptionType;
+        if (delta) {
+          var curConfig = SUBSCRIPTION.getMaskConfig(oldSubscriptionType);
+          var newConfig = SUBSCRIPTION.getMaskConfig(newSubscriptionType);
+          object.removeHandler(curConfig.handler);
+          object.addHandler(newConfig.handler);
+          var idx = 1;
+          while (delta) {
+            if (delta & 1) {
+              var cfg = subscriptionConfig[idx];
+              if (oldSubscriptionType & idx) cfg.action(SUBSCRIPTION.unlink, object); else cfg.action(SUBSCRIPTION.link, object);
+            }
+            idx <<= 1;
+            delta >>= 1;
+          }
+        }
+      }
+    };
+    module.exports = SUBSCRIPTION;
+  },
+  "j.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var NULL_OBJECT = {};
+    function resolveAdapterProxy() {
+      this.fn.call(this.context, this.source);
+    }
+    var ResolveAdapter = function(context, fn, source, handler) {
+      this.context = context;
+      this.fn = fn;
+      this.source = source;
+      this.handler = handler;
+    };
+    ResolveAdapter.prototype = {
+      context: null,
+      fn: null,
+      source: null,
+      handler: null,
+      next: null,
+      attach: function() {
+        this.source.addHandler(this.handler, this);
+      },
+      detach: function() {
+        this.source.removeHandler(this.handler, this);
+      }
+    };
+    var BBResolveAdapter = function() {
+      ResolveAdapter.apply(this, arguments);
+    };
+    BBResolveAdapter.prototype = new ResolveAdapter;
+    BBResolveAdapter.prototype.attach = function(destroyCallback) {
+      this.source.bindingBridge.attach(this.source, this.handler, this, destroyCallback);
+    };
+    BBResolveAdapter.prototype.detach = function() {
+      this.source.bindingBridge.detach(this.source, this.handler, this);
+    };
+    var DEFAULT_CHANGE_ADAPTER_HANDLER = function() {
+      this.fn.call(this.context, this.source);
+    };
+    var DEFAULT_DESTROY_ADAPTER_HANDLER = function() {
+      this.fn.call(this.context, null);
+    };
+    var RESOLVEVALUE_DESTROY_ADAPTER_HANDLER = function() {
+      this.fn.call(this.context, resolveValue(NULL_OBJECT, null, this.source.bindingBridge.get(this.source)));
+    };
+    function createResolveFunction(Class) {
+      return function resolve(context, fn, source, property, factoryContext) {
+        var oldAdapter = context[property] || null;
+        var newAdapter = null;
+        if (fn !== resolveAdapterProxy && typeof source == "function") source = source.call(factoryContext || context, factoryContext || context);
+        if (source && source.bindingBridge) {
+          if (!oldAdapter || oldAdapter.source !== source) newAdapter = new BBResolveAdapter(context, fn, source, DEFAULT_CHANGE_ADAPTER_HANDLER); else newAdapter = oldAdapter;
+          source = resolve(newAdapter, resolveAdapterProxy, source.bindingBridge.get(source), "next");
+        }
+        if (source instanceof Class == false) source = null;
+        if (property && oldAdapter !== newAdapter) {
+          var cursor = oldAdapter;
+          while (cursor) {
+            var adapter = cursor;
+            adapter.detach();
+            cursor = adapter.next;
+            adapter.next = null;
+          }
+          if (newAdapter) newAdapter.attach(DEFAULT_DESTROY_ADAPTER_HANDLER);
+          context[property] = newAdapter;
+        }
+        return source;
+      };
+    }
+    function resolveValue(context, fn, source, property, factoryContext) {
+      var oldAdapter = context[property] || null;
+      var newAdapter = null;
+      if (source && fn !== resolveAdapterProxy && basis.fn.isFactory(source)) source = source.call(factoryContext || context, factoryContext || context);
+      if (source && source.bindingBridge) {
+        if (!oldAdapter || oldAdapter.source !== source) newAdapter = new BBResolveAdapter(context, fn, source, DEFAULT_CHANGE_ADAPTER_HANDLER); else newAdapter = oldAdapter;
+        source = resolveValue(newAdapter, resolveAdapterProxy, source.bindingBridge.get(source), "next");
+      }
+      if (property && oldAdapter !== newAdapter) {
+        var cursor = oldAdapter;
+        while (cursor) {
+          var adapter = cursor;
+          adapter.detach();
+          cursor = adapter.next;
+          adapter.next = null;
+        }
+        if (newAdapter) newAdapter.attach(RESOLVEVALUE_DESTROY_ADAPTER_HANDLER);
+        context[property] = newAdapter;
+      }
+      return source;
+    }
+    module.exports = {
+      DEFAULT_CHANGE_ADAPTER_HANDLER: DEFAULT_CHANGE_ADAPTER_HANDLER,
+      DEFAULT_DESTROY_ADAPTER_HANDLER: DEFAULT_DESTROY_ADAPTER_HANDLER,
+      ResolveAdapter: ResolveAdapter,
+      BBResolveAdapter: BBResolveAdapter,
+      createResolveFunction: createResolveFunction,
+      resolveValue: resolveValue
+    };
+  },
+  "13.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var basisEvent = basis.require("./3.js");
+    var Emitter = basisEvent.Emitter;
+    var createEvent = basisEvent.create;
+    var STATE = basis.require("./h.js");
+    var SUBSCRIPTION = basis.require("./i.js");
+    var resolveValue = basis.require("./j.js").resolveValue;
+    var PROXY = basis.PROXY;
+    var ABSTRACTDATA_ACTIVE_SYNC_HANDLER = {
+      subscribersChanged: function(host) {
+        this.set(host.subscriberCount > 0);
+      }
+    };
+    var AbstractData = Emitter.subclass({
+      className: "basis.data.AbstractData",
+      propertyDescriptors: {
+        state: "stateChanged",
+        active: "activeChanged",
+        subscriberCount: "subscribersChanged",
+        subscribeTo: false,
+        syncAction: false,
+        syncEvents: false
+      },
+      state: STATE.UNDEFINED,
+      stateRA_: null,
+      emit_stateChanged: createEvent("stateChanged", "oldState"),
+      active: false,
+      activeRA_: null,
+      emit_activeChanged: createEvent("activeChanged"),
+      subscribeTo: SUBSCRIPTION.NONE,
+      subscriberCount: 0,
+      subscribers_: null,
+      emit_subscribersChanged: createEvent("subscribersChanged", "delta"),
+      syncEvents: basis.Class.oneFunctionProperty(function() {
+        if (this.isSyncRequired()) this.syncAction();
+      }, {
+        stateChanged: true,
+        subscribersChanged: true
+      }),
+      syncAction: null,
+      init: function() {
+        Emitter.prototype.init.call(this);
+        if (this.active) {
+          if (this.active === PROXY) {
+            this.active = new basis.Token(this.subscriberCount > 0);
+            this.addHandler(ABSTRACTDATA_ACTIVE_SYNC_HANDLER, this.active);
+          }
+          this.active = !!resolveValue(this, this.setActive, this.active, "activeRA_");
+          if (this.active) this.addHandler(SUBSCRIPTION.getMaskConfig(this.subscribeTo).handler);
+        }
+        if (this.state != STATE.UNDEFINED) {
+          var state = this.state;
+          if (typeof this.state != "string") state = resolveValue(this, this.setState, state, "stateRA_");
+          if (state && !STATE.isValid(state)) {
+            basis.dev.error("Wrong value for state (value has been ignored and state set to STATE.UNDEFINED)", state);
+            state = false;
+          }
+          this.state = state || STATE.UNDEFINED;
+        }
+        var syncAction = this.syncAction;
+        if (syncAction) {
+          this.syncAction = null;
+          this.setSyncAction(syncAction);
+        }
+      },
+      setState: function(state, data) {
+        state = resolveValue(this, this.setState, state, "stateRA_") || STATE.UNDEFINED;
+        var stateCode = String(state);
+        if (!STATE.isValid(stateCode)) {
+          basis.dev.error("Wrong value for state (value has been ignored)", stateCode);
+          return false;
+        }
+        if (this.stateRA_ && data === undefined) data = state.data;
+        if (this.state != stateCode || this.state.data != data) {
+          var oldState = this.state;
+          this.state = Object(stateCode);
+          this.state.data = data;
+          this.emit_stateChanged(oldState);
+          return true;
+        }
+        return false;
+      },
+      deprecate: function() {
+        if (this.state != STATE.PROCESSING) this.setState(STATE.DEPRECATED);
+      },
+      setActive: function(isActive) {
+        var proxyToken = this.activeRA_ && this.activeRA_.proxyToken;
+        if (isActive === PROXY) {
+          if (!proxyToken) {
+            proxyToken = new basis.Token(this.subscriberCount > 0);
+            this.addHandler(ABSTRACTDATA_ACTIVE_SYNC_HANDLER, proxyToken);
+          }
+          isActive = proxyToken;
+        } else {
+          if (proxyToken && isActive !== proxyToken) {
+            this.removeHandler(ABSTRACTDATA_ACTIVE_SYNC_HANDLER, proxyToken);
+            proxyToken = null;
+          }
+        }
+        isActive = !!resolveValue(this, this.setActive, isActive, "activeRA_");
+        if (proxyToken && this.activeRA_) this.activeRA_.proxyToken = proxyToken;
+        if (this.active != isActive) {
+          this.active = isActive;
+          this.emit_activeChanged();
+          if (isActive) SUBSCRIPTION.subscribe(this, this.subscribeTo); else SUBSCRIPTION.unsubscribe(this, this.subscribeTo);
+          return true;
+        }
+        return false;
+      },
+      setSubscription: function(subscriptionType) {
+        var curSubscriptionType = this.subscribeTo;
+        var newSubscriptionType = subscriptionType & SUBSCRIPTION.ALL;
+        var delta = curSubscriptionType ^ newSubscriptionType;
+        if (delta) {
+          this.subscribeTo = newSubscriptionType;
+          if (this.active) SUBSCRIPTION.changeSubscription(this, curSubscriptionType, newSubscriptionType);
+          return true;
+        }
+        return false;
+      },
+      isSyncRequired: function() {
+        return this.subscriberCount > 0 && (this.state == STATE.UNDEFINED || this.state == STATE.DEPRECATED);
+      },
+      setSyncAction: function(syncAction) {
+        var oldAction = this.syncAction;
+        if (typeof syncAction != "function") syncAction = null;
+        this.syncAction = syncAction;
+        if (syncAction) {
+          if (!oldAction) this.addHandler(this.syncEvents);
+          if (this.isSyncRequired()) this.syncAction();
+        } else {
+          if (oldAction) this.removeHandler(this.syncEvents);
+        }
       },
       destroy: function() {
-        delete instances[this.basisObjectId];
-        notifier.set({
-          action: "destroy",
-          instance: this
-        });
-        DWGroupingNode.prototype.destroy.call(this);
-        this.element = null;
-        this.childNodesElement = null;
+        Emitter.prototype.destroy.call(this);
+        if (this.active) {
+          var config = SUBSCRIPTION.getMaskConfig(this.subscribeTo);
+          for (var i = 0, action; action = config.actions[i]; i++) action(SUBSCRIPTION.unlink, this);
+        }
+        if (this.activeRA_) resolveValue(this, false, false, "activeRA_");
+        if (this.stateRA_) resolveValue(this, false, false, "stateRA_");
+        this.state = STATE.UNDEFINED;
       }
     });
-    var Node = Class(DWNode, TemplateMixin, ContainerTemplateMixin, {
-      className: namespace + ".Node",
-      binding: {
-        selected: {
-          events: "select unselect",
-          getter: function(node) {
-            return node.selected;
+    module.exports = AbstractData;
+  },
+  "k.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.dragdrop";
+    var document = global.document;
+    var cleaner = basis.cleaner;
+    var eventUtils = basis.require("./e.js");
+    var addGlobalHandler = eventUtils.addGlobalHandler;
+    var removeGlobalHandler = eventUtils.removeGlobalHandler;
+    var basisEvent = basis.require("./3.js");
+    var Emitter = basisEvent.Emitter;
+    var createEvent = basisEvent.create;
+    var getComputedStyle = basis.require("./l.js").get;
+    var basisLayout = basis.require("./m.js");
+    var getBoundingRect = basisLayout.getBoundingRect;
+    var getViewportRect = basisLayout.getViewportRect;
+    var SELECTSTART_SUPPORTED = eventUtils.getEventInfo("selectstart").supported;
+    var dragging;
+    var dragElement;
+    var dragData;
+    function resolveElement(value) {
+      return typeof value == "string" ? document.getElementById(value) : value;
+    }
+    function startDrag(event) {
+      if (dragElement || this.ignoreTarget(event.sender, event)) return;
+      var viewport = getViewportRect(event.sender);
+      if (event.mouseX < viewport.left || event.mouseX > viewport.right || event.mouseY < viewport.top || event.mouseY > viewport.bottom) return;
+      dragElement = this;
+      dragData = {
+        initX: event.mouseX,
+        initY: event.mouseY,
+        deltaX: 0,
+        minDeltaX: -Infinity,
+        maxDeltaX: Infinity,
+        deltaY: 0,
+        minDeltaY: -Infinity,
+        maxDeltaY: Infinity
+      };
+      addGlobalHandler("mousedown", stopDrag);
+      addGlobalHandler("touchstart", stopDrag);
+      addGlobalHandler("mousemove", onDrag);
+      addGlobalHandler("touchmove", onDrag);
+      addGlobalHandler("mouseup", stopDrag);
+      addGlobalHandler("touchend", stopDrag);
+      if (SELECTSTART_SUPPORTED) addGlobalHandler("selectstart", eventUtils.kill);
+      event.preventDefault();
+      this.prepareDrag(dragData, event);
+    }
+    function onDrag(event) {
+      var deltaX = event.mouseX - dragData.initX;
+      var deltaY = event.mouseY - dragData.initY;
+      if (!dragging) {
+        if (!dragElement.startRule(deltaX, deltaY)) return;
+        dragging = true;
+        dragElement.emit_start(dragData, event);
+      }
+      if (dragElement.axisX) dragData.deltaX = dragElement.axisXproxy(basis.number.fit(deltaX, dragData.minDeltaX, dragData.maxDeltaX));
+      if (dragElement.axisY) dragData.deltaY = dragElement.axisYproxy(basis.number.fit(deltaY, dragData.minDeltaY, dragData.maxDeltaY));
+      dragElement.emit_drag(dragData, event);
+    }
+    function stopDrag(event) {
+      removeGlobalHandler("mousedown", stopDrag);
+      removeGlobalHandler("touchstart", stopDrag);
+      removeGlobalHandler("mousemove", onDrag);
+      removeGlobalHandler("touchmove", onDrag);
+      removeGlobalHandler("mouseup", stopDrag);
+      removeGlobalHandler("touchend", stopDrag);
+      if (SELECTSTART_SUPPORTED) removeGlobalHandler("selectstart", eventUtils.kill);
+      var element = dragElement;
+      var data = dragData;
+      dragElement = null;
+      dragData = null;
+      if (dragging) {
+        dragging = false;
+        element.emit_over(data, event);
+      }
+      event.die();
+    }
+    var DragDropElement = Emitter.subclass({
+      className: namespace + ".DragDropElement",
+      element: null,
+      trigger: null,
+      baseElement: null,
+      axisX: true,
+      axisY: true,
+      axisXproxy: basis.fn.$self,
+      axisYproxy: basis.fn.$self,
+      prepareDrag: basis.fn.$undef,
+      startRule: basis.fn.$true,
+      ignoreTarget: function(target) {
+        return /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(target.tagName);
+      },
+      emit_start: createEvent("start"),
+      emit_drag: createEvent("drag"),
+      emit_over: createEvent("over"),
+      init: function() {
+        Emitter.prototype.init.call(this);
+        var element = this.element;
+        var trigger = this.trigger;
+        this.element = null;
+        this.trigger = null;
+        this.setElement(element, trigger);
+        this.setBase(this.baseElement);
+        cleaner.add(this);
+      },
+      setElement: function(element, trigger) {
+        this.element = resolveElement(element);
+        trigger = resolveElement(trigger) || this.element;
+        if (this.trigger !== trigger) {
+          if (this.trigger) {
+            eventUtils.removeHandler(this.trigger, "mousedown", startDrag, this);
+            eventUtils.removeHandler(this.trigger, "touchstart", startDrag, this);
           }
-        },
-        unselected: {
-          events: "select unselect",
-          getter: function(node) {
-            return !node.selected;
-          }
-        },
-        disabled: {
-          events: "disable enable",
-          getter: function(node) {
-            return node.isDisabled();
-          }
-        },
-        enabled: {
-          events: "disable enable",
-          getter: function(node) {
-            return !node.isDisabled();
-          }
-        },
-        tabindex: {
-          events: "enable disable",
-          getter: function(node) {
-            return node.isDisabled() ? -1 : node.tabindex || 0;
+          this.trigger = trigger;
+          if (this.trigger) {
+            eventUtils.addHandler(this.trigger, "mousedown", startDrag, this);
+            eventUtils.addHandler(this.trigger, "touchstart", startDrag, this);
           }
         }
       },
-      childClass: Class.SELF,
-      childFactory: function(config) {
-        return new this.childClass(config);
+      setBase: function(baseElement) {
+        this.baseElement = resolveElement(baseElement);
       },
-      groupingClass: GroupingNode
+      getBase: function() {
+        if (getComputedStyle(this.element, "position") == "fixed") return global;
+        if (this.baseElement) return this.baseElement;
+        return document.compatMode == "CSS1Compat" ? document.documentElement : document.body;
+      },
+      isDragging: function() {
+        return dragElement === this;
+      },
+      start: function(event) {
+        if (!this.isDragging()) startDrag.call(this, event);
+      },
+      stop: function() {
+        if (this.isDragging()) stopDrag();
+      },
+      destroy: function() {
+        this.stop();
+        cleaner.remove(this);
+        Emitter.prototype.destroy.call(this);
+        this.setElement();
+        this.setBase();
+      }
     });
-    var ShadowNodeList = Node.subclass({
-      className: namespace + ".ShadowNodeList",
-      emit_ownerChanged: function(oldOwner) {
-        Node.prototype.emit_ownerChanged.call(this, oldOwner);
-        this.setDataSource(this.owner && this.owner.getChildNodesDataset());
+    var DeltaWriter = basis.Class(null, {
+      className: namespace + ".DeltaWriter",
+      property: null,
+      invert: false,
+      format: basis.fn.$self,
+      init: function(element) {
+        if (typeof this.property == "function") this.property = this.property(element);
+        if (typeof this.invert == "function") this.invert = this.invert(this.property);
+        this.value = this.read(element);
       },
-      getChildNodesElement: function(owner) {
-        return owner.childNodesElement;
+      read: function(element) {
+        return element[this.property];
       },
-      listen: {
-        owner: {
-          templateChanged: function() {
-            this.childNodes.forEach(function(child) {
-              this.appendChild(child.element);
-            }, this.getChildNodesElement(this.owner) || this.owner.element);
+      write: function(element, formattedValue) {
+        element[this.property] = formattedValue;
+      },
+      applyDelta: function(element, delta) {
+        if (this.invert) delta = -delta;
+        this.write(element, this.format(this.value + delta, delta));
+      }
+    });
+    var StyleDeltaWriter = DeltaWriter.subclass({
+      className: namespace + ".StyleDeltaWriter",
+      format: function(value) {
+        return value + "px";
+      },
+      read: function(element) {
+        return parseFloat(getComputedStyle(element, this.property)) || 0;
+      },
+      write: function(element, formattedValue) {
+        element.style[this.property] = formattedValue;
+      }
+    });
+    var StylePositionX = StyleDeltaWriter.subclass({
+      className: namespace + ".StylePositionX",
+      property: function(element) {
+        return getComputedStyle(element, "left") == "auto" && getComputedStyle(element, "right") != "auto" ? "right" : "left";
+      },
+      invert: function(property) {
+        return property == "right";
+      }
+    });
+    var StylePositionY = StyleDeltaWriter.subclass({
+      className: namespace + ".StylePositionY",
+      property: function(element) {
+        return getComputedStyle(element, "top") == "auto" && getComputedStyle(element, "bottom") != "auto" ? "bottom" : "top";
+      },
+      invert: function(property) {
+        return property == "bottom";
+      }
+    });
+    var MoveableElement = DragDropElement.subclass({
+      className: namespace + ".MoveableElement",
+      fixTop: true,
+      fixRight: true,
+      fixBottom: true,
+      fixLeft: true,
+      axisX: StylePositionX,
+      axisY: StylePositionY,
+      emit_start: function(dragData, event) {
+        var element = this.element;
+        if (element) {
+          var viewport = getViewportRect(this.getBase());
+          var box = getBoundingRect(element, this.getBase());
+          dragData.element = element;
+          if (this.axisX) {
+            dragData.axisX = new this.axisX(element);
+            if (this.fixLeft) dragData.minDeltaX = viewport.left - box.left;
+            if (this.fixRight) dragData.maxDeltaX = viewport.right - box.right;
+          }
+          if (this.axisY) {
+            dragData.axisY = new this.axisY(element);
+            if (this.fixTop) dragData.minDeltaY = viewport.top - box.top;
+            if (this.fixBottom) dragData.maxDeltaY = viewport.bottom - box.bottom;
           }
         }
+        DragDropElement.prototype.emit_start.call(this, dragData, event);
       },
-      childClass: {
-        className: namespace + ".ShadowNode",
-        getElement: function(node) {
-          return node.element;
-        },
-        templateSync: function() {
-          Node.prototype.templateSync.call(this);
-          var newElement = this.getElement(this.delegate);
-          if (newElement) {
-            newElement[htmlTemplateIdMarker] = this.delegate.element[htmlTemplateIdMarker];
-            this.element = newElement;
-          }
-        },
-        listen: {
-          delegate: {
-            templateChanged: function() {
-              var oldElement = this.element;
-              var oldElementParent = oldElement.parentNode;
-              var newElement = this.getElement(this.delegate);
-              if (newElement) newElement[htmlTemplateIdMarker] = this.delegate.element[htmlTemplateIdMarker];
-              this.element = newElement || this.tmpl.element;
-              if (oldElementParent) oldElementParent.replaceChild(this.element, oldElement);
-            }
-          }
-        }
+      emit_drag: function(dragData, event) {
+        if (!dragData.element) return;
+        if (dragData.axisX) dragData.axisX.applyDelta(dragData.element, dragData.deltaX);
+        if (dragData.axisY) dragData.axisY.applyDelta(dragData.element, dragData.deltaY);
+        DragDropElement.prototype.emit_drag.call(this, dragData, event);
       }
     });
     module.exports = {
-      debug_notifier: notifier,
-      debug_getInstances: function() {
-        return basis.object.values(instances);
-      },
-      BINDING_PRESET: BINDING_PRESET,
-      Node: Node,
-      PartitionNode: PartitionNode,
-      GroupingNode: GroupingNode,
-      ShadowNodeList: ShadowNodeList,
-      ShadowNode: ShadowNodeList.prototype.childClass
+      DragDropElement: DragDropElement,
+      MoveableElement: MoveableElement,
+      DeltaWriter: DeltaWriter,
+      StyleDeltaWriter: StyleDeltaWriter
     };
   },
-  "g.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "l.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var document = global.document;
     var computedStyle;
     if ("getComputedStyle" in global) {
@@ -8133,10 +8848,10 @@ var __resources__ = {
       get: computedStyle
     };
   },
-  "h.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "m.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var document = global.document;
     var documentElement = document.documentElement;
-    var getComputedStyle = basis.require("./g.js").get;
+    var getComputedStyle = basis.require("./l.js").get;
     var standartsMode = document.compatMode == "CSS1Compat";
     function getOffsetParent(node) {
       var offsetParent = node.offsetParent || documentElement;
@@ -8236,58 +8951,34 @@ var __resources__ = {
       getViewportRect: getViewportRect
     };
   },
-  "i.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
-    var Class = basis.Class;
-    var extend = basis.object.extend;
-    var values = basis.object.values;
-    var objectSlice = basis.object.slice;
-    var arrayAdd = basis.array.add;
-    var arrayRemove = basis.array.remove;
-    var getter = basis.getter;
-    var $self = basis.fn.$self;
-    var $true = basis.fn.$true;
-    var $false = basis.fn.$false;
-    var $undef = basis.fn.$undef;
-    var arrayFrom = basis.array.from;
-    var basisEvent = basis.require("./2.js");
-    var createEvent = basisEvent.create;
-    var createEventHandler = basisEvent.createHandler;
-    var Emitter = basisEvent.Emitter;
-    var basisData = basis.require("./e.js");
-    var SUBSCRIPTION = basisData.SUBSCRIPTION;
-    var Value = basisData.Value;
-    var DataObject = basisData.Object;
-    var KeyObjectMap = basisData.KeyObjectMap;
-    var ReadOnlyDataset = basisData.ReadOnlyDataset;
-    var Dataset = basisData.Dataset;
-    var DatasetWrapper = basisData.DatasetWrapper;
-    var resolveDataset = basisData.resolveDataset;
-    var setAccumulateState = Dataset.setAccumulateState;
-    SUBSCRIPTION.add("SOURCE", {
-      sourceChanged: function(object, oldSource) {
-        if (oldSource) SUBSCRIPTION.unlink("source", object, oldSource);
-        if (object.source) SUBSCRIPTION.link("source", object, object.source);
-      },
-      sourcesChanged: function(object, delta) {
-        var array;
-        if (array = delta.inserted) for (var i = 0, item; item = array[i]; i++) SUBSCRIPTION.link("source", object, array[i]);
-        if (array = delta.deleted) for (var i = 0, item; item = array[i]; i++) SUBSCRIPTION.unlink("source", object, array[i]);
-      }
-    }, function(action, object) {
-      var sources = object.sources || (object.source ? [ object.source ] : []);
-      for (var i = 0, source; source = sources[i++]; ) action("source", object, source);
-    });
-    SUBSCRIPTION.addProperty("minuend");
-    SUBSCRIPTION.addProperty("subtrahend");
-    function getDelta(inserted, deleted) {
+  "n.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    module.exports = {
+      getDelta: basis.require("./14.js"),
+      createRuleEvents: basis.require("./15.js"),
+      SourceDataset: basis.require("./16.js"),
+      Merge: basis.require("./17.js"),
+      Subtract: basis.require("./18.js"),
+      MapFilter: basis.require("./19.js"),
+      Split: basis.require("./1a.js"),
+      Cloud: basis.require("./1c.js"),
+      Extract: basis.require("./1d.js"),
+      Filter: basis.require("./1e.js"),
+      Slice: basis.require("./1f.js")
+    };
+  },
+  "14.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    module.exports = function getDelta(inserted, deleted) {
       var delta = {};
       var result;
       if (inserted && inserted.length) result = delta.inserted = inserted;
       if (deleted && deleted.length) result = delta.deleted = deleted;
       if (result) return delta;
-    }
-    function createRuleEvents(fn, events) {
+    };
+  },
+  "15.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var extend = basis.object.extend;
+    var createEventHandler = basis.require("./3.js").createHandler;
+    module.exports = function createRuleEvents(fn, events) {
       return function createRuleEventsExtend(events) {
         if (!events) return null;
         if (events.__extend__) return events;
@@ -8296,21 +8987,107 @@ var __resources__ = {
           __extend__: createRuleEventsExtend
         });
       }(events);
-    }
-    function createKeyMap(config, keyGetter, ItemClass, SubsetClass) {
-      return new KeyObjectMap(extend({
-        keyGetter: keyGetter,
-        itemClass: ItemClass,
-        create: function(key, object) {
-          var datasetWrapper = KeyObjectMap.prototype.create.call(this, key, object);
-          datasetWrapper.ruleValue = key;
-          datasetWrapper.setDataset(new SubsetClass({
-            ruleValue: key
-          }));
-          return datasetWrapper;
+    };
+  },
+  "16.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var createEvent = basis.require("./3.js").create;
+    var resolveDataset = basis.require("./g.js").resolveDataset;
+    var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
+    var setAccumulateState = basis.require("./g.js").Dataset.setAccumulateState;
+    var SUBSCRIPTION = basis.require("./i.js");
+    SUBSCRIPTION.addProperty("source");
+    module.exports = ReadOnlyDataset.subclass({
+      className: "basis.data.dataset.SourceDataset",
+      propertyDescriptors: {
+        source: "sourceChanged",
+        subtrahend: "subtrahendChanged"
+      },
+      active: basis.PROXY,
+      subscribeTo: SUBSCRIPTION.SOURCE,
+      source: null,
+      emit_sourceChanged: createEvent("sourceChanged", "oldSource"),
+      sourceRA_: null,
+      sourceMap_: null,
+      listen: {
+        source: {
+          destroy: function() {
+            if (!this.sourceRA_) this.setSource();
+          }
         }
-      }, config));
-    }
+      },
+      init: function() {
+        var source = this.source;
+        this.source = null;
+        this.sourceMap_ = {};
+        ReadOnlyDataset.prototype.init.call(this);
+        if (source) this.setSource(source);
+      },
+      setSource: function(source) {
+        source = resolveDataset(this, this.setSource, source, "sourceRA_");
+        if (this.source !== source) {
+          var oldSource = this.source;
+          var listenHandler = this.listen.source;
+          var itemsChangedHandler;
+          if (listenHandler) {
+            itemsChangedHandler = listenHandler.itemsChanged;
+            if (oldSource) oldSource.removeHandler(listenHandler, this);
+            if (source) source.addHandler(listenHandler, this);
+          }
+          this.source = source;
+          this.emit_sourceChanged(oldSource);
+          if (itemsChangedHandler) {
+            setAccumulateState(true);
+            if (oldSource) itemsChangedHandler.call(this, oldSource, {
+              deleted: oldSource.getItems()
+            });
+            if (source) itemsChangedHandler.call(this, source, {
+              inserted: source.getItems()
+            });
+            setAccumulateState(false);
+          }
+        }
+      },
+      destroy: function() {
+        this.setSource();
+        ReadOnlyDataset.prototype.destroy.call(this);
+        this.sourceMap_ = null;
+      }
+    });
+  },
+  "17.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var arrayAdd = basis.array.add;
+    var arrayRemove = basis.array.remove;
+    var createEvent = basis.require("./3.js").create;
+    var Emitter = basis.require("./3.js").Emitter;
+    var resolveDataset = basis.require("./g.js").resolveDataset;
+    var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
+    var getDelta = basis.require("./14.js");
+    var SUBSCRIPTION = basis.require("./i.js");
+    SUBSCRIPTION.add("SOURCES", {
+      sourcesChanged: function(object, delta) {
+        var array;
+        if (array = delta.inserted) for (var i = 0, item; item = array[i]; i++) SUBSCRIPTION.link("source", object, array[i]);
+        if (array = delta.deleted) for (var i = 0, item; item = array[i]; i++) SUBSCRIPTION.unlink("source", object, array[i]);
+      }
+    }, function(action, object) {
+      var sources = object.sources;
+      for (var i = 0, source; source = sources[i++]; ) action("source", object, source);
+    });
+    var UNION = function(count) {
+      return count > 0;
+    };
+    var INTERSECTION = function(count, sourceCount) {
+      return count == sourceCount;
+    };
+    var DIFFERENCE = function(count) {
+      return count == 1;
+    };
+    var MORE_THAN_ONE_INCLUDE = function(count, sourceCount) {
+      return sourceCount == 1 || count > 1;
+    };
+    var AT_LEAST_ONE_EXCLUDE = function(count, sourceCount) {
+      return sourceCount == 1 || count < sourceCount;
+    };
     var MERGE_DATASET_HANDLER = {
       itemsChanged: function(source, delta) {
         var memberMap = this.members_;
@@ -8341,18 +9118,19 @@ var __resources__ = {
         this.applyRule(updated);
       }
     };
-    var Merge = Class(ReadOnlyDataset, {
-      className: namespace + ".Merge",
+    var Merge = ReadOnlyDataset.subclass({
+      className: "basis.data.dataset.Merge",
+      propertyDescriptors: {
+        rule: "ruleChanged"
+      },
       active: basis.PROXY,
-      subscribeTo: SUBSCRIPTION.SOURCE,
+      subscribeTo: SUBSCRIPTION.SOURCES,
       emit_sourcesChanged: createEvent("sourcesChanged", "delta"),
       sources: null,
       sourceValues_: null,
       sourcesMap_: null,
       sourceDelta_: null,
-      rule: function(count) {
-        return count > 0;
-      },
+      rule: UNION,
       emit_ruleChanged: createEvent("ruleChanged", "oldRule"),
       listen: {
         source: MERGE_DATASET_HANDLER,
@@ -8371,7 +9149,7 @@ var __resources__ = {
         if (sources) this.setSources(sources);
       },
       setRule: function(rule) {
-        rule = getter(rule || Merge.UNION);
+        rule = basis.getter(rule || UNION);
         if (this.rule !== rule) {
           var oldRule = this.rule;
           this.rule = rule;
@@ -8530,19 +9308,21 @@ var __resources__ = {
         this.sources = null;
       }
     });
-    Merge.UNION = Merge.prototype.rule;
-    Merge.INTERSECTION = function(count, sourceCount) {
-      return count == sourceCount;
-    };
-    Merge.DIFFERENCE = function(count) {
-      return count == 1;
-    };
-    Merge.MORE_THAN_ONE_INCLUDE = function(count, sourceCount) {
-      return sourceCount == 1 || count > 1;
-    };
-    Merge.AT_LEAST_ONE_EXCLUDE = function(count, sourceCount) {
-      return sourceCount == 1 || count < sourceCount;
-    };
+    Merge.UNION = UNION;
+    Merge.INTERSECTION = INTERSECTION;
+    Merge.DIFFERENCE = DIFFERENCE;
+    Merge.MORE_THAN_ONE_INCLUDE = MORE_THAN_ONE_INCLUDE;
+    Merge.AT_LEAST_ONE_EXCLUDE = AT_LEAST_ONE_EXCLUDE;
+    module.exports = Merge;
+  },
+  "18.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var createEvent = basis.require("./3.js").create;
+    var resolveDataset = basis.require("./g.js").resolveDataset;
+    var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
+    var getDelta = basis.require("./14.js");
+    var SUBSCRIPTION = basis.require("./i.js");
+    SUBSCRIPTION.addProperty("minuend");
+    SUBSCRIPTION.addProperty("subtrahend");
     var datasetAbsentFilter = function(item) {
       return !this.has(item);
     };
@@ -8566,8 +9346,12 @@ var __resources__ = {
         if (!this.subtrahendRA_) this.setSubtrahend(null);
       }
     };
-    var Subtract = Class(ReadOnlyDataset, {
-      className: namespace + ".Subtract",
+    module.exports = ReadOnlyDataset.subclass({
+      className: "basis.data.dataset.Subtract",
+      propertyDescriptors: {
+        minuend: "minuendChanged",
+        subtrahend: "subtrahendChanged"
+      },
       active: basis.PROXY,
       subscribeTo: SUBSCRIPTION.MINUEND + SUBSCRIPTION.SUBTRAHEND,
       minuend: null,
@@ -8591,10 +9375,10 @@ var __resources__ = {
       setOperands: function(minuend, subtrahend) {
         var delta;
         var operandsChanged = false;
-        minuend = resolveDataset(this, this.setMinuend, minuend, "minuendRA_");
-        subtrahend = resolveDataset(this, this.setSubtrahend, subtrahend, "subtrahendRA_");
         var oldMinuend = this.minuend;
         var oldSubtrahend = this.subtrahend;
+        minuend = resolveDataset(this, this.setMinuend, minuend, "minuendRA_");
+        subtrahend = resolveDataset(this, this.setSubtrahend, subtrahend, "subtrahendRA_");
         if (oldMinuend !== minuend) {
           operandsChanged = true;
           this.minuend = minuend;
@@ -8640,240 +9424,40 @@ var __resources__ = {
         ReadOnlyDataset.prototype.destroy.call(this);
       }
     });
-    var SourceDataset = Class(ReadOnlyDataset, {
-      className: namespace + ".SourceDataset",
-      active: basis.PROXY,
-      subscribeTo: SUBSCRIPTION.SOURCE,
-      source: null,
-      emit_sourceChanged: createEvent("sourceChanged", "oldSource"),
-      sourceRA_: null,
-      sourceMap_: null,
-      listen: {
-        source: {
-          destroy: function() {
-            if (!this.sourceRA_) this.setSource();
-          }
-        }
-      },
-      init: function() {
-        var source = this.source;
-        this.source = null;
-        this.sourceMap_ = {};
-        ReadOnlyDataset.prototype.init.call(this);
-        if (source) this.setSource(source);
-      },
-      setSource: function(source) {
-        source = resolveDataset(this, this.setSource, source, "sourceRA_");
-        if (this.source !== source) {
-          var oldSource = this.source;
-          var listenHandler = this.listen.source;
-          var itemsChangedHandler;
-          if (listenHandler) {
-            itemsChangedHandler = listenHandler.itemsChanged;
-            if (oldSource) oldSource.removeHandler(listenHandler, this);
-            if (source) source.addHandler(listenHandler, this);
-          }
-          this.source = source;
-          this.emit_sourceChanged(oldSource);
-          if (itemsChangedHandler) {
-            Dataset.setAccumulateState(true);
-            if (oldSource) itemsChangedHandler.call(this, oldSource, {
-              deleted: oldSource.getItems()
-            });
-            if (source) itemsChangedHandler.call(this, source, {
-              inserted: source.getItems()
-            });
-            Dataset.setAccumulateState(false);
-          }
-        }
-      },
-      destroy: function() {
-        this.setSource();
-        ReadOnlyDataset.prototype.destroy.call(this);
-        this.sourceMap_ = null;
-      }
-    });
-    var MAPFILTER_SOURCEOBJECT_UPDATE = function(sourceObject) {
-      var newMember = this.map ? this.map(sourceObject) : sourceObject;
-      if (newMember instanceof DataObject == false || this.filter(newMember)) newMember = null;
-      var sourceMap = this.sourceMap_[sourceObject.basisObjectId];
-      var curMember = sourceMap.member;
-      if (curMember !== newMember) {
-        var memberMap = this.members_;
-        var delta;
-        var inserted;
-        var deleted;
-        sourceMap.member = newMember;
-        if (curMember) {
-          var curMemberId = curMember.basisObjectId;
-          if (this.removeMemberRef) this.removeMemberRef(curMember, sourceObject);
-          if (--memberMap[curMemberId] == 0) {
-            delete memberMap[curMemberId];
-            deleted = [ curMember ];
-          }
-        }
-        if (newMember) {
-          var newMemberId = newMember.basisObjectId;
-          if (this.addMemberRef) this.addMemberRef(newMember, sourceObject);
-          if (memberMap[newMemberId]) {
-            memberMap[newMemberId]++;
-          } else {
-            memberMap[newMemberId] = 1;
-            inserted = [ newMember ];
-          }
-        }
-        if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
-      }
-    };
-    var MAPFILTER_SOURCE_HANDLER = {
-      itemsChanged: function(source, delta) {
-        var sourceMap = this.sourceMap_;
-        var memberMap = this.members_;
-        var inserted = [];
-        var deleted = [];
-        var sourceObject;
-        var sourceObjectId;
-        var member;
-        var updateHandler = this.ruleEvents;
-        setAccumulateState(true);
-        if (delta.inserted) {
-          for (var i = 0; sourceObject = delta.inserted[i]; i++) {
-            member = this.map ? this.map(sourceObject) : sourceObject;
-            if (member instanceof DataObject == false || this.filter(member)) member = null;
-            if (updateHandler) sourceObject.addHandler(updateHandler, this);
-            sourceMap[sourceObject.basisObjectId] = {
-              sourceObject: sourceObject,
-              member: member
-            };
-            if (member) {
-              var memberId = member.basisObjectId;
-              if (memberMap[memberId]) {
-                memberMap[memberId]++;
-              } else {
-                memberMap[memberId] = 1;
-                inserted.push(member);
-              }
-              if (this.addMemberRef) this.addMemberRef(member, sourceObject);
-            }
-          }
-        }
-        if (delta.deleted) {
-          for (var i = 0; sourceObject = delta.deleted[i]; i++) {
-            sourceObjectId = sourceObject.basisObjectId;
-            member = sourceMap[sourceObjectId].member;
-            if (updateHandler) sourceObject.removeHandler(updateHandler, this);
-            delete sourceMap[sourceObjectId];
-            if (member) {
-              var memberId = member.basisObjectId;
-              if (--memberMap[memberId] == 0) {
-                delete memberMap[memberId];
-                deleted.push(member);
-              }
-              if (this.removeMemberRef) this.removeMemberRef(member, sourceObject);
-            }
-          }
-        }
-        setAccumulateState(false);
-        if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
-      }
-    };
-    var MapFilter = Class(SourceDataset, {
-      className: namespace + ".MapFilter",
-      map: $self,
-      filter: $false,
-      rule: getter($true),
-      emit_ruleChanged: createEvent("ruleChanged", "oldRule"),
-      ruleEvents: createRuleEvents(MAPFILTER_SOURCEOBJECT_UPDATE, "update"),
-      addMemberRef: null,
-      removeMemberRef: null,
-      listen: {
-        source: MAPFILTER_SOURCE_HANDLER
-      },
-      setMap: function(map) {
-        if (typeof map != "function") map = $self;
-        if (this.map !== map) {
-          this.map = map;
-          return this.applyRule();
-        }
-      },
-      setFilter: function(filter) {
-        if (typeof filter != "function") filter = $false;
-        if (this.filter !== filter) {
-          this.filter = filter;
-          return this.applyRule();
-        }
-      },
-      setRule: function(rule) {
-        rule = getter(rule || $true);
-        if (this.rule !== rule) {
-          var oldRule = this.rule;
-          this.rule = rule;
-          this.emit_ruleChanged(oldRule);
-          return this.applyRule();
-        }
-      },
-      applyRule: function() {
-        var sourceMap = this.sourceMap_;
-        var memberMap = this.members_;
-        var curMember;
-        var newMember;
-        var curMemberId;
-        var newMemberId;
-        var sourceObject;
-        var sourceObjectInfo;
-        var inserted = [];
-        var deleted = [];
-        var delta;
-        for (var sourceObjectId in sourceMap) {
-          sourceObjectInfo = sourceMap[sourceObjectId];
-          sourceObject = sourceObjectInfo.sourceObject;
-          curMember = sourceObjectInfo.member;
-          newMember = this.map ? this.map(sourceObject) : sourceObject;
-          if (newMember instanceof DataObject == false || this.filter(newMember)) newMember = null;
-          if (curMember != newMember) {
-            sourceObjectInfo.member = newMember;
-            if (curMember) {
-              curMemberId = curMember.basisObjectId;
-              if (this.removeMemberRef) this.removeMemberRef(curMember, sourceObject);
-              memberMap[curMemberId]--;
-            }
-            if (newMember) {
-              newMemberId = newMember.basisObjectId;
-              if (this.addMemberRef) this.addMemberRef(newMember, sourceObject);
-              if (newMemberId in memberMap) {
-                memberMap[newMemberId]++;
-              } else {
-                memberMap[newMemberId] = 1;
-                inserted.push(newMember);
-              }
-            }
-          }
-        }
-        for (curMemberId in this.items_) if (memberMap[curMemberId] == 0) {
-          delete memberMap[curMemberId];
-          deleted.push(this.items_[curMemberId]);
-        }
-        if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
-        return delta;
-      }
-    });
-    var Filter = Class(MapFilter, {
-      className: namespace + ".Filter",
-      filter: function(object) {
-        return !this.rule(object);
-      }
-    });
-    var Split = Class(MapFilter, {
-      className: namespace + ".Split",
+  },
+  "1.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    basis.require("./2.js");
+    basis.require("./k.js");
+    basis.require("./n.js");
+    basis.require("./o.js");
+    basis.require("./p.js");
+    basis.require("./q.js");
+    basis.require("./r.js");
+    basis.require("./s.js");
+    basis.require("./u.js");
+    basis.require("./x.js");
+    basis.require("./z.js");
+    basis.require("./10.js");
+    global.basis = basis;
+  },
+  "1a.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var $undef = basis.fn.$undef;
+    var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
+    var DatasetWrapper = basis.require("./g.js").DatasetWrapper;
+    var KeyObjectMap = basis.require("./g.js").KeyObjectMap;
+    var MapFilter = basis.require("./19.js");
+    var createKeyMap = basis.require("./1b.js");
+    module.exports = MapFilter.subclass({
+      className: "basis.data.dataset.Split",
       subsetClass: ReadOnlyDataset,
       subsetWrapperClass: DatasetWrapper,
       keyMap: null,
       map: function(sourceObject) {
         return this.keyMap.resolve(sourceObject);
       },
-      rule: getter($undef),
+      rule: basis.getter($undef),
       setRule: function(rule) {
-        rule = getter(rule || $undef);
+        rule = basis.getter(rule || $undef);
         if (this.rule !== rule) {
           var oldRule = this.rule;
           this.rule = rule;
@@ -8905,225 +9489,36 @@ var __resources__ = {
         this.keyMap = null;
       }
     });
-    function binarySearchPos(array, map) {
-      if (!array.length) return 0;
-      var value = map.value;
-      var id = map.object.basisObjectId;
-      var cmpValue;
-      var cmpId;
-      var pos;
-      var item;
-      var l = 0;
-      var r = array.length - 1;
-      do {
-        pos = l + r >> 1;
-        item = array[pos];
-        cmpValue = item.value;
-        if (value < cmpValue) r = pos - 1; else if (value > cmpValue) l = pos + 1; else {
-          cmpId = item.object.basisObjectId;
-          if (id < cmpId) r = pos - 1; else if (id > cmpId) l = pos + 1; else return pos;
+  },
+  "1b.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var extend = basis.object.extend;
+    var KeyObjectMap = basis.require("./g.js").KeyObjectMap;
+    module.exports = function createKeyMap(config, keyGetter, ItemClass, SubsetClass) {
+      return new KeyObjectMap(extend({
+        keyGetter: keyGetter,
+        itemClass: ItemClass,
+        create: function(key, object) {
+          var datasetWrapper = KeyObjectMap.prototype.create.call(this, key, object);
+          datasetWrapper.ruleValue = key;
+          datasetWrapper.setDataset(new SubsetClass({
+            ruleValue: key
+          }));
+          return datasetWrapper;
         }
-      } while (l <= r);
-      return pos + (cmpValue == value ? cmpId < id : cmpValue < value);
-    }
-    var SLICE_SOURCEOBJECT_UPDATE = function(sourceObject) {
-      var sourceObjectInfo = this.sourceMap_[sourceObject.basisObjectId];
-      var newValue = this.rule(sourceObject);
-      var index = this.index_;
-      if (newValue !== sourceObjectInfo.value) {
-        var pos = binarySearchPos(index, sourceObjectInfo);
-        var prev = index[pos - 1];
-        var next = index[pos + 1];
-        sourceObjectInfo.value = newValue;
-        if (prev && (prev.value > newValue || prev.value == newValue && prev.object.basisObjectId > sourceObjectInfo.object.basisObjectId) || next && (next.value < newValue || next.value == newValue && next.object.basisObjectId < sourceObjectInfo.object.basisObjectId)) {
-          index.splice(pos, 1);
-          index.splice(binarySearchPos(index, sourceObjectInfo), 0, sourceObjectInfo);
-          this.applyRule();
-        }
-      }
+      }, config));
     };
-    function sliceIndexSort(a, b) {
-      return +(a.value > b.value) || -(a.value < b.value) || a.object.basisObjectId - b.object.basisObjectId;
-    }
-    var SLICE_SOURCE_HANDLER = {
-      itemsChanged: function(source, delta) {
-        var sourceMap = this.sourceMap_;
-        var index = this.index_;
-        var updateHandler = this.ruleEvents;
-        var dropIndex = false;
-        var buildIndex = false;
-        var sourceObjectInfo;
-        var inserted = delta.inserted;
-        var deleted = delta.deleted;
-        if (deleted) {
-          if (deleted.length > index.length - deleted.length) {
-            dropIndex = true;
-            buildIndex = deleted.length != index.length;
-            index.length = 0;
-          }
-          for (var i = 0, sourceObject; sourceObject = deleted[i]; i++) {
-            if (!dropIndex) {
-              sourceObjectInfo = sourceMap[sourceObject.basisObjectId];
-              index.splice(binarySearchPos(index, sourceObjectInfo), 1);
-            }
-            delete sourceMap[sourceObject.basisObjectId];
-            if (updateHandler) sourceObject.removeHandler(updateHandler, this);
-          }
-          if (buildIndex) for (var key in sourceMap) {
-            sourceObjectInfo = sourceMap[key];
-            index.splice(binarySearchPos(index, sourceObjectInfo), 0, sourceObjectInfo);
-          }
-        }
-        if (inserted) {
-          buildIndex = !index.length;
-          for (var i = 0, sourceObject; sourceObject = inserted[i]; i++) {
-            sourceObjectInfo = {
-              object: sourceObject,
-              value: this.rule(sourceObject)
-            };
-            sourceMap[sourceObject.basisObjectId] = sourceObjectInfo;
-            if (!buildIndex) index.splice(binarySearchPos(index, sourceObjectInfo), 0, sourceObjectInfo); else index.push(sourceObjectInfo);
-            if (updateHandler) sourceObject.addHandler(updateHandler, this);
-          }
-          if (buildIndex) index.sort(sliceIndexSort);
-        }
-        this.applyRule();
-      }
-    };
-    var Slice = Class(SourceDataset, {
-      className: namespace + ".Slice",
-      rule: getter($true),
-      emit_ruleChanged: createEvent("ruleChanged", "oldRule", "oldOrderDesc"),
-      ruleEvents: createRuleEvents(SLICE_SOURCEOBJECT_UPDATE, "update"),
-      index_: null,
-      left_: null,
-      right_: null,
-      orderDesc: false,
-      offset: 0,
-      limit: 10,
-      listen: {
-        source: SLICE_SOURCE_HANDLER
-      },
-      emit_rangeChanged: createEvent("rangeChanged", "oldOffset", "oldLimit"),
-      init: function() {
-        this.index_ = [];
-        SourceDataset.prototype.init.call(this);
-      },
-      setRange: function(offset, limit) {
-        var oldOffset = this.offset;
-        var oldLimit = this.limit;
-        var delta = false;
-        if (oldOffset != offset || oldLimit != limit) {
-          this.offset = offset;
-          this.limit = limit;
-          delta = this.applyRule();
-          this.emit_rangeChanged(oldOffset, oldLimit);
-        }
-        return delta;
-      },
-      setOffset: function(offset) {
-        return this.setRange(offset, this.limit);
-      },
-      setLimit: function(limit) {
-        return this.setRange(this.offset, limit);
-      },
-      setRule: function(rule, orderDesc) {
-        rule = getter(rule || $true);
-        orderDesc = !!orderDesc;
-        if (this.rule != rule || this.orderDesc != orderDesc) {
-          var oldRule = this.rule;
-          var oldOrderDesc = this.orderDesc;
-          if (this.rule != rule) {
-            var index = this.index_;
-            for (var i = 0; i < index.length; i++) index[i].value = rule(index[i].object);
-            index.sort(sliceIndexSort);
-            this.rule = rule;
-          }
-          this.orderDesc = orderDesc;
-          this.rule = rule;
-          this.emit_ruleChanged(oldRule, oldOrderDesc);
-          return this.applyRule();
-        }
-      },
-      applyRule: function() {
-        var start = this.offset;
-        var end = start + this.limit;
-        if (this.orderDesc) {
-          start = this.index_.length - end;
-          end = start + this.limit;
-        }
-        var curSet = objectSlice(this.members_);
-        var newSet = this.index_.slice(Math.max(0, start), Math.max(0, end));
-        var inserted = [];
-        var delta;
-        for (var i = 0, item; item = newSet[i]; i++) {
-          var objectId = item.object.basisObjectId;
-          if (curSet[objectId]) delete curSet[objectId]; else {
-            inserted.push(item.object);
-            this.members_[objectId] = item.object;
-          }
-        }
-        for (var objectId in curSet) delete this.members_[objectId];
-        if (this.left_) for (var offset in this.left_) {
-          var item = this.index_[this.orderDesc ? end + Number(offset) - 1 : start - Number(offset)];
-          this.left_[offset].set(item ? item.object : null);
-        }
-        if (this.right_) for (var offset in this.right_) {
-          var item = this.index_[this.orderDesc ? start - Number(offset) : end + Number(offset) - 1];
-          this.right_[offset].set(item ? item.object : null);
-        }
-        if (delta = getDelta(inserted, values(curSet))) this.emit_itemsChanged(delta);
-        return delta;
-      },
-      left: function(offset) {
-        offset = parseInt(offset, 10) || 0;
-        if (!this.left_) this.left_ = {};
-        var value = this.left_[offset];
-        if (!value) {
-          var start = this.offset;
-          var end = start + this.limit;
-          if (this.orderDesc) {
-            start = this.index_.length - end;
-            end = start + this.limit;
-          }
-          var item = this.index_[this.orderDesc ? end + offset - 1 : start - offset];
-          value = this.left_[offset] = new Value({
-            value: item ? item.object : null
-          });
-        }
-        return value;
-      },
-      right: function(offset) {
-        offset = parseInt(offset, 10) || 0;
-        if (!this.right_) this.right_ = {};
-        var value = this.right_[offset];
-        if (!value) {
-          var start = this.offset;
-          var end = start + this.limit;
-          if (this.orderDesc) {
-            start = this.index_.length - end;
-            end = start + this.limit;
-          }
-          var item = this.index_[this.orderDesc ? start - offset : end + offset - 1];
-          value = this.right_[offset] = new Value({
-            value: item ? item.object : null
-          });
-        }
-        return value;
-      },
-      destroy: function() {
-        SourceDataset.prototype.destroy.call(this);
-        if (this.left_) {
-          for (var offset in this.left_) this.left_[offset].destroy();
-          this.left_ = null;
-        }
-        if (this.right_) {
-          for (var offset in this.right_) this.right_[offset].destroy();
-          this.right_ = null;
-        }
-        this.index_ = null;
-      }
-    });
+  },
+  "1c.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var $self = basis.fn.$self;
+    var $undef = basis.fn.$undef;
+    var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
+    var DatasetWrapper = basis.require("./g.js").DatasetWrapper;
+    var KeyObjectMap = basis.require("./g.js").KeyObjectMap;
+    var setAccumulateState = basis.require("./g.js").Dataset.setAccumulateState;
+    var SourceDataset = basis.require("./16.js");
+    var createKeyMap = basis.require("./1b.js");
+    var createRuleEvents = basis.require("./15.js");
+    var getDelta = basis.require("./14.js");
     var CLOUD_SOURCEOBJECT_UPDATE = function(sourceObject) {
       var sourceMap = this.sourceMap_;
       var memberMap = this.members_;
@@ -9218,11 +9613,11 @@ var __resources__ = {
         if (delta = getDelta(inserted, deleted)) this.emit_itemsChanged(delta);
       }
     };
-    var Cloud = Class(SourceDataset, {
-      className: namespace + ".Cloud",
+    module.exports = SourceDataset.subclass({
+      className: "basis.data.dataset.Cloud",
       subsetClass: ReadOnlyDataset,
       subsetWrapperClass: DatasetWrapper,
-      rule: getter($undef),
+      rule: basis.getter($undef),
       ruleEvents: createRuleEvents(CLOUD_SOURCEOBJECT_UPDATE, "update"),
       keyMap: null,
       map: $self,
@@ -9242,6 +9637,17 @@ var __resources__ = {
         this.keyMap = null;
       }
     });
+  },
+  "1d.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var values = basis.object.values;
+    var $undef = basis.fn.$undef;
+    var arrayFrom = basis.array.from;
+    var createEvent = basis.require("./3.js").create;
+    var DataObject = basis.require("./g.js").Object;
+    var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
+    var SourceDataset = basis.require("./16.js");
+    var createRuleEvents = basis.require("./15.js");
+    var getDelta = basis.require("./14.js");
     var EXTRACT_SOURCEOBJECT_UPDATE = function(sourceObject) {
       var sourceObjectInfo = this.sourceMap_[sourceObject.basisObjectId];
       var newValue = this.rule(sourceObject) || null;
@@ -9382,9 +9788,12 @@ var __resources__ = {
       }
       return deleted;
     }
-    var Extract = SourceDataset.subclass({
-      className: namespace + ".Extract",
-      rule: getter($undef),
+    module.exports = SourceDataset.subclass({
+      className: "basis.data.dataset.Extract",
+      propertyDescriptors: {
+        rule: "ruleChanged"
+      },
+      rule: basis.getter($undef),
       emit_ruleChanged: createEvent("ruleChanged", "oldRule"),
       ruleEvents: createRuleEvents(EXTRACT_SOURCEOBJECT_UPDATE, "update"),
       listen: {
@@ -9393,7 +9802,7 @@ var __resources__ = {
         }
       },
       setRule: function(rule) {
-        rule = getter(rule || $undef);
+        rule = basis.getter(rule || $undef);
         if (this.rule !== rule) {
           var oldRule = this.rule;
           this.rule = rule;
@@ -9435,24 +9844,255 @@ var __resources__ = {
         return delta;
       }
     });
-    module.exports = {
-      getDelta: getDelta,
-      createRuleEvents: createRuleEvents,
-      Merge: Merge,
-      Subtract: Subtract,
-      SourceDataset: SourceDataset,
-      MapFilter: MapFilter,
-      Filter: Filter,
-      Split: Split,
-      Extract: Extract,
-      Slice: Slice,
-      Cloud: Cloud
-    };
   },
-  "j.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "1e.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var MapFilter = basis.require("./19.js");
+    module.exports = MapFilter.subclass({
+      className: "basis.data.dataset.Filter",
+      filter: function(object) {
+        return !this.rule(object);
+      }
+    });
+  },
+  "1f.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var $true = basis.fn.$true;
+    var values = basis.object.values;
+    var objectSlice = basis.object.slice;
+    var createEvent = basis.require("./3.js").create;
+    var Value = basis.require("./g.js").Value;
+    var createRuleEvents = basis.require("./15.js");
+    var getDelta = basis.require("./14.js");
+    var SourceDataset = basis.require("./16.js");
+    function binarySearchPos(array, map) {
+      if (!array.length) return 0;
+      var value = map.value;
+      var id = map.object.basisObjectId;
+      var cmpValue;
+      var cmpId;
+      var pos;
+      var item;
+      var l = 0;
+      var r = array.length - 1;
+      do {
+        pos = l + r >> 1;
+        item = array[pos];
+        cmpValue = item.value;
+        if (value < cmpValue) r = pos - 1; else if (value > cmpValue) l = pos + 1; else {
+          cmpId = item.object.basisObjectId;
+          if (id < cmpId) r = pos - 1; else if (id > cmpId) l = pos + 1; else return pos;
+        }
+      } while (l <= r);
+      return pos + (cmpValue == value ? cmpId < id : cmpValue < value);
+    }
+    var SLICE_SOURCEOBJECT_UPDATE = function(sourceObject) {
+      var sourceObjectInfo = this.sourceMap_[sourceObject.basisObjectId];
+      var newValue = this.rule(sourceObject);
+      var index = this.index_;
+      if (newValue !== sourceObjectInfo.value) {
+        var pos = binarySearchPos(index, sourceObjectInfo);
+        var prev = index[pos - 1];
+        var next = index[pos + 1];
+        sourceObjectInfo.value = newValue;
+        if (prev && (prev.value > newValue || prev.value == newValue && prev.object.basisObjectId > sourceObjectInfo.object.basisObjectId) || next && (next.value < newValue || next.value == newValue && next.object.basisObjectId < sourceObjectInfo.object.basisObjectId)) {
+          index.splice(pos, 1);
+          index.splice(binarySearchPos(index, sourceObjectInfo), 0, sourceObjectInfo);
+          this.applyRule();
+        }
+      }
+    };
+    function sliceIndexSort(a, b) {
+      return +(a.value > b.value) || -(a.value < b.value) || a.object.basisObjectId - b.object.basisObjectId;
+    }
+    var SLICE_SOURCE_HANDLER = {
+      itemsChanged: function(source, delta) {
+        var sourceMap = this.sourceMap_;
+        var index = this.index_;
+        var updateHandler = this.ruleEvents;
+        var dropIndex = false;
+        var buildIndex = false;
+        var sourceObjectInfo;
+        var inserted = delta.inserted;
+        var deleted = delta.deleted;
+        if (deleted) {
+          if (deleted.length > index.length - deleted.length) {
+            dropIndex = true;
+            buildIndex = deleted.length != index.length;
+            index.length = 0;
+          }
+          for (var i = 0, sourceObject; sourceObject = deleted[i]; i++) {
+            if (!dropIndex) {
+              sourceObjectInfo = sourceMap[sourceObject.basisObjectId];
+              index.splice(binarySearchPos(index, sourceObjectInfo), 1);
+            }
+            delete sourceMap[sourceObject.basisObjectId];
+            if (updateHandler) sourceObject.removeHandler(updateHandler, this);
+          }
+          if (buildIndex) for (var key in sourceMap) {
+            sourceObjectInfo = sourceMap[key];
+            index.splice(binarySearchPos(index, sourceObjectInfo), 0, sourceObjectInfo);
+          }
+        }
+        if (inserted) {
+          buildIndex = !index.length;
+          for (var i = 0, sourceObject; sourceObject = inserted[i]; i++) {
+            sourceObjectInfo = {
+              object: sourceObject,
+              value: this.rule(sourceObject)
+            };
+            sourceMap[sourceObject.basisObjectId] = sourceObjectInfo;
+            if (!buildIndex) index.splice(binarySearchPos(index, sourceObjectInfo), 0, sourceObjectInfo); else index.push(sourceObjectInfo);
+            if (updateHandler) sourceObject.addHandler(updateHandler, this);
+          }
+          if (buildIndex) index.sort(sliceIndexSort);
+        }
+        this.applyRule();
+      }
+    };
+    module.exports = SourceDataset.subclass({
+      className: "basis.data.dataset.Slice",
+      propertyDescriptors: {
+        limit: "rangeChanged",
+        offset: "rangeChanged",
+        orderDesc: "ruleChanged",
+        rule: "ruleChanged"
+      },
+      rule: basis.getter($true),
+      emit_ruleChanged: createEvent("ruleChanged", "oldRule", "oldOrderDesc"),
+      ruleEvents: createRuleEvents(SLICE_SOURCEOBJECT_UPDATE, "update"),
+      index_: null,
+      left_: null,
+      right_: null,
+      orderDesc: false,
+      offset: 0,
+      limit: 10,
+      listen: {
+        source: SLICE_SOURCE_HANDLER
+      },
+      emit_rangeChanged: createEvent("rangeChanged", "oldOffset", "oldLimit"),
+      init: function() {
+        this.index_ = [];
+        SourceDataset.prototype.init.call(this);
+      },
+      setRange: function(offset, limit) {
+        var oldOffset = this.offset;
+        var oldLimit = this.limit;
+        var delta = false;
+        if (oldOffset != offset || oldLimit != limit) {
+          this.offset = offset;
+          this.limit = limit;
+          delta = this.applyRule();
+          this.emit_rangeChanged(oldOffset, oldLimit);
+        }
+        return delta;
+      },
+      setOffset: function(offset) {
+        return this.setRange(offset, this.limit);
+      },
+      setLimit: function(limit) {
+        return this.setRange(this.offset, limit);
+      },
+      setRule: function(rule, orderDesc) {
+        rule = basis.getter(rule || $true);
+        orderDesc = !!orderDesc;
+        if (this.rule != rule || this.orderDesc != orderDesc) {
+          var oldRule = this.rule;
+          var oldOrderDesc = this.orderDesc;
+          if (this.rule != rule) {
+            var index = this.index_;
+            for (var i = 0; i < index.length; i++) index[i].value = rule(index[i].object);
+            index.sort(sliceIndexSort);
+            this.rule = rule;
+          }
+          this.orderDesc = orderDesc;
+          this.rule = rule;
+          this.emit_ruleChanged(oldRule, oldOrderDesc);
+          return this.applyRule();
+        }
+      },
+      applyRule: function() {
+        var start = this.offset;
+        var end = start + this.limit;
+        if (this.orderDesc) {
+          start = this.index_.length - end;
+          end = start + this.limit;
+        }
+        var curSet = objectSlice(this.members_);
+        var newSet = this.index_.slice(Math.max(0, start), Math.max(0, end));
+        var inserted = [];
+        var delta;
+        for (var i = 0, item; item = newSet[i]; i++) {
+          var objectId = item.object.basisObjectId;
+          if (curSet[objectId]) delete curSet[objectId]; else {
+            inserted.push(item.object);
+            this.members_[objectId] = item.object;
+          }
+        }
+        for (var objectId in curSet) delete this.members_[objectId];
+        if (this.left_) for (var offset in this.left_) {
+          var item = this.index_[this.orderDesc ? end + Number(offset) - 1 : start - Number(offset)];
+          this.left_[offset].set(item ? item.object : null);
+        }
+        if (this.right_) for (var offset in this.right_) {
+          var item = this.index_[this.orderDesc ? start - Number(offset) : end + Number(offset) - 1];
+          this.right_[offset].set(item ? item.object : null);
+        }
+        if (delta = getDelta(inserted, values(curSet))) this.emit_itemsChanged(delta);
+        return delta;
+      },
+      left: function(offset) {
+        offset = parseInt(offset, 10) || 0;
+        if (!this.left_) this.left_ = {};
+        var value = this.left_[offset];
+        if (!value) {
+          var start = this.offset;
+          var end = start + this.limit;
+          if (this.orderDesc) {
+            start = this.index_.length - end;
+            end = start + this.limit;
+          }
+          var item = this.index_[this.orderDesc ? end + offset - 1 : start - offset];
+          value = this.left_[offset] = new Value({
+            value: item ? item.object : null
+          });
+        }
+        return value;
+      },
+      right: function(offset) {
+        offset = parseInt(offset, 10) || 0;
+        if (!this.right_) this.right_ = {};
+        var value = this.right_[offset];
+        if (!value) {
+          var start = this.offset;
+          var end = start + this.limit;
+          if (this.orderDesc) {
+            start = this.index_.length - end;
+            end = start + this.limit;
+          }
+          var item = this.index_[this.orderDesc ? start - offset : end + offset - 1];
+          value = this.right_[offset] = new Value({
+            value: item ? item.object : null
+          });
+        }
+        return value;
+      },
+      destroy: function() {
+        SourceDataset.prototype.destroy.call(this);
+        if (this.left_) {
+          for (var offset in this.left_) this.left_[offset].destroy();
+          this.left_ = null;
+        }
+        if (this.right_) {
+          for (var offset in this.right_) this.right_[offset].destroy();
+          this.right_ = null;
+        }
+        this.index_ = null;
+      }
+    });
+  },
+  "o.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.data.value";
     var cleaner = basis.cleaner;
-    var basisData = basis.require("./e.js");
+    var basisData = basis.require("./g.js");
     var AbstractData = basisData.AbstractData;
     var Value = basisData.Value;
     var ReadOnlyValue = basisData.ReadOnlyValue;
@@ -9482,7 +10122,7 @@ var __resources__ = {
         this.remove(object);
       }
     };
-    var objectSetUpdater = basis.asap.schedule(function(object) {
+    var updateQueue = basis.asap.schedule(function(object) {
       object.update();
     });
     var ObjectSet = Value.subclass({
@@ -9532,7 +10172,7 @@ var __resources__ = {
         if (!this.locked) {
           this.valueChanged_ = this.valueChanged_ || !!valueChanged;
           this.stateChanged_ = this.stateChanged_ || !!stateChanged;
-          if (this.valueChanged_ || this.stateChanged_) objectSetUpdater.add(this);
+          if (this.valueChanged_ || this.stateChanged_) updateQueue.add(this);
         }
       },
       lock: function() {
@@ -9546,7 +10186,7 @@ var __resources__ = {
         var stateChanged = this.stateChanged_;
         this.valueChanged_ = false;
         this.stateChanged_ = false;
-        objectSetUpdater.remove(this);
+        updateQueue.remove(this);
         if (!cleaner.globalDestroy) {
           if (valueChanged) this.set(this.calculateValue());
           if (stateChanged) {
@@ -9570,12 +10210,13 @@ var __resources__ = {
       destroy: function() {
         this.lock();
         this.clear();
-        objectSetUpdater.remove(this);
+        updateQueue.remove(this);
         Value.prototype.destroy.call(this);
       }
     });
+    var EXPRESSION_SKIP_INIT = {};
     var EXPRESSION_BBVALUE_HANDLER = function() {
-      objectSetUpdater.add(this);
+      updateQueue.add(this);
     };
     var EXPRESSION_BBVALUE_DESTROY_HANDLER = function() {
       this.destroy();
@@ -9583,6 +10224,28 @@ var __resources__ = {
     var BBVALUE_GETTER = function(value) {
       return value.bindingBridge.get(value);
     };
+    function initExpression() {
+      var count = arguments.length - 1;
+      var calc = arguments[count];
+      if (typeof calc != "function") throw new Error(namespace + ".Expression: Last argument of constructor must be a function");
+      for (var values = new Array(count), i = 0; i < count; i++) {
+        var value = values[i] = arguments[i];
+        if (!value.bindingBridge) throw new Error(expression + ".Expression: bb-value required");
+        value.bindingBridge.attach(value, EXPRESSION_BBVALUE_HANDLER, this, EXPRESSION_BBVALUE_DESTROY_HANDLER);
+      }
+      this.calc_ = calc;
+      this.values_ = values;
+      this.update();
+      basis.dev.setInfo(this, "sourceInfo", {
+        type: "Expression",
+        source: values,
+        transform: calc
+      });
+      return this;
+    }
+    function expression() {
+      return initExpression.apply(new Expression(EXPRESSION_SKIP_INIT), arguments);
+    }
     var Expression = ReadOnlyValue.subclass({
       className: namespace + ".Expression",
       calc_: null,
@@ -9590,24 +10253,14 @@ var __resources__ = {
       extendConstructor_: false,
       init: function() {
         ReadOnlyValue.prototype.init.call(this);
-        var count = arguments.length - 1;
-        var calc = arguments[count];
-        if (typeof calc != "function") throw new Error(this.constructor.className + ": Last argument of constructor must be a function");
-        for (var values = new Array(count), i = 0; i < count; i++) {
-          var value = values[i] = arguments[i];
-          if (!value.bindingBridge) throw new Error(this.constructor.className + ": bb-value required");
-          value.bindingBridge.attach(value, EXPRESSION_BBVALUE_HANDLER, this, EXPRESSION_BBVALUE_DESTROY_HANDLER);
-        }
-        this.calc_ = calc;
-        this.values_ = values;
-        this.update();
+        if (arguments[0] !== EXPRESSION_SKIP_INIT) initExpression.apply(this, arguments);
       },
       update: function() {
-        objectSetUpdater.remove(this);
+        updateQueue.remove(this);
         Value.prototype.set.call(this, this.calc_.apply(null, this.values_.map(BBVALUE_GETTER)));
       },
       destroy: function() {
-        objectSetUpdater.remove(this);
+        updateQueue.remove(this);
         for (var i = 0, value; value = this.values_[i]; i++) value.bindingBridge.detach(value, EXPRESSION_BBVALUE_HANDLER, this);
         ReadOnlyValue.prototype.destroy.call(this);
       }
@@ -9615,37 +10268,93 @@ var __resources__ = {
     module.exports = {
       Property: Property,
       ObjectSet: ObjectSet,
-      Expression: Expression
+      Expression: Expression,
+      expression: expression
     };
   },
-  "k.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
-    var Class = basis.Class;
-    var iterate = basis.object.iterate;
-    var basisData = basis.require("./e.js");
-    var Value = basisData.Value;
-    var DataObject = basisData.Object;
-    var ReadOnlyDataset = basisData.ReadOnlyDataset;
-    var DatasetWrapper = basisData.DatasetWrapper;
-    var resolveDataset = basisData.resolveDataset;
-    var basisDataset = basis.require("./i.js");
-    var MapFilter = basisDataset.MapFilter;
-    var createRuleEvents = basisDataset.createRuleEvents;
-    function binarySearchPos(array, value) {
-      if (!array.length) return 0;
-      var pos;
-      var cmpValue;
-      var l = 0;
-      var r = array.length - 1;
-      do {
-        pos = l + r >> 1;
-        cmpValue = array[pos] || 0;
-        if (value < cmpValue) r = pos - 1; else if (value > cmpValue) l = pos + 1; else return value == cmpValue ? pos : 0;
-      } while (l <= r);
-      return pos + (cmpValue < value);
+  "p.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1g.js");
+    var VectorIndex = basis.require("./1h.js");
+    var IndexWrapper = basis.require("./1i.js");
+    var IndexMap = basis.require("./1j.js");
+    var IndexedCalc = basis.require("./1k.js");
+    var createIndexConstructor = basis.require("./1l.js");
+    var Count = basis.require("./1m.js");
+    var Sum = basis.require("./1n.js");
+    var Avg = basis.require("./1o.js");
+    var Min = basis.require("./1p.js");
+    var Max = basis.require("./1q.js");
+    var Distinct = basis.require("./1r.js");
+    var count = createIndexConstructor(Count, basis.fn.$true);
+    var sum = createIndexConstructor(Sum);
+    var avg = createIndexConstructor(Avg);
+    var min = createIndexConstructor(Min);
+    var max = createIndexConstructor(Max);
+    var distinct = createIndexConstructor(Distinct);
+    function percentOfRange(events, getter) {
+      var minIndex = IndexedCalc.getId("min");
+      var maxIndex = IndexedCalc.getId("max");
+      var indexes = {};
+      indexes[minIndex] = min(events, getter);
+      indexes[maxIndex] = max(events, getter);
+      getter = basis.getter(getter || events);
+      return new IndexedCalc(indexes, function(data, indexes, object) {
+        return (getter(object) - indexes[minIndex]) / (indexes[maxIndex] - indexes[minIndex]);
+      });
     }
-    var Index = Class(Value, {
-      className: namespace + ".Index",
+    function percentOfMax(events, getter) {
+      var maxIndex = IndexedCalc.getId("max");
+      var indexes = {};
+      indexes[maxIndex] = max(events, getter);
+      getter = basis.getter(getter || events);
+      return new IndexedCalc(indexes, function(data, indexes, object) {
+        return getter(object) / indexes[maxIndex];
+      });
+    }
+    function percentOfSum(getter, events) {
+      var sumIndex = IndexedCalc.getId("sum");
+      var indexes = {};
+      indexes[sumIndex] = sum(events, getter);
+      getter = basis.getter(getter || events);
+      return new IndexedCalc(indexes, function(data, indexes, object) {
+        return getter(object) / indexes[sumIndex];
+      });
+    }
+    module.exports = {
+      Index: Index,
+      VectorIndex: VectorIndex,
+      IndexWrapper: IndexWrapper,
+      getDatasetIndex: Index.getDatasetIndex,
+      removeDatasetIndex: Index.removeDatasetIndex,
+      Count: Count,
+      Sum: Sum,
+      Avg: Avg,
+      Min: Min,
+      Max: Max,
+      Distinct: Distinct,
+      createIndexConstructor: createIndexConstructor,
+      count: count,
+      sum: sum,
+      avg: avg,
+      max: max,
+      min: min,
+      distinct: distinct,
+      CalcIndexPreset: IndexedCalc,
+      percentOfRange: percentOfRange,
+      percentOfMax: percentOfMax,
+      percentOfSum: percentOfSum,
+      IndexMap: IndexMap
+    };
+  },
+  "1g.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Value = basis.require("./g.js").Value;
+    var Index = Value.subclass({
+      className: "basis.data.index.Index",
+      propertyDescriptors: {
+        explicit: false,
+        wrapperCount: false,
+        updateEvents: false
+      },
       explicit: false,
       wrapperCount: 0,
       indexCache_: null,
@@ -9668,55 +10377,122 @@ var __resources__ = {
         this.indexCache_ = null;
       }
     });
-    var Sum = Class(Index, {
-      className: namespace + ".Sum",
-      add_: function(value) {
-        this.value += value;
-      },
-      remove_: function(value) {
-        this.value -= value;
-      },
-      update_: function(newValue, oldValue) {
-        this.set(this.value - oldValue + newValue);
+    var datasetIndexes = {};
+    function applyIndexDelta(index, inserted, deleted) {
+      var indexCache = index.indexCache_;
+      var objectId;
+      index.lock();
+      if (inserted) for (var i = 0, object; object = inserted[i++]; ) {
+        var newValue = index.normalize(index.valueGetter(object));
+        indexCache[object.basisObjectId] = newValue;
+        index.add_(newValue);
       }
-    });
-    var Count = Class(Index, {
-      className: namespace + ".Count",
-      valueGetter: basis.fn.$true,
-      add_: function(value) {
-        this.value += value;
-      },
-      remove_: function(value) {
-        this.value -= value;
-      },
-      normalize: function(value) {
-        return !!value;
-      },
-      update_: function(newValue, oldValue) {
-        this.set(this.value - !!oldValue + !!newValue);
+      if (deleted) for (var i = 0, object; object = deleted[i++]; ) {
+        objectId = object.basisObjectId;
+        index.remove_(indexCache[objectId]);
+        delete indexCache[objectId];
       }
-    });
-    var Avg = Class(Index, {
-      className: namespace + ".Avg",
-      sum_: 0,
-      count_: 0,
-      add_: function(value) {
-        this.sum_ += value;
-        this.count_ += 1;
-        this.value = this.sum_ / this.count_;
-      },
-      remove_: function(value) {
-        this.sum_ -= value;
-        this.count_ -= 1;
-        this.value = this.count_ ? this.sum_ / this.count_ : 0;
-      },
-      update_: function(newValue, oldValue) {
-        this.sum_ += newValue - oldValue;
-        this.set(this.sum_ / this.count_);
+      index.unlock();
+    }
+    var DATASET_INDEX_HANDLER = {
+      destroy: function(object) {
+        removeDatasetIndex(this, object);
       }
-    });
-    var VectorIndex = Class(Index, {
-      className: namespace + ".VectorIndex",
+    };
+    var DATASET_WITH_INDEX_HANDLER = {
+      itemsChanged: function(object, delta) {
+        var array;
+        if (array = delta.inserted) for (var i = 0; i < array.length; i++) array[i].addHandler(ITEM_INDEX_HANDLER, this);
+        if (array = delta.deleted) for (var i = 0; i < array.length; i++) array[i].removeHandler(ITEM_INDEX_HANDLER, this);
+        var indexes = datasetIndexes[this.basisObjectId];
+        for (var indexId in indexes) applyIndexDelta(indexes[indexId], delta.inserted, delta.deleted);
+      },
+      destroy: function() {
+        var indexes = datasetIndexes[this.basisObjectId];
+        for (var indexId in indexes) {
+          var index = indexes[indexId];
+          removeDatasetIndex(this, index);
+          index.destroy();
+        }
+      }
+    };
+    var ITEM_INDEX_HANDLER = {
+      "*": function(event) {
+        var eventType = event.type;
+        var object = event.sender;
+        var objectId = object.basisObjectId;
+        var indexes = datasetIndexes[this.basisObjectId];
+        var oldValue;
+        var newValue;
+        var index;
+        for (var indexId in indexes) {
+          index = indexes[indexId];
+          if (index.updateEvents[eventType]) {
+            oldValue = index.indexCache_[objectId];
+            newValue = index.normalize(index.valueGetter(object));
+            if (newValue !== oldValue) {
+              index.update_(newValue, oldValue);
+              index.indexCache_[objectId] = newValue;
+            }
+          }
+        }
+      }
+    };
+    function getDatasetIndex(dataset, IndexClass) {
+      if (!IndexClass || IndexClass.prototype instanceof Index === false) throw "IndexClass must be an instance of IndexClass";
+      var datasetId = dataset.basisObjectId;
+      var indexes = datasetIndexes[datasetId];
+      if (!indexes) {
+        indexes = datasetIndexes[datasetId] = {};
+        dataset.addHandler(DATASET_WITH_INDEX_HANDLER);
+        DATASET_WITH_INDEX_HANDLER.itemsChanged.call(dataset, dataset, {
+          inserted: dataset.getItems()
+        });
+      }
+      var indexId = IndexClass.indexId;
+      var index = indexes[indexId];
+      if (!index) {
+        index = new IndexClass;
+        index.addHandler(DATASET_INDEX_HANDLER, dataset);
+        indexes[indexId] = index;
+        applyIndexDelta(index, dataset.getItems());
+      }
+      return index;
+    }
+    function removeDatasetIndex(dataset, index) {
+      var indexes = datasetIndexes[dataset.basisObjectId];
+      if (indexes && indexes[index.indexId]) {
+        delete indexes[index.indexId];
+        index.removeHandler(DATASET_INDEX_HANDLER, dataset);
+        for (var key in indexes) return;
+        dataset.removeHandler(DATASET_WITH_INDEX_HANDLER);
+        DATASET_WITH_INDEX_HANDLER.itemsChanged.call(dataset, dataset, {
+          deleted: dataset.getItems()
+        });
+        delete datasetIndexes[dataset.basisObjectId];
+      }
+    }
+    Index.getDatasetIndex = getDatasetIndex;
+    Index.removeDatasetIndex = removeDatasetIndex;
+    module.exports = Index;
+  },
+  "1h.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1g.js");
+    function binarySearchPos(array, value) {
+      if (!array.length) return 0;
+      var pos;
+      var cmpValue;
+      var l = 0;
+      var r = array.length - 1;
+      do {
+        pos = l + r >> 1;
+        cmpValue = array[pos] || 0;
+        if (value < cmpValue) r = pos - 1; else if (value > cmpValue) l = pos + 1; else return value == cmpValue ? pos : 0;
+      } while (l <= r);
+      return pos + (cmpValue < value);
+    }
+    module.exports = Index.subclass({
+      className: "basis.data.index.VectorIndex",
       vectorGetter: basis.fn.$null,
       vector_: null,
       value: undefined,
@@ -9749,67 +10525,32 @@ var __resources__ = {
         this.vector_ = null;
       }
     });
-    var Min = Class(VectorIndex, {
-      className: namespace + ".Min",
-      vectorGetter: function(vector) {
-        return vector[0];
-      }
-    });
-    var Max = Class(VectorIndex, {
-      className: namespace + ".Max",
-      vectorGetter: function(vector) {
-        return vector[vector.length - 1];
-      }
-    });
-    var Distinct = Class(Index, {
-      className: namespace + ".Distinct",
-      map_: null,
-      init: function() {
-        this.map_ = {};
-        Index.prototype.init.call(this);
-      },
-      add_: function(value) {
-        if (!this.map_.hasOwnProperty(value)) this.map_[value] = 0;
-        if (++this.map_[value] == 1) this.value += 1;
-      },
-      remove_: function(value) {
-        if (--this.map_[value] == 0) this.value -= 1;
-      },
-      update_: function(newValue, oldValue) {
-        var delta = 0;
-        if (!this.map_.hasOwnProperty(newValue)) this.map_[newValue] = 0;
-        if (++this.map_[newValue] == 1) delta += 1;
-        if (--this.map_[oldValue] == 0) delta -= 1;
-        if (delta) this.set(this.value + delta);
-      },
-      normalize: String,
-      destroy: function() {
-        Index.prototype.destroy.call(this);
-        this.map_ = null;
-      }
-    });
+  },
+  "1i.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Value = basis.require("./g.js").Value;
+    var Index = basis.require("./1g.js");
+    var resolveDataset = basis.require("./g.js").resolveDataset;
     var INDEXWRAPPER_HANDLER = {
       destroy: function() {
         Value.prototype.set.call(this, this.initValue);
         this.index = null;
       }
     };
-    var IndexWrapper = Value.subclass({
-      className: namespace + ".IndexWrapper",
+    module.exports = Value.subclass({
+      className: "basis.data.index.IndexWrapper",
       extendConstructor_: false,
       source: null,
+      sourceRA_: null,
       dataset: null,
-      datasetRA_: null,
       indexConstructor: null,
       index: null,
       init: function(source, indexConstructor) {
         this.source = source;
         this.indexConstructor = indexConstructor;
-        this.value = indexConstructorCache[indexConstructor.indexId].indexClass.prototype.value;
+        this.value = indexConstructor.prototype.value;
         Value.prototype.init.call(this);
         source.bindingBridge.attach(source, basis.fn.$undef, this, this.destroy);
         this.setDataset(source);
-        this.source[indexConstructor.indexId] = this;
       },
       setDataset: function(source) {
         var oldDataset = this.dataset;
@@ -9819,10 +10560,10 @@ var __resources__ = {
           if (index) {
             index.removeHandler(INDEXWRAPPER_HANDLER, this);
             index.wrapperCount -= 1;
-            if (!index.wrapperCount && !index.explicit) index.destroy();
+            if (!index.wrapperCount && !index.explicit) index.destroy(); else index.unlink(this, Value.prototype.set);
           }
           if (newDataset) {
-            index = getDatasetIndex(newDataset, this.indexConstructor);
+            index = Index.getDatasetIndex(newDataset, this.indexConstructor);
             index.wrapperCount += 1;
             index.link(this, Value.prototype.set);
             index.addHandler(INDEXWRAPPER_HANDLER, this);
@@ -9841,280 +10582,104 @@ var __resources__ = {
         this.source.bindingBridge.detach(this.source, basis.fn.$undef, this);
         this.setDataset();
         Value.prototype.destroy.call(this);
-        delete this.source[this.indexConstructor.indexId];
         this.source = null;
         this.indexConstructor = null;
       }
     });
-    var indexConstructorIdPrefix = "basisjsIndexConstructor" + basis.genUID();
-    var indexConstructorCache = {};
-    var DATASET_INDEX_HANDLER = {
-      destroy: function(object) {
-        removeDatasetIndex(this, object);
-      }
-    };
-    function IndexConstructor(indexId) {
-      this.indexId = indexId;
-    }
-    function getIndexConstructor(BaseClass, getter, events) {
-      if (!Class.isClass(BaseClass) || !BaseClass.isSubclassOf(Index)) throw "Wrong class for index constructor";
-      getter = basis.getter(getter);
-      events = events || "update";
-      if (typeof events != "string") throw "Events must be a event names space separated string";
-      events = events.trim().split(" ").sort();
-      var indexId = indexConstructorIdPrefix + [ BaseClass.basisClassId_, getter[basis.getter.ID], events ].join("_");
-      var indexConstructor = indexConstructorCache[indexId];
-      if (indexConstructor) return indexConstructor.owner;
-      var events_ = {};
-      for (var i = 0; i < events.length; i++) events_[events[i]] = true;
-      indexConstructor = new IndexConstructor(indexId);
-      indexConstructorCache[indexId] = {
-        owner: indexConstructor,
-        indexClass: BaseClass.subclass({
-          indexId: indexId,
-          updateEvents: events_,
-          valueGetter: getter
-        })
-      };
-      return indexConstructor;
-    }
-    var createIndexConstructor = function(IndexClass, defGetter) {
-      return function(source, events, getter) {
-        if (typeof source == "function" || typeof source == "string") {
-          getter = events;
-          events = source;
-          source = null;
+  },
+  "1j.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var iterate = basis.object.iterate;
+    var Value = basis.require("./g.js").Value;
+    var DataObject = basis.require("./g.js").Object;
+    var SourceDataset = basis.require("./n.js").SourceDataset;
+    var createRuleEvents = basis.require("./n.js").createRuleEvents;
+    var Index = basis.require("./1g.js");
+    var IndexWrapper = basis.require("./1i.js");
+    var IndexedCalc = basis.require("./1k.js");
+    var indexMapRecalcShedule = basis.asap.schedule(function(indexMap) {
+      indexMap.recalc();
+    });
+    var INDEXMAP_SOURCE_HANDLER = {
+      itemsChanged: function(sender, delta) {
+        var deleted = [];
+        var array;
+        if (array = delta.inserted) for (var i = 0; i < array.length; i++) {
+          var sourceObject = array[i];
+          var sourceObjectId = sourceObject.basisObjectId;
+          this.awaitToAdd_[sourceObjectId] = sourceObject;
+          this.scheduleRecalc();
         }
-        if (!getter) {
-          getter = events;
-          events = "";
+        if (array = delta.deleted) for (var i = 0; i < array.length; i++) {
+          var sourceObject = array[i];
+          var sourceObjectId = sourceObject.basisObjectId;
+          var memberInfo = this.sourceMap_[sourceObjectId];
+          if (memberInfo) {
+            var member = memberInfo.member;
+            deleted.push(member);
+            if (this.listen.member) member.removeHandler(this.listen.member, this);
+            if (this.recalcEvents) sourceObject.removeHandler(this.recalcEvents, this);
+            delete this.sourceMap_[sourceObjectId];
+          } else {
+            delete this.awaitToAdd_[sourceObjectId];
+          }
         }
-        var indexConstructor = getIndexConstructor(IndexClass, getter || defGetter, events);
-        if (!source) return indexConstructor;
-        if (source instanceof ReadOnlyDataset || source instanceof DatasetWrapper) {
-          var index = getDatasetIndex(source, indexConstructor);
-          index.explicit = true;
-          return index;
-        }
-        if (source.bindingBridge) return source[indexConstructor.indexId] || new IndexWrapper(source, indexConstructor);
-        basis.dev.warn(IndexClass.className + ": wrong source value for index (should be instance of basis.data.ReadOnlyDataset, basis.data.DatasetWrapper or bb-value)");
-        return null;
-      };
-    };
-    var count = createIndexConstructor(Count, basis.fn.$true);
-    var sum = createIndexConstructor(Sum);
-    var avg = createIndexConstructor(Avg);
-    var min = createIndexConstructor(Min);
-    var max = createIndexConstructor(Max);
-    var distinct = createIndexConstructor(Distinct);
-    function applyIndexDelta(index, inserted, deleted) {
-      var indexCache = index.indexCache_;
-      var objectId;
-      index.lock();
-      if (inserted) for (var i = 0, object; object = inserted[i++]; ) {
-        var newValue = index.normalize(index.valueGetter(object));
-        indexCache[object.basisObjectId] = newValue;
-        index.add_(newValue);
-      }
-      if (deleted) for (var i = 0, object; object = deleted[i++]; ) {
-        objectId = object.basisObjectId;
-        index.remove_(indexCache[objectId]);
-        delete indexCache[objectId];
-      }
-      index.unlock();
-    }
-    var ITEM_INDEX_HANDLER = {
-      "*": function(event) {
-        var oldValue;
-        var newValue;
-        var index;
-        var eventType = event.type;
-        var object = event.sender;
-        var objectId = object.basisObjectId;
-        var indexes = datasetIndexes[this.basisObjectId];
-        for (var indexId in indexes) {
-          index = indexes[indexId];
-          if (index.updateEvents[eventType]) {
-            oldValue = index.indexCache_[objectId];
-            newValue = index.normalize(index.valueGetter(object));
-            if (newValue !== oldValue) {
-              index.update_(newValue, oldValue);
-              index.indexCache_[objectId] = newValue;
-            }
+        if (deleted.length) {
+          this.emit_itemsChanged({
+            deleted: deleted
+          });
+          for (var i = 0; i < deleted.length; i++) {
+            var member = deleted[i];
+            member.source = null;
+            member.destroy();
           }
         }
       }
     };
-    var DATASET_WITH_INDEX_HANDLER = {
-      itemsChanged: function(object, delta) {
-        var array;
-        if (array = delta.inserted) for (var i = array.length; i-- > 0; ) array[i].addHandler(ITEM_INDEX_HANDLER, this);
-        if (array = delta.deleted) for (var i = array.length; i-- > 0; ) array[i].removeHandler(ITEM_INDEX_HANDLER, this);
-        var indexes = datasetIndexes[this.basisObjectId];
-        for (var indexId in indexes) applyIndexDelta(indexes[indexId], delta.inserted, delta.deleted);
-      },
-      destroy: function() {
-        var indexes = datasetIndexes[this.basisObjectId];
-        for (var indexId in indexes) {
-          var index = indexes[indexId];
-          removeDatasetIndex(this, index);
-          index.destroy();
-        }
-      }
-    };
-    var datasetIndexes = {};
-    function getDatasetIndex(dataset, indexConstructor) {
-      if (indexConstructor instanceof IndexConstructor == false) throw "indexConstructor must be an instance of IndexConstructor";
-      var datasetId = dataset.basisObjectId;
-      var indexes = datasetIndexes[datasetId];
-      if (!indexes) {
-        indexes = datasetIndexes[datasetId] = {};
-        dataset.addHandler(DATASET_WITH_INDEX_HANDLER);
-        DATASET_WITH_INDEX_HANDLER.itemsChanged.call(dataset, dataset, {
-          inserted: dataset.getItems()
-        });
-      }
-      var indexId = indexConstructor.indexId;
-      var index = indexes[indexId];
-      if (!index) {
-        indexConstructor = indexConstructorCache[indexId];
-        if (!indexConstructor) throw "Wrong index constructor";
-        index = new indexConstructor.indexClass;
-        index.addHandler(DATASET_INDEX_HANDLER, dataset);
-        indexes[indexId] = index;
-        applyIndexDelta(index, dataset.getItems());
-      }
-      return index;
-    }
-    function removeDatasetIndex(dataset, index) {
-      var indexes = datasetIndexes[dataset.basisObjectId];
-      if (indexes && indexes[index.indexId]) {
-        delete indexes[index.indexId];
-        index.removeHandler(DATASET_INDEX_HANDLER, dataset);
-        for (var key in indexes) return;
-        dataset.removeHandler(DATASET_WITH_INDEX_HANDLER);
-        DATASET_WITH_INDEX_HANDLER.itemsChanged.call(dataset, dataset, {
-          deleted: dataset.getItems()
-        });
-        delete datasetIndexes[dataset.basisObjectId];
-      }
-    }
-    var indexMapRecalcShedule = basis.asap.schedule(function(indexMap) {
-      indexMap.recalc();
-    });
-    var calcIndexPresetSeed = 1;
-    function getUniqueCalcIndexId() {
-      return "calc-index-preset-" + basis.number.lead(calcIndexPresetSeed++, 8);
-    }
-    var CalcIndexPreset = Class(null, {
-      className: namespace + ".CalcIndexPreset",
-      extendConstructor_: true,
-      indexes: {},
-      calc: basis.fn.$null
-    });
-    function percentOfRange(events, getter) {
-      var minIndex = "min_" + getUniqueCalcIndexId();
-      var maxIndex = "max_" + getUniqueCalcIndexId();
-      var indexes = {};
-      indexes[minIndex] = min(events, getter);
-      indexes[maxIndex] = max(events, getter);
-      getter = basis.getter(getter || events);
-      var calc = function(data, index, object) {
-        return (getter(object) - index[minIndex]) / (index[maxIndex] - index[minIndex]);
-      };
-      return calc.preset = new CalcIndexPreset({
-        indexes: indexes,
-        calc: calc
-      });
-    }
-    function percentOfMax(events, getter) {
-      var maxIndex = "max_" + getUniqueCalcIndexId();
-      var indexes = {};
-      indexes[maxIndex] = max(events, getter);
-      getter = basis.getter(getter || events);
-      var calc = function(data, index, object) {
-        return getter(object) / index[maxIndex];
-      };
-      return calc.preset = new CalcIndexPreset({
-        indexes: indexes,
-        calc: calc
-      });
-    }
-    function percentOfSum(getter, events) {
-      var sumIndex = "sum_" + getUniqueCalcIndexId();
-      var indexes = {};
-      indexes[sumIndex] = sum(events, getter);
-      getter = basis.getter(getter || events);
-      var calc = function(data, index, object) {
-        return getter(object) / index[sumIndex];
-      };
-      return calc.preset = new CalcIndexPreset({
-        indexes: indexes,
-        calc: calc
-      });
-    }
-    var IndexMap = Class(MapFilter, {
-      className: namespace + ".IndexMap",
+    module.exports = SourceDataset.subclass({
+      className: "basis.data.index.IndexMap",
       calcs: null,
       copyDataFromSource: true,
       indexes: null,
       indexValues: null,
       indexUpdated: false,
+      awaitToAdd_: null,
       itemClass: DataObject,
-      map: function(sourceObject) {
-        var member = this.getMember(sourceObject);
-        if (!member) {
-          var data = {};
-          for (var calcName in this.calcs) data[calcName] = this.calcs[calcName](sourceObject.data, this.indexValues, sourceObject);
-          if (this.copyDataFromSource) for (var key in sourceObject.data) if (!this.calcs.hasOwnProperty(key)) data[key] = sourceObject.data[key];
-          member = new this.itemClass({
-            source: sourceObject,
-            data: data
-          });
-        }
-        return member;
+      listen: {
+        source: INDEXMAP_SOURCE_HANDLER
       },
-      addMemberRef: function(member) {
-        if (this.listen.member) member.addHandler(this.listen.member, this);
-      },
-      removeMemberRef: function(member) {
-        if (this.listen.member) member.removeHandler(this.listen.member, this);
-        member.source = null;
-        member.destroy();
-      },
-      ruleEvents: createRuleEvents(function(sender) {
-        MapFilter.prototype.ruleEvents.update.call(this, sender);
+      recalcEvents: createRuleEvents(function(sender) {
         this.sourceMap_[sender.basisObjectId].updated = true;
         this.scheduleRecalc();
       }, "update"),
       init: function() {
         var indexes = this.indexes;
-        this.indexes = {};
-        this.indexValues = {};
         var calcs = this.calcs;
         this.calcs = {};
-        MapFilter.prototype.init.call(this);
+        this.indexes = {};
+        this.indexValues = {};
+        this.awaitToAdd_ = {};
+        SourceDataset.prototype.init.call(this);
         iterate(indexes, this.addIndex, this);
         for (var name in calcs) {
           var calcCfg = calcs[name];
-          if (calcCfg instanceof CalcIndexPreset) {
+          if (calcCfg instanceof IndexedCalc) {
             iterate(calcCfg.indexes, this.addIndex, this);
             calcCfg = calcCfg.calc;
           }
           this.calcs[name] = calcCfg;
         }
-        if (this.itemCount) this.recalc();
+        this.recalc();
       },
-      addIndex: function(key, indexConstructor) {
-        if (indexConstructor instanceof IndexConstructor == false) {
-          basis.dev.warn("MapIndex.addIndex(): `index` should be instance of `basis.data.index.IndexConstructor`");
+      addIndex: function(key, IndexClass) {
+        if (!IndexClass || IndexClass.prototype instanceof Index === false) {
+          basis.dev.warn("basis.data.IndexMap#addIndex(): `IndexClass` should be subclass of `basis.data.index.Index`");
           return;
         }
         if (this.indexes[key]) {
-          basis.dev.warn("MapIndex.addIndex(): Index `" + key + "` already exists");
+          basis.dev.warn("basis.data.IndexMap#addIndex(): Index `" + key + "` already exists");
           return;
         }
-        var index = new IndexWrapper(Value.from(this, "sourceChanged", "source"), indexConstructor);
+        var index = new IndexWrapper(Value.from(this, "sourceChanged", "source"), IndexClass);
         this.indexes[key] = index;
         this.indexValues[key] = index.value;
         index.link(this, function(value) {
@@ -10142,6 +10707,31 @@ var __resources__ = {
       },
       recalc: function() {
         for (var id in this.sourceMap_) this.calcMember(this.sourceMap_[id]);
+        var inserted = [];
+        var items = this.awaitToAdd_;
+        this.awaitToAdd_ = {};
+        for (var id in items) {
+          var sourceObject = items[id];
+          var data = {};
+          var member;
+          for (var calcName in this.calcs) data[calcName] = this.calcs[calcName](sourceObject.data, this.indexValues, sourceObject);
+          if (this.copyDataFromSource) for (var key in sourceObject.data) if (!this.calcs.hasOwnProperty(key)) data[key] = sourceObject.data[key];
+          member = new this.itemClass({
+            data: data,
+            update: sourceObject.update.bind(sourceObject)
+          });
+          if (this.listen.member) member.addHandler(this.listen.member, this);
+          if (this.recalcEvents) sourceObject.addHandler(this.recalcEvents, this);
+          this.sourceMap_[id] = {
+            sourceObject: sourceObject,
+            member: member,
+            updated: false
+          };
+          inserted.push(member);
+        }
+        if (inserted.length) this.emit_itemsChanged({
+          inserted: inserted
+        });
         this.indexUpdated = false;
         indexMapRecalcShedule.remove(this);
       },
@@ -10175,7 +10765,7 @@ var __resources__ = {
               update = true;
             }
           }
-          if (update) member.update(delta);
+          if (update) this.itemClass.prototype.update.call(member, delta);
           memberInfo.updated = false;
         }
       },
@@ -10185,45 +10775,208 @@ var __resources__ = {
       },
       destroy: function() {
         iterate(this.indexes, this.removeIndex, this);
-        MapFilter.prototype.destroy.call(this);
+        SourceDataset.prototype.destroy.call(this);
         indexMapRecalcShedule.remove(this);
+        this.awaitToAdd_ = null;
         this.calcs = null;
         this.indexes = null;
         this.indexValues = null;
       }
     });
-    module.exports = {
-      IndexConstructor: IndexConstructor,
-      createIndexConstructor: createIndexConstructor,
-      getDatasetIndex: getDatasetIndex,
-      removeDatasetIndex: removeDatasetIndex,
-      Index: Index,
-      Count: Count,
-      Sum: Sum,
-      Avg: Avg,
-      VectorIndex: VectorIndex,
-      Min: Min,
-      Max: Max,
-      Distinct: Distinct,
-      count: count,
-      sum: sum,
-      avg: avg,
-      max: max,
-      min: min,
-      distinct: distinct,
-      CalcIndexPreset: CalcIndexPreset,
-      percentOfRange: percentOfRange,
-      percentOfMax: percentOfMax,
-      percentOfSum: percentOfSum,
-      IndexMap: IndexMap
+  },
+  "1k.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var calcIndexPresetSeed = 1;
+    var IndexedCalc = function(indexes, calc) {
+      this.indexes = indexes;
+      this.calc = calc;
+    };
+    IndexedCalc.getId = function(prefix) {
+      return prefix + "_calc-index-preset-" + basis.number.lead(calcIndexPresetSeed++, 4);
+    };
+    module.exports = IndexedCalc;
+  },
+  "1l.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Class = basis.Class;
+    var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
+    var DatasetWrapper = basis.require("./g.js").DatasetWrapper;
+    var chainValueFactory = basis.require("./g.js").chainValueFactory;
+    var Index = basis.require("./1g.js");
+    var IndexWrapper = basis.require("./1i.js");
+    var PREFIX = "basisjsIndexConstructor" + basis.genUID();
+    var constructors = {};
+    var SOURCE_INDEXWRAPPER_HANDLER = {
+      destroy: function(indexWrapper) {
+        indexWrapper.source[this.indexId] = null;
+      }
+    };
+    function getIndexConstructor(BaseClass, getter, events) {
+      if (!Class.isClass(BaseClass) || !BaseClass.isSubclassOf(Index)) throw "Wrong class for index constructor";
+      getter = basis.getter(getter);
+      events = events || "update";
+      if (typeof events != "string") throw "Events must be a event names space separated string";
+      events = events.trim().split(" ").sort();
+      var indexId = PREFIX + [ BaseClass.basisClassId_, getter[basis.getter.ID], events ].join("_");
+      var indexConstructor = constructors[indexId];
+      if (!indexConstructor) {
+        var events_ = {};
+        for (var i = 0; i < events.length; i++) events_[events[i]] = true;
+        indexConstructor = constructors[indexId] = BaseClass.subclass({
+          indexId: indexId,
+          updateEvents: events_,
+          valueGetter: getter
+        });
+        indexConstructor.indexId = indexId;
+      }
+      return indexConstructor;
+    }
+    module.exports = function createIndexConstructor(IndexClass, defGetter) {
+      return function create(source, events, getter) {
+        if (basis.fn.isFactory(source)) {
+          var factory = source;
+          return chainValueFactory(function(target) {
+            return create(factory(target), events, getter, true);
+          });
+        }
+        if (typeof source == "function" || typeof source == "string") {
+          getter = events;
+          events = source;
+          source = null;
+        }
+        if (!getter) {
+          getter = events;
+          events = "";
+        }
+        var indexConstructor = getIndexConstructor(IndexClass, getter || defGetter, events);
+        if (!source) return indexConstructor;
+        if (source instanceof ReadOnlyDataset || source instanceof DatasetWrapper) {
+          var index = Index.getDatasetIndex(source, indexConstructor);
+          index.explicit = true;
+          return index;
+        }
+        if (source.bindingBridge) {
+          var indexWrapper = source[indexConstructor.indexId];
+          if (!indexWrapper) {
+            indexWrapper = new IndexWrapper(source, indexConstructor);
+            source[indexConstructor.indexId] = indexWrapper;
+            indexWrapper.addHandler(SOURCE_INDEXWRAPPER_HANDLER, indexConstructor);
+          }
+          return indexWrapper;
+        }
+        basis.dev.warn(IndexClass.className + ": wrong source value for index (should be instance of basis.data.ReadOnlyDataset, basis.data.DatasetWrapper or bb-value)");
+        return null;
+      };
     };
   },
-  "l.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
-    var createEvent = basis.require("./2.js").create;
-    var SUBSCRIPTION = basis.require("./e.js").SUBSCRIPTION;
-    var DataObject = basis.require("./e.js").Object;
-    var resolveObject = basis.require("./e.js").resolveObject;
+  "1m.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1g.js");
+    module.exports = Index.subclass({
+      className: "basis.data.index.Count",
+      valueGetter: basis.fn.$true,
+      add_: function(value) {
+        this.value += value;
+      },
+      remove_: function(value) {
+        this.value -= value;
+      },
+      normalize: function(value) {
+        return Boolean(value);
+      },
+      update_: function(newValue, oldValue) {
+        this.set(this.value - Boolean(oldValue) + Boolean(newValue));
+      }
+    });
+  },
+  "1n.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1g.js");
+    module.exports = Index.subclass({
+      className: "basis.data.index.Sum",
+      add_: function(value) {
+        this.value += value;
+      },
+      remove_: function(value) {
+        this.value -= value;
+      },
+      update_: function(newValue, oldValue) {
+        this.set(this.value - oldValue + newValue);
+      }
+    });
+  },
+  "1o.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1g.js");
+    module.exports = Index.subclass({
+      className: "basis.data.index.Avg",
+      sum_: 0,
+      count_: 0,
+      add_: function(value) {
+        this.sum_ += value;
+        this.count_ += 1;
+        this.value = this.sum_ / this.count_;
+      },
+      remove_: function(value) {
+        this.sum_ -= value;
+        this.count_ -= 1;
+        this.value = this.count_ ? this.sum_ / this.count_ : 0;
+      },
+      update_: function(newValue, oldValue) {
+        this.sum_ += newValue - oldValue;
+        this.set(this.sum_ / this.count_);
+      }
+    });
+  },
+  "1p.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var VectorIndex = basis.require("./1h.js");
+    module.exports = VectorIndex.subclass({
+      className: "basis.data.index.Min",
+      vectorGetter: function(vector) {
+        return vector[0];
+      }
+    });
+  },
+  "1q.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var VectorIndex = basis.require("./1h.js");
+    module.exports = VectorIndex.subclass({
+      className: "basis.data.index..Max",
+      vectorGetter: function(vector) {
+        return vector[vector.length - 1];
+      }
+    });
+  },
+  "1r.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1g.js");
+    module.exports = Index.subclass({
+      className: "basis.data.index.Distinct",
+      map_: null,
+      init: function() {
+        this.map_ = {};
+        Index.prototype.init.call(this);
+      },
+      add_: function(value) {
+        if (!this.map_.hasOwnProperty(value)) this.map_[value] = 0;
+        if (++this.map_[value] == 1) this.value += 1;
+      },
+      remove_: function(value) {
+        if (--this.map_[value] == 0) this.value -= 1;
+      },
+      update_: function(newValue, oldValue) {
+        var delta = 0;
+        if (!this.map_.hasOwnProperty(newValue)) this.map_[newValue] = 0;
+        if (++this.map_[newValue] == 1) delta += 1;
+        if (--this.map_[oldValue] == 0) delta -= 1;
+        if (delta) this.set(this.value + delta);
+      },
+      normalize: String,
+      destroy: function() {
+        Index.prototype.destroy.call(this);
+        this.map_ = null;
+      }
+    });
+  },
+  "q.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.data.object";
+    var createEvent = basis.require("./3.js").create;
+    var SUBSCRIPTION = basis.require("./g.js").SUBSCRIPTION;
+    var DataObject = basis.require("./g.js").Object;
+    var resolveObject = basis.require("./g.js").resolveObject;
     SUBSCRIPTION.add("OBJECTSOURCE", {
       sourceChanged: function(object, name, oldSource) {
         if (oldSource) SUBSCRIPTION.unlink("sources", object, oldSource);
@@ -10305,12 +11058,18 @@ var __resources__ = {
     var Merge = DataObject.subclass({
       className: namespace + ".Merge",
       subscribeTo: DataObject.prototype.subscribeTo + SUBSCRIPTION.OBJECTSOURCE,
-      emit_sourceChanged: createEvent("sourceChanged", "name", "oldSource"),
+      propertyDescriptors: {
+        sources: {
+          nested: true,
+          events: "sourceChanged"
+        }
+      },
       fields: fieldsExtend({
         "*": "-"
       }),
       sources: null,
       sourcesContext_: null,
+      emit_sourceChanged: createEvent("sourceChanged", "name", "oldSource"),
       delta_: null,
       init: function() {
         var data = this.data;
@@ -10441,8 +11200,8 @@ var __resources__ = {
       Merge: Merge
     };
   },
-  "m.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "r.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.entity";
     var Class = basis.Class;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
     var keys = basis.object.keys;
@@ -10450,16 +11209,18 @@ var __resources__ = {
     var complete = basis.object.complete;
     var $self = basis.fn.$self;
     var arrayFrom = basis.array.from;
-    var basisEvent = basis.require("./2.js");
+    var basisEvent = basis.require("./3.js");
     var Emitter = basisEvent.Emitter;
     var createEvent = basisEvent.create;
-    var basisData = basis.require("./e.js");
+    var basisData = basis.require("./g.js");
     var DataObject = basisData.Object;
     var Slot = basisData.Slot;
     var Dataset = basisData.Dataset;
-    var basisDataset = basis.require("./i.js");
+    var ReadOnlyDataset = basisData.ReadOnlyDataset;
+    var basisDataset = basis.require("./n.js");
     var Filter = basisDataset.Filter;
     var Split = basisDataset.Split;
+    var setAccumulateState = Dataset.setAccumulateState;
     var NULL_INFO = {};
     var entityTypes = [];
     var isKeyType = {
@@ -10486,7 +11247,6 @@ var __resources__ = {
     var namedTypes = {};
     var namedIndexes = {};
     var deferredTypeDef = {};
-    var TYPE_DEFINITION_PLACEHOLDER = function TYPE_DEFINITION_PLACEHOLDER() {};
     function resolveType(typeName, type) {
       var list = deferredTypeDef[typeName];
       if (list) {
@@ -10611,6 +11371,55 @@ var __resources__ = {
       if (deleted && deleted.length) result = delta.deleted = deleted;
       if (result) return delta;
     }
+    function setAndDestroyRemoved(data) {
+      var itemsToDelete = basis.object.slice(this.items_);
+      var itemsToInsert = {};
+      var autoInserted = [];
+      var inserted = [];
+      var deleted = [];
+      var delta;
+      var entity;
+      data = arrayFrom(data);
+      setAccumulateState(true);
+      for (var i = 0, item; item = data[i]; i++) {
+        entity = this.wrapper(item);
+        if (entity) {
+          if (itemsToDelete[entity.basisObjectId]) itemsToDelete[entity.basisObjectId] = null; else itemsToInsert[entity.basisObjectId] = entity;
+        }
+      }
+      setAccumulateState(false);
+      for (var basisObjectId in itemsToInsert) if (this.items_[basisObjectId]) autoInserted.push(itemsToInsert[basisObjectId]); else inserted.push(itemsToInsert[basisObjectId]);
+      for (var basisObjectId in itemsToDelete) if (itemsToDelete[basisObjectId]) deleted.push(itemsToDelete[basisObjectId]);
+      if (delta = getDelta(inserted, deleted)) {
+        if (this instanceof EntitySet) {
+          var listenHandler = this.listen.item;
+          if (listenHandler) {
+            if (delta.inserted) for (var i = 0, item; item = delta.inserted[i]; i++) item.addHandler(listenHandler, this);
+            if (delta.deleted) for (var i = 0, item; item = delta.deleted[i]; i++) item.removeHandler(listenHandler, this);
+          }
+        }
+        this.emit_itemsChanged(delta);
+      }
+      if (deleted.length) {
+        setAccumulateState(true);
+        for (var i = 0, item; item = deleted[i]; i++) item.destroy();
+        setAccumulateState(false);
+      }
+      inserted = inserted.concat(autoInserted);
+      return inserted.length ? inserted : null;
+    }
+    var EntitySetMixin = function(super_) {
+      return {
+        name: null,
+        wrapper: $self,
+        setAndDestroyRemoved: setAndDestroyRemoved,
+        destroy: function() {
+          super_.destroy.call(this);
+          this.name = null;
+          this.wrapper = null;
+        }
+      };
+    };
     var WRAPPED_MARKER = "wrapped" + basis.genUID();
     var ENTITYSET_WRAP_METHOD = function(superClass, method) {
       return function(data) {
@@ -10618,7 +11427,7 @@ var __resources__ = {
         var needToWrap = data && !data[WRAPPED_MARKER];
         if (needToWrap) {
           if (this.localId) {
-            var items = arrayFrom(this.getItems());
+            var items = this.getItems().slice();
             data = data.map(function(newItem) {
               for (var i = 0; i < items.length; i++) if (this.localId(newItem, items[i])) return this.wrapper(newItem, items[i]);
               newItem = this.wrapper(newItem);
@@ -10634,9 +11443,9 @@ var __resources__ = {
         if (needToWrap) {
           data[WRAPPED_MARKER] = false;
           if (this.localId && delta && delta.deleted) {
-            Dataset.setAccumulateState(true);
-            for (var i = 0; i < delta.deleted.length; i++) if (delta.deleted[i].root) delta.deleted[i].destroy();
-            Dataset.setAccumulateState(false);
+            setAccumulateState(true);
+            for (var i = 0, item; item = delta.deleted[i]; i++) if (item.root) item.destroy();
+            setAccumulateState(false);
           }
         }
         return delta;
@@ -10648,83 +11457,34 @@ var __resources__ = {
         superClass.prototype.init.call(this);
       };
     };
-    var ENTITYSET_SYNC_METHOD = function() {
-      return function(data) {
-        if (this.localId) return this.set(data);
-        var destroyItems = basis.object.slice(this.items_);
-        var itemsChangedFired = false;
-        var listenHandler = this.listen.item;
-        var inserted = [];
-        var deleted = [];
-        var delta;
-        if (data) {
-          Dataset.setAccumulateState(true);
-          for (var i = 0; i < data.length; i++) {
-            var entity = this.wrapper(data[i]);
-            if (entity) {
-              if (entity.basisObjectId in destroyItems == false) inserted.push(entity);
-              destroyItems[entity.basisObjectId] = false;
-            }
-          }
-          var checkHandler = {
-            itemsChanged: function() {
-              itemsChangedFired = true;
-            }
-          };
-          this.addHandler(checkHandler);
-          Dataset.setAccumulateState(false);
-          this.removeHandler(checkHandler);
-        }
-        for (var key in destroyItems) if (destroyItems[key]) deleted.push(destroyItems[key]);
-        if (!itemsChangedFired && (delta = getDelta(inserted, deleted))) {
-          if (listenHandler) {
-            if (delta.deleted) for (var i = 0; i < delta.deleted.length; i++) delta.deleted[i].removeHandler(listenHandler, this);
-            if (delta.inserted) for (var i = 0; i < delta.inserted.length; i++) delta.inserted[i].addHandler(listenHandler, this);
-          }
-          this.emit_itemsChanged(delta);
-        }
-        if (deleted.length && this.wrapper.all) this.wrapper.all.emit_itemsChanged({
-          deleted: deleted
-        });
-        Dataset.setAccumulateState(true);
-        for (var i = 0; i < deleted.length; i++) deleted[i].destroy();
-        Dataset.setAccumulateState(false);
-        return inserted.length ? inserted : null;
-      };
-    };
-    var EntitySet = Class(Dataset, {
+    var ReadOnlyEntitySet = Class(ReadOnlyDataset, EntitySetMixin, {
+      className: namespace + ".ReadOnlyEntitySet",
+      init: ENTITYSET_INIT_METHOD(ReadOnlyDataset, "ReadOnlyEntitySet")
+    });
+    var EntitySet = Class(Dataset, EntitySetMixin, {
       className: namespace + ".EntitySet",
-      name: null,
-      wrapper: $self,
       init: ENTITYSET_INIT_METHOD(Dataset, "EntitySet"),
-      setAndDestroyRemoved: ENTITYSET_SYNC_METHOD(Dataset),
-      set: ENTITYSET_WRAP_METHOD(Dataset, "set"),
       add: ENTITYSET_WRAP_METHOD(Dataset, "add"),
       remove: ENTITYSET_WRAP_METHOD(Dataset, "remove"),
+      set: ENTITYSET_WRAP_METHOD(Dataset, "set"),
+      setAndDestroyRemoved: function(data) {
+        if (this.localId) return this.set(data);
+        if (!this.itemCount) return this.add(data);
+        if (!data || !data.length) return this.clear();
+        return setAndDestroyRemoved.call(this, data);
+      },
       clear: function() {
         var delta = Dataset.prototype.clear.call(this);
         if (this.localId && delta && delta.deleted) {
-          Dataset.setAccumulateState(true);
-          for (var i = 0; i < delta.deleted.length; i++) delta.deleted[i].destroy();
-          Dataset.setAccumulateState(false);
+          setAccumulateState(true);
+          for (var i = 0, item; item = delta.deleted[i]; i++) item.destroy();
+          setAccumulateState(false);
         }
         return delta;
-      },
-      destroy: function() {
-        Dataset.prototype.destroy.call(this);
-        this.wrapper = null;
       }
     });
-    var ReadOnlyEntitySet = Class(EntitySet, {
-      className: namespace + ".ReadOnlyEntitySet",
-      set: basis.fn.$false,
-      add: basis.fn.$false,
-      remove: basis.fn.$false,
-      clear: basis.fn.$false
-    });
-    var EntityCollection = Class(Filter, {
+    var EntityCollection = Class(Filter, EntitySetMixin, {
       className: namespace + ".EntityCollection",
-      name: null,
       init: ENTITYSET_INIT_METHOD(Filter, "EntityCollection")
     });
     var EntityGrouping = Class(Split, {
@@ -11246,6 +12006,12 @@ var __resources__ = {
       setDelegate: function() {},
       extendConstructor_: false,
       fieldHandlers_: null,
+      propertyDescriptors: {
+        modified: {
+          nested: true,
+          events: "rollbackUpdate"
+        }
+      },
       modified: null,
       emit_rollbackUpdate: createEvent("rollbackUpdate")
     });
@@ -11573,6 +12339,8 @@ var __resources__ = {
       CalculateField: CalculateField,
       ConcatStringField: ConcatStringField,
       calc: CalculateField,
+      arrayField: arrayField,
+      dateField: dateField,
       EntityType: EntityTypeWrapper,
       Entity: createEntityClass,
       BaseEntity: BaseEntity,
@@ -11582,24 +12350,24 @@ var __resources__ = {
       Collection: EntityCollection,
       Grouping: EntityGrouping
     };
-    basis.resource("./m.js").ready(function() {
+    basis.resource("./r.js").ready(function() {
       basis.dev.warnPropertyAccess(module.exports, "Collection", EntityCollection, "basis.entity: Collection class is deprecated, use basis.data.dataset.Filter instead.");
       basis.dev.warnPropertyAccess(module.exports, "Grouping", EntityGrouping, "basis.entity: Grouping class is deprecated, use basis.data.dataset.Split instead.");
     });
   },
-  "n.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "s.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.net.jsonp";
     var document = global.document;
     var escapeValue = global.encodeURIComponent;
     var extend = basis.object.extend;
     var objectSlice = basis.object.slice;
     var objectMerge = basis.object.merge;
-    var basisNet = basis.require("./o.js");
+    var basisNet = basis.require("./t.js");
     var createTransportEvent = basisNet.createTransportEvent;
     var createRequestEvent = basisNet.createRequestEvent;
     var AbstractRequest = basisNet.AbstractRequest;
     var AbstractTransport = basisNet.AbstractTransport;
-    var STATE = basis.require("./e.js").STATE;
+    var STATE = basis.require("./g.js").STATE;
     var STATE_UNSENT = 0;
     var STATE_LOADING = 3;
     var STATE_DONE = 4;
@@ -11827,15 +12595,15 @@ var __resources__ = {
       }
     };
   },
-  "o.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "t.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.net";
     var arrayFrom = basis.array.from;
     var objectSlice = basis.object.slice;
-    var basisEvent = basis.require("./2.js");
+    var basisEvent = basis.require("./3.js");
     var createEvent = basisEvent.create;
     var Emitter = basisEvent.Emitter;
-    var DataObject = basis.require("./e.js").Object;
-    var STATE = basis.require("./e.js").STATE;
+    var DataObject = basis.require("./g.js").Object;
+    var STATE = basis.require("./g.js").STATE;
     function createTransportEvent(eventName) {
       var event = createEvent(eventName);
       return function transportEvent() {
@@ -11998,13 +12766,13 @@ var __resources__ = {
       AbstractTransport: AbstractTransport
     };
   },
-  "p.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
-    var basisEvent = basis.require("./2.js");
+  "u.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.net.service";
+    var basisEvent = basis.require("./3.js");
     var createEvent = basisEvent.create;
     var Emitter = basisEvent.Emitter;
-    var AjaxTransport = basis.require("./q.js").Transport;
-    var createAction = basis.require("./s.js").create;
+    var AjaxTransport = basis.require("./v.js").Transport;
+    var createAction = basis.require("./x.js").create;
     function removeTransportFromService(service, transport) {
       service.inprogressRequests = service.inprogressRequests.filter(function(request) {
         return request.transport !== transport;
@@ -12137,8 +12905,8 @@ var __resources__ = {
       Service: Service
     };
   },
-  "q.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "v.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.net.ajax";
     var escapeValue = global.encodeURIComponent;
     var FormData = global.FormData;
     var XMLHttpRequest = global.XMLHttpRequest;
@@ -12146,8 +12914,8 @@ var __resources__ = {
     var objectSlice = basis.object.slice;
     var objectMerge = basis.object.merge;
     var objectIterate = basis.object.iterate;
-    var ua = basis.require("./r.js");
-    var basisNet = basis.require("./o.js");
+    var ua = basis.require("./w.js");
+    var basisNet = basis.require("./t.js");
     var createTransportEvent = basisNet.createTransportEvent;
     var createRequestEvent = basisNet.createRequestEvent;
     var AbstractRequest = basisNet.AbstractRequest;
@@ -12155,7 +12923,7 @@ var __resources__ = {
     var STATE_UNSENT = 0;
     var STATE_OPENED = 1;
     var STATE_DONE = 4;
-    var STATE = basis.require("./e.js").STATE;
+    var STATE = basis.require("./g.js").STATE;
     var METHODS = "HEAD GET POST PUT PATCH DELETE TRACE LINK UNLINK CONNECT".split(" ");
     var IS_METHOD_WITH_BODY = /^(POST|PUT|PATCH|LINK|UNLINK)$/i;
     var URL_METHOD_PREFIX = new RegExp("^(" + METHODS.join("|") + ")\\s+", "i");
@@ -12495,7 +13263,7 @@ var __resources__ = {
       }
     };
   },
-  "r.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "w.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var userAgent = global.navigator && global.navigator.userAgent || "";
     var opera = global.opera;
     var versions = {};
@@ -12560,14 +13328,14 @@ var __resources__ = {
       }
     };
   },
-  "s.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var STATE = basis.require("./e.js").STATE;
+  "x.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var STATE = basis.require("./g.js").STATE;
     var STATE_UNDEFINED = STATE.UNDEFINED;
     var STATE_READY = STATE.READY;
     var STATE_PROCESSING = STATE.PROCESSING;
     var STATE_ERROR = STATE.ERROR;
-    var AjaxTransport = basis.require("./q.js").Transport;
-    var Promise = basis.require("./t.js");
+    var AjaxTransport = basis.require("./v.js").Transport;
+    var Promise = basis.require("./y.js");
     var nothingToDo = function() {};
     var CALLBACK_HANDLER = {
       start: function(transport, request) {
@@ -12677,7 +13445,7 @@ var __resources__ = {
       create: createAction
     };
   },
-  "t.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "y.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var PENDING = "pending";
     var SEALED = "sealed";
     var FULFILLED = "fulfilled";
@@ -12858,27 +13626,82 @@ var __resources__ = {
     };
     module.exports = Promise;
   },
-  "u.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var namespace = this.path;
+  "z.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var namespace = "basis.router";
     var location = global.location;
     var document = global.document;
-    var eventUtils = basis.require("./c.js");
+    var eventUtils = basis.require("./e.js");
     var docMode = document.documentMode;
     var eventSupport = "onhashchange" in global && (docMode === undefined || docMode > 7);
     var CHECK_INTERVAL = 50;
     var arrayFrom = basis.array.from;
     var routes = {};
-    var matched = {};
     var started = false;
     var currentPath;
     var timer;
+    var routeHistory = [];
+    var checkDelayTimer;
+    var log = [];
+    var flushLog = function(message) {
+      var entries = log.splice(0);
+      if (module.exports.debug) basis.dev.info.apply(basis.dev, [ message ].concat(entries.length ? entries : "\n<no actions>"));
+    };
+    function routeEnter(route, nonInitedOnly) {
+      var callbacks = arrayFrom(route.callbacks);
+      for (var i = 0, item; item = callbacks[i]; i++) if ((!nonInitedOnly || !item.enterInited) && item.callback.enter) {
+        item.enterInited = true;
+        item.callback.enter.call(item.context);
+        log.push("\n", {
+          type: "enter",
+          path: route.id,
+          cb: item,
+          route: route.token
+        });
+      }
+    }
+    function routeLeave(route) {
+      var callbacks = arrayFrom(route.callbacks);
+      for (var i = 0, item; item = callbacks[i]; i++) if (item.callback.leave) {
+        item.callback.leave.call(item.context);
+        log.push("\n", {
+          type: "leave",
+          path: route.id,
+          cb: item,
+          route: route.token
+        });
+      }
+    }
+    function routeMatch(route, nonInitedOnly) {
+      var callbacks = arrayFrom(route.callbacks);
+      for (var i = 0, item; item = callbacks[i]; i++) if ((!nonInitedOnly || !item.matchInited) && item.callback.match) {
+        item.matchInited = true;
+        item.callback.match.apply(item.context, route.matched);
+        log.push("\n", {
+          type: "match",
+          path: route.id,
+          cb: item,
+          route: route.token,
+          args: route.matched
+        });
+      }
+    }
+    var initSchedule = basis.asap.schedule(function(token) {
+      var route = get(token);
+      if (route.matched) {
+        routeEnter(route, true);
+        routeMatch(route, true);
+        flushLog(namespace + ": init callbacks for route `" + route.id + "`");
+      }
+    });
     var Route = basis.Token.subclass({
       className: namespace + ".Route",
+      path: null,
       matched: null,
       params_: null,
       names_: null,
-      init: function(names) {
+      init: function(names, path) {
         basis.Token.prototype.init.call(this, null);
+        this.path = path;
         this.matched = this.as(Boolean);
         this.names_ = Array.isArray(names) ? names : [];
         this.params_ = {};
@@ -12896,6 +13719,12 @@ var __resources__ = {
           for (var key in value) if (key in this.names_) value[this.names_[key]] = value[key];
         }
         basis.Token.prototype.set.call(this, value);
+      },
+      add: function(callback, context) {
+        return add(this, callback, context);
+      },
+      remove: function(callback, context) {
+        remove(this, callback, context);
       }
     });
     function pathToRegExp(route) {
@@ -12957,107 +13786,106 @@ var __resources__ = {
       regexp.params = params;
       return regexp;
     }
-    function startWatch() {
-      if (eventSupport) eventUtils.addHandler(global, "hashchange", checkUrl); else timer = setInterval(checkUrl, CHECK_INTERVAL);
-    }
-    function stopWatch() {
-      if (eventSupport) eventUtils.removeHandler(global, "hashchange", checkUrl); else clearInterval(timer);
-    }
     function start() {
       if (!started) {
-        startWatch();
-        started = true;
+        if (eventSupport) eventUtils.addHandler(global, "hashchange", checkUrl); else timer = setInterval(checkUrl, CHECK_INTERVAL);
         if (module.exports.debug) basis.dev.log(namespace + " started");
+        started = true;
         checkUrl();
       }
     }
     function stop() {
       if (started) {
-        stopWatch();
         started = false;
+        if (eventSupport) eventUtils.removeHandler(global, "hashchange", checkUrl); else clearInterval(timer);
         if (module.exports.debug) basis.dev.log(namespace + " stopped");
       }
+    }
+    function preventRecursion(path) {
+      if (checkDelayTimer) return true;
+      var currentTime = Date.now();
+      routeHistory = routeHistory.filter(function(item) {
+        return currentTime - item.time < 200;
+      });
+      var last = basis.array.lastSearch(routeHistory, path, "path");
+      if (last && basis.array.lastSearch(routeHistory, path, "path", routeHistory.lastSearchIndex)) {
+        checkDelayTimer = setTimeout(function() {
+          checkDelayTimer = null;
+          checkUrl();
+        }, 200);
+        return true;
+      }
+      routeHistory.push({
+        time: Date.now(),
+        path: path
+      });
     }
     function checkUrl() {
       var newPath = location.hash.substr(1) || "";
       if (newPath != currentPath) {
         var inserted = [];
         var deleted = [];
+        var matched = [];
         var log = [];
+        if (preventRecursion(newPath)) return;
         currentPath = newPath;
         for (var path in routes) {
           var route = routes[path];
           var match = newPath.match(route.regexp);
+          route.inited = true;
+          initSchedule.remove(route.token);
           if (match) {
-            if (!matched[path]) inserted.push(route);
-            match = arrayFrom(match, 1);
-            matched[path] = match;
+            if (!route.matched) inserted.push(route);
+            route.matched = arrayFrom(match, 1);
+            matched.push(route);
           } else {
-            if (matched[path]) {
+            if (route.matched) {
               deleted.push(route);
-              delete matched[path];
-              route.token.set(null);
+              route.matched = null;
             }
           }
         }
         for (var i = 0, route; route = deleted[i]; i++) {
-          var callbacks = arrayFrom(route.callbacks);
-          for (var j = 0, item; item = callbacks[j]; j++) if (item.callback.leave) {
-            item.callback.leave.call(item.context);
-            log.push("\n", {
-              type: "leave",
-              path: route.id,
-              cb: item,
-              route: route
-            });
-          }
+          route.token.set(null);
+          routeLeave(route);
         }
-        for (var i = 0, route; route = inserted[i]; i++) {
-          var callbacks = arrayFrom(route.callbacks);
-          for (var j = 0, item; item = callbacks[j]; j++) if (item.callback.enter) {
-            item.callback.enter.call(item.context);
-            log.push("\n", {
-              type: "enter",
-              path: route.id,
-              cb: item,
-              route: route
-            });
-          }
+        for (var i = 0, route; route = inserted[i]; i++) routeEnter(route);
+        for (var i = 0, route; route = matched[i]; i++) {
+          route.token.set(route.matched);
+          routeMatch(route);
         }
-        for (var path in matched) {
+        flushLog(namespace + ': hash changed to "' + newPath + '"');
+      } else {
+        for (var path in routes) {
           var route = routes[path];
-          var args = matched[path];
-          var callbacks = arrayFrom(route.callbacks);
-          for (var i = 0, item; item = callbacks[i]; i++) if (item.callback.match) {
-            item.callback.match.apply(item.context, args);
-            log.push("\n", {
-              type: "match",
-              path: route.id,
-              cb: item,
-              route: route,
-              args: args
-            });
+          if (route.matched) {
+            routeEnter(route, true);
+            routeMatch(route, true);
           }
-          route.token.set(args);
         }
-        if (module.exports.debug) basis.dev.info.apply(basis.dev, [ namespace + ': hash changed to "' + newPath + '"' ].concat(log.length ? log : "\n<no matches>"));
+        flushLog(namespace + ": checkUrl()");
       }
     }
     function get(path, autocreate) {
-      var route = path instanceof Route ? path : routes[path];
+      if (path instanceof Route) path = path.path;
+      var route = routes[path];
       if (!route && autocreate) {
         var regexp = Object.prototype.toString.call(path) == "[object RegExp]" ? path : pathToRegExp(path);
+        var token = new Route(regexp.params, path);
         route = routes[path] = {
           id: path,
-          callbacks: [],
-          token: new Route(regexp.params),
-          regexp: regexp
+          regexp: regexp,
+          enterInited: false,
+          matchInited: false,
+          matched: null,
+          token: token,
+          callbacks: []
         };
         if (typeof currentPath == "string") {
           var match = currentPath.match(route.regexp);
           if (match) {
             match = arrayFrom(match, 1);
-            matched[path] = match;
+            route.matched = match;
             route.token.set(match);
           }
         }
@@ -13066,55 +13894,41 @@ var __resources__ = {
     }
     function add(path, callback, context) {
       var route = get(path, true);
-      var config;
-      var log = [];
-      config = {
+      route.callbacks.push({
+        inited: false,
         cb_: callback,
         context: context,
         callback: typeof callback != "function" ? callback || {} : {
           match: callback
         }
-      };
-      route.callbacks.push(config);
-      if (route.id in matched) {
-        if (config.callback.enter) {
-          config.callback.enter.call(context);
-          log.push("\n", {
-            type: "enter",
-            path: route.id,
-            cb: config,
-            route: route
-          });
-        }
-        if (config.callback.match) {
-          config.callback.match.apply(context, matched[path]);
-          log.push("\n", {
-            type: "match",
-            path: route.id,
-            cb: config,
-            route: route,
-            args: matched[path]
-          });
-        }
-      }
-      if (module.exports.debug) basis.dev.info.apply(basis.dev, [ namespace + ": add handler for route `" + path + "`" ].concat(log.length ? log : "\n<no matches>"));
+      });
+      initSchedule.add(route.token);
       return route.token;
     }
     function remove(path, callback, context) {
       var route = get(path);
-      if (route) {
-        for (var i = 0, cb; cb = route.callbacks[i]; i++) if (cb.cb_ === callback && cb.context === context) {
-          var token = route.token;
-          route.callbacks.splice(i, 1);
-          if (!route.callbacks.length) {
-            if ((!token.handler || !token.handler.handler) && !token.matched.handler) {
-              delete routes[route.id];
-              delete matched[route.id];
-            }
-          }
-          break;
+      if (!route) return;
+      for (var i = 0, cb; cb = route.callbacks[i]; i++) if (cb.cb_ === callback && cb.context === context) {
+        route.callbacks.splice(i, 1);
+        if (route.matched && callback && callback.leave) {
+          callback.leave.call(context);
+          if (module.exports.debug) basis.dev.info(namespace + ": add handler for route `" + path + "`\n", {
+            type: "leave",
+            path: route.id,
+            cb: item,
+            route: route.token
+          });
         }
+        if (!route.callbacks.length) {
+          var token = route.token;
+          if ((!token.handler || !token.handler.handler) && !token.matched.handler) delete routes[route.id];
+        }
+        break;
       }
+      basis.dev.warn(namespace + ": no callback removed", {
+        callback: callback,
+        context: context
+      });
     }
     function navigate(path, replace) {
       if (replace) location.replace(location.pathname + "#" + path); else location.hash = path;
@@ -13134,8 +13948,8 @@ var __resources__ = {
       }
     };
   },
-  "v.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var resolveValue = basis.require("./e.js").resolveValue;
+  "10.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var resolveValue = basis.require("./g.js").resolveValue;
     var document = global.document || {
       title: "unknown"
     };
@@ -13256,15 +14070,14 @@ var __resources__ = {
 
 (function createBasisInstance(context, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.4.1";
+  var VERSION = "1.6.1";
   var global = Function("return this")();
-  var NODE_ENV = global !== context ? global : false;
+  var process = global.process;
   var document = global.document;
   var location = global.location;
-  var process = global.process;
+  var NODE_ENV = global !== context && process && process.argv ? global : false;
   var toString = Object.prototype.toString;
   var hasOwnProperty = Object.prototype.hasOwnProperty;
-  global = context;
   var FACTORY = {};
   var PROXY = {};
   FACTORY = new (devVerboseName("basis.FACTORY", {}, function() {}));
@@ -13704,7 +14517,7 @@ var __resources__ = {
       return {
         add: function(object) {
           queue[object.basisObjectId] = object;
-          if (!scheduled) scheduled = basis.asap(process);
+          if (!scheduled) scheduled = asap(process);
         },
         remove: function(object) {
           delete queue[object.basisObjectId];
@@ -13736,7 +14549,7 @@ var __resources__ = {
     var origin;
     var utils;
     if (NODE_ENV) {
-      var path = (process.basisjsBaseURI || require("path").resolve(".")).replace(/\\/g, "/");
+      var path = (process.basisjsBaseURI || "/").replace(/\\/g, "/");
       baseURI = path.replace(/^[^\/]*/, "");
       origin = path.replace(/\/.*/, "");
     } else {
@@ -13809,7 +14622,7 @@ var __resources__ = {
     noConflict: true,
     implicitExt: true,
     modules: {},
-    autoload: [ "./0.js" ]
+    autoload: [ "./1.js" ]
   };
   function fetchConfig() {
     var config = __config;
@@ -13938,17 +14751,22 @@ var __resources__ = {
         extendConstructor_: !!SuperClass.extendConstructor_,
         isSubclassOf: isSubclassOf,
         subclass: function() {
-          return createClass.apply(null, [ newClass ].concat(arrayFrom(arguments)));
+          return createClass.apply(null, [ NewClass ].concat(arrayFrom(arguments)));
         },
         extend: extendClass,
+        factory: function(config) {
+          return factory(function(extra) {
+            return new NewClass(merge(config, extra));
+          });
+        },
         __extend__: function(value) {
-          if (value && value !== SELF && (typeof value == "object" || typeof value == "function" && !isClass(value))) return BaseClass.create.call(null, newClass, value); else return value;
+          if (value && value !== SELF && (typeof value == "object" || typeof value == "function" && !isClass(value))) return BaseClass.create.call(null, NewClass, value); else return value;
         },
         prototype: newProto
       };
       for (var i = 1, extension; extension = arguments[i]; i++) newClassProps.extend(extension);
       if (newProto.init !== BaseClass.prototype.init && !/^function[^(]*\(\)/.test(newProto.init) && newClassProps.extendConstructor_) consoleMethods.warn("probably wrong extendConstructor_ value for " + newClassProps.className);
-      var newClass = newClassProps.extendConstructor_ ? function(extend) {
+      var NewClass = newClassProps.extendConstructor_ ? function(extend) {
         this.basisObjectId = instanceSeed.id++;
         var prop;
         for (var key in extend) {
@@ -13962,14 +14780,14 @@ var __resources__ = {
         this.init.apply(this, arguments);
         this.postInit();
       };
-      newClass = devVerboseName(className, {
+      NewClass = devVerboseName(className, {
         instanceSeed: instanceSeed
-      }, newClass);
-      newProto.constructor = newClass;
-      for (var key in newProto) if (newProto[key] === SELF) newProto[key] = newClass;
-      extend(newClass, newClassProps);
-      classes.push(newClass);
-      return newClass;
+      }, NewClass);
+      newProto.constructor = NewClass;
+      for (var key in newProto) if (newProto[key] === SELF) newProto[key] = NewClass;
+      extend(NewClass, newClassProps);
+      classes.push(NewClass);
+      return NewClass;
     }
     function extendClass(source) {
       var proto = this.prototype;
@@ -14209,7 +15027,8 @@ var __resources__ = {
         }
       } else {
         try {
-          resourceContent = process.basisjsReadFile ? process.basisjsReadFile(url) : require("fs").readFileSync(url, "utf-8");
+          if (!process.basisjsReadFile) consoleMethods.warn("basis.resource: basisjsReadFile not found, file content couldn't to be read");
+          resourceContent = process.basisjsReadFile ? process.basisjsReadFile(url) : "";
         } catch (e) {
           consoleMethods.error("basis.resource: Unable to load " + url, e);
         }
@@ -14230,7 +15049,7 @@ var __resources__ = {
       if (resolved) return content;
       var urlContent = isVirtual ? content : getResourceContent(resourceUrl);
       var idx = resourceResolvingStack.indexOf(resourceUrl);
-      if (idx != -1) consoleMethods.warn("basis.resource recursion:", resourceResolvingStack.slice(idx).concat(resourceUrl).map(pathUtils.relative, pathUtils).join(" -> "));
+      if (idx != -1) consoleMethods.warn("basis.resource recursion: " + resourceResolvingStack.slice(idx).concat(resourceUrl).map(pathUtils.relative, pathUtils).join(" -> "));
       resourceResolvingStack.push(resourceUrl);
       if (contentWrapper) {
         if (!wrapped) {
@@ -14410,9 +15229,16 @@ var __resources__ = {
       }
     }
   });
+  var SOURCE_OFFSET;
   function compileFunction(sourceURL, args, body) {
+    if (isNaN(SOURCE_OFFSET)) {
+      var marker = basis.genUID();
+      SOURCE_OFFSET = (new Function(args, marker)).toString().split(marker)[0].split(/\n/).length - 1;
+    }
+    body = devInfoResolver.fixSourceOffset(body, SOURCE_OFFSET + 1);
+    if (!/\/\/# sourceMappingURL=[^\r\n]+[\s]*$/.test(body)) body += "\n\n//# sourceURL=" + pathUtils.origin + sourceURL;
     try {
-      return new Function(args, '"use strict";\n' + (NODE_ENV ? "var __nodejsRequire = require;\n" : "") + body + "\n\n//# sourceURL=" + pathUtils.origin + sourceURL);
+      return new Function(args, '"use strict";\n' + (NODE_ENV ? "var __nodejsRequire = require;\n" : "") + body);
     } catch (e) {
       if (document && "line" in e == false && "addEventListener" in global) {
         global.addEventListener("error", function onerror(event) {
@@ -14472,12 +15298,10 @@ var __resources__ = {
     className: "basis.Namespace",
     init: function(name) {
       this.name = name;
-      this.exports = {
-        path: this.name
-      };
+      this.exports = {};
     },
     toString: function() {
-      return "[basis.namespace " + this.path + "]";
+      return "[basis.namespace " + this.name + "]";
     },
     extend: function(names) {
       extend(this.exports, names);
@@ -14530,10 +15354,14 @@ var __resources__ = {
     return cursor;
   }
   var requireNamespace = function(path, baseURI) {
-    if (!/[^a-z0-9_\.]/i.test(path) && pathUtils.extname(path) != ".js") {
+    var extname = pathUtils.extname(path);
+    if (!/[^a-z0-9_\.]/i.test(path) && extname != ".js") {
       path = resolveNSFilename(path);
     } else {
-      if (!/[\?#]/.test(path)) path = resolveResourceFilename(path, baseURI, "basis.require('{url}')");
+      if (!/[\?#]/.test(path)) {
+        if (!extname) path += ".js";
+        path = resolveResourceFilename(path, baseURI, "basis.require('{url}')");
+      }
     }
     return getResource(path).fetch();
   };
@@ -15076,6 +15904,43 @@ var __resources__ = {
       }
     });
   }();
+  var devInfoResolver = function() {
+    var getExternalInfo = $undef;
+    var fixSourceOffset = $self;
+    var set = function(target, key, info) {};
+    var get = function(target, key) {
+      var externalInfo = getExternalInfo(target);
+      var ownInfo = map.get(target);
+      if (externalInfo || ownInfo) {
+        var info = merge(externalInfo, ownInfo);
+        return key ? info[key] : info;
+      }
+    };
+    try {
+      (new WeakMap).get(1);
+    } catch (e) {
+      get = function() {};
+    }
+    var map = typeof WeakMap == "function" ? new WeakMap : false;
+    if (map) set = function(target, key, value) {
+      if (!target || typeof target != "object" && typeof target != "function") {
+        consoleMethods.warn("Set dev info for non-object or non-function was ignored");
+        return;
+      }
+      var info = map.get(target);
+      if (!info) map.set(target, info = {});
+      info[key] = value;
+    };
+    var resolver = config.devInfoResolver || global.$devinfo || {};
+    var test = {};
+    if (typeof resolver.fixSourceOffset == "function") fixSourceOffset = resolver.fixSourceOffset;
+    if (typeof resolver.get == "function") getExternalInfo = resolver.get;
+    return {
+      fixSourceOffset: fixSourceOffset,
+      setInfo: set,
+      getInfo: get
+    };
+  }();
   var basis = getNamespace("basis").extend({
     filename_: basisFilename,
     processConfig: processConfig,
@@ -15084,10 +15949,11 @@ var __resources__ = {
     config: config,
     createSandbox: function(config) {
       return createBasisInstance(global, basisFilename, complete({
-        noConflict: true
+        noConflict: true,
+        devpanel: false
       }, config));
     },
-    dev: (new Namespace("basis.dev")).extend(consoleMethods).extend({
+    dev: consoleMethods = (new Namespace("basis.dev")).extend(consoleMethods).extend(devInfoResolver).extend({
       warnPropertyAccess: warnPropertyAccess
     }),
     resolveNSFilename: resolveNSFilename,
@@ -15165,9 +16031,12 @@ var __resources__ = {
       }
     }
   });
-  if (config.autoload && !NODE_ENV) config.autoload.forEach(function(name) {
-    requireNamespace(name);
-  });
+  if (!NODE_ENV) {
+    if (config.autoload) config.autoload.forEach(function(name) {
+      requireNamespace(name);
+    });
+    if ("devpanel" in config == false || config.devpanel) basis.require("./0.js");
+  }
   if (NODE_ENV && exports) exports.basis = basis;
   return basis;
 })(this);

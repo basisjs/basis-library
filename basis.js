@@ -1,17 +1,18 @@
-// resources(64):
-//   [function] ../../src/basis/data/dataset/MapFilter.js -> 19.js
+// resources(66):
+//   [function] ../../src/basis/data/dataset/MapFilter.js -> 1a.js
 //   [function] ../../src/basis/devpanel.js -> 0.js
 //   [function] ../../src/basis/ui.js -> 2.js
 //   [function] ../../src/basis/event.js -> 3.js
 //   [function] ../../src/basis/template/html.js -> 4.js
 //   [function] ../../src/basis/l10n.js -> 5.js
+//   [function] ../../src/basis/utils/json-parser.js -> 11.js
 //   [function] ../../src/basis/template/htmlfgen.js -> 6.js
 //   [function] ../../src/basis/template/const.js -> 7.js
 //   [function] ../../src/basis/template/namespace.js -> 8.js
 //   [function] ../../src/basis/template.js -> 9.js
 //   [function] ../../src/basis/template/declaration.js -> a.js
-//   [function] ../../src/basis/template/tokenize.js -> 11.js
-//   [function] ../../src/basis/template/isolateCss.js -> 12.js
+//   [function] ../../src/basis/template/tokenize.js -> 12.js
+//   [function] ../../src/basis/template/isolateCss.js -> 13.js
 //   [function] ../../src/basis/template/store.js -> b.js
 //   [function] ../../src/basis/template/theme.js -> c.js
 //   [function] ../../src/basis/template/buildDom.js -> d.js
@@ -21,37 +22,38 @@
 //   [function] ../../src/basis/data/state.js -> h.js
 //   [function] ../../src/basis/data/subscription.js -> i.js
 //   [function] ../../src/basis/data/resolve.js -> j.js
-//   [function] ../../src/basis/data/AbstractData.js -> 13.js
+//   [function] ../../src/basis/data/AbstractData.js -> 14.js
 //   [function] ../../src/basis/dragdrop.js -> k.js
 //   [function] ../../src/basis/dom/computedStyle.js -> l.js
 //   [function] ../../src/basis/layout.js -> m.js
 //   [function] ../../src/basis/data/dataset.js -> n.js
-//   [function] ../../src/basis/data/dataset/getDelta.js -> 14.js
-//   [function] ../../src/basis/data/dataset/createRuleEvents.js -> 15.js
-//   [function] ../../src/basis/data/dataset/SourceDataset.js -> 16.js
-//   [function] ../../src/basis/data/dataset/Merge.js -> 17.js
-//   [function] ../../src/basis/data/dataset/Subtract.js -> 18.js
+//   [function] ../../src/basis/data/dataset/getDelta.js -> 15.js
+//   [function] ../../src/basis/data/dataset/createRuleEvents.js -> 16.js
+//   [function] ../../src/basis/data/dataset/SourceDataset.js -> 17.js
+//   [function] ../../src/basis/data/dataset/Merge.js -> 18.js
+//   [function] ../../src/basis/data/dataset/Subtract.js -> 19.js
 //   [function] library.js -> 1.js
-//   [function] ../../src/basis/data/dataset/Split.js -> 1a.js
-//   [function] ../../src/basis/data/dataset/createKeyMap.js -> 1b.js
-//   [function] ../../src/basis/data/dataset/Cloud.js -> 1c.js
-//   [function] ../../src/basis/data/dataset/Extract.js -> 1d.js
-//   [function] ../../src/basis/data/dataset/Filter.js -> 1e.js
-//   [function] ../../src/basis/data/dataset/Slice.js -> 1f.js
+//   [function] ../../src/basis/data/dataset/Split.js -> 1b.js
+//   [function] ../../src/basis/data/dataset/createKeyMap.js -> 1c.js
+//   [function] ../../src/basis/data/dataset/Cloud.js -> 1d.js
+//   [function] ../../src/basis/data/dataset/Extract.js -> 1e.js
+//   [function] ../../src/basis/data/dataset/Filter.js -> 1f.js
+//   [function] ../../src/basis/data/dataset/Slice.js -> 1g.js
 //   [function] ../../src/basis/data/value.js -> o.js
+//   [function] ../../src/basis/data/Expression.js -> 1h.js
 //   [function] ../../src/basis/data/index.js -> p.js
-//   [function] ../../src/basis/data/index/Index.js -> 1g.js
-//   [function] ../../src/basis/data/index/VectorIndex.js -> 1h.js
-//   [function] ../../src/basis/data/index/IndexWrapper.js -> 1i.js
-//   [function] ../../src/basis/data/index/IndexMap.js -> 1j.js
-//   [function] ../../src/basis/data/index/IndexedCalc.js -> 1k.js
-//   [function] ../../src/basis/data/index/constructor.js -> 1l.js
-//   [function] ../../src/basis/data/index/Count.js -> 1m.js
-//   [function] ../../src/basis/data/index/Sum.js -> 1n.js
-//   [function] ../../src/basis/data/index/Avg.js -> 1o.js
-//   [function] ../../src/basis/data/index/Min.js -> 1p.js
-//   [function] ../../src/basis/data/index/Max.js -> 1q.js
-//   [function] ../../src/basis/data/index/Distinct.js -> 1r.js
+//   [function] ../../src/basis/data/index/Index.js -> 1i.js
+//   [function] ../../src/basis/data/index/VectorIndex.js -> 1j.js
+//   [function] ../../src/basis/data/index/IndexWrapper.js -> 1k.js
+//   [function] ../../src/basis/data/index/IndexMap.js -> 1l.js
+//   [function] ../../src/basis/data/index/IndexedCalc.js -> 1m.js
+//   [function] ../../src/basis/data/index/constructor.js -> 1n.js
+//   [function] ../../src/basis/data/index/Count.js -> 1o.js
+//   [function] ../../src/basis/data/index/Sum.js -> 1p.js
+//   [function] ../../src/basis/data/index/Avg.js -> 1q.js
+//   [function] ../../src/basis/data/index/Min.js -> 1r.js
+//   [function] ../../src/basis/data/index/Max.js -> 1s.js
+//   [function] ../../src/basis/data/index/Distinct.js -> 1t.js
 //   [function] ../../src/basis/data/object.js -> q.js
 //   [function] ../../src/basis/entity.js -> r.js
 //   [function] ../../src/basis/net/jsonp.js -> s.js
@@ -74,16 +76,16 @@ var __namespace_map__ = {"0.js":"basis.devpanel","1.js":"library","2.js":"basis.
 var library;
 
 var __resources__ = {
-  "19.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1a.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var $self = basis.fn.$self;
     var $true = basis.fn.$true;
     var $false = basis.fn.$false;
     var createEvent = basis.require("./3.js").create;
-    var createRuleEvents = basis.require("./15.js");
-    var getDelta = basis.require("./14.js");
+    var createRuleEvents = basis.require("./16.js");
+    var getDelta = basis.require("./15.js");
     var DataObject = basis.require("./g.js").Object;
     var setAccumulateState = basis.require("./g.js").Dataset.setAccumulateState;
-    var SourceDataset = basis.require("./16.js");
+    var SourceDataset = basis.require("./17.js");
     var MAPFILTER_SOURCEOBJECT_UPDATE = function(sourceObject) {
       var newMember = this.map ? this.map(sourceObject) : sourceObject;
       if (newMember instanceof DataObject == false || this.filter(newMember)) newMember = null;
@@ -186,6 +188,13 @@ var __resources__ = {
       listen: {
         source: MAPFILTER_SOURCE_HANDLER
       },
+      init: function() {
+        SourceDataset.prototype.init.call(this);
+        basis.dev.patchInfo(this, "sourceInfo", {
+          type: this.constructor.className.split(".").pop(),
+          transform: this.rule
+        });
+      },
       setMap: function(map) {
         if (typeof map != "function") map = $self;
         if (this.map !== map) {
@@ -206,6 +215,9 @@ var __resources__ = {
           var oldRule = this.rule;
           this.rule = rule;
           this.emit_ruleChanged(oldRule);
+          basis.dev.patchInfo(this, "sourceInfo", {
+            transform: this.rule
+          });
           return this.applyRule();
         }
       },
@@ -975,6 +987,7 @@ var __resources__ = {
     var Node = global.Node;
     var camelize = basis.string.camelize;
     var isMarkupToken = basis.require("./5.js").isMarkupToken;
+    var isTokenHasPlaceholder = basis.require("./5.js").isTokenHasPlaceholder;
     var getL10nToken = basis.require("./5.js").token;
     var getFunctions = basis.require("./6.js").getFunctions;
     var basisTemplate = basis.require("./9.js");
@@ -992,18 +1005,16 @@ var __resources__ = {
     var l10nTemplate = {};
     var l10nTemplateSource = {};
     function getSourceFromL10nToken(token) {
-      var dict = token.dictionary;
-      var url = dict.resource ? dict.resource.url : "dictionary" + dict.basisObjectId;
+      var dict = token.getDictionary();
       var name = token.getName();
-      var id = name + "@" + url;
+      var id = name + "@" + dict.id;
       var result = l10nTemplateSource[id];
       var sourceWrapper;
       if (!result) {
         var sourceToken = dict.token(name);
         result = l10nTemplateSource[id] = sourceToken.as(function(value) {
           if (sourceToken.getType() == "markup") {
-            var parentType = sourceToken.getParentType();
-            if (typeof value == "string" && (parentType == "plural" || parentType == "plural-markup")) value = value.replace(/\{#\}/g, "{__templateContext}");
+            if (typeof value == "string" && isTokenHasPlaceholder(sourceToken)) value = value.replace(/\{#\}/g, "{__templateContext}");
             if (value != this.value) if (sourceWrapper) {
               sourceWrapper.detach(sourceToken, sourceToken.apply);
               sourceWrapper = null;
@@ -1017,7 +1028,7 @@ var __resources__ = {
           return this.value;
         });
         result.id = "{l10n:" + id + "}";
-        result.url = url + ":" + name;
+        result.url = dict.getValueSource(name) + ":" + name;
       }
       return result;
     }
@@ -1405,66 +1416,160 @@ var __resources__ = {
   },
   "5.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var namespace = "basis.l10n";
+    var extend = basis.object.extend;
+    var complete = basis.object.complete;
     var Class = basis.Class;
     var Emitter = basis.require("./3.js").Emitter;
+    var extensionJSON = basis.resource.extensions[".json"];
     var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var autoFetchDictionaryResource = true;
-    basis.resource.extensions[".l10n"] = function(content, url) {
-      var dictionary;
-      autoFetchDictionaryResource = false;
-      dictionary = resolveDictionary(url);
-      autoFetchDictionaryResource = true;
-      return dictionary.update(basis.resource.extensions[".json"](content, url));
-    };
+    var basisTokenPrototypeSet = basis.Token.prototype.set;
+    var buildJsonMap = basis.require("./11.js").buildMap;
+    basis.resource.extensions[".l10n"] = processDictionaryContent;
+    var patches = function() {
+      var config = basis.config.l10n || {};
+      var patches = config && config.patch;
+      var result = {};
+      var baseURI;
+      config.patch = {};
+      if (patches) {
+        if (typeof patches == "string") {
+          try {
+            baseURI = basis.path.dirname(basis.resource.resolveURI(patches));
+            patches = basis.resource(patches).fetch();
+          } catch (e) {
+            basis.dev.error("basis.l10n: dictionary patch file load failed:", patches);
+          }
+        }
+        for (var path in patches) {
+          var dictUrl = basis.resource.resolveURI(path, baseURI);
+          var patchUrl = basis.resource.resolveURI(patches[path], baseURI);
+          result[dictUrl] = createDictionaryMerge(dictUrl, patchUrl);
+          config.patch[dictUrl] = patchUrl;
+        }
+      }
+      return result;
+    }();
+    function processJSON(content, url) {
+      var locationMap;
+      if (typeof content == "string") locationMap = buildJsonMap(content, url);
+      content = extensionJSON(content, url);
+      if (content) content._locationMap = locationMap;
+      return content;
+    }
+    function getJSON(url) {
+      return processJSON(resource(url).get(true), url) || {};
+    }
+    function createDictionaryMerge(dictUrl, patchUrl) {
+      function sync() {
+        dictionaryByUrl[dictUrl].update(mergeDictionaries(getJSON(dictUrl), patchUrl));
+      }
+      return {
+        url: patchUrl,
+        activate: function() {
+          resource(patchUrl).attach(sync);
+        },
+        deactivate: function() {
+          resource(patchUrl).detach(sync);
+        }
+      };
+    }
+    function mergeDictionaries(dest, patchSource) {
+      function isObject(value) {
+        return value && Object.prototype.toString.call(value) == "[object Object]";
+      }
+      function deepMerge(dest, patch, path, sourceMap) {
+        if (path) path += ".";
+        for (var key in patch) if (!isObject(patch[key])) {
+          sourceMap[path + key] = patchSource;
+          dest[key] = patch[key];
+        } else {
+          dest[key] = deepMerge(isObject(dest[key]) ? dest[key] : {}, patch[key], path + key, sourceMap);
+        }
+        return dest;
+      }
+      var patch = getJSON(patchSource);
+      var sources;
+      for (var key in patch) {
+        if (key == "_meta" || key == "_locationMap") {
+          if (!isObject(dest[key])) dest[key] = {};
+          deepMerge(dest[key], patch[key], "", {});
+          continue;
+        }
+        if (!hasOwnProperty.call(dest, key)) {
+          dest[key] = {
+            _meta: {
+              source: {}
+            }
+          };
+        } else {
+          if (!dest[key]._meta) dest[key]._meta = {};
+        }
+        sources = {};
+        dest[key]._meta.source = {};
+        deepMerge(dest[key], patch[key], "", sources);
+        dest[key]._meta.source = sources;
+      }
+      if (!Array.isArray(dest._patches)) dest._patches = [];
+      basis.array.add(dest._patches, patchSource);
+      return dest;
+    }
+    function processDictionaryContent(content, url) {
+      content = processJSON(content, url);
+      if (patches[url]) mergeDictionaries(content, patches[url].url);
+      return internalResolveDictionary(url, true).update(content);
+    }
     var tokenIndex = [];
     var tokenComputeFn = {};
-    var basisTokenPrototypeSet = basis.Token.prototype.set;
-    var tokenType = {
+    var NULL_DESCRIPTOR = {
+      placeholder: false,
+      processName: basis.fn.$self,
+      value: undefined,
+      types: {}
+    };
+    var TOKEN_TYPES = {
       "default": true,
       plural: true,
       markup: true,
       "plural-markup": true,
       "enum-markup": true
     };
-    var nestedType = {
+    var PLURAL_TYPES = {
+      plural: true,
+      "plural-markup": true
+    };
+    var NESTED_TYPE = {
       "default": "default",
       plural: "default",
       markup: "default",
       "plural-markup": "markup",
       "enum-markup": "markup"
     };
-    var isPluralType = {
-      plural: true,
-      "plural-markup": true
+    var pluralName = function(value) {
+      return this.culture.plural(value);
     };
     var ComputeToken = Class(basis.Token, {
       className: namespace + ".ComputeToken",
-      dictionary: null,
       token: null,
-      parent: "",
       init: function(value) {
         this.token.computeTokens[this.basisObjectId] = this;
         basis.Token.prototype.init.call(this, value);
       },
+      toString: function() {
+        return this.get();
+      },
       get: function() {
-        var value = this.dictionary.getValue(this.getName());
-        if (isPluralType[this.token.getType()]) value = String(value).replace(/\{#\}/g, this.value);
+        var value = this.token.dictionary.getValue(this.getName());
+        if (this.token.descriptor.placeholder) value = String(value).replace(/\{#\}/g, this.value);
         return value;
       },
       getName: function() {
-        var key = this.value;
-        if (isPluralType[this.token.getType()]) key = cultures[currentCulture].plural(key);
-        return this.parent + "." + key;
+        return this.token.name + "." + this.token.descriptor.processName(this.value);
       },
       getType: function() {
-        var type = this.token.getType();
-        return this.dictionary.types[this.getName()] || nestedType[type] || "default";
+        return this.token.descriptor.types[this.getName()] || "default";
       },
-      getParentType: function() {
-        return this.token.getType();
-      },
-      toString: function() {
-        return this.get();
+      getDictionary: function() {
+        return this.token.getDictionary();
       },
       destroy: function() {
         delete this.token.computeTokens[this.basisObjectId];
@@ -1479,12 +1584,12 @@ var __resources__ = {
       type: "default",
       computeTokens: null,
       computeTokenClass: null,
-      init: function(dictionary, tokenName, value) {
-        basis.Token.prototype.init.call(this, value);
+      init: function(dictionary, tokenName, descriptor) {
+        basis.Token.prototype.init.call(this, descriptor.value);
         this.index = tokenIndex.push(this) - 1;
         this.name = tokenName;
-        this.parent = tokenName.replace(/(^|\.)[^.]+$/, "");
         this.dictionary = dictionary;
+        this.descriptor = descriptor;
         this.computeTokens = {};
       },
       toString: function() {
@@ -1501,10 +1606,7 @@ var __resources__ = {
         return this.name;
       },
       getType: function() {
-        return this.dictionary.types[this.name] || nestedType[this.dictionary.types[this.parent]] || "default";
-      },
-      getParentType: function() {
-        return this.parent ? this.dictionary.token(this.parent).getType() : "default";
+        return this.descriptor.types[this.name] || "default";
       },
       setType: function() {
         basis.dev.warn("basis.l10n: Token#setType() is deprecated");
@@ -1545,18 +1647,20 @@ var __resources__ = {
       computeToken: function(value) {
         var ComputeTokenClass = this.computeTokenClass;
         if (!ComputeTokenClass) ComputeTokenClass = this.computeTokenClass = ComputeToken.subclass({
-          dictionary: this.dictionary,
-          token: this,
-          parent: this.name
+          token: this
         });
         return new ComputeTokenClass(value);
       },
       token: function(name) {
-        if (isPluralType[this.getType()]) return this.computeToken(name, this);
+        if (this.getType() in PLURAL_TYPES) return this.computeToken(name);
         if (this.dictionary) return this.dictionary.token(this.name + "." + name);
+      },
+      getDictionary: function() {
+        return this.dictionary;
       },
       destroy: function() {
         for (var key in this.computeTokens) this.computeTokens[key].destroy();
+        this.descriptor = null;
         this.computeTokenClass = null;
         this.computeTokens = null;
         this.value = null;
@@ -1578,7 +1682,10 @@ var __resources__ = {
       return value ? value instanceof Token || value instanceof ComputeToken : false;
     }
     function isPluralToken(value) {
-      return isToken(value) && isPluralType[value.getType()];
+      return isToken(value) && value.getType() in PLURAL_TYPES;
+    }
+    function isTokenHasPlaceholder(value) {
+      return isToken(value) && value.descriptor.placeholder;
     }
     function isMarkupToken(value) {
       return isToken(value) && value.getType() == "markup";
@@ -1586,82 +1693,133 @@ var __resources__ = {
     var dictionaries = [];
     var dictionaryByUrl = {};
     var createDictionaryNotifier = new basis.Token;
-    function walkTokens(dictionary, culture, tokens, path) {
-      var cultureValues = dictionary.cultureValues[culture];
-      path = path ? path + "." : "";
+    function walkTokens(tokens, parentName, context) {
+      var path = parentName ? parentName + "." : "";
+      var parentType = context.types[parentName] || "default";
       for (var name in tokens) {
+        if (parentName == "" && name == "_meta") continue;
         if (name.indexOf(".") != -1) {
-          basis.dev.warn((dictionary.resource ? dictionary.resource.url : "[anonymous dictionary]") + ": wrong token name `" + name + "`, token ignored.");
+          basis.dev.warn(context.name + ": wrong token name `" + name + "`, token ignored.");
           continue;
         }
         if (hasOwnProperty.call(tokens, name)) {
           var tokenName = path + name;
+          var tokenType = context.types[tokenName] || NESTED_TYPE[parentType] || "default";
           var tokenValue = tokens[name];
-          cultureValues[tokenName] = tokenValue;
-          if (tokenValue && (typeof tokenValue == "object" || Array.isArray(tokenValue))) walkTokens(dictionary, culture, tokenValue, tokenName);
+          var isPlural = tokenType in PLURAL_TYPES || parentType in PLURAL_TYPES;
+          context.values[tokenName] = {
+            _sourceBranch: tokens,
+            _sourceKey: name,
+            loc: context.locationMap ? context.locationMap[context.culture.name + "." + tokenName] || null : null,
+            placeholder: isPlural,
+            processName: isPlural ? pluralName : basis.fn.$self,
+            source: context.source[tokenName] || context.dictionary.id,
+            culture: context.culture,
+            name: tokenName,
+            types: context.types,
+            value: tokenValue
+          };
+          if (tokenName in context.types == false) context.types[tokenName] = tokenType;
+          if (tokenValue && (typeof tokenValue == "object" || Array.isArray(tokenValue))) walkTokens(tokenValue, tokenName, context);
         }
       }
+      return context.values;
+    }
+    function fetchTypes(data) {
+      var dirtyTypes = data._meta && data._meta.type || {};
+      var types = {};
+      for (var path in dirtyTypes) if (dirtyTypes[path] in TOKEN_TYPES) types[path] = dirtyTypes[path];
+      return types;
+    }
+    function fetchSource(data) {
+      return data._meta && data._meta.source || {};
     }
     var Dictionary = Class(null, {
       className: namespace + ".Dictionary",
-      tokens: null,
-      types: null,
       cultureValues: null,
+      tokens: null,
       index: NaN,
       resource: null,
-      init: function(content) {
+      id: null,
+      init: function(content, noResourceFetch) {
         this.tokens = {};
-        this.types = {};
         this.cultureValues = {};
         this.index = dictionaries.push(this) - 1;
         if (basis.resource.isResource(content)) {
           var resource = content;
+          var resourceUrl = resource.url;
+          this.id = resourceUrl;
           this.resource = resource;
-          if (!dictionaryByUrl[resource.url]) {
-            dictionaryByUrl[resource.url] = this;
-            createDictionaryNotifier.set(resource.url);
+          if (!dictionaryByUrl[resourceUrl]) {
+            dictionaryByUrl[resourceUrl] = this;
+            createDictionaryNotifier.set(resourceUrl);
+            if (patches[resourceUrl]) patches[resourceUrl].activate();
           }
-          if (autoFetchDictionaryResource) resource.fetch();
+          if (!noResourceFetch) resource.fetch();
         } else {
+          this.id = "dictionary" + this.index;
           this.update(content || {});
         }
       },
       update: function(data) {
         if (!data) data = {};
         this.cultureValues = {};
-        for (var culture in data) if (!/^_|_$/.test(culture)) {
-          this.cultureValues[culture] = {};
-          walkTokens(this, culture, data[culture]);
-        }
-        var newTypes = data._meta && data._meta.type || {};
-        var currentTypes = {};
-        for (var path in this.tokens) currentTypes[path] = this.tokens[path].getType();
-        this.types = {};
-        for (var path in newTypes) this.types[path] = tokenType[newTypes[path]] == true ? newTypes[path] : "default";
-        for (var path in this.tokens) {
-          var token = this.tokens[path];
-          if (token.getType() != currentTypes[path]) this.tokens[path].apply();
-        }
+        var types = fetchTypes(data);
+        for (var culture in data) if (!/^_|_$/.test(culture)) this.cultureValues[culture] = walkTokens(data[culture], "", {
+          name: this.resource ? this.resource.url : "[anonymous dictionary]",
+          locationMap: data._locationMap,
+          dictionary: this,
+          culture: resolveCulture(culture),
+          source: fetchSource(data[culture]),
+          types: complete(fetchTypes(data[culture]), types),
+          values: {}
+        });
+        delete data._locationMap;
+        this._data = data;
         this.syncValues();
         return this;
       },
       syncValues: function() {
-        for (var tokenName in this.tokens) basisTokenPrototypeSet.call(this.tokens[tokenName], this.getValue(tokenName));
+        for (var tokenName in this.tokens) {
+          var token = this.tokens[tokenName];
+          var descriptor = this.getDescriptor(tokenName) || NULL_DESCRIPTOR;
+          var savedType = token.getType();
+          token.descriptor = descriptor;
+          if (token.value !== descriptor.value) {
+            basisTokenPrototypeSet.call(token, descriptor.value);
+          } else {
+            if (token.getType() != savedType) token.apply();
+          }
+        }
       },
-      getValue: function(tokenName) {
+      getCultureDescriptor: function(culture, tokenName) {
+        return this.cultureValues[culture] && this.cultureValues[culture][tokenName];
+      },
+      getDescriptor: function(tokenName) {
         var fallback = cultureFallback[currentCulture] || [];
         for (var i = 0, cultureName; cultureName = fallback[i]; i++) {
-          var cultureValues = this.cultureValues[cultureName];
-          if (cultureValues && tokenName in cultureValues) return cultureValues[tokenName];
+          var descriptor = this.getCultureDescriptor(cultureName, tokenName);
+          if (descriptor) return descriptor;
         }
       },
       getCultureValue: function(culture, tokenName) {
-        return this.cultureValues[culture] && this.cultureValues[culture][tokenName];
+        var descriptor = this.getCultureDescriptor(culture, tokenName);
+        if (descriptor) return descriptor.value;
+      },
+      getValue: function(tokenName) {
+        var descriptor = this.getDescriptor(tokenName);
+        if (descriptor) return descriptor.value;
+      },
+      getValueSource: function(tokenName) {
+        var descriptor = this.getDescriptor(tokenName);
+        if (descriptor) return descriptor.source;
+        return this.id;
       },
       token: function(tokenName) {
         var token = this.tokens[tokenName];
         if (!token) {
-          token = this.tokens[tokenName] = new Token(this, tokenName, this.getValue(tokenName));
+          var descriptor = this.getDescriptor(tokenName) || NULL_DESCRIPTOR;
+          token = this.tokens[tokenName] = new Token(this, tokenName, descriptor);
         }
         return token;
       },
@@ -1670,12 +1828,14 @@ var __resources__ = {
         this.cultureValues = null;
         basis.array.remove(dictionaries, this);
         if (this.resource) {
-          delete dictionaryByUrl[this.resource.url];
+          var resourceUrl = this.resource.url;
+          if (patches[resourceUrl]) patches[resourceUrl].deactivate();
+          delete dictionaryByUrl[resourceUrl];
           this.resource = null;
         }
       }
     });
-    function resolveDictionary(source) {
+    function internalResolveDictionary(source, noFetch) {
       var dictionary;
       if (typeof source == "string") {
         var location = source;
@@ -1684,7 +1844,10 @@ var __resources__ = {
         source = basis.resource(location);
       }
       if (basis.resource.isResource(source)) dictionary = dictionaryByUrl[source.url];
-      return dictionary || new Dictionary(source);
+      return dictionary || new Dictionary(source, noFetch);
+    }
+    function resolveDictionary(source) {
+      return internalResolveDictionary(source);
     }
     function getDictionaries() {
       return dictionaries.slice(0);
@@ -1759,7 +1922,7 @@ var __resources__ = {
       if (name && !cultures[name]) cultures[name] = new Culture(name, pluralForm);
       return cultures[name || currentCulture];
     }
-    basis.object.extend(resolveCulture, new basis.Token);
+    extend(resolveCulture, new basis.Token);
     resolveCulture.set = setCulture;
     function getCulture() {
       return currentCulture;
@@ -1768,12 +1931,12 @@ var __resources__ = {
       if (!culture) return;
       if (currentCulture != culture) {
         if (cultureList.indexOf(culture) == -1) {
-          basis.dev.warn("basis.l10n.setCulture: culture `" + culture + "` not in the list, the culture isn't changed");
+          basis.dev.warn("basis.l10n.setCulture: culture `" + culture + "` not in the list, the culture doesn't changed");
           return;
         }
         currentCulture = culture;
         for (var i = 0, dictionary; dictionary = dictionaries[i]; i++) dictionary.syncValues();
-        basis.Token.prototype.set.call(resolveCulture, culture);
+        basisTokenPrototypeSet.call(resolveCulture, culture);
       }
     }
     function getCultureList() {
@@ -1793,20 +1956,18 @@ var __resources__ = {
         cultureRow = culture.split("/");
         if (cultureRow.length > 2) {
           basis.dev.warn("basis.l10n.setCultureList: only one fallback culture can be set for certain culture, try to set `" + culture + "`; other cultures except first one was ignored");
-          cultureRow = cultureRow.slice(0, 2);
+          cultureRow = [ cultureRow[0], cultureRow[1] ];
         }
         cultureName = cultureRow[0];
         if (!baseCulture) baseCulture = cultureName;
         cultures[cultureName] = resolveCulture(cultureName);
         cultureFallback[cultureName] = cultureRow;
       }
-      for (var cultureName in cultureFallback) {
-        cultureFallback[cultureName] = basis.array.flatten(cultureFallback[cultureName].map(function(name) {
-          return cultureFallback[name];
-        })).concat(baseCulture).filter(function(item, idx, array) {
-          return !idx || array.lastIndexOf(item, idx - 1) == -1;
-        });
-      }
+      for (var cultureName in cultureFallback) cultureFallback[cultureName] = basis.array.flatten(cultureFallback[cultureName].map(function(name) {
+        return cultureFallback[name];
+      })).concat(baseCulture).filter(function(item, idx, array) {
+        return !idx || array.lastIndexOf(item, idx - 1) == -1;
+      });
       cultureList = basis.object.keys(cultures);
       if (currentCulture in cultures == false) setCulture(baseCulture);
     }
@@ -1823,6 +1984,7 @@ var __resources__ = {
       isToken: isToken,
       isPluralToken: isPluralToken,
       isMarkupToken: isMarkupToken,
+      isTokenHasPlaceholder: isTokenHasPlaceholder,
       Dictionary: Dictionary,
       dictionary: resolveDictionary,
       getDictionaries: getDictionaries,
@@ -1851,6 +2013,725 @@ var __resources__ = {
         });
       } catch (e) {}
     })();
+  },
+  "11.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    "use strict";
+    var _createClass = function() {
+      function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+          var descriptor = props[i];
+          descriptor.enumerable = descriptor.enumerable || false;
+          descriptor.configurable = true;
+          if ("value" in descriptor) descriptor.writable = true;
+          Object.defineProperty(target, descriptor.key, descriptor);
+        }
+      }
+      return function(Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);
+        if (staticProps) defineProperties(Constructor, staticProps);
+        return Constructor;
+      };
+    }();
+    function _classCallCheck(instance, Constructor) {
+      if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+      }
+    }
+    var JsonParser = function() {
+      "use strict";
+      if (!Object.assign) {
+        Object.defineProperty(Object, "assign", {
+          enumerable: false,
+          configurable: true,
+          writable: true,
+          value: function value(target, firstSource) {
+            "use strict";
+            if (target === undefined || target === null) {
+              throw new TypeError("Cannot convert first argument to object");
+            }
+            var to = Object(target);
+            for (var i = 1; i < arguments.length; i++) {
+              var nextSource = arguments[i];
+              if (nextSource === undefined || nextSource === null) {
+                continue;
+              }
+              var keysArray = Object.keys(Object(nextSource));
+              for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+                var nextKey = keysArray[nextIndex];
+                var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+                if (desc !== undefined && desc.enumerable) {
+                  to[nextKey] = nextSource[nextKey];
+                }
+              }
+            }
+            return to;
+          }
+        });
+      }
+      var exceptionsDict = {
+        tokenizeSymbolError: "Cannot tokenize symbol <{char}> at {line}:{column}",
+        emptyString: "JSON is empty"
+      };
+      function position(startLine, startColumn, startChar, endLine, endColumn, endChar) {
+        return {
+          start: {
+            line: startLine,
+            column: startColumn,
+            "char": startChar
+          },
+          end: {
+            line: endLine,
+            column: endColumn,
+            "char": endChar
+          },
+          human: startLine + ":" + startColumn + " - " + endLine + ":" + endColumn + " [" + startChar + ":" + endChar + "]"
+        };
+      }
+      var tokenTypes = {
+        LEFT_BRACE: "LEFT_BRACE",
+        RIGHT_BRACE: "RIGHT_BRACE",
+        LEFT_BRACKET: "LEFT_BRACKET",
+        RIGHT_BRACKET: "RIGHT_BRACKET",
+        COLON: "COLON",
+        COMMA: "COMMA",
+        STRING: "STRING",
+        NUMBER: "NUMBER",
+        TRUE: "TRUE",
+        FALSE: "FALSE",
+        NULL: "NULL"
+      };
+      var charTokens = {
+        "{": tokenTypes.LEFT_BRACE,
+        "}": tokenTypes.RIGHT_BRACE,
+        "[": tokenTypes.LEFT_BRACKET,
+        "]": tokenTypes.RIGHT_BRACKET,
+        ":": tokenTypes.COLON,
+        ",": tokenTypes.COMMA
+      };
+      var keywordsTokens = {
+        "true": tokenTypes.TRUE,
+        "false": tokenTypes.FALSE,
+        "null": tokenTypes.NULL
+      };
+      var stringStates = {
+        _START_: 0,
+        START_QUOTE_OR_CHAR: 1,
+        ESCAPE: 2
+      };
+      var escapes = {
+        '"': 0,
+        "\\": 1,
+        "/": 2,
+        b: 3,
+        f: 4,
+        n: 5,
+        r: 6,
+        t: 7,
+        u: 8
+      };
+      var numberStates = {
+        _START_: 0,
+        MINUS: 1,
+        ZERO: 2,
+        DIGIT_1TO9: 3,
+        DIGIT_CEIL: 4,
+        POINT: 5,
+        DIGIT_FRACTION: 6,
+        EXP: 7,
+        EXP_PLUS: 8,
+        EXP_MINUS: 9,
+        EXP_DIGIT: 10
+      };
+      var isDigit1to9 = function isDigit1to9(char) {
+        return char >= "1" && char <= "9";
+      };
+      var isDigit = function isDigit(char) {
+        return char >= "0" && char <= "9";
+      };
+      var isHex = function isHex(char) {
+        return char >= "0" && char <= "9" || char >= "a" && char <= "f" || char >= "A" && char <= "F";
+      };
+      var isExp = function isExp(char) {
+        return char === "e" || char === "E";
+      };
+      var isUnicode = function isUnicode(char) {
+        return char === "u" || char === "U";
+      };
+      var Tokenizer = function() {
+        function Tokenizer(source) {
+          _classCallCheck(this, Tokenizer);
+          this.source = source;
+          this.line = 1;
+          this.column = 1;
+          this.index = 0;
+          this.currentToken = null;
+          this.currentValue = null;
+          var tokens = [];
+          while (this.index < this.source.length) {
+            var line = this.line;
+            var column = this.column;
+            var index = this.index;
+            if (this._testWhitespace()) {
+              continue;
+            }
+            var matched = this._testChar() || this._testKeyword() || this._testString() || this._testNumber();
+            if (matched) {
+              tokens.push({
+                type: this.currentToken,
+                value: this.currentValue,
+                position: position(line, column, index, this.line, this.column, this.index)
+              });
+              this.currentValue = null;
+            } else {
+              throw new SyntaxError(exceptionsDict.tokenizeSymbolError.replace("{char}", this.source.charAt(this.index)).replace("{line}", this.line.toString()).replace("{column}", this.column.toString()));
+            }
+          }
+          return tokens;
+        }
+        _createClass(Tokenizer, [ {
+          key: "_testWhitespace",
+          value: function _testWhitespace() {
+            var char = this.source.charAt(this.index);
+            if (this.source.charAt(this.index) === "\r" && this.source.charAt(this.index + 1) === "\n") {
+              this.index += 2;
+              this.line++;
+              this.column = 1;
+              return true;
+            } else if (char === "\r" || char === "\n") {
+              this.index++;
+              this.line++;
+              this.column = 1;
+              return true;
+            } else if (char === "	" || char === " ") {
+              this.index++;
+              this.column++;
+              return true;
+            } else {
+              return false;
+            }
+          }
+        }, {
+          key: "_testChar",
+          value: function _testChar() {
+            var char = this.source.charAt(this.index);
+            if (char in charTokens) {
+              this.index++;
+              this.column++;
+              this.currentToken = charTokens[char];
+              return true;
+            } else {
+              return false;
+            }
+          }
+        }, {
+          key: "_testKeyword",
+          value: function _testKeyword() {
+            var _this = this;
+            var matched = Object.keys(keywordsTokens).find(function(name) {
+              return name === _this.source.substr(_this.index, name.length);
+            });
+            if (matched) {
+              var _length = matched.length;
+              this.index += _length;
+              this.column += _length;
+              this.currentToken = keywordsTokens[matched];
+              return true;
+            } else {
+              return false;
+            }
+          }
+        }, {
+          key: "_testString",
+          value: function _testString() {
+            var index = this.index;
+            var buffer = "";
+            var state = stringStates._START_;
+            while (true) {
+              var char = this.source.charAt(this.index);
+              switch (state) {
+                case stringStates._START_:
+                  if (char === '"') {
+                    state = stringStates.START_QUOTE_OR_CHAR;
+                    this.index++;
+                  } else {
+                    return false;
+                  }
+                  break;
+                case stringStates.START_QUOTE_OR_CHAR:
+                  if (char === "\\") {
+                    state = stringStates.ESCAPE;
+                    buffer += char;
+                    this.index++;
+                  } else if (char === '"') {
+                    this.index++;
+                    this.column += this.index - index;
+                    this.currentToken = tokenTypes.STRING;
+                    this.currentValue = buffer;
+                    return true;
+                  } else {
+                    buffer += char;
+                    this.index++;
+                  }
+                  break;
+                case stringStates.ESCAPE:
+                  if (char in escapes) {
+                    buffer += char;
+                    this.index++;
+                    if (isUnicode(char)) {
+                      for (var i = 0; i < 4; i++) {
+                        var curChar = this.source.charAt(this.index);
+                        if (curChar && isHex(curChar)) {
+                          buffer += curChar;
+                          this.index++;
+                        } else {
+                          return false;
+                        }
+                      }
+                    }
+                    state = stringStates.START_QUOTE_OR_CHAR;
+                  } else {
+                    return false;
+                  }
+                  break;
+              }
+            }
+          }
+        }, {
+          key: "_testNumber",
+          value: function _testNumber() {
+            var index = this.index;
+            var buffer = "";
+            var passedValue = undefined;
+            var state = numberStates._START_;
+            iterator : while (true) {
+              var char = this.source.charAt(index);
+              switch (state) {
+                case numberStates._START_:
+                  if (char === "-") {
+                    state = numberStates.MINUS;
+                    buffer += char;
+                    index++;
+                  } else if (char === "0") {
+                    state = numberStates.ZERO;
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else if (isDigit1to9(char)) {
+                    state = numberStates.DIGIT_1TO9;
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else {
+                    break iterator;
+                  }
+                  break;
+                case numberStates.MINUS:
+                  if (char === "0") {
+                    state = numberStates.ZERO;
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else if (isDigit1to9(char)) {
+                    state = numberStates.DIGIT_1TO9;
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else {
+                    break iterator;
+                  }
+                  break;
+                case numberStates.ZERO:
+                  if (char === ".") {
+                    state = numberStates.POINT;
+                    buffer += char;
+                    index++;
+                  } else if (isExp(char)) {
+                    state = numberStates.EXP;
+                    buffer += char;
+                    index++;
+                  } else {
+                    break iterator;
+                  }
+                  break;
+                case numberStates.DIGIT_1TO9:
+                case numberStates.DIGIT_CEIL:
+                  if (isDigit(char)) {
+                    state = numberStates.DIGIT_CEIL;
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else if (char === ".") {
+                    state = numberStates.POINT;
+                    buffer += char;
+                    index++;
+                  } else if (isExp(char)) {
+                    state = numberStates.EXP;
+                    buffer += char;
+                    index++;
+                  } else {
+                    break iterator;
+                  }
+                  break;
+                case numberStates.POINT:
+                  if (isDigit(char)) {
+                    state = numberStates.DIGIT_FRACTION;
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else {
+                    break iterator;
+                  }
+                  break;
+                case numberStates.DIGIT_FRACTION:
+                  if (isDigit(char)) {
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else if (isExp(char)) {
+                    state = numberStates.EXP;
+                    buffer += char;
+                    index++;
+                  } else {
+                    break iterator;
+                  }
+                  break;
+                case numberStates.EXP:
+                  if (char === "+") {
+                    state = numberStates.EXP_PLUS;
+                    buffer += char;
+                    index++;
+                  } else if (char === "-") {
+                    state = numberStates.EXP_MINUS;
+                    buffer += char;
+                    index++;
+                  } else if (isDigit(char)) {
+                    state = numberStates.EXP_DIGIT;
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else {
+                    break iterator;
+                  }
+                  break;
+                case numberStates.EXP_PLUS:
+                case numberStates.EXP_MINUS:
+                case numberStates.EXP_DIGIT:
+                  if (isDigit(char)) {
+                    state = numberStates.EXP_DIGIT;
+                    buffer += char;
+                    index++;
+                    passedValue = buffer;
+                  } else {
+                    break iterator;
+                  }
+                  break;
+              }
+            }
+            if (passedValue) {
+              this.index += passedValue.length;
+              this.column += passedValue.length;
+              this.currentToken = tokenTypes.NUMBER;
+              this.currentValue = passedValue;
+              return true;
+            } else {
+              return false;
+            }
+          }
+        } ]);
+        return Tokenizer;
+      }();
+      Tokenizer.LEFT_BRACE = tokenTypes.LEFT_BRACE;
+      Tokenizer.RIGHT_BRACE = tokenTypes.RIGHT_BRACE;
+      Tokenizer.LEFT_BRACKET = tokenTypes.LEFT_BRACKET;
+      Tokenizer.RIGHT_BRACKET = tokenTypes.RIGHT_BRACKET;
+      Tokenizer.COLON = tokenTypes.COLON;
+      Tokenizer.COMMA = tokenTypes.COMMA;
+      Tokenizer.STRING = tokenTypes.STRING;
+      Tokenizer.NUMBER = tokenTypes.NUMBER;
+      Tokenizer.TRUE = tokenTypes.TRUE;
+      Tokenizer.FALSE = tokenTypes.FALSE;
+      Tokenizer.NULL = tokenTypes.NULL;
+      var objectStates = {
+        _START_: 0,
+        OPEN_OBJECT: 1,
+        KEY: 2,
+        COLON: 3,
+        VALUE: 4,
+        COMMA: 5,
+        CLOSE_OBJECT: 6
+      };
+      var arrayStates = {
+        _START_: 0,
+        OPEN_ARRAY: 1,
+        VALUE: 2,
+        COMMA: 3,
+        CLOSE_ARRAY: 4
+      };
+      var defaultSettings = {
+        verbose: true
+      };
+      var JsonParser = function() {
+        function JsonParser(source, settings) {
+          _classCallCheck(this, JsonParser);
+          this.settings = Object.assign(defaultSettings, settings);
+          this.tokenList = new Tokenizer(source);
+          this.index = 0;
+          var json = this._parseValue();
+          if (json) {
+            return json;
+          } else {
+            throw new SyntaxError(exceptionsDict.emptyString);
+          }
+        }
+        _createClass(JsonParser, [ {
+          key: "_parseObject",
+          value: function _parseObject() {
+            var startToken = undefined;
+            var property = undefined;
+            var object = {
+              type: "object",
+              properties: []
+            };
+            var state = objectStates._START_;
+            while (true) {
+              var token = this.tokenList[this.index];
+              switch (state) {
+                case objectStates._START_:
+                  if (token.type === Tokenizer.LEFT_BRACE) {
+                    startToken = token;
+                    state = objectStates.OPEN_OBJECT;
+                    this.index++;
+                  } else {
+                    return null;
+                  }
+                  break;
+                case objectStates.OPEN_OBJECT:
+                  if (token.type === Tokenizer.STRING) {
+                    property = {
+                      type: "property"
+                    };
+                    if (this.settings.verbose) {
+                      property.key = {
+                        type: "key",
+                        position: token.position,
+                        value: token.value
+                      };
+                    } else {
+                      property.key = {
+                        type: "key",
+                        value: token.value
+                      };
+                    }
+                    state = objectStates.KEY;
+                    this.index++;
+                  } else if (token.type === Tokenizer.RIGHT_BRACE) {
+                    if (this.settings.verbose) {
+                      object.position = position(startToken.position.start.line, startToken.position.start.column, startToken.position.start.char, token.position.end.line, token.position.end.column, token.position.end.char);
+                    }
+                    this.index++;
+                    return object;
+                  } else {
+                    return null;
+                  }
+                  break;
+                case objectStates.KEY:
+                  if (token.type == Tokenizer.COLON) {
+                    state = objectStates.COLON;
+                    this.index++;
+                  } else {
+                    return null;
+                  }
+                  break;
+                case objectStates.COLON:
+                  var value = this._parseValue();
+                  if (value !== null) {
+                    property.value = value;
+                    object.properties.push(property);
+                    state = objectStates.VALUE;
+                  } else {
+                    return null;
+                  }
+                  break;
+                case objectStates.VALUE:
+                  if (token.type === Tokenizer.RIGHT_BRACE) {
+                    if (this.settings.verbose) {
+                      object.position = position(startToken.position.start.line, startToken.position.start.column, startToken.position.start.char, token.position.end.line, token.position.end.column, token.position.end.char);
+                    }
+                    this.index++;
+                    return object;
+                  } else if (token.type === Tokenizer.COMMA) {
+                    state = objectStates.COMMA;
+                    this.index++;
+                  } else {
+                    return null;
+                  }
+                  break;
+                case objectStates.COMMA:
+                  if (token.type === Tokenizer.STRING) {
+                    property = {
+                      type: "property"
+                    };
+                    if (this.settings.verbose) {
+                      property.key = {
+                        type: "key",
+                        position: token.position,
+                        value: token.value
+                      };
+                    } else {
+                      property.key = {
+                        type: "key",
+                        value: token.value
+                      };
+                    }
+                    state = objectStates.KEY;
+                    this.index++;
+                  } else {
+                    return null;
+                  }
+              }
+            }
+          }
+        }, {
+          key: "_parseArray",
+          value: function _parseArray() {
+            var startToken = undefined;
+            var value = undefined;
+            var array = {
+              type: "array",
+              items: []
+            };
+            var state = arrayStates._START_;
+            while (true) {
+              var token = this.tokenList[this.index];
+              switch (state) {
+                case arrayStates._START_:
+                  if (token.type === Tokenizer.LEFT_BRACKET) {
+                    startToken = token;
+                    state = arrayStates.OPEN_ARRAY;
+                    this.index++;
+                  } else {
+                    return null;
+                  }
+                  break;
+                case arrayStates.OPEN_ARRAY:
+                  value = this._parseValue();
+                  if (value !== null) {
+                    array.items.push(value);
+                    state = arrayStates.VALUE;
+                  } else if (token.type === Tokenizer.RIGHT_BRACKET) {
+                    if (this.settings.verbose) {
+                      array.position = position(startToken.position.start.line, startToken.position.start.column, startToken.position.start.char, token.position.end.line, token.position.end.column, token.position.end.char);
+                    }
+                    this.index++;
+                    return array;
+                  } else {
+                    return null;
+                  }
+                  break;
+                case arrayStates.VALUE:
+                  if (token.type === Tokenizer.RIGHT_BRACKET) {
+                    if (this.settings.verbose) {
+                      array.position = position(startToken.position.start.line, startToken.position.start.column, startToken.position.start.char, token.position.end.line, token.position.end.column, token.position.end.char);
+                    }
+                    this.index++;
+                    return array;
+                  } else if (token.type === Tokenizer.COMMA) {
+                    state = arrayStates.COMMA;
+                    this.index++;
+                  } else {
+                    return null;
+                  }
+                  break;
+                case arrayStates.COMMA:
+                  value = this._parseValue();
+                  if (value !== null) {
+                    array.items.push(value);
+                    state = arrayStates.VALUE;
+                  } else {
+                    return null;
+                  }
+                  break;
+              }
+            }
+          }
+        }, {
+          key: "_parseValue",
+          value: function _parseValue() {
+            var token = this.tokenList[this.index];
+            var tokenType = undefined;
+            switch (token.type) {
+              case Tokenizer.STRING:
+                tokenType = "string";
+                break;
+              case Tokenizer.NUMBER:
+                tokenType = "number";
+                break;
+              case Tokenizer.TRUE:
+                tokenType = "true";
+                break;
+              case Tokenizer.FALSE:
+                tokenType = "false";
+                break;
+              case Tokenizer.NULL:
+                tokenType = "null";
+            }
+            var objectOrArray = this._parseObject() || this._parseArray();
+            if (tokenType !== undefined) {
+              this.index++;
+              if (this.settings.verbose) {
+                return {
+                  type: tokenType,
+                  value: token.value,
+                  position: token.position
+                };
+              } else {
+                return {
+                  type: tokenType,
+                  value: token.value
+                };
+              }
+            } else if (objectOrArray !== null) {
+              return objectOrArray;
+            } else {
+              throw new Error("!!!!!");
+            }
+          }
+        } ]);
+        return JsonParser;
+      }();
+      return JsonParser;
+    }();
+    module.exports = JsonParser;
+    module.exports.buildMap = function(str, filename) {
+      function loc(node) {
+        return [ filename, node.position.start.line, node.position.start.column ].join(":");
+      }
+      function walk(node, map, path) {
+        path = path ? path + "." : "";
+        switch (node.type) {
+          case "object":
+            node.properties.forEach(function(property) {
+              map[path + property.key.value] = loc(property.value);
+              walk(property.value, map, path + property.key.value);
+            });
+            break;
+          case "array":
+            node.items.forEach(function(item, idx) {
+              map[path + idx] = loc(item);
+              walk(item, map, path + idx);
+            });
+            break;
+        }
+        return map;
+      }
+      var result = {};
+      try {
+        result = walk(new JsonParser(str), {});
+      } catch (e) {
+        console.error("JSON parse error:", e);
+      }
+      return result;
+    };
   },
   "6.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -2507,12 +3388,12 @@ var __resources__ = {
       var newResources = declaration.resources;
       var oldResources = this.resources;
       this.resources = newResources;
-      if (newResources) for (var i = 0, url; url = newResources[i]; i++) {
-        var resource = basis.resource(url).fetch();
+      if (newResources) for (var i = 0, item; item = newResources[i]; i++) {
+        var resource = basis.resource(item.url).fetch();
         if (typeof resource.startUse == "function") resource.startUse();
       }
-      if (oldResources) for (var i = 0, url; url = oldResources[i]; i++) {
-        var resource = basis.resource(url).fetch();
+      if (oldResources) for (var i = 0, item; item = oldResources[i]; i++) {
+        var resource = basis.resource(item.url).fetch();
         if (typeof resource.stopUse == "function") resource.stopUse();
       }
       if (destroyBuilder) destroyBuilder(true);
@@ -2720,8 +3601,8 @@ var __resources__ = {
     var arraySearch = basis.array.search;
     var arrayAdd = basis.array.add;
     var arrayRemove = basis.array.remove;
-    var tokenize = basis.require("./11.js");
-    var isolateCss = basis.require("./12.js");
+    var tokenize = basis.require("./12.js");
+    var isolateCss = basis.require("./13.js");
     var consts = basis.require("./7.js");
     var TYPE_ELEMENT = consts.TYPE_ELEMENT;
     var TYPE_ATTRIBUTE = consts.TYPE_ATTRIBUTE;
@@ -2743,7 +3624,7 @@ var __resources__ = {
     var CLASS_BINDING_ENUM = consts.CLASS_BINDING_ENUM;
     var CLASS_BINDING_BOOL = consts.CLASS_BINDING_BOOL;
     var CLASS_BINDING_INVERT = consts.CLASS_BINDING_INVERT;
-    var IDENT = /^[a-z_][a-z0-9_\-]*$/i;
+    var ATTR_NAME_RX = /^[a-z_][a-z0-9_\-:]*$/i;
     var ATTR_EVENT_RX = /^event-(.+)$/;
     var Template = function() {};
     var resolveResource = function() {};
@@ -2794,18 +3675,25 @@ var __resources__ = {
       function addUnique(array, items) {
         for (var i = 0; i < items.length; i++) arrayAdd(array, items[i]);
       }
-      function importStyles(array, items, prefix, includeToken) {
-        for (var i = 0, item; item = items[i]; i++) {
-          if (item[1] !== styleNamespaceIsolate) item[1] = prefix + item[1];
-          if (!item[3]) item[3] = includeToken;
+      function adoptStyles(resources, prefix, includeToken) {
+        for (var i = 0, item; item = resources[i]; i++) if (item.type == "style") {
+          if (item.isolate !== styleNamespaceIsolate) item.isolate = prefix + item.isolate;
+          if (!item.includeToken) item.includeToken = includeToken;
         }
-        array.unshift.apply(array, items);
       }
       function addStyle(template, token, src, isolatePrefix, namespace) {
         var text = token.children[0];
         var url = src ? basis.resource.resolveURI(src, template.baseURI, '<b:style src="{url}"/>') : basis.resource.virtual("css", text ? text.value : "", template.sourceUrl).url;
         token.sourceUrl = template.sourceUrl;
-        template.resources.push([ url, isolatePrefix, token, null, src ? false : text || true, namespace ]);
+        template.resources.push({
+          type: "style",
+          url: url,
+          isolate: isolatePrefix,
+          token: token,
+          includeToken: null,
+          inline: src ? false : text || true,
+          namespace: namespace
+        });
         return url;
       }
       function getLocation(template, loc) {
@@ -2900,19 +3788,18 @@ var __resources__ = {
             host.push(item);
           } else addTemplateWarn(template, options, 'Value for role was ignored as value can\'t contains ["/", "(", ")"]: ' + role, sourceToken.loc);
         }
-        function processAttrs(token, declToken) {
-          var result = [];
+        function applyAttrs(host, attrs) {
           var styleAttr;
           var displayAttr;
           var visibilityAttr;
           var item;
           var m;
-          for (var i = 0, attr; attr = token.attrs[i]; i++) {
+          for (var i = 0, attr; attr = attrs[i]; i++) {
             if (attr.prefix == "b") {
               switch (attr.name) {
                 case "ref":
                   var refs = (attr.value || "").trim().split(/\s+/);
-                  for (var j = 0; j < refs.length; j++) addTokenRef(declToken, refs[j]);
+                  for (var j = 0; j < refs.length; j++) addTokenRef(host, refs[j]);
                   break;
                 case "show":
                 case "hide":
@@ -2923,7 +3810,7 @@ var __resources__ = {
                   visibilityAttr = attr;
                   break;
                 case "role":
-                  addRoleAttribute(result, attr.value || "", attr);
+                  addRoleAttribute(host, attr.value || "", attr);
                   break;
               }
               continue;
@@ -2939,11 +3826,11 @@ var __resources__ = {
             item.valueLocMap = getAttributeValueLocationMap(attr);
             item.sourceToken = attr;
             addTokenLocation(item, attr);
-            result.push(item);
+            host.push(item);
           }
-          if (displayAttr) applyShowHideAttribute(result, displayAttr);
-          if (visibilityAttr) applyShowHideAttribute(result, visibilityAttr);
-          return result.length ? result : 0;
+          if (displayAttr) applyShowHideAttribute(host, displayAttr);
+          if (visibilityAttr) applyShowHideAttribute(host, visibilityAttr);
+          return host;
         }
         function modifyAttr(include, token, name, action) {
           var attrs = tokenAttrs(token);
@@ -2953,7 +3840,7 @@ var __resources__ = {
             addTemplateWarn(template, options, "Instruction <b:" + token.name + "> has no `name` attribute", token.loc);
             return;
           }
-          if (!IDENT.test(attrs.name)) {
+          if (!ATTR_NAME_RX.test(attrs.name)) {
             addTemplateWarn(template, options, "Bad attribute name `" + attrs.name + "`", token.loc);
             return;
           }
@@ -3148,8 +4035,43 @@ var __resources__ = {
                       }
                     } else {
                       token.sourceUrl = template.sourceUrl;
-                      template.resources.push([ null, styleIsolate, token, null, elAttrs.src ? false : token.children[0] || true, styleNamespace ]);
+                      template.resources.push({
+                        type: "style",
+                        url: null,
+                        isolate: styleIsolate,
+                        token: token,
+                        includeToken: null,
+                        inline: elAttrs.src ? false : token.children[0] || true,
+                        namespace: styleNamespace
+                      });
                     }
+                    break;
+                  case "svg":
+                    var svgAttributes = [];
+                    var svgUse = [ TYPE_ELEMENT, 0, 0, "svg:use" ];
+                    var svgElement = [ TYPE_ELEMENT, bindings, refs, "svg:svg", svgUse ];
+                    for (var key in elAttrs_) {
+                      var attrToken = elAttrs_[key];
+                      switch (getTokenName(attrToken)) {
+                        case "src":
+                          var svgUrl = basis.resource.resolveURI(elAttrs.src, template.baseURI, "<b:" + token.name + ' src="{url}"/>');
+                          arrayAdd(template.deps, basis.resource(svgUrl));
+                          template.resources.push({
+                            type: "svg",
+                            url: svgUrl
+                          });
+                          break;
+                        case "use":
+                          applyAttrs(svgUse, [ basis.object.merge(attrToken, {
+                            prefix: "xlink",
+                            name: "href"
+                          }) ]);
+                          break;
+                        default:
+                          svgAttributes.push(attrToken);
+                      }
+                    }
+                    result.push(applyAttrs(svgElement, svgAttributes));
                     break;
                   case "isolate":
                     if (!template.isolate) template.isolate = elAttrs.prefix || options.isolate || genIsolateMarker(); else addTemplateWarn(template, options, "<b:isolate> is already set to `" + template.isolate + "`", token.loc);
@@ -3213,7 +4135,14 @@ var __resources__ = {
                   case "include":
                     var templateSrc = elAttrs.src;
                     if (templateSrc) {
-                      var resource = resolveResource(templateSrc, template.baseURI);
+                      var resource;
+                      var basisWarn = basis.dev.warn;
+                      basis.dev.warn = function() {
+                        addTemplateWarn(template, options, basis.array(arguments).join(" "), token.loc);
+                        if (!basis.NODE_ENV) basisWarn.apply(this, arguments);
+                      };
+                      resource = resolveResource(templateSrc, template.baseURI);
+                      basis.dev.warn = basisWarn;
                       if (!resource) {
                         addTemplateWarn(template, options, '<b:include src="' + templateSrc + '"> is not resolved, instruction ignored', token.loc);
                         continue;
@@ -3234,7 +4163,13 @@ var __resources__ = {
                         if (decl.deps) addUnique(template.deps, decl.deps);
                         if (decl.warns) template.warns.push.apply(template.warns, decl.warns);
                         if (decl.removals) template.removals.push.apply(template.removals, decl.removals);
-                        if (decl.resources && "no-style" in elAttrs == false) importStyles(template.resources, decl.resources, isolatePrefix, token);
+                        if (decl.resources) {
+                          var resources = decl.resources;
+                          if ("no-style" in elAttrs) resources = resources.filter(function(item) {
+                            return item.type != "style";
+                          }); else adoptStyles(resources, isolatePrefix, token);
+                          template.resources.unshift.apply(template.resources, resources);
+                        }
                         var instructions = basis.array(token.children);
                         var styleNSIsolate = {
                           map: options.styleNSIsolateMap,
@@ -3473,7 +4408,7 @@ var __resources__ = {
                 continue;
               }
               item = [ 1, bindings, refs, getTokenName(token) ];
-              item.push.apply(item, processAttrs(token, item, options.optimizeSize) || []);
+              applyAttrs(item, token.attrs);
               item.push.apply(item, process(token.children, template, options) || []);
               addTokenLocation(item, token);
               item.sourceToken = token;
@@ -3689,8 +4624,8 @@ var __resources__ = {
           }
         }
       }
-      function styleHash(style) {
-        return style[0] + "|" + style[1];
+      function resourceHash(resource) {
+        return [ resource.type, resource.url, resource.isolate ].join(";");
       }
       return function makeDeclaration(source, baseURI, options, sourceUrl, sourceOrigin) {
         var warns = [];
@@ -3750,25 +4685,37 @@ var __resources__ = {
             var styleNSPrefix = result.styleNSPrefix[key];
             if (!styleNSPrefix.used) addTemplateWarn(result, options, "Unused namespace: " + styleNSPrefix.name, styleNSPrefix.loc);
           }
-          if (result.isolate) for (var i = 0, item; item = result.resources[i]; i++) if (item[1] !== styleNamespaceIsolate) item[1] = result.isolate + item[1];
-          var styles = result.resources;
+          if (result.isolate) for (var i = 0, item; item = result.resources[i]; i++) if (item.type == "style" && item.isolate !== styleNamespaceIsolate) item.isolate = result.isolate + item.isolate;
+          var originalResources = result.resources;
           result.resources = result.resources.filter(function(item, idx, array) {
-            return item[0] && !basis.array.search(array, styleHash(item), styleHash, idx + 1);
+            return item.url && !basis.array.search(array, resourceHash(item), resourceHash, idx + 1);
           }).map(function(item) {
-            var url = item[0];
-            var isolate = item[1];
+            if (item.type != "style") {
+              return {
+                type: item.type,
+                url: item.url
+              };
+            }
+            var url = item.url;
+            var isolate = item.isolate;
             var namespaceIsolate = isolate === styleNamespaceIsolate;
             var cssMap;
             if (namespaceIsolate) {
               isolate = styleNamespaceIsolate[url];
               if (url in styleNamespaceResource) {
                 item.url = styleNamespaceResource[url].url;
-                return styleNamespaceResource[url].url;
+                return {
+                  type: "style",
+                  url: styleNamespaceResource[url].url
+                };
               }
             }
             if (!isolate) {
               item.url = url;
-              return url;
+              return {
+                type: "style",
+                url: url
+              };
             }
             var resource = basis.resource.virtual("css", "").ready(function(cssResource) {
               cssResource.url = url + "?isolate-prefix=" + isolate;
@@ -3784,18 +4731,21 @@ var __resources__ = {
             });
             if (namespaceIsolate) styleNamespaceResource[url] = resource;
             item.url = resource.url;
-            return resource.url;
+            return {
+              type: "style",
+              url: resource.url
+            };
           });
-          result.styles = styles.map(function(item, idx) {
-            var sourceUrl = item[0] || tokenAttrs(item[2]).src;
+          result.styles = originalResources.map(function(item) {
+            var sourceUrl = item.url || tokenAttrs(item.token).src;
             return {
               resource: item.url || false,
               sourceUrl: basis.resource.resolveURI(sourceUrl),
-              isolate: item[1] === styleNamespaceIsolate ? styleNamespaceIsolate[item[0]] : item[1] || false,
-              namespace: item[5] || false,
-              inline: item[4],
-              styleToken: item[2],
-              includeToken: item[3]
+              isolate: item.isolate === styleNamespaceIsolate ? styleNamespaceIsolate[item.url] : item.isolate || false,
+              namespace: item.namespace || false,
+              inline: item.inline,
+              styleToken: item.token,
+              includeToken: item.includeToken
             };
           });
         }
@@ -3845,7 +4795,7 @@ var __resources__ = {
       }
     };
   },
-  "11.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "12.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var consts = basis.require("./7.js");
     var TYPE_ELEMENT = consts.TYPE_ELEMENT;
     var TYPE_ATTRIBUTE = consts.TYPE_ATTRIBUTE;
@@ -4320,7 +5270,7 @@ var __resources__ = {
     }
     module.exports = tokenize;
   },
-  "12.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "13.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var CSS_CLASSNAME_START = /^\-?([_a-z]|[^\x00-\xb1]|\\[0-9a-f]{1,6}(\r\n|[ \n\r\t\f])?|\\[^\n\r\f0-9a-f])/i;
     var CSS_CLASSNAME_START_MAXLEN = 8;
     var CSS_NESTED_ATRULE = /^(media|supports|document)\b/i;
@@ -4331,9 +5281,9 @@ var __resources__ = {
       return basis.genUID() + "__";
     }
     function isolateCss(css, prefix, info) {
-      function jumpAfter(str, offset) {
+      function jumpTo(str, offset) {
         var index = css.indexOf(str, offset);
-        i = index !== -1 ? index + str.length : sym.length;
+        i = index !== -1 ? index + str.length - 1 : sym.length;
       }
       function parseString() {
         var quote = sym[i];
@@ -4344,7 +5294,7 @@ var __resources__ = {
       function parseBraces() {
         var bracket = sym[i];
         if (bracket === "(") {
-          jumpAfter(")", i + 1);
+          jumpTo(")", i + 1);
           return true;
         }
         if (bracket === "[") {
@@ -4354,7 +5304,7 @@ var __resources__ = {
       }
       function parseComment() {
         if (sym[i] !== "/" || sym[i + 1] !== "*") return;
-        jumpAfter("*/", i + 2);
+        jumpTo("*/", i + 2);
         return true;
       }
       function parsePseudoContent() {
@@ -4385,7 +5335,7 @@ var __resources__ = {
           parseStyleSheet(true);
           return;
         }
-        for (i++; i < len && sym[i] !== "}"; i++) parseString() || parseBraces();
+        for (i++; i < len && sym[i] !== "}"; i++) parseComment() || parseString() || parseBraces();
         return true;
       }
       function parseClassName() {
@@ -4739,6 +5689,8 @@ var __resources__ = {
     var afterEventAction = {};
     var insideElementEvent = {};
     var contains;
+    var IS_TOUCH_DEVICE = "ontouchstart" in document.documentElement;
+    var MOUSE_EVENTS = [ "mouseover", "mouseup", "mousedown", "mousemove", "click", "dblclick" ];
     if (Node && !Node.prototype.contains) contains = function(parent, child) {
       return parent.compareDocumentPosition(child) & 16;
     }; else contains = function(parent, child) {
@@ -4838,6 +5790,7 @@ var __resources__ = {
     }();
     function setEventAttribute(node, eventName, actions) {
       regEventHandler(eventName);
+      if (IS_TOUCH_DEVICE && MOUSE_EVENTS.indexOf(eventName) != -1) node.setAttribute("style", "cursor:pointer;" + (node.getAttribute("style") || ""));
       if (USE_CAPTURE_FALLBACK) node.setAttribute("on" + eventName, USE_CAPTURE_FALLBACK + '("' + eventName + '",event)');
       node.setAttribute("event-" + eventName, actions);
     }
@@ -4889,7 +5842,7 @@ var __resources__ = {
             break;
           case TYPE_ATTRIBUTE_STYLE:
             var attrValue = token[ATTR_VALUE_INDEX[tokenType]];
-            if (attrValue) setAttribute(result, "style", attrValue);
+            if (attrValue) setAttribute(result, "style", (result.getAttribute("style") || "") + attrValue);
             break;
           case TYPE_ATTRIBUTE_EVENT:
             setEventAttribute(result, token[1], token[2] || token[1]);
@@ -6873,7 +7826,7 @@ var __resources__ = {
     var createEvent = basisEvent.create;
     var createEventHandler = basisEvent.createHandler;
     var events = basisEvent.events;
-    var AbstractData = basis.require("./13.js");
+    var AbstractData = basis.require("./14.js");
     var NULL_OBJECT = {};
     var EMPTY_ARRAY = [];
     var FACTORY = basis.FACTORY;
@@ -6882,6 +7835,30 @@ var __resources__ = {
     SUBSCRIPTION.addProperty("target");
     SUBSCRIPTION.addProperty("dataset");
     SUBSCRIPTION.addProperty("value", "change");
+    var isEqual = function(a, b) {
+      return a === b;
+    };
+    var PROXY_SUPPORT = typeof Proxy == "function" && typeof WeakMap == "function";
+    var devWrap = function(value) {
+      return value;
+    };
+    var devUnwrap = function(value) {
+      return value;
+    };
+    if (PROXY_SUPPORT) {
+      var devWrapMap = new WeakMap;
+      var devWrap = function(value) {
+        var result = new Proxy(value, {});
+        devWrapMap.set(result, value);
+        return result;
+      };
+      devUnwrap = function(value) {
+        return value && devWrapMap.has(value) ? devWrapMap.get(value) : value;
+      };
+      isEqual = function(a, b) {
+        return devUnwrap(a) === devUnwrap(b);
+      };
+    }
     var GETTER_ID = basis.getter.ID;
     var VALUE_EMMITER_HANDLER = {
       destroy: function(object) {
@@ -7015,7 +7992,7 @@ var __resources__ = {
               hostValue = null;
             }
           });
-          getComputeValue = computeFunctions[getComputeValueId] = chainValueFactory(function(object) {
+          getComputeValue = computeFunctions[getComputeValueId] = function(object) {
             if (object instanceof Emitter == false) basis.dev.warn("basis.data.Value#compute: object should be an instanceof basis.event.Emitter");
             var objectId = object.basisObjectId;
             var pair = computeMap[objectId];
@@ -7039,9 +8016,13 @@ var __resources__ = {
               Value.prototype.set.call(pair.value, value);
             }
             return pair.value;
-          });
+          };
         }
-        return getComputeValue;
+        return chainValueFactory(function factory(object) {
+          var value = getComputeValue(object);
+          if (PROXY_SUPPORT) basis.dev.setInfo(value = devWrap(value), "loc", basis.dev.getInfo(factory, "loc"));
+          return value;
+        });
       },
       pipe: function(events, getter) {
         var pipeHandler = createEventHandler(events, valueFromSetProxy);
@@ -7069,7 +8050,7 @@ var __resources__ = {
             events: events,
             transform: pipeValue.proxy
           });
-        }
+        } else pipeValue = devWrap(pipeValue);
         return pipeValue;
       },
       as: function(fn) {
@@ -7080,7 +8061,10 @@ var __resources__ = {
           var fnId = fn[GETTER_ID] || String(fn);
           while (cursor = cursor.links_) {
             var context = cursor.context;
-            if (context instanceof ReadOnlyValue && context.proxy && (context.proxy[GETTER_ID] || String(context.proxy)) == fnId) return context;
+            if (context instanceof ReadOnlyValue && context.proxy && (context.proxy[GETTER_ID] || String(context.proxy)) == fnId) {
+              context = devWrap(context);
+              return context;
+            }
           }
         }
         var result = new ReadOnlyValue({
@@ -7094,6 +8078,9 @@ var __resources__ = {
         });
         this.link(result, valueSyncAs, true, result.destroy);
         return result;
+      },
+      query: function(path) {
+        return Value.query(this, "value." + path);
       },
       deferred: function() {
         if (arguments.length > 0) basis.dev.warn("basis.data.Value#deferred() doesn't accept parameters anymore. Use value.as(fn).deferred() instead.");
@@ -7250,7 +8237,7 @@ var __resources__ = {
             this.destroy();
           };
           obj.addHandler(handler, result);
-        }
+        } else result = devWrap(result);
       }
       if (!result) {
         var id = obj.basisObjectId;
@@ -7268,7 +8255,7 @@ var __resources__ = {
               }
             });
             bindingBridge.attach(obj, Value.prototype.set, result, result.destroy);
-          }
+          } else result = devWrap(result);
         }
       }
       if (!result) throw new Error("Bad object type");
@@ -7306,10 +8293,16 @@ var __resources__ = {
             var path1 = path[++index];
             var fullPath = path0 + "." + path1;
             pathFragment = queryNestedFunctionCache[fullPath];
-            if (!pathFragment) pathFragment = queryNestedFunctionCache[fullPath] = basis.getter(function(object) {
-              object = object && object[path0];
-              return object ? object[path1] : undefined;
-            });
+            if (!pathFragment) {
+              pathFragment = function(object) {
+                object = object && object[path0];
+                return object ? object[path1] : undefined;
+              };
+              pathFragment.getDevSource = function(object) {
+                return basis.getter(fullPath);
+              };
+              pathFragment = queryNestedFunctionCache[fullPath] = basis.getter(pathFragment);
+            }
           }
         }
       } else {
@@ -7327,9 +8320,14 @@ var __resources__ = {
     }
     function getQueryPathFunction(path) {
       var result = queryAsFunctionCache[path];
-      if (!result) result = queryAsFunctionCache[path] = basis.getter(function(target) {
-        if (target instanceof Emitter) return Value.query(target, path);
-      });
+      if (!result) {
+        var fn = function(target) {
+          if (target instanceof Emitter) return Value.query(target, path);
+        };
+        fn.getDevSource = Function("return function(target){\n" + "  if (target instanceof Emitter)\n" + '    return Value.query(target, "' + path + '");\n' + "};");
+        basis.dev.setInfo(fn, "loc", null);
+        result = queryAsFunctionCache[path] = basis.getter(fn);
+      }
       return result;
     }
     Value.query = function(target, path) {
@@ -7352,6 +8350,7 @@ var __resources__ = {
       fn.factory = FACTORY;
       fn.deferred = valueDeferredFactory;
       fn.compute = valueComputeFactory;
+      fn.query = valueQueryFactory;
       fn.pipe = valuePipeFactory;
       fn.as = valueAsFactory;
       return fn;
@@ -7372,21 +8371,36 @@ var __resources__ = {
     }
     function valueAsFactory(getter) {
       var factory = this;
-      return chainValueFactory(function(value) {
+      return chainValueFactory(function asFactory(value) {
         value = factory(value);
-        return value ? value.as(getter) : value;
+        if (value) value = value.as(getter);
+        if (PROXY_SUPPORT && value) basis.dev.setInfo(value, "loc", basis.dev.getInfo(asFactory, "loc"));
+        return value;
       });
     }
     function valuePipeFactory(events, getter) {
       var factory = this;
-      return chainValueFactory(function(value) {
+      return chainValueFactory(function pipeFactory(value) {
         value = factory(value);
-        return value ? value.pipe(events, getter) : value;
+        if (value) value = value.pipe(events, getter);
+        if (PROXY_SUPPORT && value) basis.dev.setInfo(value, "loc", basis.dev.getInfo(pipeFactory, "loc"));
+        return value;
+      });
+    }
+    function valueQueryFactory(path) {
+      var factory = this;
+      return chainValueFactory(function queryFactory(value) {
+        value = factory(value);
+        if (value) value = value.query(path);
+        if (PROXY_SUPPORT && value) basis.dev.setInfo(value, "loc", basis.dev.getInfo(queryFactory, "loc"));
+        return value;
       });
     }
     Value.factory = function(events, getter) {
-      return chainValueFactory(function(object) {
-        return Value.from(object, events, getter);
+      return chainValueFactory(function factory(object) {
+        var value = Value.from(object, events, getter);
+        if (PROXY_SUPPORT && value) basis.dev.setInfo(value, "loc", basis.dev.getInfo(factory, "loc"));
+        return value;
       });
     };
     Value.state = function(source) {
@@ -7410,19 +8424,19 @@ var __resources__ = {
         object.data = delegate.data;
         object.state = delegate.state;
       }
-      if (object.root !== oldRoot) {
+      if (!isEqual(object.root, oldRoot)) {
         var rootListenHandler = object.listen.root;
         if (rootListenHandler) {
-          if (oldRoot && oldRoot !== object) oldRoot.removeHandler(rootListenHandler, object);
-          if (object.root && object.root !== object) object.root.addHandler(rootListenHandler, object);
+          if (oldRoot && !isEqual(oldRoot, object)) oldRoot.removeHandler(rootListenHandler, object);
+          if (object.root && !isEqual(object.root, object)) object.root.addHandler(rootListenHandler, object);
         }
         object.emit_rootChanged(oldRoot);
       }
-      if (object.target !== oldTarget) {
+      if (!isEqual(object.target, oldTarget)) {
         var targetListenHandler = object.listen.target;
         if (targetListenHandler) {
-          if (oldTarget && oldTarget !== object) oldTarget.removeHandler(targetListenHandler, object);
-          if (object.target && object.target !== object) object.target.addHandler(targetListenHandler, object);
+          if (oldTarget && !isEqual(oldTarget, object)) oldTarget.removeHandler(targetListenHandler, object);
+          if (object.target && !isEqual(object.target, object)) object.target.addHandler(targetListenHandler, object);
         }
         object.emit_targetChanged(oldTarget);
       }
@@ -7511,7 +8525,7 @@ var __resources__ = {
         } else {
           newDelegate = null;
         }
-        if (this.delegate !== newDelegate) {
+        if (!isEqual(this.delegate, newDelegate)) {
           var oldState = this.state;
           var oldData = this.data;
           var oldDelegate = this.delegate;
@@ -7525,9 +8539,9 @@ var __resources__ = {
             var cursor = oldDelegate.delegates_;
             var prev = oldDelegate;
             while (cursor) {
-              if (cursor.delegate === this) {
+              if (isEqual(cursor.delegate, this)) {
                 cursor.delegate = null;
-                if (prev === oldDelegate) oldDelegate.delegates_ = cursor.next; else prev.next = cursor.next;
+                if (isEqual(prev, oldDelegate)) oldDelegate.delegates_ = cursor.next; else prev.next = cursor.next;
                 break;
               }
               prev = cursor;
@@ -8144,13 +9158,16 @@ var __resources__ = {
       ReadOnlyValue: ReadOnlyValue,
       DeferredValue: DeferredValue,
       PipeValue: PipeValue,
-      chainValueFactory: chainValueFactory,
       Object: DataObject,
       Slot: Slot,
       KeyObjectMap: KeyObjectMap,
       ReadOnlyDataset: ReadOnlyDataset,
       Dataset: Dataset,
       DatasetWrapper: DatasetWrapper,
+      devWrap: devWrap,
+      devUnwrap: devUnwrap,
+      isEqual: isEqual,
+      chainValueFactory: chainValueFactory,
       isConnected: isConnected,
       getDatasetDelta: getDatasetDelta,
       ResolveAdapter: ResolveAdapter,
@@ -8401,7 +9418,7 @@ var __resources__ = {
       resolveValue: resolveValue
     };
   },
-  "13.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "14.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var basisEvent = basis.require("./3.js");
     var Emitter = basisEvent.Emitter;
     var createEvent = basisEvent.create;
@@ -8754,7 +9771,7 @@ var __resources__ = {
         var element = this.element;
         if (element) {
           var viewport = getViewportRect(this.getBase());
-          var box = getBoundingRect(element, this.getBase());
+          var box = getBoundingRect(element);
           dragData.element = element;
           if (this.axisX) {
             dragData.axisX = new this.axisX(element);
@@ -8953,20 +9970,20 @@ var __resources__ = {
   },
   "n.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     module.exports = {
-      getDelta: basis.require("./14.js"),
-      createRuleEvents: basis.require("./15.js"),
-      SourceDataset: basis.require("./16.js"),
-      Merge: basis.require("./17.js"),
-      Subtract: basis.require("./18.js"),
-      MapFilter: basis.require("./19.js"),
-      Split: basis.require("./1a.js"),
-      Cloud: basis.require("./1c.js"),
-      Extract: basis.require("./1d.js"),
-      Filter: basis.require("./1e.js"),
-      Slice: basis.require("./1f.js")
+      getDelta: basis.require("./15.js"),
+      createRuleEvents: basis.require("./16.js"),
+      SourceDataset: basis.require("./17.js"),
+      Merge: basis.require("./18.js"),
+      Subtract: basis.require("./19.js"),
+      MapFilter: basis.require("./1a.js"),
+      Split: basis.require("./1b.js"),
+      Cloud: basis.require("./1d.js"),
+      Extract: basis.require("./1e.js"),
+      Filter: basis.require("./1f.js"),
+      Slice: basis.require("./1g.js")
     };
   },
-  "14.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "15.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     module.exports = function getDelta(inserted, deleted) {
       var delta = {};
       var result;
@@ -8975,7 +9992,7 @@ var __resources__ = {
       if (result) return delta;
     };
   },
-  "15.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "16.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var extend = basis.object.extend;
     var createEventHandler = basis.require("./3.js").createHandler;
     module.exports = function createRuleEvents(fn, events) {
@@ -8989,7 +10006,7 @@ var __resources__ = {
       }(events);
     };
   },
-  "16.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "17.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var createEvent = basis.require("./3.js").create;
     var resolveDataset = basis.require("./g.js").resolveDataset;
     var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
@@ -9027,24 +10044,27 @@ var __resources__ = {
         if (this.source !== source) {
           var oldSource = this.source;
           var listenHandler = this.listen.source;
-          var itemsChangedHandler;
-          if (listenHandler) {
-            itemsChangedHandler = listenHandler.itemsChanged;
-            if (oldSource) oldSource.removeHandler(listenHandler, this);
-            if (source) source.addHandler(listenHandler, this);
+          var itemsChangedHandler = listenHandler && listenHandler.itemsChanged;
+          this.source = null;
+          setAccumulateState(true);
+          if (oldSource) {
+            if (listenHandler) oldSource.removeHandler(listenHandler, this);
+            if (itemsChangedHandler) itemsChangedHandler.call(this, oldSource, {
+              deleted: oldSource.getItems()
+            });
           }
           this.source = source;
           this.emit_sourceChanged(oldSource);
-          if (itemsChangedHandler) {
-            setAccumulateState(true);
-            if (oldSource) itemsChangedHandler.call(this, oldSource, {
-              deleted: oldSource.getItems()
-            });
-            if (source) itemsChangedHandler.call(this, source, {
+          basis.dev.patchInfo(this, "sourceInfo", {
+            source: source
+          });
+          if (source) {
+            if (listenHandler) source.addHandler(listenHandler, this);
+            if (itemsChangedHandler) itemsChangedHandler.call(this, source, {
               inserted: source.getItems()
             });
-            setAccumulateState(false);
           }
+          setAccumulateState(false);
         }
       },
       destroy: function() {
@@ -9054,14 +10074,14 @@ var __resources__ = {
       }
     });
   },
-  "17.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "18.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var arrayAdd = basis.array.add;
     var arrayRemove = basis.array.remove;
     var createEvent = basis.require("./3.js").create;
     var Emitter = basis.require("./3.js").Emitter;
     var resolveDataset = basis.require("./g.js").resolveDataset;
     var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
-    var getDelta = basis.require("./14.js");
+    var getDelta = basis.require("./15.js");
     var SUBSCRIPTION = basis.require("./i.js");
     SUBSCRIPTION.add("SOURCES", {
       sourcesChanged: function(object, delta) {
@@ -9315,11 +10335,11 @@ var __resources__ = {
     Merge.AT_LEAST_ONE_EXCLUDE = AT_LEAST_ONE_EXCLUDE;
     module.exports = Merge;
   },
-  "18.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "19.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var createEvent = basis.require("./3.js").create;
     var resolveDataset = basis.require("./g.js").resolveDataset;
     var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
-    var getDelta = basis.require("./14.js");
+    var getDelta = basis.require("./15.js");
     var SUBSCRIPTION = basis.require("./i.js");
     SUBSCRIPTION.addProperty("minuend");
     SUBSCRIPTION.addProperty("subtrahend");
@@ -9400,6 +10420,10 @@ var __resources__ = {
           this.emit_subtrahendChanged(oldSubtrahend);
         }
         if (!operandsChanged) return false;
+        basis.dev.setInfo(this, "sourceInfo", {
+          type: "Subtract",
+          source: [ minuend, subtrahend ]
+        });
         if (!minuend || !subtrahend) {
           if (this.itemCount) this.emit_itemsChanged(delta = {
             deleted: this.getItems()
@@ -9440,13 +10464,13 @@ var __resources__ = {
     basis.require("./10.js");
     global.basis = basis;
   },
-  "1a.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1b.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var $undef = basis.fn.$undef;
     var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
     var DatasetWrapper = basis.require("./g.js").DatasetWrapper;
     var KeyObjectMap = basis.require("./g.js").KeyObjectMap;
-    var MapFilter = basis.require("./19.js");
-    var createKeyMap = basis.require("./1b.js");
+    var MapFilter = basis.require("./1a.js");
+    var createKeyMap = basis.require("./1c.js");
     module.exports = MapFilter.subclass({
       className: "basis.data.dataset.Split",
       subsetClass: ReadOnlyDataset,
@@ -9490,7 +10514,7 @@ var __resources__ = {
       }
     });
   },
-  "1b.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1c.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var extend = basis.object.extend;
     var KeyObjectMap = basis.require("./g.js").KeyObjectMap;
     module.exports = function createKeyMap(config, keyGetter, ItemClass, SubsetClass) {
@@ -9508,17 +10532,17 @@ var __resources__ = {
       }, config));
     };
   },
-  "1c.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1d.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var $self = basis.fn.$self;
     var $undef = basis.fn.$undef;
     var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
     var DatasetWrapper = basis.require("./g.js").DatasetWrapper;
     var KeyObjectMap = basis.require("./g.js").KeyObjectMap;
     var setAccumulateState = basis.require("./g.js").Dataset.setAccumulateState;
-    var SourceDataset = basis.require("./16.js");
-    var createKeyMap = basis.require("./1b.js");
-    var createRuleEvents = basis.require("./15.js");
-    var getDelta = basis.require("./14.js");
+    var SourceDataset = basis.require("./17.js");
+    var createKeyMap = basis.require("./1c.js");
+    var createRuleEvents = basis.require("./16.js");
+    var getDelta = basis.require("./15.js");
     var CLOUD_SOURCEOBJECT_UPDATE = function(sourceObject) {
       var sourceMap = this.sourceMap_;
       var memberMap = this.members_;
@@ -9638,16 +10662,16 @@ var __resources__ = {
       }
     });
   },
-  "1d.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1e.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var values = basis.object.values;
     var $undef = basis.fn.$undef;
     var arrayFrom = basis.array.from;
     var createEvent = basis.require("./3.js").create;
     var DataObject = basis.require("./g.js").Object;
     var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
-    var SourceDataset = basis.require("./16.js");
-    var createRuleEvents = basis.require("./15.js");
-    var getDelta = basis.require("./14.js");
+    var SourceDataset = basis.require("./17.js");
+    var createRuleEvents = basis.require("./16.js");
+    var getDelta = basis.require("./15.js");
     var EXTRACT_SOURCEOBJECT_UPDATE = function(sourceObject) {
       var sourceObjectInfo = this.sourceMap_[sourceObject.basisObjectId];
       var newValue = this.rule(sourceObject) || null;
@@ -9845,8 +10869,8 @@ var __resources__ = {
       }
     });
   },
-  "1e.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var MapFilter = basis.require("./19.js");
+  "1f.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var MapFilter = basis.require("./1a.js");
     module.exports = MapFilter.subclass({
       className: "basis.data.dataset.Filter",
       filter: function(object) {
@@ -9854,15 +10878,18 @@ var __resources__ = {
       }
     });
   },
-  "1f.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1g.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var $true = basis.fn.$true;
     var values = basis.object.values;
     var objectSlice = basis.object.slice;
     var createEvent = basis.require("./3.js").create;
     var Value = basis.require("./g.js").Value;
-    var createRuleEvents = basis.require("./15.js");
-    var getDelta = basis.require("./14.js");
-    var SourceDataset = basis.require("./16.js");
+    var createRuleEvents = basis.require("./16.js");
+    var getDelta = basis.require("./15.js");
+    var SourceDataset = basis.require("./17.js");
+    function nanToUndefined(value) {
+      return value !== value ? undefined : value;
+    }
     function binarySearchPos(array, map) {
       if (!array.length) return 0;
       var value = map.value;
@@ -9886,7 +10913,7 @@ var __resources__ = {
     }
     var SLICE_SOURCEOBJECT_UPDATE = function(sourceObject) {
       var sourceObjectInfo = this.sourceMap_[sourceObject.basisObjectId];
-      var newValue = this.rule(sourceObject);
+      var newValue = nanToUndefined(this.rule(sourceObject));
       var index = this.index_;
       if (newValue !== sourceObjectInfo.value) {
         var pos = binarySearchPos(index, sourceObjectInfo);
@@ -9937,7 +10964,7 @@ var __resources__ = {
           for (var i = 0, sourceObject; sourceObject = inserted[i]; i++) {
             sourceObjectInfo = {
               object: sourceObject,
-              value: this.rule(sourceObject)
+              value: nanToUndefined(this.rule(sourceObject))
             };
             sourceMap[sourceObject.basisObjectId] = sourceObjectInfo;
             if (!buildIndex) index.splice(binarySearchPos(index, sourceObjectInfo), 0, sourceObjectInfo); else index.push(sourceObjectInfo);
@@ -9999,7 +11026,7 @@ var __resources__ = {
           var oldOrderDesc = this.orderDesc;
           if (this.rule != rule) {
             var index = this.index_;
-            for (var i = 0; i < index.length; i++) index[i].value = rule(index[i].object);
+            for (var i = 0; i < index.length; i++) index[i].value = nanToUndefined(rule(index[i].object));
             index.sort(sliceIndexSort);
             this.rule = rule;
           }
@@ -10095,7 +11122,7 @@ var __resources__ = {
     var basisData = basis.require("./g.js");
     var AbstractData = basisData.AbstractData;
     var Value = basisData.Value;
-    var ReadOnlyValue = basisData.ReadOnlyValue;
+    var Expression = basis.require("./1h.js");
     var STATE = basisData.STATE;
     var Property = Value.subclass({
       className: namespace + ".Property",
@@ -10214,9 +11241,21 @@ var __resources__ = {
         Value.prototype.destroy.call(this);
       }
     });
+    module.exports = {
+      Property: Property,
+      ObjectSet: ObjectSet,
+      Expression: Expression,
+      expression: Expression.create
+    };
+  },
+  "1h.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var basisData = basis.require("./g.js");
+    var Value = basisData.Value;
+    var ReadOnlyValue = basisData.ReadOnlyValue;
+    var CLASSNAME = "basis.data.Expression";
     var EXPRESSION_SKIP_INIT = {};
     var EXPRESSION_BBVALUE_HANDLER = function() {
-      updateQueue.add(this);
+      schedule.add(this);
     };
     var EXPRESSION_BBVALUE_DESTROY_HANDLER = function() {
       this.destroy();
@@ -10224,13 +11263,17 @@ var __resources__ = {
     var BBVALUE_GETTER = function(value) {
       return value.bindingBridge.get(value);
     };
+    var schedule = basis.asap.schedule(function(expression) {
+      expression.update();
+    });
     function initExpression() {
       var count = arguments.length - 1;
       var calc = arguments[count];
-      if (typeof calc != "function") throw new Error(namespace + ".Expression: Last argument of constructor must be a function");
-      for (var values = new Array(count), i = 0; i < count; i++) {
+      var values = new Array(count);
+      if (typeof calc != "function") throw new Error(CLASSNAME + ": Last argument of constructor must be a function");
+      for (var i = 0; i < count; i++) {
         var value = values[i] = arguments[i];
-        if (!value.bindingBridge) throw new Error(expression + ".Expression: bb-value required");
+        if (!value.bindingBridge) throw new Error(CLASSNAME + ": bb-value required");
         value.bindingBridge.attach(value, EXPRESSION_BBVALUE_HANDLER, this, EXPRESSION_BBVALUE_DESTROY_HANDLER);
       }
       this.calc_ = calc;
@@ -10243,48 +11286,44 @@ var __resources__ = {
       });
       return this;
     }
-    function expression() {
-      return initExpression.apply(new Expression(EXPRESSION_SKIP_INIT), arguments);
-    }
     var Expression = ReadOnlyValue.subclass({
-      className: namespace + ".Expression",
+      className: CLASSNAME,
       calc_: null,
       values_: null,
       extendConstructor_: false,
-      init: function() {
+      init: function(skip) {
         ReadOnlyValue.prototype.init.call(this);
-        if (arguments[0] !== EXPRESSION_SKIP_INIT) initExpression.apply(this, arguments);
+        if (skip === EXPRESSION_SKIP_INIT) return;
+        initExpression.apply(this, arguments);
       },
       update: function() {
-        updateQueue.remove(this);
+        schedule.remove(this);
         Value.prototype.set.call(this, this.calc_.apply(null, this.values_.map(BBVALUE_GETTER)));
       },
       destroy: function() {
-        updateQueue.remove(this);
+        schedule.remove(this);
         for (var i = 0, value; value = this.values_[i]; i++) value.bindingBridge.detach(value, EXPRESSION_BBVALUE_HANDLER, this);
         ReadOnlyValue.prototype.destroy.call(this);
       }
     });
-    module.exports = {
-      Property: Property,
-      ObjectSet: ObjectSet,
-      Expression: Expression,
-      expression: expression
+    Expression.create = function createExpression() {
+      return initExpression.apply(new Expression(EXPRESSION_SKIP_INIT), arguments);
     };
+    module.exports = Expression;
   },
   "p.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var Index = basis.require("./1g.js");
-    var VectorIndex = basis.require("./1h.js");
-    var IndexWrapper = basis.require("./1i.js");
-    var IndexMap = basis.require("./1j.js");
-    var IndexedCalc = basis.require("./1k.js");
-    var createIndexConstructor = basis.require("./1l.js");
-    var Count = basis.require("./1m.js");
-    var Sum = basis.require("./1n.js");
-    var Avg = basis.require("./1o.js");
-    var Min = basis.require("./1p.js");
-    var Max = basis.require("./1q.js");
-    var Distinct = basis.require("./1r.js");
+    var Index = basis.require("./1i.js");
+    var VectorIndex = basis.require("./1j.js");
+    var IndexWrapper = basis.require("./1k.js");
+    var IndexMap = basis.require("./1l.js");
+    var IndexedCalc = basis.require("./1m.js");
+    var createIndexConstructor = basis.require("./1n.js");
+    var Count = basis.require("./1o.js");
+    var Sum = basis.require("./1p.js");
+    var Avg = basis.require("./1q.js");
+    var Min = basis.require("./1r.js");
+    var Max = basis.require("./1s.js");
+    var Distinct = basis.require("./1t.js");
     var count = createIndexConstructor(Count, basis.fn.$true);
     var sum = createIndexConstructor(Sum);
     var avg = createIndexConstructor(Avg);
@@ -10346,7 +11385,7 @@ var __resources__ = {
       IndexMap: IndexMap
     };
   },
-  "1g.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1i.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var Value = basis.require("./g.js").Value;
     var Index = Value.subclass({
       className: "basis.data.index.Index",
@@ -10454,6 +11493,12 @@ var __resources__ = {
       if (!index) {
         index = new IndexClass;
         index.addHandler(DATASET_INDEX_HANDLER, dataset);
+        basis.dev.setInfo(index, "sourceInfo", {
+          type: index.indexName,
+          source: dataset,
+          events: Object.keys(index.updateEvents),
+          transform: index.valueGetter
+        });
         indexes[indexId] = index;
         applyIndexDelta(index, dataset.getItems());
       }
@@ -10476,8 +11521,8 @@ var __resources__ = {
     Index.removeDatasetIndex = removeDatasetIndex;
     module.exports = Index;
   },
-  "1h.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var Index = basis.require("./1g.js");
+  "1j.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1i.js");
     function binarySearchPos(array, value) {
       if (!array.length) return 0;
       var pos;
@@ -10526,9 +11571,9 @@ var __resources__ = {
       }
     });
   },
-  "1i.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1k.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var Value = basis.require("./g.js").Value;
-    var Index = basis.require("./1g.js");
+    var Index = basis.require("./1i.js");
     var resolveDataset = basis.require("./g.js").resolveDataset;
     var INDEXWRAPPER_HANDLER = {
       destroy: function() {
@@ -10587,15 +11632,15 @@ var __resources__ = {
       }
     });
   },
-  "1j.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1l.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var iterate = basis.object.iterate;
     var Value = basis.require("./g.js").Value;
     var DataObject = basis.require("./g.js").Object;
     var SourceDataset = basis.require("./n.js").SourceDataset;
     var createRuleEvents = basis.require("./n.js").createRuleEvents;
-    var Index = basis.require("./1g.js");
-    var IndexWrapper = basis.require("./1i.js");
-    var IndexedCalc = basis.require("./1k.js");
+    var Index = basis.require("./1i.js");
+    var IndexWrapper = basis.require("./1k.js");
+    var IndexedCalc = basis.require("./1m.js");
     var indexMapRecalcShedule = basis.asap.schedule(function(indexMap) {
       indexMap.recalc();
     });
@@ -10784,7 +11829,7 @@ var __resources__ = {
       }
     });
   },
-  "1k.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1m.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var calcIndexPresetSeed = 1;
     var IndexedCalc = function(indexes, calc) {
       this.indexes = indexes;
@@ -10795,13 +11840,13 @@ var __resources__ = {
     };
     module.exports = IndexedCalc;
   },
-  "1l.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+  "1n.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var Class = basis.Class;
     var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
     var DatasetWrapper = basis.require("./g.js").DatasetWrapper;
     var chainValueFactory = basis.require("./g.js").chainValueFactory;
-    var Index = basis.require("./1g.js");
-    var IndexWrapper = basis.require("./1i.js");
+    var Index = basis.require("./1i.js");
+    var IndexWrapper = basis.require("./1k.js");
     var PREFIX = "basisjsIndexConstructor" + basis.genUID();
     var constructors = {};
     var SOURCE_INDEXWRAPPER_HANDLER = {
@@ -10821,6 +11866,7 @@ var __resources__ = {
         var events_ = {};
         for (var i = 0; i < events.length; i++) events_[events[i]] = true;
         indexConstructor = constructors[indexId] = BaseClass.subclass({
+          indexName: BaseClass.className.split(".").pop(),
           indexId: indexId,
           updateEvents: events_,
           valueGetter: getter
@@ -10867,8 +11913,8 @@ var __resources__ = {
       };
     };
   },
-  "1m.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var Index = basis.require("./1g.js");
+  "1o.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1i.js");
     module.exports = Index.subclass({
       className: "basis.data.index.Count",
       valueGetter: basis.fn.$true,
@@ -10886,8 +11932,8 @@ var __resources__ = {
       }
     });
   },
-  "1n.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var Index = basis.require("./1g.js");
+  "1p.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1i.js");
     module.exports = Index.subclass({
       className: "basis.data.index.Sum",
       add_: function(value) {
@@ -10901,8 +11947,8 @@ var __resources__ = {
       }
     });
   },
-  "1o.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var Index = basis.require("./1g.js");
+  "1q.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1i.js");
     module.exports = Index.subclass({
       className: "basis.data.index.Avg",
       sum_: 0,
@@ -10923,8 +11969,8 @@ var __resources__ = {
       }
     });
   },
-  "1p.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var VectorIndex = basis.require("./1h.js");
+  "1r.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var VectorIndex = basis.require("./1j.js");
     module.exports = VectorIndex.subclass({
       className: "basis.data.index.Min",
       vectorGetter: function(vector) {
@@ -10932,17 +11978,17 @@ var __resources__ = {
       }
     });
   },
-  "1q.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var VectorIndex = basis.require("./1h.js");
+  "1s.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var VectorIndex = basis.require("./1j.js");
     module.exports = VectorIndex.subclass({
-      className: "basis.data.index..Max",
+      className: "basis.data.index.Max",
       vectorGetter: function(vector) {
         return vector[vector.length - 1];
       }
     });
   },
-  "1r.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
-    var Index = basis.require("./1g.js");
+  "1t.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
+    var Index = basis.require("./1i.js");
     module.exports = Index.subclass({
       className: "basis.data.index.Distinct",
       map_: null,
@@ -11580,6 +12626,7 @@ var __resources__ = {
           var entity = entityType.get();
           if (entity) {
             if (data) entity.update(data);
+            entity = basisData.devWrap(entity);
           } else entity = new EntityClass(data || {});
           return entity;
         }; else result = function(data, entity) {
@@ -11601,7 +12648,10 @@ var __resources__ = {
               if (entityType.compositeKey) idValue = entityType.compositeKey(data, data);
               if (idValue != null) entity = entityType.index.get(idValue, entityType);
             }
-            if (entity && entity.entityType === entityType) entity.update(data); else entity = new EntityClass(data);
+            if (entity && entity.entityType === entityType) {
+              entity.update(data);
+              entity = basisData.devWrap(entity);
+            } else entity = new EntityClass(data);
             return entity;
           }
         };
@@ -12789,7 +13839,7 @@ var __resources__ = {
     var SERVICE_HANDLER = {
       start: function(service, request) {
         this.inprogressRequests.push(request);
-        if (basis.array.add(this.inprogressTransports, request.transport)) request.transport.addHandler(TRANSPORT_HANDLER, this);
+        if (basis.array.add(this.inprogressTransports, request.transport) && (!service.stoppedTransports || service.stoppedTransports.indexOf(request.transport) == -1)) request.transport.addHandler(TRANSPORT_HANDLER, this);
       },
       complete: function(service, request) {
         basis.array.remove(this.inprogressRequests, request);
@@ -12843,15 +13893,15 @@ var __resources__ = {
           },
           request: function(requestData) {
             if (!this.service.prepare(this, requestData)) return;
-            if (this.secure && !this.service.sign(this)) return;
+            if (this.secure && !this.service.sign(this, requestData)) return;
             return TransportClass.prototype.request.call(this, requestData);
           }
         });
         this.addHandler(SERVICE_HANDLER);
       },
-      sign: function(transport) {
+      sign: function(transport, requestData) {
         if (this.sessionKey) {
-          this.signature(transport, this.sessionData);
+          this.signature(transport, this.sessionData, requestData);
           return true;
         } else {
           basis.dev.warn("Request ignored. Service have no session key");
@@ -13410,7 +14460,7 @@ var __resources__ = {
       return function action() {
         if (this.state != STATE_PROCESSING) {
           if (fn.prepare.apply(this, arguments)) {
-            basis.dev.warn("Prepare handler returns trulthy result. Operation aborted. Context: ", this);
+            basis.dev.info("Prepare handler returns trulthy result. Operation aborted. Context: ", this);
             return Promise.reject("Prepare handler returns trulthy result. Operation aborted. Context: ", this);
           }
           var request;
@@ -13826,7 +14876,6 @@ var __resources__ = {
         var inserted = [];
         var deleted = [];
         var matched = [];
-        var log = [];
         if (preventRecursion(newPath)) return;
         currentPath = newPath;
         for (var path in routes) {
@@ -13915,7 +14964,7 @@ var __resources__ = {
           if (module.exports.debug) basis.dev.info(namespace + ": add handler for route `" + path + "`\n", {
             type: "leave",
             path: route.id,
-            cb: item,
+            cb: callback.leave,
             route: route.token
           });
         }
@@ -14070,7 +15119,7 @@ var __resources__ = {
 
 (function createBasisInstance(context, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.6.1";
+  var VERSION = "1.7.0";
   var global = Function("return this")();
   var process = global.process;
   var document = global.document;
@@ -14948,6 +15997,11 @@ var __resources__ = {
       token.attach($undef, this, function() {
         this.detach(setter, token);
       });
+      devInfoResolver.setInfo(token, "sourceInfo", {
+        type: "Token#as",
+        source: this,
+        transform: fn
+      });
       return token;
     },
     destroy: function() {
@@ -15007,7 +16061,7 @@ var __resources__ = {
     } else {
       if (!/^(\.\/|\.\.|\/)/.test(url)) {
         var clr = arguments[2];
-        consoleMethods.warn("Bad usage: " + (clr ? clr.replace("{url}", url) : url) + ".\nFilenames should starts with `./`, `..` or `/`. Otherwise it may treats as special reference in next releases.");
+        consoleMethods.warn("Bad usage: " + (clr ? clr.replace("{url}", url) : url) + "\nFilenames should starts with `./`, `..` or `/`. Otherwise it may treats as special reference in next releases.");
       }
       url = pathUtils.resolve(baseURI, url);
     }
@@ -15127,6 +16181,7 @@ var __resources__ = {
     return resource;
   };
   var getResource = function(url, baseURI) {
+    if (url && typeof url != "string") url = url.url;
     var reference = baseURI ? baseURI + "\0" + url : url;
     var resource = resourceRequestCache[reference];
     if (!resource) {
@@ -15212,6 +16267,11 @@ var __resources__ = {
         cssResource.updateCssText(content);
         return cssResource;
       },
+      ".svg": function processCssResourceContent(content, url, svgResource) {
+        if (!svgResource) svgResource = new SvgResource(url);
+        svgResource.updateSvgText(content);
+        return svgResource;
+      },
       ".json": function processJsonResourceContent(content) {
         if (typeof content == "object") return content;
         var result;
@@ -15235,8 +16295,7 @@ var __resources__ = {
       var marker = basis.genUID();
       SOURCE_OFFSET = (new Function(args, marker)).toString().split(marker)[0].split(/\n/).length - 1;
     }
-    body = devInfoResolver.fixSourceOffset(body, SOURCE_OFFSET + 1);
-    if (!/\/\/# sourceMappingURL=[^\r\n]+[\s]*$/.test(body)) body += "\n\n//# sourceURL=" + pathUtils.origin + sourceURL;
+    body = devInfoResolver.fixSourceOffset(body, SOURCE_OFFSET + 1) + "\n//# sourceURL=" + pathUtils.origin + sourceURL;
     try {
       return new Function(args, '"use strict";\n' + (NODE_ENV ? "var __nodejsRequire = require;\n" : "") + body);
     } catch (e) {
@@ -15904,10 +16963,83 @@ var __resources__ = {
       }
     });
   }();
+  var SvgResource = function() {
+    var baseEl = document && document.createElement("base");
+    function setBase(baseURI) {
+      baseEl.setAttribute("href", baseURI);
+      documentInterface.head.add(baseEl, true);
+    }
+    function restoreBase() {
+      baseEl.setAttribute("href", location.href);
+      documentInterface.remove(baseEl);
+    }
+    function injectSvg() {
+      setBase(this.baseURI);
+      if (!this.element) {
+        this.element = document.createElement("span");
+        this.element.style.cssText = "display:none";
+        this.element.setAttribute("src", this.url);
+      }
+      documentInterface.body.add(this.element);
+      this.syncSvgText();
+      restoreBase();
+    }
+    return Class(null, {
+      className: "basis.SvgResource",
+      inUse: 0,
+      url: "",
+      baseURI: "",
+      svgText: undefined,
+      element: null,
+      init: function(url) {
+        this.url = url;
+        this.baseURI = pathUtils.dirname(url) + "/";
+      },
+      toString: function() {
+        return this.svgText;
+      },
+      updateSvgText: function(svgText) {
+        if (this.svgText != svgText) {
+          this.svgText = svgText;
+          if (this.inUse && this.element) {
+            setBase(this.baseURI);
+            this.syncSvgText();
+            restoreBase();
+          }
+        }
+      },
+      syncSvgText: function() {
+        this.element.innerHTML = this.svgText;
+      },
+      startUse: function() {
+        if (!this.inUse) documentInterface.body.ready(injectSvg, this);
+        this.inUse += 1;
+      },
+      stopUse: function() {
+        if (this.inUse) {
+          this.inUse -= 1;
+          if (!this.inUse && this.element) documentInterface.remove(this.element);
+        }
+      },
+      destroy: function() {
+        if (this.element) documentInterface.remove(this.element);
+        this.element = null;
+        this.svgText = null;
+      }
+    });
+  }();
   var devInfoResolver = function() {
     var getExternalInfo = $undef;
     var fixSourceOffset = $self;
     var set = function(target, key, info) {};
+    var patch = function(target, key, patch) {
+      var oldInfo = get(target, key);
+      if (!oldInfo || typeof oldInfo != "object") {
+        set(target, key, patch);
+        return;
+      }
+      extend(oldInfo, patch);
+    };
     var get = function(target, key) {
       var externalInfo = getExternalInfo(target);
       var ownInfo = map.get(target);
@@ -15932,12 +17064,12 @@ var __resources__ = {
       info[key] = value;
     };
     var resolver = config.devInfoResolver || global.$devinfo || {};
-    var test = {};
     if (typeof resolver.fixSourceOffset == "function") fixSourceOffset = resolver.fixSourceOffset;
     if (typeof resolver.get == "function") getExternalInfo = resolver.get;
     return {
       fixSourceOffset: fixSourceOffset,
       setInfo: set,
+      patchInfo: patch,
       getInfo: get
     };
   }();

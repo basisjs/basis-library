@@ -111,9 +111,16 @@ var __resources__ = {
         inspect: basis,
         devInfoResolver: basis.config.devInfoResolver,
         modules: {
+          api: {
+            path: basis.path.resolve(__dirname, "../devpanel/api/index.js")
+          },
+          type: {
+            path: basis.path.resolve(__dirname, "../devpanel/type/"),
+            filename: "index.js"
+          },
           devpanel: {
             autoload: true,
-            path: basis.path.dirname(basis.filename_) + "/devpanel/",
+            path: basis.path.resolve(__dirname, "../devpanel/"),
             filename: "index.js"
           }
         }
@@ -681,6 +688,9 @@ var __resources__ = {
     var Class = basis.Class;
     var NULL_HANDLER = {};
     var events = {};
+    var warnOnDestroyWhileDestroing = function() {
+      basis.dev.warn("Invoke `destroy` method is prohibited during object destroy.");
+    };
     var warnOnDestroy = function() {
       basis.dev.warn("Object had been destroyed before. Destroy method must not be called more than once.");
     };
@@ -796,6 +806,7 @@ var __resources__ = {
         };
       },
       removeHandler: function(callbacks, context) {
+        if (this.destroy === warnOnDestroy) return;
         var cursor = this;
         var prev;
         context = context || this;
@@ -807,9 +818,10 @@ var __resources__ = {
         basis.dev.warn(namespace + ".Emitter#removeHandler: no handler removed");
       },
       destroy: function() {
-        this.destroy = warnOnDestroy;
+        this.destroy = warnOnDestroyWhileDestroing;
         this.emit_destroy();
         this.handler = null;
+        this.destroy = warnOnDestroy;
       }
     });
     module.exports = {
@@ -3453,6 +3465,14 @@ var __resources__ = {
       getTemplateCount: function() {
         return templateList.length;
       },
+      resolveTemplateInfoByNode: function(node) {
+        while (node) {
+          if (node[consts.MARKER]) return store.resolveInfoById(node[consts.MARKER]);
+          node = node.parentNode;
+        }
+        return null;
+      },
+      resolveInfoById: store.resolveInfoById,
       resolveTemplateById: store.resolveTemplateById,
       resolveObjectById: store.resolveObjectById,
       resolveTmplById: store.resolveTmplById,
@@ -3785,7 +3805,7 @@ var __resources__ = {
               sourceResource();
             });
             var sourceResource = basis.resource(url).ready(function(cssResource) {
-              var isolated = isolateCss(cssResource.cssText || "", isolate, true);
+              var isolated = isolateCss(cssResource && cssResource.cssText || "", isolate, true);
               if (typeof global.btoa == "function") isolated.css += "\n/*# sourceMappingURL=data:application/json;base64," + global.btoa('{"version":3,"sources":["' + basis.path.origin + url + '"],' + '"mappings":"AAAA' + basis.string.repeat(";AACA", isolated.css.split("\n").length) + '"}') + " */";
               cssMap = isolated.map;
               resource.update(isolated.css);
@@ -5647,44 +5667,58 @@ var __resources__ = {
     function remove(id) {
       delete templates[id];
     }
-    function resolveTemplateById(refId) {
-      var templateId = refId & 4095;
-      var object = templates[templateId];
-      return object && object.template;
-    }
     function resolveInstanceById(refId) {
       var templateId = refId & 4095;
       var instanceId = refId >> 12;
-      var object = templates[templateId];
-      return object && object.instances[instanceId];
+      var templateInfo = templates[templateId];
+      return templateInfo && templateInfo.instances[instanceId];
+    }
+    function resolveInfoById(refId) {
+      var templateId = refId & 4095;
+      var instanceId = refId >> 12;
+      var templateInfo = templates[templateId];
+      var instanceInfo = templateInfo && templateInfo.instances[instanceId];
+      if (instanceInfo) return {
+        debug: instanceInfo.debug ? instanceInfo.debug() : null,
+        id: refId,
+        template: templateInfo.template,
+        context: instanceInfo.context,
+        tmpl: instanceInfo.tmpl
+      };
+    }
+    function resolveTemplateById(refId) {
+      var templateId = refId & 4095;
+      var templateInfo = templates[templateId];
+      return templateInfo && templateInfo.template;
     }
     function resolveObjectById(refId) {
-      var templateRef = resolveInstanceById(refId);
-      return templateRef && templateRef.context;
+      var instanceInfo = resolveInstanceById(refId);
+      return instanceInfo && instanceInfo.context;
     }
     function resolveTmplById(refId) {
-      var templateRef = resolveInstanceById(refId);
-      return templateRef && templateRef.tmpl;
+      var instanceInfo = resolveInstanceById(refId);
+      return instanceInfo && instanceInfo.tmpl;
     }
     function resolveActionById(refId) {
-      var templateRef = resolveInstanceById(refId);
-      return templateRef && {
-        context: templateRef.context,
-        action: templateRef.action
+      var instanceInfo = resolveInstanceById(refId);
+      return instanceInfo && {
+        context: instanceInfo.context,
+        action: instanceInfo.action
       };
     }
     function getDebugInfoById(refId) {
-      var templateRef = resolveInstanceById(refId);
-      return templateRef && templateRef.debug && templateRef.debug();
+      var instanceInfo = resolveInstanceById(refId);
+      return instanceInfo && instanceInfo.debug && instanceInfo.debug();
     }
     module.exports = {
       getDebugInfoById: getDebugInfoById,
       add: add,
       remove: remove,
-      resolveActionById: resolveActionById,
+      resolveInfoById: resolveInfoById,
       resolveTemplateById: resolveTemplateById,
       resolveObjectById: resolveObjectById,
-      resolveTmplById: resolveTmplById
+      resolveTmplById: resolveTmplById,
+      resolveActionById: resolveActionById
     };
   },
   "c.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
@@ -5861,6 +5895,7 @@ var __resources__ = {
           if (name != currentThemeName) {
             currentThemeName = name;
             syncCurrentTheme();
+            basis.Token.prototype.set.call(getTheme, currentThemeName);
             for (var i = 0, handler; handler = themeChangeHandlers[i]; i++) handler.fn.call(handler.context, name);
             basis.dev.info("Template theme switched to `" + name + "`");
           }
@@ -5880,6 +5915,11 @@ var __resources__ = {
       sourceList.push(themes.base.sources);
       return themeInterface;
     }
+    function setTheme(name) {
+      return getTheme(name).apply();
+    }
+    basis.object.extend(getTheme, new basis.Token(currentThemeName));
+    getTheme.set = setTheme;
     function onThemeChange(fn, context, fire) {
       themeChangeHandlers.push({
         fn: fn,
@@ -5905,9 +5945,7 @@ var __resources__ = {
       currentTheme: function() {
         return themes[currentThemeName].theme;
       },
-      setTheme: function(name) {
-        return getTheme(name).apply();
-      },
+      setTheme: setTheme,
       onThemeChange: onThemeChange,
       define: baseTheme.define,
       get: getSourceByPath,
@@ -6132,6 +6170,7 @@ var __resources__ = {
   "e.js": function(exports, module, basis, global, __filename, __dirname, require, resource, asset) {
     var namespace = "basis.dom.event";
     var document = global.document;
+    var extend = basis.object.extend;
     var $null = basis.fn.$null;
     var arrayFrom = basis.array.from;
     var globalEvents = {};
@@ -6186,15 +6225,40 @@ var __resources__ = {
     var BROWSER_EVENTS = {
       mousewheel: [ "wheel", "mousewheel", "DOMMouseScroll" ]
     };
-    var DEPRECATED = /^(returnValue|keyLocation|layerX|layerY|webkitMovementX|webkitMovementY)$/;
-    var KEYBOARD_EVENTS = [ "keyup", "keydown", "keypress" ];
-    var MOUSE_EVENTS = [ "click", "dblclick", "mousedown", "mouseup", "mouseover", "mousemove", "mouseout", "mouseenter", "mouseleave" ].concat(BROWSER_EVENTS.mousewheel);
-    function isKeyboardEvent(event) {
-      return KEYBOARD_EVENTS.indexOf(event.type) != -1;
-    }
-    function isMouseEvent(event) {
-      return MOUSE_EVENTS.indexOf(event.type) != -1;
-    }
+    var DEPRECATED_PROPERTIES = [ "returnValue", "keyLocation", "layerX", "layerY", "webkitMovementX", "webkitMovementY", "keyIdentifier" ];
+    var TYPE_KEYBOARD = 0;
+    var TYPE_MOUSE = 1;
+    var TYPE_TOUCH = 2;
+    var TYPE_POINTER = 3;
+    var INPUT_TYPE = {
+      keydown: TYPE_KEYBOARD,
+      keypress: TYPE_KEYBOARD,
+      keyup: TYPE_KEYBOARD,
+      click: TYPE_MOUSE,
+      dblclick: TYPE_MOUSE,
+      mousedown: TYPE_MOUSE,
+      mouseup: TYPE_MOUSE,
+      mouseover: TYPE_MOUSE,
+      mousemove: TYPE_MOUSE,
+      mouseout: TYPE_MOUSE,
+      mouseenter: TYPE_MOUSE,
+      mouseleave: TYPE_MOUSE,
+      wheel: TYPE_MOUSE,
+      mousewheel: TYPE_MOUSE,
+      DOMMouseScroll: TYPE_MOUSE,
+      touchstart: TYPE_TOUCH,
+      touchmove: TYPE_TOUCH,
+      touchend: TYPE_TOUCH,
+      touchcancel: TYPE_TOUCH,
+      pointerover: TYPE_POINTER,
+      pointerenter: TYPE_POINTER,
+      pointerdown: TYPE_POINTER,
+      pointermove: TYPE_POINTER,
+      pointerup: TYPE_POINTER,
+      pointercancel: TYPE_POINTER,
+      pointerout: TYPE_POINTER,
+      pointerleave: TYPE_POINTER
+    };
     function browserEvents(eventName) {
       return BROWSER_EVENTS[eventName] || [ eventName ];
     }
@@ -6211,28 +6275,51 @@ var __resources__ = {
       KEY: KEY,
       init: function(event) {
         event = wrap(event);
-        for (var name in event) if (!DEPRECATED.test(name) && (event.type != "progress" || name != "totalSize" && name != "position")) if (typeof event[name] != "function" && name in this == false) this[name] = event[name];
+        for (var name in event) if (DEPRECATED_PROPERTIES.indexOf(name) == -1 && (event.type != "progress" || name != "totalSize" && name != "position")) if (typeof event[name] != "function" && name in this == false) this[name] = event[name];
         var target = sender(event);
-        basis.object.extend(this, {
+        extend(this, {
           event_: event,
           sender: target,
           target: target,
           path: event.path ? basis.array(event.path) : getPath(target)
         });
-        if (isKeyboardEvent(event)) {
-          basis.object.extend(this, {
-            key: key(event),
-            charCode: charCode(event)
-          });
-        } else if (isMouseEvent(event)) {
-          basis.object.extend(this, {
-            mouseLeft: mouseButton(event, MOUSE_LEFT),
-            mouseMiddle: mouseButton(event, MOUSE_MIDDLE),
-            mouseRight: mouseButton(event, MOUSE_RIGHT),
-            mouseX: mouseX(event),
-            mouseY: mouseY(event),
-            wheelDelta: wheelDelta(event)
-          });
+        switch (INPUT_TYPE[event.type]) {
+          case TYPE_KEYBOARD:
+            extend(this, {
+              key: key(event),
+              charCode: charCode(event)
+            });
+            break;
+          case TYPE_MOUSE:
+            extend(this, {
+              mouseLeft: mouseButton(event, MOUSE_LEFT),
+              mouseMiddle: mouseButton(event, MOUSE_MIDDLE),
+              mouseRight: mouseButton(event, MOUSE_RIGHT),
+              mouseX: mouseX(event),
+              mouseY: mouseY(event),
+              wheelDelta: wheelDelta(event),
+              pointerX: mouseX(event),
+              pointerY: mouseY(event)
+            });
+            break;
+          case TYPE_TOUCH:
+            extend(this, {
+              touchX: touchX(event),
+              touchY: touchY(event),
+              mouseX: touchX(event),
+              mouseY: touchY(event),
+              pointerX: touchX(event),
+              pointerY: touchY(event)
+            });
+            break;
+          case TYPE_POINTER:
+            extend(this, {
+              pointerX: mouseX(event),
+              pointerY: mouseY(event),
+              mouseX: mouseX(event),
+              mouseY: mouseY(event)
+            });
+            break;
         }
       },
       stopBubble: function() {
@@ -6282,10 +6369,16 @@ var __resources__ = {
       if (typeof event.which == "number") return event.which == button.VALUE; else return !!(event.button & button.BIT);
     }
     function mouseX(event) {
-      if (event.changedTouches) return event.changedTouches[0].pageX; else if ("pageX" in event) return event.pageX; else return "clientX" in event ? event.clientX + (document.compatMode == "CSS1Compat" ? document.documentElement.scrollLeft : document.body.scrollLeft) : 0;
+      if ("pageX" in event) return event.pageX; else return "clientX" in event ? event.clientX + (document.compatMode == "CSS1Compat" ? document.documentElement.scrollLeft : document.body.scrollLeft) : 0;
     }
     function mouseY(event) {
-      if (event.changedTouches) return event.changedTouches[0].pageY; else if ("pageY" in event) return event.pageY; else return "clientY" in event ? event.clientY + (document.compatMode == "CSS1Compat" ? document.documentElement.scrollTop : document.body.scrollTop) : 0;
+      if ("pageY" in event) return event.pageY; else return "clientY" in event ? event.clientY + (document.compatMode == "CSS1Compat" ? document.documentElement.scrollTop : document.body.scrollTop) : 0;
+    }
+    function touchX(event) {
+      if (event.changedTouches) return event.changedTouches[0].pageX;
+    }
+    function touchY(event) {
+      if (event.changedTouches) return event.changedTouches[0].pageY;
     }
     function wheelDelta(event) {
       var delta = 0;
@@ -6503,6 +6596,8 @@ var __resources__ = {
       mouseX: wrapEventFunction(mouseX),
       mouseY: wrapEventFunction(mouseY),
       wheelDelta: wrapEventFunction(wheelDelta),
+      touchX: wrapEventFunction(touchX),
+      touchY: wrapEventFunction(touchY),
       addGlobalHandler: addGlobalHandler,
       removeGlobalHandler: removeGlobalHandler,
       captureEvent: captureEvent,
@@ -8134,6 +8229,7 @@ var __resources__ = {
     if (PROXY_SUPPORT) {
       var devWrapMap = new WeakMap;
       var devWrap = function(value) {
+        value = devWrapMap.has(value) ? devWrapMap.get(value) : value;
         var result = new Proxy(value, {});
         devWrapMap.set(result, value);
         return result;
@@ -8338,6 +8434,7 @@ var __resources__ = {
       as: function(fn) {
         if (arguments.length > 1) basis.dev.warn("basis.data.Value#as() doesn't accept deferred flag as second parameter anymore. Use value.as(fn).deferred() instead.");
         if (!fn || fn === $self) return this;
+        if (typeof fn == "string") fn = basis.getter(fn);
         if (this.links_) {
           var cursor = this;
           var fnId = fn[GETTER_ID] || String(fn);
@@ -8399,7 +8496,7 @@ var __resources__ = {
         }
         var cursor = this;
         while (cursor = cursor.links_) if (cursor.context === context && cursor.fn === fn) {
-          basis.dev.warn(this.constructor.className + "#attach: Duplicate link pair context-fn");
+          basis.dev.warn(this.constructor.className + "#link: Duplicate link pair context-fn");
           break;
         }
         this.links_ = {
@@ -8442,6 +8539,7 @@ var __resources__ = {
     });
     var ReadOnlyValue = Class(Value, {
       className: namespace + ".ReadOnlyValue",
+      setNullOnEmitterDestroy: false,
       set: basis.fn.$false
     });
     var deferredSchedule = basis.asap.schedule(function(value) {
@@ -8461,7 +8559,6 @@ var __resources__ = {
     };
     var DeferredValue = Class(ReadOnlyValue, {
       className: namespace + ".DeferredValue",
-      setNullOnEmitterDestroy: false,
       source: null,
       init: function() {
         ReadOnlyValue.prototype.init.call(this);
@@ -8512,11 +8609,12 @@ var __resources__ = {
           result = valueFromMap[id] = new ReadOnlyValue({
             proxy: basis.getter(getter),
             value: obj,
-            handler: {
-              destroy: function() {
-                valueFromMap[id] = null;
+            emit_destroy: function() {
+              if (id in valueFromMap) {
+                delete valueFromMap[id];
                 obj.removeHandler(handler, this);
               }
+              ReadOnlyValue.prototype.emit_destroy.call(this);
             }
           });
           basis.dev.setInfo(result, "sourceInfo", {
@@ -8526,8 +8624,10 @@ var __resources__ = {
             transform: result.proxy
           });
           handler.destroy = function() {
-            valueFromMap[id] = null;
-            this.destroy();
+            if (id in valueFromMap) {
+              delete valueFromMap[id];
+              this.destroy();
+            }
           };
           obj.addHandler(handler, result);
         } else result = devWrap(result);
@@ -12239,6 +12339,7 @@ var __resources__ = {
           for (var calcName in this.calcs) data[calcName] = this.calcs[calcName](sourceObject.data, this.indexValues, sourceObject);
           if (this.copyDataFromSource) for (var key in sourceObject.data) if (!this.calcs.hasOwnProperty(key)) data[key] = sourceObject.data[key];
           member = new this.itemClass({
+            source: sourceObject,
             data: data,
             update: sourceObject.update.bind(sourceObject)
           });
@@ -15550,7 +15651,9 @@ var __resources__ = {
           });
         }
       };
-      if (config.constructor !== Object) config = {
+      if (typeof config === "function" && !basis.fn.isFactory(config)) config = {
+        init: config
+      }; else if (config.constructor !== Object) config = {
         element: config
       };
       for (var key in config) {
@@ -15602,7 +15705,7 @@ var __resources__ = {
 
 (function createBasisInstance(context, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.8.3";
+  var VERSION = "1.9.0";
   var global = Function("return this")();
   var process = global.process;
   var document = global.document;
@@ -16195,7 +16298,7 @@ var __resources__ = {
   function processConfig(config) {
     config = slice(config);
     complete(config, {
-      implicitExt: NODE_ENV ? true : "warn"
+      implicitExt: NODE_ENV ? true : false
     });
     if ("extProto" in config) consoleMethods.warn("basis-config: `extProto` option in basis-config is not support anymore");
     if ("path" in config) consoleMethods.warn("basis-config: `path` option in basis-config is deprecated, use `modules` instead");
@@ -17562,9 +17665,25 @@ var __resources__ = {
       getInfo: get
     };
   }();
+  var attachFileSyncRetry = 50;
+  ready(function attachFileSync() {
+    var basisjsTools = global.basisjsToolsFileSync;
+    if (!basisjsTools) {
+      if (attachFileSyncRetry < 500) setTimeout(attachFileSync, attachFileSyncRetry);
+      attachFileSyncRetry += 100;
+      return;
+    }
+    basisjsTools.notifications.attach(function(action, filename, content) {
+      if (action == "update") {
+        if (filename in resources) resources[filename].update(content);
+        if (filename in resourceContentCache) resourceContentCache[filename] = content;
+      }
+    });
+  });
   var basis = getNamespace("basis").extend({
     filename_: basisFilename,
     processConfig: processConfig,
+    selfFileSync: true,
     version: VERSION,
     NODE_ENV: NODE_ENV,
     config: config,

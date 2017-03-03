@@ -10938,6 +10938,7 @@ var __resources__ = {
     var createRuleEvents = basis.require("./1k.js");
     var getDelta = basis.require("./1j.js");
     var DataObject = basis.require("./g.js").Object;
+    var isEqual = basis.require("./g.js").isEqual;
     var setAccumulateState = basis.require("./g.js").Dataset.setAccumulateState;
     var SourceDataset = basis.require("./1l.js");
     var MAPFILTER_SOURCEOBJECT_UPDATE = function(sourceObject) {
@@ -10945,7 +10946,7 @@ var __resources__ = {
       if (newMember instanceof DataObject == false || this.filter(newMember)) newMember = null;
       var sourceMap = this.sourceMap_[sourceObject.basisObjectId];
       var curMember = sourceMap.member;
-      if (curMember !== newMember) {
+      if (!isEqual(curMember, newMember)) {
         var memberMap = this.members_;
         var delta;
         var inserted;
@@ -11093,7 +11094,7 @@ var __resources__ = {
           curMember = sourceObjectInfo.member;
           newMember = this.map ? this.map(sourceObject) : sourceObject;
           if (newMember instanceof DataObject == false || this.filter(newMember)) newMember = null;
-          if (curMember != newMember) {
+          if (!isEqual(curMember, newMember)) {
             sourceObjectInfo.member = newMember;
             if (curMember) {
               curMemberId = curMember.basisObjectId;
@@ -11325,6 +11326,7 @@ var __resources__ = {
     var arrayFrom = basis.array.from;
     var createEvent = basis.require("./3.js").create;
     var DataObject = basis.require("./g.js").Object;
+    var isEqual = basis.require("./g.js").isEqual;
     var ReadOnlyDataset = basis.require("./g.js").ReadOnlyDataset;
     var SourceDataset = basis.require("./1l.js");
     var createRuleEvents = basis.require("./1k.js");
@@ -11336,7 +11338,7 @@ var __resources__ = {
       var inserted;
       var deleted;
       var delta;
-      if (newValue === oldValue) return;
+      if (isEqual(newValue, oldValue)) return;
       if (newValue instanceof DataObject || newValue instanceof ReadOnlyDataset) inserted = addToExtract(this, newValue, sourceObject);
       if (oldValue) deleted = removeFromExtract(this, oldValue, sourceObject);
       sourceObjectInfo.value = newValue;
@@ -11434,7 +11436,7 @@ var __resources__ = {
         var sourceObjectInfo = sourceMap[sourceObjectId];
         var sourceObjectValue = sourceObjectInfo.value;
         for (var cursor = sourceObjectInfo, prevCursor = sourceObjectInfo; cursor = cursor.ref; ) {
-          if (cursor.object === ref) {
+          if (isEqual(cursor.object, ref)) {
             prevCursor.ref = cursor.ref;
             break;
           }
@@ -11501,7 +11503,7 @@ var __resources__ = {
           if (sourceObject instanceof DataObject) {
             var newValue = this.rule(sourceObject) || null;
             var oldValue = sourceObjectInfo.value;
-            if (newValue === oldValue) continue;
+            if (isEqual(newValue, oldValue)) continue;
             if (newValue instanceof DataObject || newValue instanceof ReadOnlyDataset) {
               var inserted = addToExtract(this, newValue, sourceObject);
               for (var i = 0; i < inserted.length; i++) {
@@ -11998,7 +12000,7 @@ var __resources__ = {
         return getter(object) / indexes[maxIndex];
       });
     }
-    function percentOfSum(getter, events) {
+    function percentOfSum(events, getter) {
       var sumIndex = IndexedCalc.getId("sum");
       var indexes = {};
       indexes[sumIndex] = sum(events, getter);
@@ -12509,7 +12511,7 @@ var __resources__ = {
         indexWrapper.source[this.indexId] = null;
       }
     };
-    function getIndexConstructor(BaseClass, getter, events) {
+    function getIndexConstructor(BaseClass, events, getter) {
       if (!Class.isClass(BaseClass) || !BaseClass.isSubclassOf(Index)) throw "Wrong class for index constructor";
       getter = basis.getter(getter);
       events = events || "update";
@@ -12547,7 +12549,7 @@ var __resources__ = {
           getter = events;
           events = "";
         }
-        var indexConstructor = getIndexConstructor(IndexClass, getter || defGetter, events);
+        var indexConstructor = getIndexConstructor(IndexClass, events, getter || defGetter);
         if (!source) return indexConstructor;
         if (source instanceof ReadOnlyDataset || source instanceof DatasetWrapper) {
           var index = Index.getDatasetIndex(source, indexConstructor);
@@ -16074,7 +16076,7 @@ var __resources__ = {
 
 (function createBasisInstance(context, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.10.0";
+  var VERSION = "1.10.1";
   var global = Function("return this")();
   var process = global.process;
   var document = global.document;
@@ -17940,6 +17942,7 @@ var __resources__ = {
       }
     });
   }();
+  var svgStorageElement = null;
   var SvgResource = function() {
     var baseEl = document && document.createElement("base");
     function setBase(baseURI) {
@@ -17954,10 +17957,9 @@ var __resources__ = {
       setBase(this.baseURI);
       if (!this.element) {
         this.element = document.createElement("span");
-        this.element.style.cssText = "display:none";
         this.element.setAttribute("src", this.url);
       }
-      documentInterface.body.add(this.element);
+      svgStorageElement.appendChild(this.element);
       this.syncSvgText();
       restoreBase();
     }
@@ -17989,17 +17991,25 @@ var __resources__ = {
         this.element.innerHTML = this.svgText;
       },
       startUse: function() {
-        if (!this.inUse) documentInterface.body.ready(injectSvg, this);
+        if (!this.inUse) {
+          if (!svgStorageElement) {
+            svgStorageElement = document.createElement("span");
+            svgStorageElement.setAttribute("title", "svg symbol storage");
+            svgStorageElement.style.cssText = "position:absolute!important;width:0;height:0;overflow:hidden";
+            documentInterface.body.add(svgStorageElement);
+          }
+          documentInterface.body.ready(injectSvg, this);
+        }
         this.inUse += 1;
       },
       stopUse: function() {
         if (this.inUse) {
           this.inUse -= 1;
-          if (!this.inUse && this.element) documentInterface.remove(this.element);
+          if (!this.inUse && this.element) svgStorageElement.removeChild(this.element);
         }
       },
       destroy: function() {
-        if (this.element) documentInterface.remove(this.element);
+        if (this.element) svgStorageElement.removeChild(this.element);
         this.element = null;
         this.svgText = null;
       }

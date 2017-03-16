@@ -15927,7 +15927,7 @@ var __resources__ = {
           var token = route.token;
           if ((!token.handler || !token.handler.handler) && !token.matched.handler) delete routes[route.id];
         }
-        break;
+        return;
       }
       basis.dev.warn(namespace + ": no callback removed", {
         callback: callback,
@@ -16076,7 +16076,7 @@ var __resources__ = {
 
 (function createBasisInstance(context, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.10.1";
+  var VERSION = "1.10.2";
   var global = Function("return this")();
   var process = global.process;
   var document = global.document;

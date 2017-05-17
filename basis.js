@@ -13152,7 +13152,7 @@ var __resources__ = {
       setAndDestroyRemoved: function(data) {
         if (this.localId) return this.set(data);
         if (!this.itemCount) return this.add(data);
-        if (!data || !data.length) return this.clear();
+        if (this.localId && (!data || !data.length)) this.clear();
         return setAndDestroyRemoved.call(this, data);
       },
       clear: function() {
@@ -16076,7 +16076,7 @@ var __resources__ = {
 
 (function createBasisInstance(context, __basisFilename, __config) {
   "use strict";
-  var VERSION = "1.10.2";
+  var VERSION = "1.10.3";
   var global = Function("return this")();
   var process = global.process;
   var document = global.document;
@@ -16635,7 +16635,7 @@ var __resources__ = {
     var config = __config;
     if (!config) {
       if (NODE_ENV) {
-        basisFilename = process.basisjsFilename;
+        basisFilename = process.basisjsFilename || __filename.replace(/\\/g, "/");
         if (process.basisjsConfig) {
           config = process.basisjsConfig;
           if (typeof config == "string") {
@@ -17044,8 +17044,7 @@ var __resources__ = {
         }
       } else {
         try {
-          if (!process.basisjsReadFile) consoleMethods.warn("basis.resource: basisjsReadFile not found, file content couldn't to be read");
-          resourceContent = process.basisjsReadFile ? process.basisjsReadFile(url) : "";
+          resourceContent = typeof process.basisjsReadFile == "function" ? process.basisjsReadFile(url) : require("fs").readFileSync(url, "utf-8");
         } catch (e) {
           consoleMethods.error("basis.resource: Unable to load " + url, e);
         }
@@ -18176,7 +18175,10 @@ var __resources__ = {
     });
     if ("devpanel" in config == false || config.devpanel) basis.require("./0.js");
   }
-  if (NODE_ENV && exports) exports.basis = basis;
+  if (NODE_ENV && typeof module != "undefined" && module) {
+    module.exports = basis;
+    module.exports.basis = basis;
+  }
   return basis;
 })(this);
 }).call(this);
